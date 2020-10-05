@@ -1,4 +1,4 @@
-# SnowDune
+# SnowyDune
 
 ## ¿Qué es SnowyDune?
 
