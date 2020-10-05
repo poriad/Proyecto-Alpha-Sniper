@@ -15,10 +15,10 @@ El desarrollo de toda Aplicación Web requiere seguir un [proceso estructurado](
 # Título del Proyecto
 
 #### Curso Escolar 20XX-20XX
-#### Autor: [Nombre del alumno autor](Enlace a su cuenta de gitHub)
-#### Tutor: [Nombre del profesor tutor](Enlace a su cuenta de gitHub)
-#### Fecha de Inicio: DD-MM-YYYY
-#### Fecha de Finalización: DD-MM-YYYY
+#### Autor: [Oria de Rueda Pérez, Pablo] (https://github.com/poriad/Proyecto-SnowyDune)
+#### Tutor: [Chema Durán](https://github.com/chemaduran)
+#### Fecha de Inicio: 05-10-2020
+#### Fecha de Finalización: 18-12-2020
 
 ## Breve descripción del proyecto
 
