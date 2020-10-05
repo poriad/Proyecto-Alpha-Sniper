@@ -24,6 +24,7 @@ Para todo esto se debe contar con:
 - Un sistema de registro a través del cual poder acceder posteriormente al sistema. Este registro debe diferenciarte entre si es 
   un usuario estandar o un usuario empresa en cuanto a los campos iniciales a rellenar. Las empresas, inicialmente, deberán ser autorizadas por un usuario administrador.
 - Un login que permita acceder al sistema, este login debe ser lo suficiente seguro como para evitar intrusiones indeseadas.
+- Una pantalla inicial a través de la cual gestionar el Inicio de sesión y el registro en el sistema.
 - Una pantalla específica para usuario, en la cual se pueda acceder a la personalización del viaje y pasar por el proceso de creación del mismo.
 También va a poder acceder a modificar sus datos personales y a una pantalla en la que se visualizan los viajes creados y su historial de viajes realizados.
 - Una pantalla específica para empresas, las cuales puedan publicar su negocio, con descripciones y fotos que el usuario desee.
