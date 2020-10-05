@@ -15,7 +15,7 @@ El desarrollo de toda Aplicación Web requiere seguir un [proceso estructurado](
 # Título del Proyecto
 
 #### Curso Escolar 20XX-20XX
-#### Autor: [Oria de Rueda Pérez, Pablo] (https://github.com/poriad/Proyecto-SnowyDune)
+#### Autor: [Oria de Rueda Pérez, Pablo](https://github.com/poriad/Proyecto-SnowyDune)
 #### Tutor: [Chema Durán](https://github.com/chemaduran)
 #### Fecha de Inicio: 05-10-2020
 #### Fecha de Finalización: 18-12-2020
