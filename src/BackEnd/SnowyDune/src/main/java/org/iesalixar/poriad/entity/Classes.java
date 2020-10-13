@@ -19,7 +19,7 @@ public class Classes {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idClasses;
+	private Long idClasses;
 	
 	private Double priceHour;
 	

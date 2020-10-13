@@ -21,7 +21,7 @@ public class Trip {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTrip;
+	private Long idTrip;
 	
 	private Double totalPrice;
 	

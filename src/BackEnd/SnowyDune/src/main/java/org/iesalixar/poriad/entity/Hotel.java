@@ -17,7 +17,7 @@ public class Hotel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idHotel;
+	private Long idHotel;
 	
 	private Double priceDay;
 	
