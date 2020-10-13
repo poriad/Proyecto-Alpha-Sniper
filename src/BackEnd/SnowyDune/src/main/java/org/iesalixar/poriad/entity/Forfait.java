@@ -17,19 +17,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Payment {
-
+public class Forfait {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPayment;
+	private int idForfait;
 	
-	private Double paymentAmount;
+	private int numberForfait;
+	
+	private Double price;
+	
+	private String urlImage;
 	
 	@CreationTimestamp
-	private Date paymentDate;
+	private Date inicialDate;
 	
-	private String otherDetails;
+	private int numberDays;
 	
-	private String paymentType;
+	private String station;
 	
 }

@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Payment {
-
+public class PaymentHistory {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPayment;
@@ -31,5 +31,4 @@ public class Payment {
 	private String otherDetails;
 	
 	private String paymentType;
-	
 }

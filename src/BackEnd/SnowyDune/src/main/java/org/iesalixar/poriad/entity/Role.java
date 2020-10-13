@@ -1,13 +1,9 @@
 package org.iesalixar.poriad.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,19 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Payment {
-
+public class Role {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPayment;
+	private int idRole;
 	
-	private Double paymentAmount;
-	
-	@CreationTimestamp
-	private Date paymentDate;
-	
-	private String otherDetails;
-	
-	private String paymentType;
-	
+	private String name;
+
 }
