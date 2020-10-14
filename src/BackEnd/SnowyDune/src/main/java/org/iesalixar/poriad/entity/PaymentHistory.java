@@ -21,7 +21,7 @@ public class PaymentHistory {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idPayment;
+	private Long id;
 	
 	private Double paymentAmount;
 	

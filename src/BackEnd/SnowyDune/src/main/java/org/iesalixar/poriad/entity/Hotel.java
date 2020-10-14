@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +19,7 @@ public class Hotel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idHotel;
+	private Long id;
 	
 	private Double priceDay;
 	
@@ -32,5 +34,9 @@ public class Hotel {
 	private String phone;
 	
 	private String ulrImages;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_hotel_category", nullable = false)
+	private HotelCategory hotelCategory;
 	
 }

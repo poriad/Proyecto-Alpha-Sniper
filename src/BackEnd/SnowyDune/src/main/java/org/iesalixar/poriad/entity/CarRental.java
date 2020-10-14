@@ -17,7 +17,7 @@ public class CarRental {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCarRental;
+	private Long id;
 	
 	private String name;
 	

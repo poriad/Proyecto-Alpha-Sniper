@@ -21,7 +21,7 @@ public class Forfait {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idForfait;
+	private Long id;
 	
 	private int numberForfait;
 	
