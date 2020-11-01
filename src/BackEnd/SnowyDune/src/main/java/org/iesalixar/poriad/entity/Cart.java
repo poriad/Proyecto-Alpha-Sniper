@@ -27,6 +27,6 @@ public class Cart {
 	private Set<Trip> trips;
 	
 	@OneToOne(mappedBy = "cart")
-	private User user;
+	private UserSnowy user;
 	
 }

@@ -39,6 +39,6 @@ public class Payment {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=true)
-	private User user; 
+	private UserSnowy user; 
 	
 }

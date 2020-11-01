@@ -11,13 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class User {
+public class UserSnowy {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,6 +37,7 @@ public class User {
 	
 	private String username;
 	
+	@JsonIgnore
 	private String password;
 	
 	private int enabled;

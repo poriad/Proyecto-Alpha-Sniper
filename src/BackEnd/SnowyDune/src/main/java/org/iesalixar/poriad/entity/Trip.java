@@ -42,7 +42,7 @@ public class Trip {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
+	private UserSnowy user;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "station_id", referencedColumnName = "id")
