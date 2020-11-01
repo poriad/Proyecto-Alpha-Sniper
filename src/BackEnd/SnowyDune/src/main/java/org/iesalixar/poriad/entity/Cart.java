@@ -6,30 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class HotelCategory {
+public class Cart {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private int stars;
+	@ManyToMany(mappedBy = "cart")
+	private Set<Trip> trips;
 	
-	private String roomNumber;
+	@OneToOne(mappedBy = "cart")
+	private User user;
 	
-	private String bathroomNumber;
-	
-	private int personNumber;
-	
-	@OneToMany(mappedBy = "hotelCategory")
-	private Set<Hotel> hotels;
 }

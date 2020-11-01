@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -16,20 +18,33 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class HotelCategory {
+public class SkiMaterial {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private int stars;
+	private int numberDays;
 	
-	private String roomNumber;
+	private int numberPerson;
 	
-	private String bathroomNumber;
+	private String location;
 	
-	private int personNumber;
+	private String phone;
 	
-	@OneToMany(mappedBy = "hotelCategory")
-	private Set<Hotel> hotels;
+	private String description;
+	
+	private Double priceDay;
+	
+	private String name;
+	
+	private String urlImages;
+	
+	@ManyToOne
+	@JoinColumn(name="station_id", nullable=true)
+	private Station station;
+	
+	@OneToMany(mappedBy = "skiMaterial")
+	private Set<Comment> comments;
+	
 }

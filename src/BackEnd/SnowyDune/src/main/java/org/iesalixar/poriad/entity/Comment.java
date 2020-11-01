@@ -1,15 +1,11 @@
 package org.iesalixar.poriad.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,26 +15,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Forfait {
+public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private int numberForfait;
+	private String comment;
 	
-	private Double price;
+	@ManyToOne
+	@JoinColumn(name = "hotel_id", nullable = true)
+	private Hotel hotel;
 	
-	private String urlImage;
+	@ManyToOne
+	@JoinColumn(name = "skiMaterial_id", nullable = true)
+	private SkiMaterial skiMaterial;
 	
-	private Date inicialDate;
+	@ManyToOne
+	@JoinColumn(name = "carRental_id", nullable = true)
+	private CarRental carRental;
 	
-	private int numberDays;
+	@ManyToOne
+	@JoinColumn(name = "classes_id", nullable = true)
+	private Classes classes;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = true)
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
-	
-	
 	
 }

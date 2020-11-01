@@ -1,11 +1,14 @@
 package org.iesalixar.poriad.entity;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +39,15 @@ public class Hotel {
 	private String ulrImages;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_hotel_category", nullable = false)
+	@JoinColumn(name = "id_hotel", nullable = true)
 	private HotelCategory hotelCategory;
+	
+	@ManyToOne
+	@JoinColumn(name = "station_id", nullable = true)
+	private Station station;
+	
+	@OneToMany(mappedBy = "hotel")
+	private Set<Comment> comments;
+	
 	
 }

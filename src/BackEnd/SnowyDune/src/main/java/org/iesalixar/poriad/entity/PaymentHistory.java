@@ -1,11 +1,13 @@
 package org.iesalixar.poriad.entity;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -31,4 +33,7 @@ public class PaymentHistory {
 	private String otherDetails;
 	
 	private String paymentType;
+	
+	@OneToMany(mappedBy = "paymentHistory")
+	private Set<Payment> payments;
 }

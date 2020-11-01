@@ -1,12 +1,11 @@
 package org.iesalixar.poriad.entity;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,20 +15,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class HotelCategory {
+public class Authorities {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private int stars;
+	private String authority;
 	
-	private String roomNumber;
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=true)
+	private User user;
 	
-	private String bathroomNumber;
 	
-	private int personNumber;
-	
-	@OneToMany(mappedBy = "hotelCategory")
-	private Set<Hotel> hotels;
+
 }
