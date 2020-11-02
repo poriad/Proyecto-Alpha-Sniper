@@ -3,6 +3,7 @@ package org.iesalixar.poriad.entity;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,9 +16,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class ConfirmationToken {
 	
     @Id
@@ -31,7 +34,7 @@ public class ConfirmationToken {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @OneToOne(targetEntity = UserSnowy.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = UserSnowy.class, fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, name = "user_id")
     private UserSnowy user;
 

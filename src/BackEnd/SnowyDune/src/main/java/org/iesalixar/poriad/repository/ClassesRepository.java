@@ -1,12 +1,12 @@
-package org.iesalixar.poriad.dao;
+package org.iesalixar.poriad.repository;
 
-import org.iesalixar.poriad.entity.Forfait;
+import org.iesalixar.poriad.entity.Classes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@RepositoryRestResource(collectionResourceRel = "forfait", path = "forfait")
+@RepositoryRestResource(collectionResourceRel = "classes", path = "classes")
 @CrossOrigin("http:/localhost:8081")
-public interface ForfaitRepository extends JpaRepository<Forfait, Long>{
+public interface ClassesRepository extends JpaRepository<Classes, Long>{
 
 }

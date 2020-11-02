@@ -1,4 +1,4 @@
-package org.iesalixar.poriad.dao;
+package org.iesalixar.poriad.repository;
 
 import org.iesalixar.poriad.entity.Hotel;
 import org.springframework.data.domain.Page;

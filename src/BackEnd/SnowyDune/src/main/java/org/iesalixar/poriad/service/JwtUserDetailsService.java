@@ -2,9 +2,9 @@ package org.iesalixar.poriad.service;
 
 import java.util.ArrayList;
 
-import org.iesalixar.poriad.dao.UserRepository;
 import org.iesalixar.poriad.entity.UserDTO;
 import org.iesalixar.poriad.entity.UserSnowy;
+import org.iesalixar.poriad.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
