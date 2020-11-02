@@ -40,7 +40,7 @@ public class UserSnowy {
 	@JsonIgnore
 	private String password;
 	
-	private int enabled;
+	private boolean enabled;
 	
 	private int newsletter;
 	
