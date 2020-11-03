@@ -1,6 +1,5 @@
 package org.iesalixar.poriad.repository;
 
-import org.iesalixar.poriad.entity.UserDTO;
 import org.iesalixar.poriad.entity.UserSnowy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

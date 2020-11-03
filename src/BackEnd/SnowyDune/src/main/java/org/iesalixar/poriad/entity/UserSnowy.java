@@ -55,9 +55,6 @@ public class UserSnowy {
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 	
-	@OneToMany(mappedBy = "user")
-	private Set<Authorities> authorities;
-	
 	@OneToOne(mappedBy = "user")
 	private Trip trip;
 	
