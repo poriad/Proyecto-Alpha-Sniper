@@ -1,4 +1,4 @@
-package org.iesalixar.poriad.entity;
+package org.iesalixar.poriad.security.entity;
 
 import java.util.Set;
 
@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.iesalixar.poriad.entity.Cart;
+import org.iesalixar.poriad.entity.Comment;
+import org.iesalixar.poriad.entity.Payment;
+import org.iesalixar.poriad.entity.Trip;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
