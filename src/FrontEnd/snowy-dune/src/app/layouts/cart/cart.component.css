@@ -1,0 +1,138 @@
+.fondo{
+    height: auto;
+    background: linear-gradient(to right bottom,rgba(255,255,255, 0.6),rgba(255,255,255, 0.7) ),url('../../../assets/Fondos/Cart.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.fondo-blanco {
+    background-color: white;
+}
+
+.h1{
+    font-size: 2.2rem;
+    letter-spacing: 0.4rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+h4 {
+    font-size: 1.8rem;
+    letter-spacing: 0.3rem;
+    color: rgba(27, 77, 176, 1)
+}
+
+h5 {
+    font-size: 1.8rem;
+    letter-spacing: 0.3rem;
+    color: white;
+    background-color: rgba(27, 77, 176, 1);
+}
+
+p{
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+}
+
+.p-dos{
+    font-size: 0.9rem;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+}
+
+.padding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.hr {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:40%;
+}
+
+.hr2 {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:80%;
+}
+
+#tabs{
+	background: white;
+    color: rgba(27, 77, 176, 1);
+}
+#tabs h6.section-title{
+    color: rgba(27, 77, 176, 1);
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: rgba(27, 77, 176, 1);
+    background-color: transparent;
+    border-color: transparent transparent rgba(27, 77, 176, 1);
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: rgba(27, 77, 176, 1);
+    font-size: 20px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+.container img {
+    opacity: 0.6;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3rem;
+    letter-spacing: 0.17rem;
+    color: white;
+    text-shadow: 1px 0 0 rgba(27, 77, 176, 1),
+    -1px 0 0 rgba(27, 77, 176, 1),
+    0 1px 0 rgba(27, 77, 176, 1), 
+    0 -1px 0 rgba(27, 77, 176, 1),
+    1px 1px rgba(27, 77, 176, 1),
+    -1px -1px 0 rgba(27, 77, 176, 1),
+    1px -1px 0 rgba(27, 77, 176, 1),
+    -1px 1px 0 rgba(27, 77, 176, 1);
+    
+}
+
+.viaje {
+    background-color: rgba(27, 77, 176, 1) !important;
+    color: white;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.20rem;
+    border-radius: 0;
+    position: absolute;
+    bottom: 0;
+    font-weight: 600;
+}
+
+.boton {
+    font-size: 1.2rem;
+    letter-spacing: 0.20rem;
+    color: rgba(27, 77, 176, 1);
+    border: 1px solid rgba(27, 77, 176, 1);
+    border-radius: 0;
+    font-weight: 600;
+    background-color: white;
+}
+
+.boton:hover {
+    color: white;
+    background-color: rgba(27, 77, 176, 1);
+}

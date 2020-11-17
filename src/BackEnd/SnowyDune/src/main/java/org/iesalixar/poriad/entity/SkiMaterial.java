@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,10 +25,6 @@ public class SkiMaterial {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private int numberDays;
-	
-	private int numberPerson;
 	
 	private String location;
 	
@@ -44,6 +42,7 @@ public class SkiMaterial {
 	@JoinColumn(name="station_id", nullable=true)
 	private Station station;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "skiMaterial")
 	private Set<Comment> comments;
 	

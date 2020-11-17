@@ -1,0 +1,93 @@
+.fondo{
+    /*height: 75.2vh;*/
+      height: auto;
+      background: linear-gradient(to right bottom,rgba(255,255,255, 0.6),rgba(255,255,255, 0.6) ),url('../../../assets/Fondos/station.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+  }
+  .h1{
+      font-size: 2.2rem;
+      letter-spacing: 0.4rem;
+      color: rgba(27, 77, 176, 1);
+  }
+  
+  .h3 {
+      font-size: 1.9rem;
+      letter-spacing: 0.2rem;
+      color: #3C7DEC;
+  }
+  .h2 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color:rgba(27, 77, 176, 1);
+}
+  
+  .hr {
+      border-top: 1px solid rgba(27, 77, 176, 1);
+      width:30%;
+  }
+
+  .hr2{
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:90%;
+  }
+  
+  #pais{
+      color:rgba(27, 77, 176, 1);
+      border-radius: 0;
+      border: 1px solid rgba(27, 77, 176, 1);
+  }
+
+  /* CARD */
+  .card-body {
+      margin:0px !important
+  }
+
+.card-img-top:after {
+    color: #3C7DEC;
+}
+
+.card-title {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
+.card-text {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+}
+
+
+.text-center .button-filter {
+    position: absolute !important;
+    height: 10px;
+    top:40%;
+    left:10%;
+    padding: 0
+}
+
+.btn-secondary{
+    font-size: 1.5rem;
+      letter-spacing: 0.2rem;
+      color: rgba(27, 77, 176, 1);
+      background-color: white;
+      border-radius: 0;
+      border: 1px solid rgba(27, 77, 176, 1);
+}
+  .parrafo {
+      font-size: 1.2rem;
+      color: #3C7DEC;
+  }
+  
+  .col-6 .bordeUno{
+      background-color: #3C7DEC !important;
+      height: 38px;
+      margin-bottom: 0;
+  }
+  

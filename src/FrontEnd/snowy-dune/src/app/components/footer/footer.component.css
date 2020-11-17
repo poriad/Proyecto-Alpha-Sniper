@@ -1,0 +1,31 @@
+footer{
+    background-color: rgba(27, 77, 176, 1);
+    color: white;
+}
+
+.h1 {
+    font-size: 1.50rem;
+}
+
+.idioma  h5{
+    font-size: 1rem;
+    letter-spacing: 0.2rem
+}
+
+.iconos {
+    height: 35px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+
+    .idioma  h5{
+        font-size: 0.8rem;
+        letter-spacing: 0.2rem
+    }
+
+    .iconos {
+        height: 30px;
+    }
+
+}
+

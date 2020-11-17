@@ -1,10 +1,5 @@
 package org.iesalixar.poriad.security.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +24,7 @@ public class UserMain implements UserDetails{
 
 	private boolean enabled;
 
-	private int newsletter;
+	private boolean newsletter;
 
 	private String phone;
 
@@ -95,7 +90,7 @@ public class UserMain implements UserDetails{
 		return address;
 	}
 
-	public int getNewsletter() {
+	public boolean getNewsletter() {
 		return newsletter;
 	}
 
@@ -123,7 +118,7 @@ public class UserMain implements UserDetails{
 		this.address = address;
 	}
 
-	public void setNewsletter(int newsletter) {
+	public void setNewsletter(boolean newsletter) {
 		this.newsletter = newsletter;
 	}
 
@@ -136,7 +131,7 @@ public class UserMain implements UserDetails{
 	}
 
 	public UserMain(String firstName, String lastName, String username, String password, String email, String address,
-			int newsletter, String phone, String urlImages,
+			boolean newsletter, String phone, String urlImages,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -156,7 +151,7 @@ public class UserMain implements UserDetails{
 		
 		return new UserMain(user.getFirstName(), user.getLastName(),
 				user.getUsername(), user.getPassword(), user.getEmail(),
-				user.getAddress(), user.getNewsletter(), user.getPhone(),
+				user.getAddress(), user.isNewsletter(), user.getPhone(),
 				user.getUrlImages(), authorities);
 	}
 }

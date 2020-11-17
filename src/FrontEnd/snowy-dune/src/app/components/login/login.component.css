@@ -1,0 +1,241 @@
+.fondo{
+    height: auto;
+    background: linear-gradient(to right bottom,rgba(255,255,255, 0.6),rgba(255,255,255, 0.6) ),url('../../../assets/Fondos/login.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.fondo-blanco {
+    background-color: white;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.h1{
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+    color: #3C7DEC;
+}
+
+label {
+    color:#3C7DEC;
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+}
+
+input {
+    color: rgba(27, 77, 176, 1);
+    text-align: center;
+    padding: 10px;
+    width: 40%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+}
+
+input:focus,input:active {
+    border-bottom: 2px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+    box-shadow: none;
+}
+
+.login {
+    color: white;
+    background-color: rgba(27, 77, 176, 1);
+}
+
+.h3 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color: #3C7DEC;
+}
+
+.h5 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color: #3C7DEC;
+}
+
+.p {
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+    color: rgba(27, 77, 176, 1);
+    font-weight: 500;
+}
+
+.h3-blue {
+    font-size: 2.3rem;
+    letter-spacing: 0.25rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.facebook {
+    width: 30%;
+}
+
+.google {
+    width: 31%;
+}
+
+.hr {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:10%;
+}
+
+.h {
+    background-color: white;
+    border-left: 1px solid #3C7DEC;
+}
+
+button {
+    border: 1px solid  rgba(27, 77, 176, 1);
+    border-radius: 0;
+    color:  rgba(27, 77, 176, 1);
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+    padding-left: 55px;
+    padding-right: 55px;
+    color:  white;
+    background-color: rgba(27, 77, 176, 1);
+}
+
+button:hover {
+    color:  rgba(27, 77, 176, 1);
+    background-color: white;
+}
+
+.boton-alt {
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+.marca-uno {
+    background-color: #3C7DEC !important;
+    color: white;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.20rem;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    font-weight: 600;
+    height: 10px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+.container img {
+    opacity: 0.6;
+}
+
+.registro {
+    color:  rgba(27, 77, 176, 1);
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+    text-decoration: none;
+    font-weight: 550;
+}
+
+.error {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    width: 30%;
+    color:  rgb(190, 0, 0);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 1.5s; /* Firefox < 16 */
+        -ms-animation: fadein 1.5s; /* Internet Explorer */
+         -o-animation: fadein 1.5s; /* Opera < 12.1 */
+            animation: fadein 1.5s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+    input {
+        width: 60%;
+    }
+
+    .btn {
+        width: 60%;
+    }
+    
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+    input {
+        width: 60%;
+    }
+
+    .btn {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    input {
+        width: 50%;
+    }
+
+    .btn {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+ 
+    .h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+
+    .h3{
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    input {
+        width: 70%;
+    }
+
+    .btn {
+        width: 70%;
+        font-size: 0.8rem;
+    }
+
+}

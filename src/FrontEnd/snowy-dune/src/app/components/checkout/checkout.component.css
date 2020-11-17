@@ -1,0 +1,181 @@
+.fondo{
+    height: auto;
+    background: linear-gradient(to right bottom,rgba(255,255,255, 0.6),rgba(255,255,255, 0.6) ),url('../../../assets/Fondos/checkout.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.h1{
+    font-size: 2.2rem;
+    letter-spacing: 0.4rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.h3 {
+    font-size: 1.9rem;
+    letter-spacing: 0.25rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.h5 {
+    font-size: 1.2rem;
+    letter-spacing: 0.25rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.h5-white {
+    font-size: 1.2rem;
+    letter-spacing: 0.25rem;
+    color: white;
+    margin-bottom: 0;
+}
+
+p {
+    font-size: 0.95rem;
+    letter-spacing: 0.17rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.hr {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:30%;
+}
+
+.hr2 {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:70%;
+}
+
+.hr2-white {
+    border-top: 1px solid white;
+    width:70%;
+}
+
+.p-white{
+    font-size: 0.95rem;
+    letter-spacing: 0.17rem;
+    color: white;
+}
+.paypal {
+    width: 70%;
+}
+
+.prueba {
+    background-color: white;
+}
+
+button{
+    position: absolute;
+    right: 7%;
+    top:15%;
+    color: white;
+    background-color: rgba(27, 77, 176, 1);
+    border: none;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1rem;
+    letter-spacing: 0.25rem;
+}
+
+.tbancaria {
+    background-color: rgba(27, 77, 176, 1);
+    color: white;
+}
+
+
+.formulario-detalles {
+    background-color: white;  
+}
+
+.label {
+    font-size: 1rem;
+    letter-spacing: 0.25rem;
+    color: rgba(27, 77, 176, 1);
+    margin-bottom: 10px;
+}
+
+.input-direccion {
+    border: 0;
+    border-bottom: 1px solid  rgba(27, 77, 176, 1);
+    width: 82%;
+}
+
+.input-direccion:focus {
+    outline: none !important;
+    border-bottom:2px solid  rgba(27, 77, 176, 1);
+}
+
+.input-direccion::placeholder {
+    color:  rgba(27, 77, 176, 1);
+    opacity: 80%;
+}
+
+.input-tarjeta {
+    border: 0;
+    border-bottom: 1px solid  rgba(27, 77, 176, 1);
+    width: 100%;
+}
+
+.input-tarjeta:focus {
+    outline: none !important;
+    border-bottom:2px solid  rgba(27, 77, 176, 1);
+}
+
+.input-tarjeta::placeholder {
+    color:  rgba(27, 77, 176, 1);
+    opacity: 80%;
+}
+
+.input-tarjeta-2 {
+    border: 0;
+    border-bottom: 1px solid  rgba(27, 77, 176, 1);
+    width: 60%;
+}
+
+.input-tarjeta-2:focus {
+    outline: none !important;
+    border-bottom:2px solid  rgba(27, 77, 176, 1);
+}
+
+.input-tarjeta-2::placeholder {
+    color:  rgba(27, 77, 176, 1);
+    opacity: 80%;
+}
+
+.input {
+    border: 0;
+    border-bottom: 1px solid  rgba(27, 77, 176, 1);
+}
+
+.input:focus {
+    outline: none !important;
+    border-bottom:2px solid  rgba(27, 77, 176, 1);
+}
+
+input::placeholder {
+    color:  rgba(27, 77, 176, 1);
+    opacity: 80%;
+}
+
+option {
+    color:  rgba(27, 77, 176, 1);
+  }
+
+.select {
+    color:  rgba(27, 77, 176, 1);
+    border: 0;
+    border-bottom: 1px solid  rgba(27, 77, 176, 1);
+}
+
+.select:focus {
+    outline: none !important;
+    border-bottom:2px solid  rgba(27, 77, 176, 1);
+}
+
+.select::placeholder {
+    color:  rgba(27, 77, 176, 1);
+    opacity: 80%;
+}

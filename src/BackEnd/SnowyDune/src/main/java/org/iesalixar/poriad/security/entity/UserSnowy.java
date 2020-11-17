@@ -36,7 +36,7 @@ public class UserSnowy {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@NotNull
 	private String firstName;
@@ -57,7 +57,7 @@ public class UserSnowy {
 
 	private String address;
 
-	private int newsletter;
+	private boolean newsletter;
 
 	private String phone;
 
@@ -82,7 +82,7 @@ public class UserSnowy {
 	private Set<Comment> comments;
 
 	public UserSnowy(String firstName, String lastName, String username, String password, String email,
-			String address, int newsletter, String phone, String urlImages) {
+			String address, boolean newsletter, String phone, String urlImages) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -101,5 +101,17 @@ public class UserSnowy {
 
 	}
 	
+	public UserSnowy(String firstName, String lastName, String username, String password, String email,
+			String address, boolean newsletter, String phone) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.address = address;
+		this.newsletter = newsletter;
+		this.phone = phone;
+	}
+
 	
 }

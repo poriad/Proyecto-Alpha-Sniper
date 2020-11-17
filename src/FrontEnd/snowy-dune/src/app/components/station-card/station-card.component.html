@@ -1,0 +1,162 @@
+
+ <div class="row">
+   <app-search></app-search>
+    <div class="col-12 pt-3 pb-4 text-center">
+      <div class="button-filter">
+        <div class="form-group">
+          <h3 class="h2">PAÍS</h3>
+          <select class="form-control" id="pais">
+            <option>España</option>
+            <option>Reino Unido</option>
+            <option>Italia</option>
+            <option>Francia</option>
+            <option>Rumanía</option>
+          </select>
+        </div>
+      </div>
+      <div class="button-filter-2">
+      <div class="form-group">
+        <h3 class="h4">Nº Elementos</h3>
+        <select (change)="updatePageSize($event.target.value)" class="form-control mx-auto">
+          <option selected="true">10</option>
+          <option>20</option>
+          <option>50</option>
+        </select>
+      </div>
+    </div>
+      <h1 class="h1 pb-4 pb-sm-4">ESTACIÓN, FECHAS Y PERSONAS</h1>
+      <hr class="hr" />
+    </div>
+  </div>
+<div class="row pb-5 pt-4 align-content-center">
+  <div *ngFor="let station of stations" class="col">
+    <div class="card mx-auto" style="width: 18rem">
+      <div class="img-color purple-gradient">
+        <img
+          class="card-img-top"
+          src="{{ station.urlImages }}"
+          alt="Card image cap"
+        />
+      </div>
+      <div class="card-body mx-auto">
+        <h5 class="card-title text-center">{{ station.name }}</h5>
+        <p class="card-text text-center">
+          {{ station.location }}, {{ station.country }}
+        </p>
+        <div class="row">
+          <div class="col-12 text-center">
+            <button
+              href="#"
+              class="btn btn-station"
+              data-toggle="modal"
+              [attr.data-target]="'#'+ station.name"
+            >
+              DETALLES
+            </button>
+            <button href="#" class="btn btn-station ml-5">ELEGIR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row pt-3">
+   
+    <div class="col">
+      <p class="lead text-center mb-4">
+        <a class="btn btn-primary btn-lg mb-3" href="#" role="button">VOLVER</a>
+      </p>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+      <ngb-pagination [(page)]="thePageNumber"
+      [pageSize] ="thePageSize"
+      [collectionSize]= "theTotalElements"
+      [maxSize] = 5
+      [boundaryLinks]="true"
+      (pageChange) = loadStation()>
+
+      </ngb-pagination>
+    </div>
+    <div class="col">
+      <p class="lead text-center mb-4">
+        <a class="btn btn-primary btn-lg mb-3" href="#" role="button"
+          >CONTINUAR</a>
+      </p>
+    </div>
+  
+</div>
+
+<div *ngFor="let station of stations" class="modal fade" id="{{station.name}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="{{station.urlImages}}" alt="" class="img-fluid imagen-modal">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{station.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row h-auto">
+        <div class="col-7 pt-2 text-justify">
+          <p class="pt-3">{{station.description}}</p>
+            
+        </div>
+        <div class="col-5 comentarios my-auto text-center ">
+          
+          <h2 class="h2 pt-3">COMENTARIOS</h2>
+          <hr class="hr2">
+            <span class="persona">Manolito</span>
+            <p class="text-center mx-auto py-2">Fantástica Estación</p>
+            <span class="persona ">El Many en paz Descanse</span>
+            <p class="text-center mx-auto py-2"> Nos escantó, estamos deseando volver</p>
+            <span class="persona">El fary</span>
+            <p class="text-center mx-auto py-2"> Demasiada gente en las colas, es recomendable ir entre semana</p>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col">
+          <hr class="hr2">
+          <h2 class="h2">DESCRIPCIÓN</h2>
+        </div>
+        <div class="col text-center ">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 
+<div class="row">
+    <div class="col">
+      <p class="lead text-center mb-4">
+        <a class="btn btn-primary btn-lg mb-3" href="#" role="button">VOLVER</a>
+      </p>
+    </div>
+    <div class="col">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item ">
+            <a class="page-link" href="#" tabindex="-1"><</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+ 
+
+-->

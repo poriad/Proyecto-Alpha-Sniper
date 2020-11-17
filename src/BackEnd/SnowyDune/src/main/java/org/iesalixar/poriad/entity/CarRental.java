@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,10 +36,12 @@ public class CarRental {
 	
 	private int numberDays;
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "carRental")
 	private Set<Comment> comments;
 	

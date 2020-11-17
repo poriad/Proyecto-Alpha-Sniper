@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,16 +35,13 @@ public class Classes {
 	
 	private String location;
 	
-	private Date date;
-	
-	private int hours;
-	
 	private String urlImages;
 	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "classes")
 	private Set<Comment> comments;
 

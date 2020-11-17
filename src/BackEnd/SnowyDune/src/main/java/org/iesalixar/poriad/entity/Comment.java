@@ -9,6 +9,10 @@ import javax.persistence.ManyToOne;
 
 import org.iesalixar.poriad.security.entity.UserSnowy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,10 +45,12 @@ public class Comment {
 	@JoinColumn(name = "classes_id", nullable = true)
 	private Classes classes;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = true)
 	private UserSnowy user;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,12 +26,7 @@ public class HotelCategory {
 	
 	private int stars;
 	
-	private String roomNumber;
-	
-	private String bathroomNumber;
-	
-	private int personNumber;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "hotelCategory")
 	private Set<Hotel> hotels;
 }

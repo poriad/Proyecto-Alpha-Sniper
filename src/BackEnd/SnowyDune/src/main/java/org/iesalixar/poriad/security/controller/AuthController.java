@@ -67,8 +67,15 @@ public class AuthController {
 			return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
 		}
 
-		UserSnowy userSnowy = new UserSnowy(newUser.getUsername(),passwordEncoder.encode(newUser.getPassword()),
-				newUser.getEmail());
+		UserSnowy userSnowy = new UserSnowy(
+				newUser.getFirstName(),
+				newUser.getLastName(),
+				newUser.getUsername(),
+				passwordEncoder.encode(newUser.getPassword()),
+				newUser.getEmail(),
+				newUser.getAddress(),
+				newUser.isNewsletter(),
+				newUser.getPhone());
 		
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleService.getByRoleName(RoleName.ROLE_USER).get());
