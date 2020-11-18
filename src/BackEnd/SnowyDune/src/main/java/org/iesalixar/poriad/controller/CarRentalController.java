@@ -2,6 +2,7 @@ package org.iesalixar.poriad.controller;
 
 import java.util.List;
 
+import org.iesalixar.poriad.entity.CarRental;
 import org.iesalixar.poriad.entity.Comment;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.service.CarRentalService;
@@ -29,41 +30,43 @@ public class CarRentalController {
 	CarRentalService carRentalService;
 	
 	@GetMapping("/list")
-	public ResponseEntity<List<Comment>> listComment() {
+	public ResponseEntity<List<CarRental>> listCarRental() {
 		
-		List<Comment> listComment = commentService.listComment();
+		List<CarRental> listCarRental = carRentalService.listCarRental();
 		
-		return new ResponseEntity(listComment,HttpStatus.OK);
+		return new ResponseEntity(listCarRental,HttpStatus.OK);
+		
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
-	public ResponseEntity<?> createStation(@RequestBody Comment comment){
+	public ResponseEntity<?> createStation(@RequestBody CarRental carRental){
 		
-		carRentalService.saveComment(comment);
+		carRentalService.saveCarRental(carRental);
 		
-		return new ResponseEntity(comment, HttpStatus.OK);
+		return new ResponseEntity(carRental, HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> updateStation(@PathVariable Long id, @RequestBody Comment commentDto){
+	public ResponseEntity<?> updateStation(@PathVariable Long id, @RequestBody CarRental carRentalDto){
 		
 		if(!carRentalService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El comentario no existe"),HttpStatus.NOT_FOUND);
 		}
 		
-		Comment comment = carRentalService.findById(id);
+		CarRental carRental = carRentalService.findById(id);
 		
-		comment.setComment(commentDto.getComment());;
-
+		carRental.setDescription(carRentalDto.getDescription());
+		carRental.setLocation(carRentalDto.getLocation());
+		carRental.setName(carRental.getName());
+		carRental.setPrice(carRentalDto.getPrice());
 		
-		carRentalService.saveComment(comment);
+		carRentalService.saveCarRental(carRental);
 		
 		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
 		
 	}
-	
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
@@ -73,7 +76,7 @@ public class CarRentalController {
 			return new ResponseEntity(new Mensaje("El comentario no existe"), HttpStatus.NOT_FOUND);
 		}
 		
-		carRentalService.deleteStation(id);
+		carRentalService.deleteCarRental(id);
 		
 		return new ResponseEntity(new Mensaje("Comentario eliminada"), HttpStatus.OK);
 		

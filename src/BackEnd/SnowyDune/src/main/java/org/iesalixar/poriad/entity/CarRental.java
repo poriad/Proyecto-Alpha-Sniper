@@ -34,9 +34,6 @@ public class CarRental {
 	
 	private String location;
 	
-	private int numberDays;
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;

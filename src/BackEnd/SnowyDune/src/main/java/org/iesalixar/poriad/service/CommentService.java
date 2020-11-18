@@ -25,7 +25,7 @@ public class CommentService {
 		commentRepository.save(comment);
 	}
 	
-	public void deleteStation(Long id) {
+	public void deleteComment(Long id) {
 		commentRepository.deleteById(id);
 	}
 	
@@ -36,4 +36,10 @@ public class CommentService {
 	public Comment findById(Long id) {
 		return commentRepository.getOne(id);
 	}
+	
+	public void deleteCommentsHotel(Long id) {
+		commentRepository.deleteCommentsHotel(id);
+	}
+		
+	
 }

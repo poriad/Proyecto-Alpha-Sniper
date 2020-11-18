@@ -2,6 +2,7 @@ package org.iesalixar.poriad.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,12 +43,13 @@ public class Hotel {
 	@JoinColumn(name = "id_hotel", nullable = true)
 	private HotelCategory hotelCategory;
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "hotel")
+	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
 	private Set<Comment> comments;
 	
 	

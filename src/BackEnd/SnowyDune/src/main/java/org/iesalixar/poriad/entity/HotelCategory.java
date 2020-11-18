@@ -2,6 +2,7 @@ package org.iesalixar.poriad.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +28,6 @@ public class HotelCategory {
 	private int stars;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "hotelCategory")
+	@OneToMany(mappedBy = "hotelCategory", cascade = CascadeType.ALL)
 	private Set<Hotel> hotels;
 }

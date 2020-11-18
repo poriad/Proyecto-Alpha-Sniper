@@ -5,6 +5,7 @@ import java.util.List;
 import org.iesalixar.poriad.entity.Classes;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.entity.SkiMaterial;
+import org.iesalixar.poriad.service.CommentService;
 import org.iesalixar.poriad.service.SkiMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,9 @@ public class SkiMaterialController {
 
 	@Autowired
 	SkiMaterialService skiMaterialService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<Classes>> listClasses() {
@@ -75,6 +79,8 @@ public class SkiMaterialController {
 		if(!skiMaterialService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El servicio no existe"), HttpStatus.NOT_FOUND);
 		}
+		
+		commentService.deleteComments(id);
 		
 		skiMaterialService.deleteSkiMaterial(id);
 		

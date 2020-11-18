@@ -25,7 +25,7 @@ public class HotelService {
 		hotelRepository.save(hotel);
 	}
 	
-	public void deleteStation(Long id) {
+	public void deleteHotel(Long id) {
 		hotelRepository.deleteById(id);
 	}
 	

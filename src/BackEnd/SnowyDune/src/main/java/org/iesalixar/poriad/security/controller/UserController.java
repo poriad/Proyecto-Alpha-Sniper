@@ -68,6 +68,8 @@ public class UserController {
 			return new ResponseEntity(new Mensaje("El usuario no existe no existe"), HttpStatus.NOT_FOUND);
 		}
 		
+		UserSnowy userSnowy = userService.findById(id);
+		
 		userService.deleteUser(id);
 		
 		return new ResponseEntity(new Mensaje("Usuario eliminado"), HttpStatus.OK);

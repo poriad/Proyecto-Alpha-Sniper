@@ -66,7 +66,6 @@ public class Station {
 	@OneToMany(mappedBy = "station")
 	private Set<Forfait> forfait;
 	
-	
 	@OneToMany(mappedBy = "station")
 	private Set<Comment> comments;
 	

@@ -40,7 +40,7 @@ public class CommentController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
-	public ResponseEntity<?> createStation(@RequestBody Comment comment){
+	public ResponseEntity<?> createComment(@RequestBody Comment comment){
 		
 		commentService.saveComment(comment);
 		
@@ -49,7 +49,7 @@ public class CommentController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> updateStation(@PathVariable Long id, @RequestBody Comment commentDto){
+	public ResponseEntity<?> updateComment(@PathVariable Long id, @RequestBody Comment commentDto){
 		
 		if(!commentService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El comentario no existe"),HttpStatus.NOT_FOUND);
@@ -69,16 +69,17 @@ public class CommentController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
-	public ResponseEntity<?> deleteStation(@PathVariable Long id){
+	public ResponseEntity<?> deleteComment(@PathVariable Long id){
 		
 		if(!commentService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El comentario no existe"), HttpStatus.NOT_FOUND);
 		}
 		
-		commentService.deleteStation(id);
+		commentService.deleteComment(id);
 		
 		return new ResponseEntity(new Mensaje("Comentario eliminada"), HttpStatus.OK);
 		
 	}
+	
 
 }

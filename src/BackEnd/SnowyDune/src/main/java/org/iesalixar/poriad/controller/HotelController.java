@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.iesalixar.poriad.entity.Hotel;
 import org.iesalixar.poriad.entity.Mensaje;
+import org.iesalixar.poriad.service.CommentService;
 import org.iesalixar.poriad.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,9 @@ public class HotelController {
 	
 	@Autowired
 	HotelService hotelService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<Hotel>> listHotel() {
@@ -71,13 +75,15 @@ public class HotelController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
-	public ResponseEntity<?> deleteStation(@PathVariable Long id){
+	public ResponseEntity<?> deleteHotel(@PathVariable Long id){
 		
 		if(!hotelService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El servicio no existe"), HttpStatus.NOT_FOUND);
 		}
 		
-		hotelService.deleteStation(id);
+		commentService.deleteCommentsHotel(id);
+		
+		hotelService.deleteHotel(id);
 		
 		return new ResponseEntity(new Mensaje("Servicio eliminada"), HttpStatus.OK);
 		

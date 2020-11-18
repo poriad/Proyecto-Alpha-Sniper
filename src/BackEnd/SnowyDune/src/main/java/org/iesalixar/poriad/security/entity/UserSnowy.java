@@ -20,6 +20,7 @@ import org.iesalixar.poriad.entity.Cart;
 import org.iesalixar.poriad.entity.Comment;
 import org.iesalixar.poriad.entity.Payment;
 import org.iesalixar.poriad.entity.Trip;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
@@ -58,17 +59,20 @@ public class UserSnowy {
 	private String address;
 
 	private boolean newsletter;
-
+	
+	@Value("${model.isEnterprise}")
+	private int isEnterprise;
+	
 	private String phone;
 
 	private String urlImages;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"),
 	inverseJoinColumns =  @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Payment> payment;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -78,7 +82,8 @@ public class UserSnowy {
 	@OneToOne(mappedBy = "user")
 	private Trip trip;
 
-	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Comment> comments;
 
 	public UserSnowy(String firstName, String lastName, String username, String password, String email,
