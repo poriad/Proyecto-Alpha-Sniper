@@ -3,6 +3,7 @@ package org.iesalixar.poriad.controller;
 import java.util.List;
 
 import org.iesalixar.poriad.entity.CarRental;
+import org.iesalixar.poriad.entity.Classes;
 import org.iesalixar.poriad.entity.Comment;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.service.CarRentalService;
@@ -39,6 +40,14 @@ public class CarRentalController {
 		
 		return new ResponseEntity(listCarRental,HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/listStatus/{status}")
+	public ResponseEntity<List<CarRental>> listCarRentalStatus(@PathVariable Integer status) {
+		
+		List<CarRental> listCarRental = carRentalService.listCarRentalStatus(status);
+		
+		return new ResponseEntity(listCarRental,HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")

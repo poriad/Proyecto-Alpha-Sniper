@@ -19,6 +19,10 @@ public class CarRentalService {
 		return carRentalRepository.findAll();
 	}
 	
+	public List<CarRental> listCarRentalStatus(Integer status){
+		return carRentalRepository.listCarRentalStatus(status);
+	}
+	
 	public void saveCarRental(CarRental classes) {
 		carRentalRepository.save(classes);
 	}

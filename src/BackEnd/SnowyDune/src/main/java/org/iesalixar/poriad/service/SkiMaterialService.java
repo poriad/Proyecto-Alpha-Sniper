@@ -2,6 +2,7 @@ package org.iesalixar.poriad.service;
 
 import java.util.List;
 
+import org.iesalixar.poriad.entity.Hotel;
 import org.iesalixar.poriad.entity.SkiMaterial;
 import org.iesalixar.poriad.repository.SkiMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class SkiMaterialService {
 	
 	public List<SkiMaterial> listSkiMaterial(){
 		return skiMaterialRepository.findAll();
+	}
+	
+	public List<SkiMaterial> listHotelsStatus(Integer status){
+		return skiMaterialRepository.listSkiMaterialStatus(status);
 	}
 	
 	public void saveSkiMaterial(SkiMaterial skiMaterial) {

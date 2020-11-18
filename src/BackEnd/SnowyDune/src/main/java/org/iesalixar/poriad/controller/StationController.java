@@ -40,6 +40,14 @@ public class StationController {
 		return new ResponseEntity(listStation,HttpStatus.OK);
 	}
 	
+	@GetMapping("/listStatus/{status}")
+	public ResponseEntity<List<Station>> listStationStatus(@PathVariable Integer status) {
+		
+		List<Station> listStation = stationService.listStationStatus(status);
+		
+		return new ResponseEntity(listStation,HttpStatus.OK);
+	}
+	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
 	public ResponseEntity<?> createStation(@RequestBody Station station){

@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RepositoryRestResource(collectionResourceRel = "comment", path = "comment")
@@ -17,6 +16,21 @@ public interface CommentRepository extends JpaRepository<Comment, Long>{
 	
 	@Query(value="SELECT c from Comment c INNER JOIN Hotel h ON h.id = c.hotel WHERE h.id = :id")
 	Page<Comment> findAllCommentsHotels(@Param("id") Long id ,Pageable pageable);
+	
+	@Query(value="SELECT c FROM Comment c WHERE c.station.id = :id")
+	Page<Comment> listCommentsStation(@Param("id") Long id, Pageable pageable);
+	
+	@Query(value="SELECT c FROM Comment c WHERE c.hotel.id = :id")
+	Page<Comment> listCommentsHotel(@Param("id") Long id, Pageable pageable);
+	
+	@Query(value="SELECT c FROM Comment c WHERE c.skiMaterial.id = :id")
+	Page<Comment> listCommentsSkiMaterial(@Param("id") Long id, Pageable pageable);
+	
+	@Query(value="SELECT c FROM Comment c WHERE c.carRental.id = :id")
+	Page<Comment> listCommentsCarRental(@Param("id") Long id, Pageable pageable);
+	
+	@Query(value="SELECT c FROM Comment c WHERE c.classes.id = :id")
+	Page<Comment> listCommentsClasses(@Param("id") Long id, Pageable pageable);
 	
 	@Modifying
 	@Query(value="DELETE FROM Comment c WHERE c.station.id = :id")

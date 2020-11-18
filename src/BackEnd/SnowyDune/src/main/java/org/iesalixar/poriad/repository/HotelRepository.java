@@ -18,7 +18,11 @@ public interface HotelRepository extends JpaRepository<Hotel, Long>{
 	
 	Page<Hotel> findByHotelCategoryId(@RequestParam("id") Long id, Pageable pageable);
 	
-	@Query("SELECT s FROM Hotel s WHERE s.activated = :status")
+	@Query(value="SELECT s FROM Hotel s WHERE s.activated = :status")
 	List<Hotel> listHotelsStatus(@Param("status") Integer status);
+	
+	// ACABAR
+	@Query(value="UPDATE Hotel h SET h.activated= :status WHERE h.id = :id")
+	void updateHotelStatus(@Param("id") Long id , @Param("status") Long status);
 	
 }

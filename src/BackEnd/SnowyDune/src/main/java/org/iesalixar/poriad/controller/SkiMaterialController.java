@@ -40,6 +40,14 @@ public class SkiMaterialController {
 		return new ResponseEntity(listSkiMaterial,HttpStatus.OK);
 	}
 	
+	@GetMapping("/listStatus/{status}")
+	public ResponseEntity<List<SkiMaterial>> listSkiMaterialStatus(@PathVariable Integer status) {
+		
+		List<SkiMaterial> listSkiMaterial = skiMaterialService.listHotelsStatus(status);
+		
+		return new ResponseEntity(listSkiMaterial,HttpStatus.OK);
+	}
+	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
 	public ResponseEntity<?> createStation(@RequestBody SkiMaterial skiMaterial){

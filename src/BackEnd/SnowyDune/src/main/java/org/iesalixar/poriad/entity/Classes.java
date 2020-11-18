@@ -36,7 +36,7 @@ public class Classes {
 	
 	private String urlImages;
 	
-	private int activated;
+	private Integer activated;
 	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
@@ -46,6 +46,7 @@ public class Classes {
 	@OneToMany(mappedBy = "classes")
 	private Set<Comment> comments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "classes")
 	private Set<Trip> trip;
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.iesalixar.poriad.entity.Classes;
 import org.iesalixar.poriad.entity.Comment;
 import org.iesalixar.poriad.entity.Mensaje;
+import org.iesalixar.poriad.entity.SkiMaterial;
 import org.iesalixar.poriad.service.ClassesService;
 import org.iesalixar.poriad.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,14 @@ public class ClassesController {
 	public ResponseEntity<List<Classes>> listClasses() {
 		
 		List<Classes> listClasses = classesService.listComment();
+		
+		return new ResponseEntity(listClasses,HttpStatus.OK);
+	}
+	
+	@GetMapping("/listStatus/{status}")
+	public ResponseEntity<List<Classes>> listClassesStatus(@PathVariable Integer status) {
+		
+		List<Classes> listClasses = classesService.listClassesStatus(status);
 		
 		return new ResponseEntity(listClasses,HttpStatus.OK);
 	}

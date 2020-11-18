@@ -19,6 +19,11 @@ public class StationService {
 		return stationRepository.findAll();
 	}
 	
+	public List<Station> listStationStatus(Integer status){
+		return stationRepository.listStationStatus(status);
+	}
+	
+	
 	public void saveStation(Station station) {
 		stationRepository.save(station);
 	}

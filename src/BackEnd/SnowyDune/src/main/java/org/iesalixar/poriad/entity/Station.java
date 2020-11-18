@@ -41,7 +41,7 @@ public class Station {
 
 	private String urlImages;
 	
-	private int activated;
+	private Integer activated;
 	
 	@OneToMany(mappedBy = "station")
 	private Set<Trip> trip;
@@ -66,6 +66,7 @@ public class Station {
 	@OneToMany(mappedBy = "station")
 	private Set<Forfait> forfait;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<Comment> comments;
 	

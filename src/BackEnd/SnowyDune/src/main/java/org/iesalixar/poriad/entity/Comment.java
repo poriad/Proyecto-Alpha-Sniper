@@ -53,7 +53,6 @@ public class Comment {
 	@JoinColumn(name = "user_id", nullable = true)
 	private UserSnowy user;
 	
-	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;

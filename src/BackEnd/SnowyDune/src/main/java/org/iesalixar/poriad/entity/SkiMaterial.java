@@ -36,7 +36,7 @@ public class SkiMaterial {
 	
 	private String name;
 	
-	private int activated;
+	private Integer activated;
 	
 	private String urlImages;
 	
@@ -49,6 +49,7 @@ public class SkiMaterial {
 	@OneToMany(mappedBy = "skiMaterial")
 	private Set<Comment> comments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "skiMaterial")
 	private Set<Trip> trip;
 	

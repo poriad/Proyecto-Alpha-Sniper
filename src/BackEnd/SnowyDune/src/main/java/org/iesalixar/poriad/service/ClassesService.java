@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.iesalixar.poriad.entity.Classes;
 import org.iesalixar.poriad.entity.Comment;
+import org.iesalixar.poriad.entity.Hotel;
 import org.iesalixar.poriad.repository.ClassesRepository;
 import org.iesalixar.poriad.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class ClassesService {
 	
 	public List<Classes> listComment(){
 		return classesRepository.findAll();
+	}
+	
+	public List<Classes> listClassesStatus(Integer status){
+		return classesRepository.listClassesStatus(status);
 	}
 	
 	public void saveClasses(Classes classes) {

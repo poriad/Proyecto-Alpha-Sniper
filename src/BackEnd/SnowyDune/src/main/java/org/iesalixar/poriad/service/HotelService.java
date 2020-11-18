@@ -25,6 +25,10 @@ public class HotelService {
 		return hotelRepository.listHotelsStatus(status);
 	}
 	
+	public void updateHotelStatus(Long id ,Long status) {
+		hotelRepository.updateHotelStatus(id, status);
+	}
+	
 	public void saveHotel(Hotel hotel) {
 		hotelRepository.save(hotel);
 	}
