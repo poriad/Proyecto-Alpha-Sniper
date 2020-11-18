@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,9 +41,10 @@ public class Station {
 
 	private String urlImages;
 	
+	private int activated;
 	
-	@OneToOne(mappedBy = "station")
-	private Trip trip;
+	@OneToMany(mappedBy = "station")
+	private Set<Trip> trip;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
@@ -68,5 +68,6 @@ public class Station {
 	
 	@OneToMany(mappedBy = "station")
 	private Set<Comment> comments;
+	
 	
 }

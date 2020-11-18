@@ -80,7 +80,7 @@ public class SkiMaterialController {
 			return new ResponseEntity(new Mensaje("El servicio no existe"), HttpStatus.NOT_FOUND);
 		}
 		
-		commentService.deleteComments(id);
+		commentService.deleteCommentsSkiMaterial(id);
 		
 		skiMaterialService.deleteSkiMaterial(id);
 		

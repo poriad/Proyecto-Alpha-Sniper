@@ -29,6 +29,9 @@ public class ClassesController {
 	@Autowired
 	ClassesService classesService;
 	
+	@Autowired
+	CommentService commentService;
+	
 	@GetMapping("/list")
 	public ResponseEntity<List<Classes>> listClasses() {
 		
@@ -79,7 +82,9 @@ public class ClassesController {
 			return new ResponseEntity(new Mensaje("El servicio no existe"), HttpStatus.NOT_FOUND);
 		}
 		
-		classesService.deleteStation(id);
+		commentService.deleteCommentsClasses(id);
+		
+		classesService.deleteClasses(id);
 		
 		return new ResponseEntity(new Mensaje("Servicio eliminado"), HttpStatus.OK);
 		

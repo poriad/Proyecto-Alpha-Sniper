@@ -10,9 +10,7 @@ import javax.persistence.ManyToOne;
 
 import org.iesalixar.poriad.security.entity.UserSnowy;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

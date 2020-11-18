@@ -37,8 +37,24 @@ public class CommentService {
 		return commentRepository.getOne(id);
 	}
 	
+	public void deleteCommentsStation(Long id) {
+		commentRepository.deleteCommentsStation(id);
+	}
+	
 	public void deleteCommentsHotel(Long id) {
 		commentRepository.deleteCommentsHotel(id);
+	}
+	
+	public void deleteCommentsSkiMaterial(Long id) {
+		commentRepository.deleteCommentsSkiMaterial(id);
+	}
+	
+	public void deleteCommentsClasses(Long id) {
+		commentRepository.deleteCommentsClasses(id);
+	}
+	
+	public void deleteCommentsCarRental(Long id) {
+		commentRepository.deleteCommentsCarRental(id);
 	}
 		
 	

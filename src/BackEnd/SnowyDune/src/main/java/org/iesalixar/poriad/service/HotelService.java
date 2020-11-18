@@ -21,6 +21,10 @@ public class HotelService {
 		return hotelRepository.findAll();
 	}
 	
+	public List<Hotel> listHotelsStatus(Integer status){
+		return hotelRepository.listHotelsStatus(status);
+	}
+	
 	public void saveHotel(Hotel hotel) {
 		hotelRepository.save(hotel);
 	}

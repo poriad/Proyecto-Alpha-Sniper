@@ -3,6 +3,7 @@ package org.iesalixar.poriad.entity;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,13 +35,17 @@ public class CarRental {
 	
 	private String location;
 	
+	private int activated;
+	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "carRental")
+	@OneToMany(mappedBy = "carRental", fetch = FetchType.LAZY)
 	private Set<Comment> comments;
 	
+	@OneToMany(mappedBy = "carRental")
+	private Set<Trip> trip;
 	
 }

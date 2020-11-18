@@ -3,9 +3,10 @@ package org.iesalixar.poriad.controller;
 import java.util.List;
 
 import org.iesalixar.poriad.entity.CarRental;
-import org.iesalixar.poriad.entity.Comment;
+import org.iesalixar.poriad.entity.Cart;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.service.CarRentalService;
+import org.iesalixar.poriad.service.CartService;
 import org.iesalixar.poriad.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,50 +23,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/carRental")
+@RequestMapping("/cart")
 @CrossOrigin
-public class CarRentalController {
-	
+public class CartController {
+
 	@Autowired
-	CarRentalService carRentalService;
+	CartService cartService;
 	
 	@Autowired
 	CommentService commentService;
 	
 	@GetMapping("/list")
-	public ResponseEntity<List<CarRental>> listCarRental() {
+	public ResponseEntity<List<Cart>> listCart() {
 		
-		List<CarRental> listCarRental = carRentalService.listCarRental();
+		List<Cart> listCart = cartService.listCart();
 		
-		return new ResponseEntity(listCarRental,HttpStatus.OK);
+		return new ResponseEntity(listCart,HttpStatus.OK);
 		
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
-	public ResponseEntity<?> createStation(@RequestBody CarRental carRental){
+	public ResponseEntity<?> createCart(@RequestBody Cart cart){
 		
-		carRentalService.saveCarRental(carRental);
+		cartService.saveCart(cart);
 		
-		return new ResponseEntity(carRental, HttpStatus.OK);
+		return new ResponseEntity(cart, HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> updateStation(@PathVariable Long id, @RequestBody CarRental carRentalDto){
+	public ResponseEntity<?> updateCart(@PathVariable Long id, @RequestBody Cart cartDto){
 		
-		if(!carRentalService.existById(id)) {
+		if(!cartService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El comentario no existe"),HttpStatus.NOT_FOUND);
 		}
 		
-		CarRental carRental = carRentalService.findById(id);
+		Cart cart = cartService.findById(id);
 		
-		carRental.setDescription(carRentalDto.getDescription());
-		carRental.setLocation(carRentalDto.getLocation());
-		carRental.setName(carRental.getName());
-		carRental.setPrice(carRentalDto.getPrice());
 		
-		carRentalService.saveCarRental(carRental);
+		cartService.saveCart(cart);
 		
 		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
 		
@@ -73,19 +70,18 @@ public class CarRentalController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")
-	public ResponseEntity<?> deleteStation(@PathVariable Long id){
+	public ResponseEntity<?> deleteCart(@PathVariable Long id){
 		
-		if(!carRentalService.existById(id)) {
+		if(!cartService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El comentario no existe"), HttpStatus.NOT_FOUND);
 		}
 		
 		commentService.deleteCommentsCarRental(id);
 		
-		carRentalService.deleteCarRental(id);
+		cartService.deleteCart(id);
 		
 		return new ResponseEntity(new Mensaje("Comentario eliminada"), HttpStatus.OK);
 		
 	}
-	
 	
 }

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.iesalixar.poriad.security.entity.UserSnowy;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +28,7 @@ public class Payment {
 	
 	private Double paymentAmount;
 	
+	@CreationTimestamp
 	private Date paymentDate;
 	
 	private String otherDetails;

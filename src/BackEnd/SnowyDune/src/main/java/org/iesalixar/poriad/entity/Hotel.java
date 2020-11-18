@@ -37,6 +37,8 @@ public class Hotel {
 	
 	private String phone;
 	
+	private Integer activated;
+	
 	private String ulrImages;
 	
 	@ManyToOne
@@ -44,6 +46,7 @@ public class Hotel {
 	private HotelCategory hotelCategory;
 	
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
@@ -52,5 +55,8 @@ public class Hotel {
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
 	private Set<Comment> comments;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "hotel", orphanRemoval=false)
+	private Set<Trip> trip;
 	
 }

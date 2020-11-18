@@ -25,7 +25,7 @@ public class ClassesService {
 		classesRepository.save(classes);
 	}
 	
-	public void deleteStation(Long id) {
+	public void deleteClasses(Long id) {
 		classesRepository.deleteById(id);
 	}
 	

@@ -6,6 +6,7 @@ import org.iesalixar.poriad.entity.Hotel;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.service.CommentService;
 import org.iesalixar.poriad.service.HotelService;
+import org.iesalixar.poriad.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +32,21 @@ public class HotelController {
 	@Autowired
 	CommentService commentService;
 	
+	@Autowired
+	TripService tripService;
+	
 	@GetMapping("/list")
 	public ResponseEntity<List<Hotel>> listHotel() {
 		
 		List<Hotel> listHotel = hotelService.listHotel();
+		
+		return new ResponseEntity(listHotel,HttpStatus.OK);
+	}
+	
+	@GetMapping("/listStatus/{status}")
+	public ResponseEntity<List<Hotel>> listHotelsActivated(@PathVariable Integer status) {
+		
+		List<Hotel> listHotel = hotelService.listHotelsStatus(status);
 		
 		return new ResponseEntity(listHotel,HttpStatus.OK);
 	}

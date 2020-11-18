@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.entity.Station;
+import org.iesalixar.poriad.service.CommentService;
 import org.iesalixar.poriad.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,9 @@ public class StationController {
 	
 	@Autowired
 	StationService stationService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<Station>> listStation() {
@@ -83,6 +87,8 @@ public class StationController {
 		if(!stationService.existById(id)) {
 			return new ResponseEntity(new Mensaje("La estación no existe"), HttpStatus.NOT_FOUND);
 		}
+		
+		commentService.deleteCommentsStation(id);
 		
 		stationService.deleteStation(id);
 		

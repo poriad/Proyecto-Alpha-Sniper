@@ -36,7 +36,10 @@ public class SkiMaterial {
 	
 	private String name;
 	
+	private int activated;
+	
 	private String urlImages;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="station_id", nullable=true)
@@ -45,5 +48,8 @@ public class SkiMaterial {
 	@JsonIgnore
 	@OneToMany(mappedBy = "skiMaterial")
 	private Set<Comment> comments;
+	
+	@OneToMany(mappedBy = "skiMaterial")
+	private Set<Trip> trip;
 	
 }

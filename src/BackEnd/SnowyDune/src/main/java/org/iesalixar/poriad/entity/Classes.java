@@ -1,6 +1,5 @@
 package org.iesalixar.poriad.entity;
 
-import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -37,6 +36,8 @@ public class Classes {
 	
 	private String urlImages;
 	
+	private int activated;
+	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
@@ -44,5 +45,8 @@ public class Classes {
 	@JsonIgnore
 	@OneToMany(mappedBy = "classes")
 	private Set<Comment> comments;
+	
+	@OneToMany(mappedBy = "classes")
+	private Set<Trip> trip;
 
 }
