@@ -22,7 +22,7 @@
             <table class="table table-striped ">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+   
                   <th scope="col">Nombre</th>
                   <th scope="col">Apellido</th>
                   <th scope="col">Email</th>
@@ -31,101 +31,36 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
+                <tr *ngFor="let user of users">
+                  
+                  <td>{{ user.firstName }}</td>
+                  <td>{{ user.lastName }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.username }}</td>
                   <td>
                     <button
-                      href="#"
                       class="btn btn-station"
                       data-toggle="modal"
-                      data-target="#info"
+                      [attr.data-target]="'#'+ user.username"
                     >
                       Información
                     </button>
                   </td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">7</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">8</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
         </div>
-        <div class="col-12">
-          <nav aria-label="empresas" class="">
-            <ul class="pagination justify-content-center">
-              <li class="page-item"><a class="page-link" href="#"><</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">></a></li>
-            </ul>
-          </nav>
+        <div class="col-12 d-flex justify-content-center">
+          <ngb-pagination [(page)]="thePageNumber"
+              [pageSize] ="thePageSize"
+              [collectionSize]= "theTotalElements"
+              [maxSize] = 5
+              [boundaryLinks]="true"
+              (pageChange) = loadUsers()>
+
+      </ngb-pagination>
         </div>
       </div>
 
@@ -244,18 +179,19 @@
 </div>
 
 <div
-  class="modal fade"
-  id="info"
+*ngFor="let user of users" 
+class="modal fade"
+  id="{{user.username}}"
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-11">
-          <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Usuario Manolito</h3>
+          <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Usuario {{ user.username }}</h3>
           <hr class="hr3" />
           <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
             Modificación de Datos y Borrado de Usuario
@@ -276,8 +212,9 @@
             <label for="email" class="d-block">Nombre</label>
             <input
               type="text"
-              placeholder="Email..."
-              name="email"
+              value="{{ user.firstName }}"
+              placeholder="Nombre..."
+              name="nombre"
               class="input pt-2"
             />
           </div>
@@ -285,8 +222,9 @@
             <label for="email" class="d-block">Apellidos</label>
             <input
               type="text"
-              placeholder="Email..."
-              name="email"
+              placeholder="Apellidos..."
+              name="apellidos"
+              value="{{ user.lastName }}"
               class="input pt-2"
             />
           </div>
@@ -297,24 +235,27 @@
               placeholder="Email..."
               name="email"
               class="input pt-2"
+              value="{{ user.email }}"
             />
           </div>
           <div class="col-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">Dirección</label>
             <input
               type="text"
-              placeholder="Email..."
-              name="email"
+              placeholder="Dirección..."
+              name="direccion"
               class="input pt-2"
+              value="{{ user.address }}"
             />
           </div>
           <div class="col-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">Nombre Usuario</label>
             <input
               type="text"
-              placeholder="Email..."
+              placeholder="Nombre de usuario..."
               name="email"
               class="input pt-2"
+              value="{{ user.username }}"
             />
           </div>
           <div class="col-4 text-center pt-3 pb-4">
@@ -324,15 +265,17 @@
               placeholder="Email..."
               name="email"
               class="input pt-2"
+              value="{{ user.password }}"
             />
           </div>
           <div class="col-6 text-center pt-3 pb-4">
             <label for="email" class="d-block">Teléfono</label>
             <input
               type="text"
-              placeholder="Email..."
-              name="email"
+              placeholder="Teléfono..."
+              name="telefono"
               class="input pt-2"
+              value="{{ user.phone }}"
             />
           </div>
 
@@ -349,10 +292,10 @@
           </div>
 
           <div class="col-6 text-center pt-3 pb-3">
-            <button class="btn btn-admin-user pl-3 pr-3">Modificar</button>
+            <button (click)="modifyUser(user.id)" class="btn btn-admin-user pl-3 pr-3">Modificar</button>
           </div>
           <div class="col-6 text-center pt-3 pb-3">
-            <button class="btn btn-admin-user pl-3 pr-3">Borrar</button>
+            <button (click)="deleteUser(user.id)" class="btn btn-admin-user pl-3 pr-3">Borrar</button>
           </div>
         </div>
       </div>

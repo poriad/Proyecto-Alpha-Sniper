@@ -42,6 +42,7 @@ import { AdminServicesCommentsComponent } from './layouts/admin-services-comment
 import { StationCardComponent } from './components/station-card/station-card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from './components/search/search.component';
+import { HotelComponent } from './layouts/hotel/hotel.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { SearchComponent } from './components/search/search.component';
     AdminUsersEnterprisesComponent,
     AdminServicesCommentsComponent,
     StationCardComponent,
-    SearchComponent
+    SearchComponent,
+    HotelComponent
   ],
   imports: [
     BrowserModule,

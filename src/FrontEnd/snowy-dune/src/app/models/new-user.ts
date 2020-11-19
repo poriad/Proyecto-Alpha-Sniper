@@ -6,6 +6,7 @@ export class NewUser {
     password: string;
     address: string;
     newsletter: boolean;
+    isEnterprise: number;
     phone: string
     authorities: string[];
 
@@ -16,6 +17,7 @@ export class NewUser {
         password: string,
         address: string,
         newsletter: boolean,
+        isEnterprise: number,
         phone: string) {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -24,6 +26,7 @@ export class NewUser {
             this.password = password;
             this.address = address;
             this.newsletter = newsletter;
+            this.isEnterprise = isEnterprise;
             this.phone = phone
         }
 }
