@@ -38,13 +38,30 @@ export class AdminUsersEnterprisesComponent implements OnInit {
     
   }
 
-  loadUsers(): void {
-
-    this.adminService.getUserListPaginate(this.thePageNumber - 1,
+  orderListUsername():void{
+    this.adminService.getUserListPaginateSortedByUsername(this.thePageNumber - 1,
       this.thePageSize).subscribe(this.processResult());
-
   }
 
+  orderListFirstName():void{
+    this.adminService.getUserListPaginateSortedByFirstName(this.thePageNumber - 1,
+      this.thePageSize).subscribe(this.processResult());
+  }
+
+  orderListLastName():void{
+    this.adminService.getUserListPaginateSortedByLastName(this.thePageNumber - 1,
+      this.thePageSize).subscribe(this.processResult());
+  }
+
+  orderListEmail():void{
+    this.adminService.getUserListPaginateSortedByEmail(this.thePageNumber - 1,
+      this.thePageSize).subscribe(this.processResult());
+  }
+
+  loadUsers(): void {
+    this.adminService.getUserListPaginate(this.thePageNumber - 1,
+      this.thePageSize).subscribe(this.processResult());
+  }
 
   processResult(){
     return data => {
@@ -55,6 +72,26 @@ export class AdminUsersEnterprisesComponent implements OnInit {
     };
   }
   
+  updateOrderListUsername(){
+    //this.thePageNumber = 1;
+    this.orderListUsername();
+  }
+
+  updateOrderListEmail(){
+    //this.thePageNumber = 1;
+    this.orderListEmail();
+  }
+
+  updateOrderListFirstName(){
+    //this.thePageNumber = 1;
+    this.orderListFirstName();
+  }
+
+  updateOrderListLastName(){
+    //this.thePageNumber = 1;
+    this.orderListLastName();
+  }
+
   updatePageSize(pageSize: number){
     this.thePageSize = pageSize;
     this.thePageNumber = 1;

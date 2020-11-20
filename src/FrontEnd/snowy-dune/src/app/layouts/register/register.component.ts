@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
     let newsletter = this.registerForm.get('newsletter').value;
     let phone = this.registerForm.get('phone').value;
     
-    this.newUser = new NewUser(firstName,lastName,userName,email,password,address,newsletter,phone);
+    this.newUser = new NewUser(firstName,lastName,userName,email,password,address,newsletter,0,phone);
 
     console.log(this.newUser);
     // display form values on success

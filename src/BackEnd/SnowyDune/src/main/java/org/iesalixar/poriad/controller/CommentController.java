@@ -59,7 +59,6 @@ public class CommentController {
 		
 		comment.setComment(commentDto.getComment());;
 
-		
 		commentService.saveComment(comment);
 		
 		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);

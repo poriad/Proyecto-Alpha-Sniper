@@ -27,13 +27,17 @@ public class CarRental {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String name;
-	
 	private Double price;
 	
 	private String description;
 	
+	private String name;
+	
+	private String phone;
+	
 	private String location;
+	
+	private String urlImages;
 	
 	private Integer activated;
 	
@@ -45,6 +49,7 @@ public class CarRental {
 	@OneToMany(mappedBy = "carRental", fetch = FetchType.LAZY)
 	private Set<Comment> comments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "carRental")
 	private Set<Trip> trip;
 	

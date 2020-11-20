@@ -43,6 +43,7 @@ public class Station {
 	
 	private Integer activated;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<Trip> trip;
 	

@@ -33,20 +33,18 @@ public class Hotel {
 	
 	private String name;
 	
-	private String location;
-	
 	private String phone;
 	
-	private Integer activated;
+	private String location;
 	
 	private String ulrImages;
+	
+	private Integer activated;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_hotel", nullable = true)
 	private HotelCategory hotelCategory;
 	
-	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;

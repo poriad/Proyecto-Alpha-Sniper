@@ -1,10 +1,14 @@
 package org.iesalixar.poriad.security.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.entity.Station;
+import org.iesalixar.poriad.security.entity.Role;
 import org.iesalixar.poriad.security.entity.UserSnowy;
+import org.iesalixar.poriad.security.enums.RoleName;
+import org.iesalixar.poriad.security.service.RoleService;
 import org.iesalixar.poriad.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,35 +21,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
 public class UserController {
-	
+
 	@Autowired
 	UserService userService;
-	
+
+	@Autowired
+	RoleService roleService;
+
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/list")
 	public ResponseEntity<List<UserSnowy>> listUser() {
-		
+
 		List<UserSnowy> listUsers = userService.listUser();
-		
-		return new ResponseEntity(listUsers,HttpStatus.OK);
+
+		return new ResponseEntity(listUsers, HttpStatus.OK);
 	}
-	
+
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> updateStation(@PathVariable Long id, @RequestBody UserSnowy userDto){
-		
-		if(!userService.existById(id)) {
-			return new ResponseEntity(new Mensaje("El usuario no existe"),HttpStatus.NOT_FOUND);
+	public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserSnowy userDto) {
+
+		if (!userService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
 		}
-		
+
 		UserSnowy userSnowy = userService.findById(id);
-		
+
 		userSnowy.setFirstName(userDto.getFirstName());
 		userSnowy.setLastName(userDto.getLastName());
 		userSnowy.setUsername(userDto.getUsername());
@@ -55,25 +63,56 @@ public class UserController {
 		userSnowy.setPhone(userDto.getPhone());
 
 		userService.save(userSnowy);
-		
-		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"),HttpStatus.OK);
-		
+
+		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
+
 	}
-	
+
 	@PreAuthorize("hasRole('ADMIN')")
-	@DeleteMapping("delete/{id}")
-	public ResponseEntity<?> deleteUser(@PathVariable Long id){
-		
-		if(!userService.existById(id)) {
-			return new ResponseEntity(new Mensaje("El usuario no existe no existe"), HttpStatus.NOT_FOUND);
+	@PutMapping("/updateStatus/{id}")
+	public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestParam int status) {
+
+		if (!userService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
+		}
+
+		UserSnowy userSnowy = userService.findById(id);
+
+		userSnowy.setIsEnterprise(status);
+
+		Set<Role> roles = userSnowy.getRoles();
+
+		if (status == 1) {
+			if (!roles.contains("enterprise")) {
+				roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
+			} 
+			
+		} else {
+			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 		}
 		
-		UserSnowy userSnowy = userService.findById(id);
 		
-		userService.deleteUser(id);
-		
-		return new ResponseEntity(new Mensaje("Usuario eliminado"), HttpStatus.OK);
-		
+		userSnowy.setRoles(roles);
+
+		userService.updateUserEnterprise(id, status);
+
+		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
 	}
-	
+
+	@PreAuthorize("hasRole('ADMIN')")
+	@DeleteMapping("delete/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+
+		if (!userService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El usuario no existe no existe"), HttpStatus.NOT_FOUND);
+		}
+
+		UserSnowy userSnowy = userService.findById(id);
+
+		userService.deleteUser(id);
+
+		return new ResponseEntity(new Mensaje("Usuario eliminado"), HttpStatus.OK);
+
+	}
+
 }

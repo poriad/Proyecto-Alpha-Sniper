@@ -10,6 +10,8 @@ import org.iesalixar.poriad.repository.StationRepository;
 import org.iesalixar.poriad.security.entity.UserSnowy;
 import org.iesalixar.poriad.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -49,6 +51,10 @@ public class UserService {
 	
 	public UserSnowy findById(Long id) {
 		return userRepository.getOne(id);
+	}
+	
+	public void updateUserEnterprise( Long id , int status) {
+		userRepository.updateUserEnterprise(id, status);
 	}
 	
 }

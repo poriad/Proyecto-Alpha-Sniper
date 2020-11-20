@@ -63,6 +63,9 @@ public class UserSnowy {
 	@Value("${model.isEnterprise}")
 	private int isEnterprise;
 	
+	@Value("${model.isActive}")
+	private int isActive;
+	
 	private String phone;
 
 	private String urlImages;

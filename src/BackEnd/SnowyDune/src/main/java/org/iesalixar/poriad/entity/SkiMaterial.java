@@ -26,20 +26,19 @@ public class SkiMaterial {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String location;
-	
-	private String phone;
+	private Double priceDay;
 	
 	private String description;
 	
-	private Double priceDay;
-	
 	private String name;
 	
-	private Integer activated;
+	private String phone;
+	
+	private String location;
 	
 	private String urlImages;
 	
+	private Integer activated;
 	
 	@ManyToOne
 	@JoinColumn(name="station_id", nullable=true)
