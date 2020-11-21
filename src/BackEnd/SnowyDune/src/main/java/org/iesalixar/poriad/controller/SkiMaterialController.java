@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/skiMaterial")
@@ -77,6 +78,20 @@ public class SkiMaterialController {
 		skiMaterialService.saveSkiMaterial(skiMaterial);
 		
 		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/updateStatus/{id}")
+	public ResponseEntity<?> updateSkiMaterialStatus(@PathVariable Long id, @RequestParam Integer status){
+		
+		if(!skiMaterialService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		skiMaterialService.updateSkiMaterialStatus(id, status);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
 	}
 	
 	

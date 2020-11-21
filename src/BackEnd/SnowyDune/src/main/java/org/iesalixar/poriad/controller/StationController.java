@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -87,6 +88,19 @@ public class StationController {
 		
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/updateStatus/{id}")
+	public ResponseEntity<?> updateStationStatus(@PathVariable Long id, @RequestParam Integer status){
+		
+		if(!stationService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		stationService.updateStationStatus(id, status);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")

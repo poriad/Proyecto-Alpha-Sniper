@@ -23,6 +23,9 @@ public class StationService {
 		return stationRepository.listStationStatus(status);
 	}
 	
+	public void updateStationStatus(Long id ,Integer status) {
+		stationRepository.updateStationStatus(id, status);
+	}
 	
 	public void saveStation(Station station) {
 		stationRepository.save(station);

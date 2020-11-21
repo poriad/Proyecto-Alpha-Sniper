@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/carRental")
@@ -77,6 +78,20 @@ public class CarRentalController {
 		carRentalService.saveCarRental(carRental);
 		
 		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/updateStatus/{id}")
+	public ResponseEntity<?> updateCarRentalStatus(@PathVariable Long id, @RequestParam Integer status){
+		
+		if(!carRentalService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El hotel no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		carRentalService.updateCarRentalStatus(id, status);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
 		
 	}
 	

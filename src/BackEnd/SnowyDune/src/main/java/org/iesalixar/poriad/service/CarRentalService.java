@@ -27,6 +27,10 @@ public class CarRentalService {
 		carRentalRepository.save(classes);
 	}
 	
+	public void updateCarRentalStatus(Long id ,Integer status) {
+		carRentalRepository.updateCarRentalStatus(id, status);
+	}
+	
 	public void deleteCarRental(Long id) {
 		carRentalRepository.deleteById(id);
 	}

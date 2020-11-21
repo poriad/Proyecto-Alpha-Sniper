@@ -25,7 +25,7 @@ public class HotelService {
 		return hotelRepository.listHotelsStatus(status);
 	}
 	
-	public void updateHotelStatus(Long id ,Long status) {
+	public void updateHotelStatus(Long id ,Integer status) {
 		hotelRepository.updateHotelStatus(id, status);
 	}
 	

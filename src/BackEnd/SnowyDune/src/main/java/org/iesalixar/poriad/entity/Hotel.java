@@ -41,9 +41,7 @@ public class Hotel {
 	
 	private Integer activated;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_hotel", nullable = true)
-	private HotelCategory hotelCategory;
+	private int starts;
 	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)

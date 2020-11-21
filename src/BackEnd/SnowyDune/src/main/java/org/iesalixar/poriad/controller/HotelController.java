@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/hotel")
@@ -62,7 +63,7 @@ public class HotelController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> updateStation(@PathVariable Long id, @RequestBody Hotel hotelDto){
+	public ResponseEntity<?> updateHotel(@PathVariable Long id, @RequestBody Hotel hotelDto){
 		
 		if(!hotelService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El hotel no existe"),HttpStatus.NOT_FOUND);
@@ -79,6 +80,21 @@ public class HotelController {
 
 		
 		hotelService.saveHotel(hotel);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/updateStatus/{id}")
+	public ResponseEntity<?> updateHotelStatus(@PathVariable Long id, @RequestParam Integer status){
+		
+		if(!hotelService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El hotel no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		hotelService.updateHotelStatus(id, status);
 		
 		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
 		

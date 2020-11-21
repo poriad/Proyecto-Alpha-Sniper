@@ -57,7 +57,7 @@ public class UserSnowy {
 	private String email;
 
 	private String address;
-
+	
 	private boolean newsletter;
 	
 	@Value("${model.isEnterprise}")
@@ -69,6 +69,22 @@ public class UserSnowy {
 	private String phone;
 
 	private String urlImages;
+	
+	private String nomComercial;
+	
+	private String NIF;
+	
+	private String CNAE;
+	
+	private String activity;
+	
+	private String location;
+
+	private String enterprisePhone;
+	
+	private String enterpriseEmail;
+	
+	
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"),

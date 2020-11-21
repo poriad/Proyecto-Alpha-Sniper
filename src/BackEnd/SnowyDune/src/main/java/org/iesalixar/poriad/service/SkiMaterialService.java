@@ -24,6 +24,10 @@ public class SkiMaterialService {
 		return skiMaterialRepository.listSkiMaterialStatus(status);
 	}
 	
+	public void updateSkiMaterialStatus(Long id ,Integer status) {
+		skiMaterialRepository.updateSkiMaterialStatus(id, status);
+	}
+	
 	public void saveSkiMaterial(SkiMaterial skiMaterial) {
 		skiMaterialRepository.save(skiMaterial);
 	}
