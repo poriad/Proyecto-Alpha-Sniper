@@ -60,6 +60,10 @@ public interface UserRepository extends JpaRepository<UserSnowy, Long>{
 	// Controller
 	// http://localhost:8082/user/updateStatus/1?status=1
 	@Modifying
+	@Query(value="UPDATE UserSnowy u SET u.nomComercial = null, u.NIF = null, u.CNAE = null, u.activity = null,u.location = null, u.enterprisePhone = null, u.enterpriseEmail = null  WHERE u.id = :id")
+	void deleteUserEnterprise(@Param("id") Long id);
+	
+	@Modifying
 	@Query(value="UPDATE UserSnowy u SET u.isEnterprise= :status WHERE u.id = :id")
 	void updateUserEnterprise(@Param("id") Long id , @Param("status") int status);
 	

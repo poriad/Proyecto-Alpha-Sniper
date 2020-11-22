@@ -87,8 +87,9 @@ public class UserController {
 				roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 			}
 
-		} else {
+		} else if(status == 0){
 			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
+			userService.deleteUserIsEnterprise(id);
 		}
 
 		userSnowy.setRoles(roles);

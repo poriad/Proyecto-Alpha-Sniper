@@ -27,6 +27,6 @@ public interface CarRentalRepository extends JpaRepository<CarRental, Long>{
 	// = 1 activado
 	// = 0 pendiente confirmacion
 	@Modifying
-	@Query(value="UPDATE Classes h SET h.activated= :status WHERE h.id = :id")
+	@Query(value="UPDATE CarRental h SET h.activated= :status WHERE h.id = :id")
 	void updateCarRentalStatus(@Param("id") Long id , @Param("status") Integer status);
 }

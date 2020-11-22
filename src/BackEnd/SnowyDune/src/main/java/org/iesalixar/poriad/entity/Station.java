@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -43,6 +44,8 @@ public class Station {
 	
 	private Integer activated;
 	
+	private Integer forfaitPrice;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<Trip> trip;
@@ -63,13 +66,25 @@ public class Station {
 	@OneToMany(mappedBy = "station")
 	private Set<Classes> classes;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "station")
-	private Set<Forfait> forfait;
+	@OneToOne(mappedBy = "station")
+	private Forfait forfait;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<Comment> comments;
+
+	public Station(String name, String location, String country, Date openingDate, Date closingDate,
+			String description, String urlImages, Integer activated) {
+		this.name = name;
+		this.location = location;
+		this.country = country;
+		this.openingDate = openingDate;
+		this.closingDate = closingDate;
+		this.description = description;
+		this.urlImages = urlImages;
+		this.activated = activated;
+	}
+	
 	
 	
 }

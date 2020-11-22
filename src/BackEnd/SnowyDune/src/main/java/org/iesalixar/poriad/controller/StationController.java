@@ -1,11 +1,15 @@
 package org.iesalixar.poriad.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.iesalixar.poriad.dto.StationDto;
+import org.iesalixar.poriad.entity.Forfait;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.entity.Station;
 import org.iesalixar.poriad.service.CommentService;
+import org.iesalixar.poriad.service.ForfaitService;
 import org.iesalixar.poriad.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +35,9 @@ public class StationController {
 	StationService stationService;
 	
 	@Autowired
+	ForfaitService forfaitService;
+	
+	@Autowired
 	CommentService commentService;
 	
 	@GetMapping("/list")
@@ -53,10 +60,8 @@ public class StationController {
 	@PostMapping("/create")
 	public ResponseEntity<?> createStation(@RequestBody Station station){
 		
-		if (StringUtils.isBlank(station.getName())) {
-			
-			return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.NOT_FOUND);
-			
+		if (stationService.existByName(station.getName())) {
+			return new ResponseEntity(new Mensaje("Ese nombre de estación ya existe"), HttpStatus.BAD_REQUEST);
 		}
 		
 		stationService.saveStation(station);

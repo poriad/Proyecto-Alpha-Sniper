@@ -40,6 +40,11 @@ public class StationService {
 		
 	}
 	
+	public boolean existByName(String name) {
+		return stationRepository.existsByName(name);
+		
+	}
+	
 	public Station findById(Long id) {
 		return stationRepository.getOne(id);
 	}

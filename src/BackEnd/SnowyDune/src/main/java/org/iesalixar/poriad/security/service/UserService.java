@@ -45,6 +45,10 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 	
+	public void deleteUserIsEnterprise(Long id) {
+		userRepository.deleteUserEnterprise(id);
+	}
+	
 	public boolean existById(Long id) {
 		return userRepository.existsById(id);
 	}

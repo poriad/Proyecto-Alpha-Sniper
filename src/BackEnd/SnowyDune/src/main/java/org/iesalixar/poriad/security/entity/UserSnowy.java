@@ -85,6 +85,7 @@ public class UserSnowy {
 	private String enterpriseEmail;
 	
 	
+	
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"),
