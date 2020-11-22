@@ -57,4 +57,7 @@ public class UserService {
 		userRepository.updateUserEnterprise(id, status);
 	}
 	
+	public void updateUserStatus( Long id , int status) {
+		userRepository.updateUserStatus(id, status);
+	}
 }

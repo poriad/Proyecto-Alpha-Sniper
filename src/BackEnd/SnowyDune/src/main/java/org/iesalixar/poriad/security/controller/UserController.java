@@ -69,7 +69,7 @@ public class UserController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/updateStatus/{id}")
+	@PutMapping("/updateStatusEnterprise/{id}")
 	public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestParam int status) {
 
 		if (!userService.existById(id)) {
@@ -85,13 +85,12 @@ public class UserController {
 		if (status == 1) {
 			if (!roles.contains("enterprise")) {
 				roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
-			} 
-			
+			}
+
 		} else {
 			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 		}
-		
-		
+
 		userSnowy.setRoles(roles);
 
 		userService.updateUserEnterprise(id, status);
@@ -100,8 +99,38 @@ public class UserController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@DeleteMapping("delete/{id}")
-	public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+	@PutMapping("/updateActiveStatus/{id}")
+	public ResponseEntity<?> updateActiveUserStatus(@PathVariable Long id, @RequestParam int status) {
+
+		if (!userService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
+		}
+
+		UserSnowy userSnowy = userService.findById(id);
+
+		userSnowy.setIsEnterprise(status);
+
+		Set<Role> roles = userSnowy.getRoles();
+
+		if (status == 1) {
+			if (!roles.contains("enterprise")) {
+				roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
+			}
+
+		} else {
+			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
+		}
+
+		userSnowy.setRoles(roles);
+
+		userService.updateUserEnterprise(id, status);
+
+		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
+	}
+
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("updateUserStatus/{id}")
+	public ResponseEntity<?> updateUserStatus(@PathVariable Long id, @RequestParam int status) {
 
 		if (!userService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El usuario no existe no existe"), HttpStatus.NOT_FOUND);
@@ -109,7 +138,13 @@ public class UserController {
 
 		UserSnowy userSnowy = userService.findById(id);
 
-		userService.deleteUser(id);
+		Set<Role> roles = null;
+		
+		userSnowy.setUsername(null);
+
+		userSnowy.setRoles(roles);
+
+		userService.updateUserStatus(id, status);
 
 		return new ResponseEntity(new Mensaje("Usuario eliminado"), HttpStatus.OK);
 

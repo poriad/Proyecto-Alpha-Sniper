@@ -37,7 +37,10 @@ public interface UserRepository extends JpaRepository<UserSnowy, Long>{
 	@Query(value="SELECT u from UserSnowy u WHERE u.isEnterprise = 2")
 	Page<UserSnowy> findByIsEnterprise(Pageable pageable);
 	
-	@Query(value="SELECT u from UserSnowy u")
+	// isActive = 2 -> borrado
+	// = 1 es usuario
+	// = 0 no es usuario confirmado
+	@Query(value="SELECT u from UserSnowy u WHERE u.isActive = 1")
 	Page<UserSnowy> findAllUser(Pageable pageable);
 	
 	// ORDER METHODS
@@ -62,7 +65,7 @@ public interface UserRepository extends JpaRepository<UserSnowy, Long>{
 	
 	// ACTUALIZADO DE USUARIO A TIPO EMPRESA
 	// Controller
-	// http://localhost:8082/user/updateStatus/1?status=1
+	// http://localhost:8082/user/updateUserStatus/1?status=1
 	@Modifying
 	@Query(value="UPDATE UserSnowy u SET u.isActive= :status WHERE u.id = :id")
 	void updateUserStatus(@Param("id") Long id , @Param("status") int status);

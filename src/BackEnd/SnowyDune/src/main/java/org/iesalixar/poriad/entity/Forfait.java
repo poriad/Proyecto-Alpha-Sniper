@@ -33,6 +33,7 @@ public class Forfait {
 	
 	private int numberDays;
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;

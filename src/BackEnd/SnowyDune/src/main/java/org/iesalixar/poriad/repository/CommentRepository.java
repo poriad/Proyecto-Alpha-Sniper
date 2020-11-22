@@ -32,6 +32,9 @@ public interface CommentRepository extends JpaRepository<Comment, Long>{
 	@Query(value="SELECT c FROM Comment c WHERE c.classes.id = :id")
 	Page<Comment> listCommentsClasses(@Param("id") Long id, Pageable pageable);
 	
+	@Query(value="select c FROM Comment c")
+	Page<Comment> listComments(Pageable pageable);
+	
 	@Modifying
 	@Query(value="DELETE FROM Comment c WHERE c.station.id = :id")
 	void deleteCommentsStation(@Param("id") Long id);

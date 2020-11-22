@@ -23,23 +23,27 @@ import lombok.NoArgsConstructor;
 public class Comment {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String comment;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "hotel_id", nullable = true)
 	private Hotel hotel;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "skiMaterial_id", nullable = true)
 	private SkiMaterial skiMaterial;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "carRental_id", nullable = true)
 	private CarRental carRental;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "classes_id", nullable = true)
 	private Classes classes;
@@ -49,6 +53,7 @@ public class Comment {
 	@JoinColumn(name = "user_id", nullable = true)
 	private UserSnowy user;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;

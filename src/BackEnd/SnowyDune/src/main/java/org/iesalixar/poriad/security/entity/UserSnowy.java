@@ -98,11 +98,11 @@ public class UserSnowy {
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "user")
 	private Trip trip;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Comment> comments;
 
 	public UserSnowy(String firstName, String lastName, String username, String password, String email,
@@ -134,6 +134,7 @@ public class UserSnowy {
 		this.email = email;
 		this.address = address;
 		this.newsletter = newsletter;
+		this.isActive = 1;
 		this.phone = phone;
 	}
 
