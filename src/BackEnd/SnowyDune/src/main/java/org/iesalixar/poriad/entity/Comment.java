@@ -1,5 +1,7 @@
 package org.iesalixar.poriad.entity;
 
+import java.sql.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.iesalixar.poriad.security.entity.UserSnowy;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +29,9 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@CreationTimestamp
+	private Date date;
 	
 	private String comment;
 	

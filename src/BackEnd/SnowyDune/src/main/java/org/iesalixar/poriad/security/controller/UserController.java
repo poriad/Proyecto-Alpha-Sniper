@@ -45,6 +45,15 @@ public class UserController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/getByUsername")
+	public ResponseEntity<UserSnowy> getByUsernameEnterprise(@RequestParam String username) {
+
+		UserSnowy userSnowy = userService.getByUsernameEnterprise(username);
+
+		return new ResponseEntity(userSnowy, HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserSnowy userDto) {
 
@@ -53,7 +62,7 @@ public class UserController {
 		}
 
 		UserSnowy userSnowy = userService.findById(id);
-
+		
 		userSnowy.setFirstName(userDto.getFirstName());
 		userSnowy.setLastName(userDto.getLastName());
 		userSnowy.setUsername(userDto.getUsername());
@@ -67,6 +76,33 @@ public class UserController {
 		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
 
 	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/updateToEnterprise/{id}")
+	public ResponseEntity<?> updateUserToEnterprise(@PathVariable Long id, @RequestBody UserSnowy userDto) {
+
+		if (!userService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
+		}
+
+		UserSnowy userSnowy = userService.findById(id);
+		
+		userSnowy.setNomComercial(userDto.getNomComercial());
+		userSnowy.setNIF(userDto.getNIF());
+		userSnowy.setCNAE(userDto.getCNAE());
+		userSnowy.setActivity(userDto.getActivity());
+		userSnowy.setLocation(userDto.getLocation());
+		userSnowy.setEnterprisePhone(userDto.getEnterprisePhone());
+		userSnowy.setEnterpriseEmail(userDto.getEnterpriseEmail());
+		
+		userService.updateUserEnterprise(id, 2);
+
+		userService.save(userSnowy);
+
+		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
+
+	}
+	
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/updateStatusEnterprise/{id}")

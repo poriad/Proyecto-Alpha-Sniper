@@ -28,8 +28,11 @@ public interface UserRepository extends JpaRepository<UserSnowy, Long>{
 	
 	UserSnowy findByEmailIgnoreCase(String email);
 	
-	@Query(value="SELECT u from UserSnowy u WHERE u.username= :username")
-	Page<UserSnowy> findByUser(@Param("username") String name, Pageable pageable);
+	@Query(value = "SELECT u from UserSnowy u where u.username = :username")
+	UserSnowy getByUsernameEnterprise(@Param("username") String username);
+	
+	//@Query(value="SELECT u from UserSnowy u WHERE u.username= :username")
+	//Page<UserSnowy> findByUser(@Param("username") String name, Pageable pageable);
 	
 	// isEnterprise = 2 -> Pendiente
 	// = 1 es usuario empresa

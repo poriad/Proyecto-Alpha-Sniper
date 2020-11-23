@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.iesalixar.poriad.security.entity.UserSnowy;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -39,9 +41,15 @@ public class CarRental {
 	
 	private String location;
 	
+	private String country;
+	
 	private String urlImages;
 	
 	private Integer activated;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=true)
+	private UserSnowy user;
 	
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)

@@ -16,9 +16,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.iesalixar.poriad.entity.CarRental;
 import org.iesalixar.poriad.entity.Cart;
+import org.iesalixar.poriad.entity.Classes;
 import org.iesalixar.poriad.entity.Comment;
+import org.iesalixar.poriad.entity.Hotel;
 import org.iesalixar.poriad.entity.Payment;
+import org.iesalixar.poriad.entity.SkiMaterial;
 import org.iesalixar.poriad.entity.Trip;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -84,14 +88,28 @@ public class UserSnowy {
 	
 	private String enterpriseEmail;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<CarRental> carRental;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Classes> classes;
 	
-
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Hotel> hotel;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<SkiMaterial> skiMaterial;
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"),
 	inverseJoinColumns =  @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Payment> payment;
 
@@ -103,6 +121,7 @@ public class UserSnowy {
 	@OneToOne(mappedBy = "user")
 	private Trip trip;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Comment> comments;
 

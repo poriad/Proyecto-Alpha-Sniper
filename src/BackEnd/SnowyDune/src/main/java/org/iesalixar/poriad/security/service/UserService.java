@@ -25,6 +25,10 @@ public class UserService {
 		return userRepository.findByUsername(username);
 	}
 	
+	public UserSnowy getByUsernameEnterprise(String username) {
+		return userRepository.getByUsernameEnterprise(username);
+	}
+	
 	public boolean existsByUsername(String username) {
 		return userRepository.existsByUsername(username);
 	}
