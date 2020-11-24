@@ -28,6 +28,14 @@ public class SkiMaterialService {
 		skiMaterialRepository.updateSkiMaterialStatus(id, status);
 	}
 	
+	public void updateStationIdSkiMaterial(Long id ,Long station) {
+		skiMaterialRepository.updateStationIdSkiMaterial(id, station);
+	}
+	
+	public void updateUserIdSkiMaterial(Long id ,Long userid) {
+		skiMaterialRepository.updateUserIdSkiMaterial(id, userid);
+	}
+	
 	public void saveSkiMaterial(SkiMaterial skiMaterial) {
 		skiMaterialRepository.save(skiMaterial);
 	}

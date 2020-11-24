@@ -30,6 +30,14 @@ public class ClassesService {
 		classesRepository.updateClassesStatus(id, status);
 	}
 	
+	public void updateStationIdClasses(Long id ,Long station) {
+		classesRepository.updateStationIdClasses(id, station);
+	}
+	
+	public void updateUserIdClasses(Long id ,Long userid) {
+		classesRepository.updateUserIdClasses(id, userid);
+	}
+	
 	public void saveClasses(Classes classes) {
 		classesRepository.save(classes);
 	}

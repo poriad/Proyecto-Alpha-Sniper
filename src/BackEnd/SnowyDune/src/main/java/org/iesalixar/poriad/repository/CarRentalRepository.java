@@ -29,4 +29,14 @@ public interface CarRentalRepository extends JpaRepository<CarRental, Long>{
 	@Modifying
 	@Query(value="UPDATE CarRental h SET h.activated= :status WHERE h.id = :id")
 	void updateCarRentalStatus(@Param("id") Long id , @Param("status") Integer status);
+	
+	// añadimos el station_id al servicio de vehiculos
+	@Modifying
+	@Query(value="UPDATE CarRental h SET h.station.id = :station WHERE h.id = :id")
+	void updateStationIdCarRental(@Param("id") Long id , @Param("station") Long station);
+		
+	// añadimos el user_id al servicio de vehiculos
+	@Modifying
+	@Query(value="UPDATE CarRental h SET h.user.id = :user WHERE h.id = :id")
+	void updateUserIdCarRental(@Param("id") Long id , @Param("user") Long userid);
 }

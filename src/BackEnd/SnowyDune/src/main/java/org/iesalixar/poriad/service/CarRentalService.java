@@ -31,6 +31,14 @@ public class CarRentalService {
 		carRentalRepository.updateCarRentalStatus(id, status);
 	}
 	
+	public void updateStationIdCarRental(Long id ,Long station) {
+		carRentalRepository.updateStationIdCarRental(id, station);
+	}
+	
+	public void updateUserIdCarRental(Long id ,Long userid) {
+		carRentalRepository.updateUserIdCarRental(id, userid);
+	}
+	
 	public void deleteCarRental(Long id) {
 		carRentalRepository.deleteById(id);
 	}

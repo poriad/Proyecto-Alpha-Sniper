@@ -97,6 +97,34 @@ public class ClassesController {
 		
 	}
 	
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateStatusClassesStation/{id}")
+	public ResponseEntity<?> updateStationIdClasses(@PathVariable Long id, @RequestParam Long station){
+		
+		if(!classesService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		classesService.updateStationIdClasses(id, station);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateUserIdClasses/{id}")
+	public ResponseEntity<?> updateUserIdClasses(@PathVariable Long id, @RequestParam Long userid){
+		
+		if(!classesService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		classesService.updateUserIdClasses(id, userid);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")

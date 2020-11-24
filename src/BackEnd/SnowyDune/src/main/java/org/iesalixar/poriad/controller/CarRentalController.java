@@ -65,7 +65,7 @@ public class CarRentalController {
 	public ResponseEntity<?> updateStation(@PathVariable Long id, @RequestBody CarRental carRentalDto){
 		
 		if(!carRentalService.existById(id)) {
-			return new ResponseEntity(new Mensaje("El comentario no existe"),HttpStatus.NOT_FOUND);
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
 		}
 		
 		CarRental carRental = carRentalService.findById(id);
@@ -77,7 +77,7 @@ public class CarRentalController {
 		
 		carRentalService.saveCarRental(carRental);
 		
-		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
 		
 	}
 	
@@ -86,10 +86,38 @@ public class CarRentalController {
 	public ResponseEntity<?> updateCarRentalStatus(@PathVariable Long id, @RequestParam Integer status){
 		
 		if(!carRentalService.existById(id)) {
-			return new ResponseEntity(new Mensaje("El hotel no existe"),HttpStatus.NOT_FOUND);
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
 		}
 		
 		carRentalService.updateCarRentalStatus(id, status);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateStatusCarRentalStation/{id}")
+	public ResponseEntity<?> updateStationIdCarRental(@PathVariable Long id, @RequestParam Long station){
+		
+		if(!carRentalService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		carRentalService.updateStationIdCarRental(id, station);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateUserIdCarRental/{id}")
+	public ResponseEntity<?> updateUserIdHotel(@PathVariable Long id, @RequestParam Long userid){
+		
+		if(!carRentalService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		carRentalService.updateUserIdCarRental(id, userid);
 		
 		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
 		

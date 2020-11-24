@@ -29,4 +29,13 @@ public interface ClassesRepository extends JpaRepository<Classes, Long>{
 	@Query(value="UPDATE Classes h SET h.activated= :status WHERE h.id = :id")
 	void updateClassesStatus(@Param("id") Long id , @Param("status") Integer status);
 	
+	// añadimos el station_id al servicio de clases
+	@Modifying
+	@Query(value="UPDATE Classes h SET h.station.id = :station WHERE h.id = :id")
+	void updateStationIdClasses(@Param("id") Long id , @Param("station") Long station);
+		
+	// añadimos el user_id al servicio de clases
+	@Modifying
+	@Query(value="UPDATE Classes h SET h.user.id = :user WHERE h.id = :id")
+	void updateUserIdClasses(@Param("id") Long id , @Param("user") Long userid);
 }

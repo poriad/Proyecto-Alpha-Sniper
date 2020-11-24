@@ -34,7 +34,7 @@ public class SkiMaterialController {
 	CommentService commentService;
 	
 	@GetMapping("/list")
-	public ResponseEntity<List<Classes>> listClasses() {
+	public ResponseEntity<List<SkiMaterial>> listSkiMaterial() {
 		
 		List<SkiMaterial> listSkiMaterial = skiMaterialService.listSkiMaterial();
 		
@@ -89,6 +89,34 @@ public class SkiMaterialController {
 		}
 		
 		skiMaterialService.updateSkiMaterialStatus(id, status);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateStatusSkiMaterialStation/{id}")
+	public ResponseEntity<?> updateStationIdClasses(@PathVariable Long id, @RequestParam Long station){
+		
+		if(!skiMaterialService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		skiMaterialService.updateStationIdSkiMaterial(id, station);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateUserIdSkiMaterial/{id}")
+	public ResponseEntity<?> updateUserIdSkiMaterial(@PathVariable Long id, @RequestParam Long userid){
+		
+		if(!skiMaterialService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El servicio no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		skiMaterialService.updateUserIdSkiMaterial(id, userid);
 		
 		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
 		

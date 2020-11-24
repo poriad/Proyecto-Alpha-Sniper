@@ -30,4 +30,14 @@ public interface SkiMaterialRepository extends JpaRepository<SkiMaterial, Long>{
 	@Query(value="UPDATE SkiMaterial h SET h.activated= :status WHERE h.id = :id")
 	void updateSkiMaterialStatus(@Param("id") Long id , @Param("status") Integer status);
 	
+	// añadimos el station_id al servicio de vehiculos
+	@Modifying
+	@Query(value="UPDATE SkiMaterial h SET h.station.id = :station WHERE h.id = :id")
+	void updateStationIdSkiMaterial(@Param("id") Long id , @Param("station") Long station);
+		
+	// añadimos el user_id al servicio de vehiculos
+	@Modifying
+	@Query(value="UPDATE SkiMaterial h SET h.user.id = :user WHERE h.id = :id")
+	void updateUserIdSkiMaterial(@Param("id") Long id , @Param("user") Long userid);
+	
 }
