@@ -49,6 +49,8 @@ public class Hotel {
 	
 	private int starts;
 	
+	private int stars;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=true)
 	private UserSnowy user; 

@@ -100,6 +100,33 @@ public class HotelController {
 		
 	}
 	
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateStatusHotelStation/{id}")
+	public ResponseEntity<?> updateStationIdHotel(@PathVariable Long id, @RequestParam Long station){
+		
+		if(!hotelService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El hotel no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		hotelService.updateStationIdHotel(id, station);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('ENTERPRISE')")
+	@PutMapping("/updateUserIdHotel/{id}")
+	public ResponseEntity<?> updateUserIdHotel(@PathVariable Long id, @RequestParam Long userid){
+		
+		if(!hotelService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El hotel no existe"),HttpStatus.NOT_FOUND);
+		}
+		
+		hotelService.updateUserIdHotel(id, userid);
+		
+		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
+		
+	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")

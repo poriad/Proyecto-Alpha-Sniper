@@ -30,4 +30,14 @@ public interface HotelRepository extends JpaRepository<Hotel, Long>{
 	@Query(value="UPDATE Hotel h SET h.activated= :status WHERE h.id = :id")
 	void updateHotelStatus(@Param("id") Long id , @Param("status") Integer status);
 	
+	// añadimos el station_id al hotel
+	@Modifying
+	@Query(value="UPDATE Hotel h SET h.station.id = :station WHERE h.id = :id")
+	void updateStationIdHotel(@Param("id") Long id , @Param("station") Long station);
+	
+	// añadimos el user_id del hotel
+	@Modifying
+	@Query(value="UPDATE Hotel h SET h.user.id = :user WHERE h.id = :id")
+	void updateUserIdHotel(@Param("id") Long id , @Param("user") Long userid);
+	
 }
