@@ -45,7 +45,6 @@ public class Comment {
 	@JoinColumn(name = "skiMaterial_id", nullable = true)
 	private SkiMaterial skiMaterial;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "carRental_id", nullable = true)
 	private CarRental carRental;

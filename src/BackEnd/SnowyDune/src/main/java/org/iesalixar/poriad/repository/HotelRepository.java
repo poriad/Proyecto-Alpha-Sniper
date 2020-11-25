@@ -2,6 +2,7 @@ package org.iesalixar.poriad.repository;
 
 import java.util.List;
 
+import org.iesalixar.poriad.entity.Classes;
 import org.iesalixar.poriad.entity.Hotel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,9 @@ public interface HotelRepository extends JpaRepository<Hotel, Long>{
 	
 	@Query("SELECT s FROM Hotel s WHERE s.activated = :status")
 	Page<Hotel> listHotelStatusPageable(Pageable pageable,@Param("status") Integer status);
+	
+	@Query(value="Select s FROM Hotel s WHERE s.user.id = :id")
+	List<Hotel> getHotelFromUser(@Param("id") Long userId);
 	
 	// activated = 2 -> borrado
 	// = 1 activado

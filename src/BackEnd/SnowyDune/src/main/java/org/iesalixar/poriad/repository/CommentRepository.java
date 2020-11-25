@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 public interface CommentRepository extends JpaRepository<Comment, Long>{
 	
-	@Query(value="SELECT c from Comment c INNER JOIN Hotel h ON h.id = c.hotel WHERE h.id = :id")
-	Page<Comment> findAllCommentsHotels(@Param("id") Long id ,Pageable pageable);
-	
 	@Query(value="SELECT c FROM Comment c WHERE c.station.id = :id")
 	Page<Comment> listCommentsStation(@Param("id") Long id, Pageable pageable);
 	

@@ -26,6 +26,10 @@ public class ClassesService {
 		return classesRepository.listClassesStatus(status);
 	}
 	
+	public List<Classes> getClassesFromUser(Long id){
+		return classesRepository.getClassesFromUser(id);
+	}
+	
 	public void updateClassesStatus(Long id ,Integer status) {
 		classesRepository.updateClassesStatus(id, status);
 	}

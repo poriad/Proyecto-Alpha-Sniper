@@ -45,13 +45,18 @@ public class Classes {
 	
 	private Integer activated;
 	
+	// quitar el ignore
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=true)
 	private UserSnowy user; 
 	
+	// quitar el ignore
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
+	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "classes")

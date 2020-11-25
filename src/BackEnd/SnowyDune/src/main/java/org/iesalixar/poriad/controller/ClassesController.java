@@ -9,6 +9,7 @@ import org.iesalixar.poriad.entity.SkiMaterial;
 import org.iesalixar.poriad.service.ClassesService;
 import org.iesalixar.poriad.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,6 +42,15 @@ public class ClassesController {
 		
 		return new ResponseEntity(listClasses,HttpStatus.OK);
 	}
+	
+	@GetMapping("/listClasses/{id}")
+	public ResponseEntity<List<Classes>> getClassesFromUser(@PathVariable Long id) {
+		
+		List<Classes> listClasses = classesService.getClassesFromUser(id);
+		
+		return new ResponseEntity(listClasses,HttpStatus.OK);
+	}
+	
 	
 	@GetMapping("/listStatus/{status}")
 	public ResponseEntity<List<Classes>> listClassesStatus(@PathVariable Integer status) {

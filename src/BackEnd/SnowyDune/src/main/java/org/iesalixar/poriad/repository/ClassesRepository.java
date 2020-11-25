@@ -22,6 +22,9 @@ public interface ClassesRepository extends JpaRepository<Classes, Long>{
 	@Query("SELECT s FROM Classes s WHERE s.activated = :status")
 	Page<Classes> listClassesStatusPageable(Pageable pageable,@Param("status") Integer status);
 	
+	@Query(value="Select s FROM Classes s WHERE s.user.id = :id")
+	List<Classes> getClassesFromUser(@Param("id") Long userId);
+	
 	// activated = 2 -> borrado
 	// = 1 activado
 	// = 0 pendiente confirmacion

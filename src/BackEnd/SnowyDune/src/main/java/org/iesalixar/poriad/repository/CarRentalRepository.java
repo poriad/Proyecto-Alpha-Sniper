@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.iesalixar.poriad.entity.CarRental;
 import org.iesalixar.poriad.entity.Classes;
+import org.iesalixar.poriad.entity.SkiMaterial;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +23,10 @@ public interface CarRentalRepository extends JpaRepository<CarRental, Long>{
 	
 	@Query("SELECT s FROM CarRental s WHERE s.activated = :status")
 	Page<CarRental> listCarRentalStatusPageable(Pageable pageable,@Param("status") Integer status);
+	
+	@Query(value="Select s FROM CarRental s WHERE s.user.id = :id")
+	List<CarRental> getCarRentalFromUser(@Param("id") Long userId);
+
 	
 	// activated = 2 -> borrado
 	// = 1 activado
