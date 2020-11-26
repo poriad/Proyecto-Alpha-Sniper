@@ -5,33 +5,34 @@
     <div class="col-12 pt-5 text-center">
       <h1 class="h1 pb-4 pb-sm-4">ADMINISTRACIÓN DE USUARIOS Y EMPRESAS</h1>
       <hr class="hr" />
-      <button class="btn btn-return">VOLVER</button>
+      <button class="btn btn-return" routerLink="/HomeAdmin">VOLVER</button>
     </div>
 
   </div>
     <div class="row pb-5 mt-5">
       <div class="col-12 col-md-10 col-xl-5 offset-md-1 offset-xl-1 fondo-blanco text-center">
-        <div class="row ">
+        <div class="row">
           <p class="marca-uno w-100 text-center pb-1"></p>
           <div class="col-12">
             <h3 class="h3 pl-4 pb-3 pt-4 pl-5">ADMINISTRACIÓN DE USUARIOS</h3>
             <hr class="hr2" />
           </div>
+          <div class="col-12">
+            <input class="form-control search  mx-auto" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Busca por coincidencias en el campo...">
+          </div>
+          
 
           <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto">
             <table class="table table-striped ">
               <thead>
                 <tr>
    
-                  <th scope="col" (click) = "updateOrderListFirstName()">Nombre</th>
-                  <th scope="col" (click) = "updateOrderListLastName()">Apellido</th>
-                  <th scope="col" (click) = "updateOrderListEmail()">Email</th>
-                  <th scope="col" (click) = "updateOrderListUsername()">Nombre Usuario</th>
-                  <th scope="col">Ver Detalle</th>
+                  <th scope="col" *ngFor="let header of header;" (click)= updateOrderList(header.id) >{{ header.title }}</th>
+                  <th scope="col" >Ver Detalle</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of users | filter:searchText">
                   
                   <td>{{ user.firstName }}</td>
                   <td>{{ user.lastName }}</td>
@@ -58,9 +59,16 @@
               [collectionSize]= "theTotalElements"
               [maxSize] = 5
               [boundaryLinks]="true"
-              (pageChange) = loadUsers()>
+              (pageChange) = orderList()>
 
       </ngb-pagination>
+        </div>
+        <div *ngIf="submitted && isDeleteUserFail" class="col-12">
+          <h5 class="text-center h5-submit">{{deleteMessage}}</h5>
+        </div>
+
+        <div *ngIf="submitted && !isDeleteUserFail" class="col-12">
+          <h5 class=" text-center h5-error">Error: {{ deleteMessage }}</h5>
         </div>
       </div>
 
@@ -71,109 +79,78 @@
                 <h3 class="h3 pb-3 pt-4 pl-5">SOLICITUDES DE INGRESO. EMPRESAS.</h3>
                 <hr class="hr2" />
             </div>
+            <div class="col-12">
+              <input class="form-control search mx-auto" type="text" name="search" [(ngModel)]="searchTextEnterprise" autocomplete="off" placeholder="Busca por coincidencias en el campo...">
+            </div>
             <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto">
                 <table class="table table-striped text-center ">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre Comercial</th>
-                        <th scope="col">NIF</th>
-                        <th scope="col">CNAE</th>
-                        <th scope="col">Actividad</th>
+                        <th scope="col" *ngFor="let header of header;" (click)= updateOrderListEnterprise(header.id) >{{ header.title }}</th>
+    
                         <th scope="col">Ver Detalle</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="#info-empresa">Información</button></td>
+                      <tr *ngFor="let enterprise of userEnterprise | filter:searchTextEnterprise">
+                  
+                        <td>{{ enterprise.nomComercial }}</td>
+                        <td>{{ enterprise.nif }}</td>
+                        <td>{{ enterprise.cnae }}</td>
+                        <td>{{ enterprise.activity }}</td>
+                        <td>
+                          <button
+                            class="btn btn-station"
+                            data-toggle="modal"
+                            [attr.data-target]="'#'+ enterprise.email"
+                          >
+                            Información
+                          </button>
+                        </td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">6</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">7</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">8</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td><button href="#" class="btn btn-station " data-toggle="modal" data-target="info">Información</button></td>
-                      </tr>
+                      
                     </tbody>
                   </table>
             </div>
-            <div class="col-12 ">
-                <nav aria-label="empresas" class="">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item"><a class="page-link" href="#"><</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">></a></li>
-                    </ul>
-                  </nav>
+            <div class="col-12 d-flex justify-content-center">
+              <ngb-pagination [(page)]="thePageNumberEnterprise"
+                  [pageSize] ="thePageSizeEnterprise"
+                  [collectionSize]= "theTotalElementsEnterprise"
+                  [maxSize] = 5
+                  [boundaryLinks]="true"
+                  (pageChange) = orderListEnterprise()>
+    
+          </ngb-pagination>
+            </div>
+            <div *ngIf="submitted && isUpdateEnterpriseFail" class="col-12">
+              <h5 class="text-center h5-submit">{{updateMessageEnterprise}}</h5>
+            </div>
+    
+            <div *ngIf="submitted && !isUpdateEnterpriseFail" class="col-12">
+              <h5 class=" text-center h5-error">Error: {{ updateMessageEnterprise }}</h5>
             </div>
 
         </div>
 
     </div>
+
+
+
+
+
+
+
+    </div>
+
+    <div class="row justify-content-center">
+
+      <div class="col-12 col-md-10 col-xl-5 fondo-blanco mt-xl-0 mb-5">
+    
+        <app-admin-create-station></app-admin-create-station>
+  
+      </div>
+  
+
     </div>
   
 </div>
@@ -197,40 +174,47 @@ class="modal fade"
             Modificación de Datos y Borrado de Usuario
           </h4>
         </div>
+      
         <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        #closebutton
+      >
+        <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <form  (ngSubmit)="onSubmit(id.value,firstName.value,lastName.value,email.value,address.value,username.value,password.value,phone.value,newsletter.value,enterprise.value)" >
         <div class="row">
+          
           <div class="col-4 text-center pt-3 pb-4">
-            <label for="email" class="d-block">Nombre</label>
-            <input
+            
+            <label for="firstName" class="d-block">Nombre</label>
+            
+            <input #firstName
               type="text"
               value="{{ user.firstName }}"
               placeholder="Nombre..."
-              name="nombre"
+              name="firstName"
               class="input pt-2"
+              
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
-            <label for="email" class="d-block">Apellidos</label>
-            <input
+          <div class="col-4 text-center pt-3 pb-4 ">
+            <label for="lastName" class="d-block">Apellidos</label>
+            <input #lastName
               type="text"
               placeholder="Apellidos..."
-              name="apellidos"
+              name="lastName"
               value="{{ user.lastName }}"
               class="input pt-2"
             />
           </div>
           <div class="col-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">Email</label>
-            <input
+            <input #email
               type="text"
               placeholder="Email..."
               name="email"
@@ -238,9 +222,10 @@ class="modal fade"
               value="{{ user.email }}"
             />
           </div>
+          
           <div class="col-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">Dirección</label>
-            <input
+            <input #address
               type="text"
               placeholder="Dirección..."
               name="direccion"
@@ -249,8 +234,8 @@ class="modal fade"
             />
           </div>
           <div class="col-4 text-center pt-3 pb-4">
-            <label for="email" class="d-block">Nombre Usuario</label>
-            <input
+            <label for="username" class="d-block">Nombre Usuario</label>
+            <input #username
               type="text"
               placeholder="Nombre de usuario..."
               name="email"
@@ -258,30 +243,44 @@ class="modal fade"
               value="{{ user.username }}"
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-4 text-center pt-3 pb-4 ">
             <label for="email" class="d-block">Contraseña</label>
-            <input
+            <input #password
               type="text"
               placeholder="Email..."
-              name="email"
+              name="password"
               class="input pt-2"
               value="{{ user.password }}"
             />
           </div>
           <div class="col-6 text-center pt-3 pb-4">
             <label for="email" class="d-block">Teléfono</label>
-            <input
+            <input #phone
               type="text"
               placeholder="Teléfono..."
-              name="telefono"
+              name="phone"
               class="input pt-2"
               value="{{ user.phone }}"
+            />
+              <input #enterprise
+            type="text"
+            placeholder="Teléfono..."
+            name="phone"
+            class="input pt-2"
+            value="{{ user.isEnterprise }}" visibility="hidden" style="width: 0;"
+            />
+            <input #id
+            type="text"
+            placeholder="Teléfono..."
+            name="phone"
+            class="input pt-2"
+            value="{{ user.id }}" visibility="hidden" style="width: 0;"
             />
           </div>
 
           <div class="col-6 text-center pt-3 pb-4">
             <label for="email" class="d-block">Newsletter</label>
-            <select class="mt-2">
+            <select #newsletter name="newsletter" class="mt-2">
               <option>Si</option>
               <option>No</option>
             </select>
@@ -290,127 +289,174 @@ class="modal fade"
           <div class="col-12">
             <hr class="hr3" />
           </div>
+          
+          <div class="col-6 text-center pt-3 pb-3">
+            <input value="Modificar" type="submit" class="btn btn-admin-user pl-3 pr-3">
+          </div>
+          <div class="col-6 text-center pt-3 pb-3">
+            <input value="Borrar" (click) = "deleteUser(user.id)" class="btn btn-admin-user pl-3 pr-3" type="submit">
 
-          <div class="col-6 text-center pt-3 pb-3">
-            <button (click)="modifyUser(user.id)" class="btn btn-admin-user pl-3 pr-3">Modificar</button>
+          
           </div>
-          <div class="col-6 text-center pt-3 pb-3">
-            <button (click)="deleteUser(user.id)" class="btn btn-admin-user pl-3 pr-3">Borrar</button>
+          <div *ngIf="submitted && isUpdateFail" class="col-12">
+            <h5 class="h5-submit text-center">{{updateMessage}}</h5>
           </div>
+  
+          <div *ngIf="submitted && !isUpdateFail" class="col-12">
+            <h5 class="h5-error text-center">Error: {{ updateMessage }}</h5>
+          </div>
+        
         </div>
+      </form>
       </div>
     </div>
   </div>
 </div>
 
 <div
-  class="modal fade"
-  id="info-empresa"
+*ngFor="let enterprise of userEnterprise" 
+class="modal fade"
+  id="{{enterprise.email}}"
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-11">
-          <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Empresa nomEmpresa</h3>
+          <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Solicitud - Empresa {{ enterprise.nomComercial }}</h3>
           <hr class="hr3" />
           <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
-            Solicitud de ingreso. 
+            Activación de Empresas
           </h4>
         </div>
+      
         <button
           type="button"
           class="close"
           data-dismiss="modal"
           aria-label="Close"
+          #closebutton
         >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <form >
         <div class="row">
+          
           <div class="col-4 text-center pt-3 pb-4">
-            <label for="email" class="d-block">Nombre Comercial</label>
-            <input
+            
+            <label for="firstName" class="d-block">Nombre Comercial</label>
+            
+            <input #firstName
               type="text"
-              placeholder="Email..."
-              name="email"
+              value="{{ enterprise.nomComercial }}"
+              placeholder="Nombre..."
+              name="firstName"
               class="input pt-2"
+              readonly
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
-            <label for="email" class="d-block">NIF</label>
-            <input
+          <div class="col-4 text-center pt-3 pb-4 ">
+            <label for="lastName" class="d-block">NIF</label>
+            <input #lastName
               type="text"
-              placeholder="Email..."
-              name="email"
+              placeholder="Apellidos..."
+              name="lastName"
+              value="{{ enterprise.nif }}"
               class="input pt-2"
+              readonly
             />
           </div>
           <div class="col-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">CNAE</label>
-            <input
+            <input #email
               type="text"
               placeholder="Email..."
               name="email"
               class="input pt-2"
+              value="{{ enterprise.cnae }}"
+              readonly
             />
           </div>
+          
           <div class="col-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">Actividad</label>
-            <input
+            <input #address
               type="text"
-              placeholder="Email..."
-              name="email"
+              placeholder="Dirección..."
+              name="direccion"
               class="input pt-2"
+              value="{{ enterprise.activity }}"
+              readonly
             />
           </div>
           <div class="col-4 text-center pt-3 pb-4">
-            <label for="email" class="d-block">Localizacion</label>
-            <input
+            <label for="username" class="d-block">Localizacion</label>
+            <input #username
               type="text"
-              placeholder="Email..."
+              placeholder="Nombre de usuario..."
               name="email"
               class="input pt-2"
+              value="{{ enterprise.location }}"
+              readonly
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-4 text-center pt-3 pb-4 ">
             <label for="email" class="d-block">Email</label>
-            <input
+            <input #password
               type="text"
               placeholder="Email..."
-              name="email"
+              name="password"
               class="input pt-2"
+              value="{{ enterprise.enterpriseEmail }}"
+              readonly
             />
           </div>
           <div class="col-12 text-center pt-3 pb-4">
             <label for="email" class="d-block">Teléfono</label>
-            <input
+            <input #phone
               type="text"
-              placeholder="Email..."
-              name="email"
+              placeholder="Teléfono..."
+              name="phone"
               class="input pt-2"
+              value="{{ enterprise.enterprisePhone }}"
+              readonly
+            />
+              <input #enterprise
+            type="text"
+            placeholder="Teléfono..."
+            name="phone"
+            class="input pt-2"
+            value="{{ enterprise.isEnterprise }}" visibility="hidden" style="width: 0;"
+            />
+            <input #id
+            type="text"
+            placeholder="Teléfono..."
+            name="phone"
+            class="input pt-2"
+            value="{{ enterprise.id }}" visibility="hidden" style="width: 0;"
             />
           </div>
-
 
           <div class="col-12">
             <hr class="hr3" />
           </div>
-
+          
           <div class="col-6 text-center pt-3 pb-3">
-            <button class="btn btn-admin-user pl-3 pr-3">Activar</button>
+            <input  (click)="updateEnterpriseStatus(enterprise.id)" value="Activar" type="submit" class="btn btn-admin-user pl-3 pr-3">
           </div>
           <div class="col-6 text-center pt-3 pb-3">
-            <button class="btn btn-admin-user pl-3 pr-3">Borrar</button>
+            <button (click)="deleteEnterpriseStatus(enterprise.id)" class="btn btn-admin-user pl-3 pr-3">Borrar</button>
+
+          
           </div>
         </div>
+      </form>
       </div>
     </div>
   </div>
 </div>
-
-    

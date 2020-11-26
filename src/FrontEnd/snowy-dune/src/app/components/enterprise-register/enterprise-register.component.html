@@ -1,0 +1,170 @@
+<div class="row">
+    <div class="col-12">
+      <h3 class="h3 pb-4 pt-4 text-center">REGISTRA TU EMPRESA</h3>
+      <hr class="hr2" />
+    </div>
+
+    <div class="col-12">
+        <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-5">¿No has registro aún tu empresa?¿Tienes algún servicio adicional? Registralo aquí</h1>
+    </div>
+
+    <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pb-4 mx-auto">
+        <form [formGroup]="enterpriseForm" (ngSubmit)="onSubmit()" class="">
+          <div class="row">
+            <div
+              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+            >
+              <label class="">Nombre Comercial</label>
+              <input
+                class="form-control mx-auto"
+                placeholder="Ej. Snowy SA"
+                formControlName="nomComercial"
+                [ngClass]="{ 'is-invalid': submitted && f.nomComercial.errors }"
+              />
+    
+              <div *ngIf="submitted && f.nomComercial.errors" class="invalid-feedback">
+                <div *ngIf="f.nomComercial.errors.required">
+                  El nombre comercial es Obligatorio
+                </div>
+              </div>
+            </div>
+    
+            <div
+              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+            >
+              <label class="">NIF</label>
+              <input
+                class="form-control mx-auto"
+                placeholder="Ej. A08001851"
+                formControlName="nif"
+                [ngClass]="{ 'is-invalid': submitted && f.nif.errors }"
+              />
+    
+              <div *ngIf="submitted && f.nif.errors" class="invalid-feedback">
+                <div *ngIf="f.nif.errors.required">
+                  El NIF es Obligatorio
+                </div>
+              </div>
+            </div>
+    
+            <div
+              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+            >
+              <label class="">CNAE</label>
+              <input
+              type="text"
+                class="form-control mx-auto"
+                placeholder="Ej. C101011011"
+                formControlName="cnae"
+                [ngClass]="{ 'is-invalid': submitted && f.cnae.errors }"
+              />
+    
+              <div *ngIf="submitted && f.cnae.errors" class="invalid-feedback">
+                <div *ngIf="f.cnae.errors.required">El CNAE es Obligatorio</div>
+              </div>
+            </div>
+    
+            <div
+              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+            >
+              <label class="">Actividad</label>
+              <input
+              type="text"
+                class="form-control mx-auto"
+                placeholder="Ej. Cadena de hoteles"
+                formControlName="activity"
+                [ngClass]="{ 'is-invalid': submitted && f.activity.errors }"
+              />
+    
+              <div *ngIf="submitted && f.activity.errors" class="invalid-feedback">
+                <div *ngIf="f.activity.errors.required">
+                  La actividad es Obligatoria
+                </div>
+              </div>
+            </div>
+    
+            <div
+              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+            >
+              <label class="">Localización</label>
+              <input
+                type="text"
+                class="form-control mx-auto"
+                placeholder="Ej. Andorra"
+                formControlName="location"
+                [ngClass]="{ 'is-invalid': submitted && f.location.errors }"
+              />
+    
+              <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                <div *ngIf="f.location.errors.required">
+                  La localización es Obligatoria
+                </div>
+              </div>
+            </div>
+    
+            <div
+              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+            >
+              <label class="">Teléfono</label>
+              <input
+                type="text"
+                class="form-control mx-auto"
+                placeholder="Ej. 659009071"
+                formControlName="enterprisePhone"
+                [ngClass]="{ 'is-invalid': submitted && f.enterprisePhone.errors }"
+              />
+    
+              <div
+                *ngIf="submitted && f.enterprisePhone.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.enterprisePhone.errors.required">
+                  El teléfono es Obligatorio
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-12 col-lg-12 col-xl-6 pt-3 mx-xl-auto text-center form-group"
+            >
+              <label class="">Email</label>
+              <input
+                type="text"
+                class="form-control mx-auto"
+                placeholder="Ej. hotel@gmail.com"
+                formControlName="enterpriseEmail"
+                [ngClass]="{ 'is-invalid': submitted && f.enterpriseEmail.errors }"
+              />
+    
+              <div
+                *ngIf="submitted && f.enterpriseEmail.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.enterpriseEmail.errors.required">
+                  El email es Obligatorio
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-12 col-md-12  text-center pt-3">
+              <input
+                type="submit"
+                value="Registrar"
+                class="submit"
+              />
+            </div>
+          </div>
+          <div class="col-12 pt-3 text-center">
+            <div *ngIf="submitted && isRegisterFail" class="">
+              <h5 class="h5-submit">{{ Message }}</h5>
+            </div>
+    
+            <div *ngIf="submitted && !isRegisterFail" class="">
+              <h5 class="h5-submit">{{ Message }}</h5>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    
+  </div>

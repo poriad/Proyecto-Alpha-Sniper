@@ -1,4 +1,5 @@
 import { FormGroup } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 // custom validator to check that two fields match
 export function MustMatch(controlName: string, matchingControlName: string) {
@@ -18,4 +19,16 @@ export function MustMatch(controlName: string, matchingControlName: string) {
             matchingControl.setErrors(null);
         }
     }
+}
+
+
+export class customValidationService {
+   static checkLimit(min: number, max: number): ValidatorFn {
+    return (c: AbstractControl): { [key: string]: boolean } | null => {
+        if (c.value && (isNaN(c.value) || c.value < min || c.value > max)) {
+            return { 'range': true };
+        }
+        return null;
+    };
+  }
 }

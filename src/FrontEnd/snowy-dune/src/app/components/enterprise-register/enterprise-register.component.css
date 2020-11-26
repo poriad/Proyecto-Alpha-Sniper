@@ -1,0 +1,168 @@
+.h3 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.h4 {
+    font-size: 1.4rem;
+    letter-spacing: 0.27rem;
+    color: #3C7DEC
+}
+
+.h5-submit {
+  color: rgba(27, 77, 176, 1);
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+}
+
+.hr2 {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:85%;
+}
+
+button {
+  border: 1px solid  rgba(27, 77, 176, 1);
+  border-radius: 0;
+  color:  rgba(27, 77, 176, 1);
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+  font-weight: 600;
+  padding-left: 55px;
+  padding-right: 55px;
+  color:  white;
+  background-color: rgba(27, 77, 176, 1);
+}
+
+button:hover {
+  color:  rgba(27, 77, 176, 1);
+  background-color: white;
+}
+
+/* Formulario */ 
+
+label {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  color: rgba(27, 77, 176, 1);
+}
+
+.checkbox-label {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  color: rgba(27, 77, 176, 1);
+}
+
+input {
+  color: rgba(27, 77, 176, 1);
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(27, 77, 176, 1);
+  background-color: rgba(27, 77, 176, 0.1);
+  
+}
+
+input:focus,input:active {
+  border-bottom: 2px solid rgba(27, 77, 176, 1);
+  background-color: rgba(27, 77, 176, 0.1);
+  box-shadow: none;
+}
+
+
+.invalid-feedback {
+  display: block;
+}
+
+.submit{
+  color: white;
+  background-color: rgba(27, 77, 176, 1);
+  border-radius: 0;
+  border: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid rgba(27, 77, 176, 1);
+  width: 20%;
+  transition: 0.3s;
+}
+
+.submit:hover{
+  color: rgba(27, 77, 176, 1);
+  background-color: white;
+  border: 1px solid rgba(27, 77, 176, 1);
+}
+
+@media screen and (min-width: 1198px) {
+  .submit{
+    font-size: 1.3rem;
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+    
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+  
+}
+
+@media screen and (max-width: 575px) {
+   
+    .h3{
+        font-size: 1.3rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .h4 {
+        font-size: 1rem;
+        letter-spacing: 0.27rem;
+        color: #3C7DEC
+    }
+
+    .submit{
+
+      font-size: 1.1rem;
+
+      width: 50%;
+    }
+
+}

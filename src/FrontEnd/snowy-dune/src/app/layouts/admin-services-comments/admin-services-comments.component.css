@@ -64,7 +64,9 @@
     border: 0;
     font-weight: 600;
 }
-
+.margen-izquierda {
+    margin-left:8.333% !important;
+}
 .table {
     color:rgba(27, 77, 176, 1);
 }
@@ -111,11 +113,14 @@ label {
 .input {
     border: 0;
     border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
 }
+
 .input::placeholder{
     color: #3C7DEC;
     opacity: 0.5;
 }
+
 
 .input:focus {
     outline: none !important;
@@ -184,10 +189,30 @@ select {
     border-radius: 0;
 }
 
+.search {
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1) !important;
+    text-align: center;
+    width: 70%;
+}
+
 .btn-return:hover {
     color: rgba(27, 77, 176, 1);
     background-color:  white;
 
+}
+
+.h5-submit {
+    color: rgba(27, 77, 176, 1);
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
+.h5-error {
+    color: rgb(190, 0, 0);;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
 }
 
 
@@ -198,6 +223,15 @@ select {
 
 
     }
+
+    .modal-lg {
+        max-width: 80% !important;
+    }
+
+    .margen-izquierda-dos {
+        margin-left:8.333% !important;
+    }
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 990px) {
@@ -224,6 +258,13 @@ select {
 
     }
 
+    .modal-lg {
+        max-width: 80% !important;
+    }
+    .margen-izquierda-dos {
+        margin-left:8.333% !important;
+    }
+
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
@@ -243,6 +284,16 @@ select {
         right: 40%;
         top: 98%;
     }
+
+    .modal-lg {
+        max-width: 90% !important;
+    }
+
+    .margen-izquierda {
+        margin-left:0!important;
+    }
+
+   
     
 }
 
@@ -266,6 +317,14 @@ select {
     .h3 {
         font-size: 1.4rem;
 
+    }
+
+    .modal-lg {
+        max-width: 100% !important;
+    }
+
+    .margen-izquierda {
+        margin-left:0!important;
     }
 
 }

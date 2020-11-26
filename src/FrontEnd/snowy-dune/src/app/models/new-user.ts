@@ -1,12 +1,12 @@
 export class NewUser {
-    id?: number;
+    id: number;
     firstName: string;
     lastName: string;
     username: string;
     email: string;
     password: string;
     address: string;
-    newsletter: boolean;
+    newsletter: number;
     isEnterprise: number;
     phone: string
     authorities: string[];
@@ -17,7 +17,7 @@ export class NewUser {
         email: string,
         password: string,
         address: string,
-        newsletter: boolean,
+        newsletter: number,
         isEnterprise: number,
         phone: string) {
             this.firstName = firstName;
@@ -30,4 +30,5 @@ export class NewUser {
             this.isEnterprise = isEnterprise;
             this.phone = phone
         }
+
 }

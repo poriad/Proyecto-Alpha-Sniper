@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CommonModule } from "@angular/common";
 
 
 /**
@@ -14,6 +15,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
  */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 /**
@@ -43,6 +45,16 @@ import { StationCardComponent } from './components/station-card/station-card.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from './components/search/search.component';
 import { HotelComponent } from './layouts/hotel/hotel.component';
+import { AdminClassesComponent } from './components/admin-classes/admin-classes.component';
+import { AdminCarRentalComponent } from './components/admin-car-rental/admin-car-rental.component';
+import { AdminSkiMaterialComponent } from './components/admin-ski-material/admin-ski-material.component';
+import { AdminHotelComponent } from './components/admin-hotel/admin-hotel.component';
+import { AdminStationComponent } from './components/admin-station/admin-station.component';
+import { AdminCreateStationComponent } from './components/admin-create-station/admin-create-station.component';
+import { EnterpriseRegisterComponent } from './components/enterprise-register/enterprise-register.component';
+import { EnterpriseCommentsComponent } from './components/enterprise-comments/enterprise-comments.component';
+import { EnterpriseServicesComponent } from './components/enterprise-services/enterprise-services.component';
+import { EnterpriseListServicesComponent } from './components/enterprise-list-services/enterprise-list-services.component';
 
 
 @NgModule({
@@ -65,7 +77,18 @@ import { HotelComponent } from './layouts/hotel/hotel.component';
     AdminServicesCommentsComponent,
     StationCardComponent,
     SearchComponent,
-    HotelComponent
+    HotelComponent,
+    AdminClassesComponent,
+    AdminCarRentalComponent,
+    AdminSkiMaterialComponent,
+    AdminHotelComponent,
+    AdminStationComponent,
+    AdminCreateStationComponent,
+    EnterpriseRegisterComponent,
+    EnterpriseCommentsComponent,
+    EnterpriseServicesComponent,
+    EnterpriseListServicesComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -78,7 +101,9 @@ import { HotelComponent } from './layouts/hotel/hotel.component';
     MatSlideToggleModule,
     MatSelectModule,
     MatCheckboxModule,
-    NgbModule
+    NgbModule,
+    CommonModule,
+    Ng2SearchPipeModule
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

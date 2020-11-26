@@ -44,6 +44,18 @@
     width:85%;
 }
 
+.h5-submit {
+    color: rgba(27, 77, 176, 1);
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
+.h5-error {
+    color: rgb(190, 0, 0);;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
 .pagination li a{
     color: rgba(27, 77, 176, 1);
     background-color: white;
@@ -111,9 +123,11 @@ label {
 .input {
     border: 0;
     border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1) !important;
+    text-align: center;
 }
 .input::placeholder{
-    color: #3C7DEC;
+    color: #3264bb;
     opacity: 0.5;
 }
 
@@ -138,6 +152,14 @@ label {
     outline: none !important;
     border: 0;
     border-bottom: 2px solid rgba(27, 77, 176, 1);
+}
+
+.search {
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1) !important;
+    text-align: center;
+    width: 70%;
 }
 
 select {
@@ -195,6 +217,10 @@ select {
     width: 100% !important; 
  }
 
+ .margen-izquierda {
+    margin-left:8.333% !important;
+}
+
  ngb-pagination ::ng-deep a {
     color: rgba(27, 77, 176, 1);
     font-size: 1.1rem;
@@ -217,6 +243,10 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
         font-size: 1.4rem;
 
 
+    }
+
+    .margen-izquierda {
+        margin-left:8.333% !important;
     }
 }
 
@@ -244,6 +274,9 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
 
     }
 
+    .margen-izquierda {
+        margin-left:8.333% !important;
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
@@ -262,6 +295,10 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
     .btn-return {
         right: 40%;
         top: 98%;
+    }
+
+    .margen-izquierda {
+        margin-left:0!important;
     }
     
 }
@@ -286,6 +323,10 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
     .h3 {
         font-size: 1.4rem;
 
+    }
+
+    .margen-izquierda {
+        margin-left:0!important;
     }
 
 }

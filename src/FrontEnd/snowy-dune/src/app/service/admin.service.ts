@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { EnterpriseUser } from '../models/enterprise-user';
 import { NewUser } from '../models/new-user';
 
 @Injectable({
@@ -8,8 +9,8 @@ import { NewUser } from '../models/new-user';
 })
 export class AdminService {
 
-  baseUrl = "http://localhost:8082/api/user/";
-  //baseUrl = "http://192.168.1.134:8082/api/user/";
+  //baseUrl = "http://localhost:8082/api/user/";
+  baseUrl = "http://192.168.1.134:8082/api/user/";
   baseUrlUser = "http://192.168.1.134:8082/user/";
 
   
@@ -20,12 +21,16 @@ export class AdminService {
   }
 
   public putUserDetails(newUser: NewUser, id:number): Observable<any>{
-    return this.httpClient.put<any>(this.baseUrlUser + 'update' + id, newUser);
+    return this.httpClient.put<any>(this.baseUrlUser + 'update/' + id, newUser);
   }
 
-  public deleteUser(id:number): Observable<any>{
+  public putEnterpriseStatus(id:number, status:number): Observable<any>{
+    return this.httpClient.put<any>(this.baseUrlUser + 'updateStatusEnterprise/' + id +'?status=' + status, null);
+  }
+
+  public deleteUser(id:number,status:number): Observable<any>{
     console.log("servicio")
-    return this.httpClient.delete<any>(this.baseUrlUser + 'delete/' + id);
+    return this.httpClient.put<any>(this.baseUrlUser + 'updateUserStatus/' + id + "?status=" + status,null);
   }
 
   public getUserListPaginate(thePage: number, thePageSize: number): Observable<GetResponseUsers> {
@@ -36,36 +41,20 @@ export class AdminService {
     return this.httpClient.get<GetResponseUsers>(searchUrl);
   }
 
-  public getUserListPaginateSortedByUsername(thePage: number, thePageSize: number): Observable<GetResponseUsers> {
+  public getUserListPaginatedSorted(thePage: number, thePageSize: number, columnName:string, order:string): Observable<GetResponseUsers> {
 
-    const searchUrl = `${this.baseUrl}search/findAllUserOderByUsername?`
-    + `page=${thePage}&size=${thePageSize}`;
-
-    return this.httpClient.get<GetResponseUsers>(searchUrl);
-  }
-
-  public getUserListPaginateSortedByEmail(thePage: number, thePageSize: number): Observable<GetResponseUsers> {
-
-    const searchUrl = `${this.baseUrl}search/findAllUserOderByEmail?`;
-    + `page=${thePage}&size=${thePageSize}`
+    const searchUrl = `${this.baseUrl}search/findAllUser?`
+    + `page=${thePage}&size=${thePageSize}&sort=${columnName},${order}`;
 
     return this.httpClient.get<GetResponseUsers>(searchUrl);
   }
 
-  public getUserListPaginateSortedByFirstName(thePage: number, thePageSize: number): Observable<GetResponseUsers> {
+  public getUserEnterpriseListPaginatedSorted(thePage: number, thePageSize: number, columnName:string, order:string): Observable<GetResponseUsersEnterprise> {
 
-    const searchUrl = `${this.baseUrl}search/findAllUserOderByFirstName?`
-    + `page=${thePage}&size=${thePageSize}`;
+    const searchUrl = `${this.baseUrl}search/findByIsEnterprise?`
+    + `page=${thePage}&size=${thePageSize}&sort=${columnName},${order}`;
 
-    return this.httpClient.get<GetResponseUsers>(searchUrl);
-  }
-
-  public getUserListPaginateSortedByLastName(thePage: number, thePageSize: number): Observable<GetResponseUsers> {
-
-    const searchUrl = `${this.baseUrl}search/findAllUserOderByLastName?`
-    + `page=${thePage}&size=${thePageSize}`;
-
-    return this.httpClient.get<GetResponseUsers>(searchUrl);
+    return this.httpClient.get<GetResponseUsersEnterprise>(searchUrl);
   }
 
 }
@@ -73,6 +62,19 @@ export class AdminService {
 interface GetResponseUsers {
   _embedded: {
     user: NewUser[];
+  },
+  page: {
+    size: number;
+    totalElements: number;
+    totalPages: number;
+    number: number
+  }
+
+}
+
+interface GetResponseUsersEnterprise {
+  _embedded: {
+    user: EnterpriseUser[];
   },
   page: {
     size: number;

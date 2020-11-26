@@ -85,10 +85,8 @@ export class RegisterComponent implements OnInit {
         this.newUser = data;
         this.Message = "Registro realizado";
       }, err => {
-        
         this.isRegisterFail = false;
         this.Message = err.error.mensaje;
-        console.log(err);
       }
     );
   }
