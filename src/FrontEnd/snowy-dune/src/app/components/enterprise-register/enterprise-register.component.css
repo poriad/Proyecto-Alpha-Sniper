@@ -21,6 +21,19 @@
     width:85%;
 }
 
+.enterprise-status {
+  border: 1px solid#3C7DEC;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  color: #3C7DEC;
+  font-weight: bold;
+
+}
+
+.enterprise-status span {
+  padding: 5px;
+}
+
 button {
   border: 1px solid  rgba(27, 77, 176, 1);
   border-radius: 0;
@@ -111,11 +124,33 @@ input:focus,input:active {
 
     width: 50%;
   }
+  .enterprise-status {
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+  
+  }
 }
 
 
 @media screen and (min-width: 991px) and (max-width: 1198px) {
     
+  .h3{
+    font-size: 1.3rem;
+    letter-spacing: 0.25rem;
+}
+.enterprise-status {
+  top: 6%;
+  right: 30%;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+
+}
+
+.h4 {
+    font-size: 1rem;
+    letter-spacing: 0.27rem;
+    color: #3C7DEC
+}
   .submit{
 
     font-size: 1.1rem;
@@ -134,8 +169,23 @@ input:focus,input:active {
   }
 }
 
-@media screen and (min-width: 576px) and (max-width: 767px) {
+@media screen and (min-width: 575px) and (max-width: 767px) {
 
+  .h3{
+    font-size: 1.3rem;
+    letter-spacing: 0.25rem;
+}
+
+.h4 {
+    font-size: 1rem;
+    letter-spacing: 0.27rem;
+    color: #3C7DEC
+}
+.enterprise-status {
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+
+}
   .submit{
 
     font-size: 1.1rem;
@@ -163,6 +213,12 @@ input:focus,input:active {
       font-size: 1.1rem;
 
       width: 50%;
+    }
+
+    .enterprise-status {
+      font-size: 0.6rem;
+      letter-spacing: 0.1rem;
+    
     }
 
 }

@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeEnterpriseComponent implements OnInit {
 
+  username: string;
+  
   constructor() { }
 
   ngOnInit(): void {
+    this.username = sessionStorage.getItem('AuthUsername');
   }
 
 }

@@ -8,9 +8,10 @@ import { Station } from '../models/station';
 })
 export class StationService {
   
-  //stationURL = "http://localhost:8082/station/";
-  stationURL = "http://192.168.1.134:8082/station/";
-  baseUrl = "http://192.168.1.134:8082/api/stations";
+  baseUrl = "http://localhost:8082/api/stations";
+  stationURL = "http://localhost:8082/station/";
+  //stationURL = "http://192.168.1.134:8082/station/";
+  //baseUrl = "http://192.168.1.134:8082/api/stations";
 
   constructor(private httpClient: HttpClient) { }
 

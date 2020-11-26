@@ -1,6 +1,7 @@
 export class SkiMaterial {
     id?: number;
     priceDay: number;
+    description:number;
     name: string;
     phone: string;
     email: string;

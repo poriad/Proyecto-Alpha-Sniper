@@ -9,8 +9,10 @@ import { CarRental } from '../models/car-rental';
 })
 export class CarRentalService {
 
-  baseUrl = "http://192.168.1.134:8082/api/car-rental/";
-  baseUrlTwo = "http://192.168.1.134:8082/carRental/";
+  //baseUrl = "http://192.168.1.134:8082/api/car-rental/";
+  //baseUrlTwo = "http://192.168.1.134:8082/carRental/";
+  baseUrl = "http://localhost:8082/api/car-rental/";
+  baseUrlTwo = "http://localhost:8082/carRental/";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -36,6 +38,10 @@ export class CarRentalService {
 
   public deleteCarRental(id:number): Observable<any>{
     return this.httpClient.put<any>(this.baseUrlTwo + 'updateStatus/' + id + "?status=2", null);
+  }
+
+  public desactiveCarRental(id:number): Observable<any>{
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateStatus/' + id + "?status=0", null);
   }
 
   // Actualizar el stationid

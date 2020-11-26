@@ -1,6 +1,7 @@
 export class CarRental {
     id?: number;
     price: number;
+    description: string;
     name: string;
     phone: string;
     email: string;

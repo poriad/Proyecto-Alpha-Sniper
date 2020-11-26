@@ -24,7 +24,7 @@ public interface SkiMaterialRepository extends JpaRepository<SkiMaterial, Long>{
 	@Query("SELECT s FROM SkiMaterial s WHERE s.activated = :status")
 	Page<SkiMaterial> listSkiMaterialStatusPageable(Pageable pageable,@Param("status") Integer status);
 	
-	@Query(value="Select s FROM SkiMaterial s WHERE s.user.id = :id")
+	@Query(value="Select s FROM SkiMaterial s WHERE s.user.id = :id and s.activated = 1")
 	List<SkiMaterial> getSkiMaterialFromUser(@Param("id") Long userId);
 	
 	// activated = 2 -> borrado

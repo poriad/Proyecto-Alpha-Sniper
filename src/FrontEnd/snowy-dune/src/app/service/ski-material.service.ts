@@ -9,8 +9,10 @@ import { SkiMaterial } from '../models/ski-material';
 })
 export class SkiMaterialService {
 
-  baseUrl = "http://192.168.1.134:8082/api/ski-material/";
-  baseUrlTwo = "http://192.168.1.134:8082/skiMaterial/";
+  baseUrl = "http://localhost:8082/api/ski-material/";
+  baseUrlTwo = "http://localhost:8082/skiMaterial/";
+  //baseUrl = "http://192.168.1.134:8082/api/ski-material/";
+  //baseUrlTwo = "http://192.168.1.134:8082/skiMaterial/";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,6 +40,9 @@ export class SkiMaterialService {
     return this.httpClient.put<any>(this.baseUrlTwo + 'updateStatus/' + id + "?status=2", null);
   }
 
+  public desactiveSkiMaterial(id:number): Observable<any>{
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateStatus/' + id + "?status=0", null);
+  }
   // Actualizar el stationid
   public putSkiMaterialStationId(idHotel:number,idStation: number): Observable<any>{
     return this.httpClient.put<any>(this.baseUrlTwo + 'updateStatusSkiMaterialStation/' + idHotel + "?station=" + idStation, null);

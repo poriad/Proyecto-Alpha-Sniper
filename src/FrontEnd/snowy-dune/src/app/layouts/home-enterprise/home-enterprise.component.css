@@ -9,6 +9,7 @@
 
 .fondo-blanco {
     background-color: white;
+    padding-left: 0 !important;
 }
 
 .h1{
@@ -56,6 +57,7 @@
     top: 0;
     font-weight: 600;
     height: 10px;
+    padding-left:0 !important
 }
 
 .pagination li a{

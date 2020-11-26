@@ -9,8 +9,10 @@ import { Classes } from '../models/classes';
 })
 export class ClassesService {
 
-  baseUrl = "http://192.168.1.134:8082/api/classes/";
-  baseUrlTwo = "http://192.168.1.134:8082/classes/";
+  baseUrl = "http://localhost:8082/api/classes/";
+  baseUrlTwo = "http://localhost:8082/classes/"
+  //baseUrl = "http://192.168.1.134:8082/api/classes/";
+  //baseUrlTwo = "http://192.168.1.134:8082/classes/";
   
 
   constructor(private httpClient: HttpClient) { }
@@ -37,6 +39,10 @@ export class ClassesService {
 
   public deleteClass(id:number): Observable<any>{
     return this.httpClient.put<any>(this.baseUrlTwo + 'updateStatus/' + id + "?status=2", null);
+  }
+
+  public desactiveClass(id:number): Observable<any>{
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateStatus/' + id + "?status=0", null);
   }
 
   // Actualizar el stationid

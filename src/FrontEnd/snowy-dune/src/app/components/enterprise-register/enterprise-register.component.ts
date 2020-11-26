@@ -14,6 +14,7 @@ export class EnterpriseRegisterComponent implements OnInit {
 
   enterpriseForm: FormGroup;
   enterprise: Enterprise;
+  enterpriseStatus: string;
   submitted = false;
   Message: string;
   isRegisterFail: boolean;
@@ -25,6 +26,8 @@ export class EnterpriseRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private enterpriseService: EnterpriseService) { }
 
   ngOnInit(): void {
+
+    this.isEnterpriseCheck();
 
     this.enterpriseForm = this.formBuilder.group({
       nomComercial: ['', Validators.required],
@@ -92,6 +95,23 @@ export class EnterpriseRegisterComponent implements OnInit {
      },3000);
   
     
+  }
+
+  isEnterpriseCheck(){
+    this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
+      data => {
+
+        if (data.isEnterprise == 2){
+          this.enterpriseStatus = "Pendiente";
+        } else if(data.isEnterprise == 1) {
+          this.enterpriseStatus = "Registrado";
+        } else {
+          this.enterpriseStatus = "No solicitado";
+        }
+
+      }
+    );
+
   }
   
 }

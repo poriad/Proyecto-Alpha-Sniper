@@ -1,6 +1,7 @@
 export class Classes {
     id?: number;
     priceHour: number;
+    description: string;
     name: string;
     phone: string;
     email: string;
