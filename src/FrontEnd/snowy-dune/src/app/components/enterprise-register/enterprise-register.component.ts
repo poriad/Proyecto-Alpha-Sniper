@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/service/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Enterprise } from 'src/app/models/enterprise';
@@ -15,15 +16,17 @@ export class EnterpriseRegisterComponent implements OnInit {
   enterpriseForm: FormGroup;
   enterprise: Enterprise;
   enterpriseStatus: string;
+  inactiveEnterprise: boolean;
   submitted = false;
   Message: string;
+  isEnterpriseChk = false;
   isRegisterFail: boolean;
   isEnterprise: boolean;
   userId: number;
 
   username: string;
 
-  constructor(private formBuilder: FormBuilder, private enterpriseService: EnterpriseService) { }
+  constructor(private formBuilder: FormBuilder, private enterpriseService: EnterpriseService, private adminService: AdminService) { }
 
   ngOnInit(): void {
 
@@ -59,8 +62,6 @@ export class EnterpriseRegisterComponent implements OnInit {
 
 
     this.enterprise = new Enterprise(nomComercial,nif,cnae,activity,location,enterprisePhone,enterpriseEmail);
-
-    console.log(this.enterprise)
 
     this.username = sessionStorage.getItem('AuthUsername');
 
@@ -103,8 +104,11 @@ export class EnterpriseRegisterComponent implements OnInit {
 
         if (data.isEnterprise == 2){
           this.enterpriseStatus = "Pendiente";
+          this.inactiveEnterprise = true;
+         
         } else if(data.isEnterprise == 1) {
           this.enterpriseStatus = "Registrado";
+          this.isEnterpriseChk = true;
         } else {
           this.enterpriseStatus = "No solicitado";
         }
@@ -113,6 +117,26 @@ export class EnterpriseRegisterComponent implements OnInit {
     );
 
   }
-  
+
+  deleteEnterprise(){
+    console.log("hola")
+      this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
+        data => {
+          this.adminService.putEnterpriseStatus(data.id,2).subscribe();
+          window.location.reload();
+        }
+      );
+    
+  }
+
+
+  deleteEnterpriseFromSystem() {
+    this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
+      data => {
+        this.adminService.putEnterpriseStatus(data.id,0).subscribe();
+        window.location.reload();
+      }
+    );
+  }
 }
 

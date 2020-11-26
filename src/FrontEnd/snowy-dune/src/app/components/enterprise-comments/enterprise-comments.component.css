@@ -35,6 +35,19 @@
     width:85%;
 }
 
+.marca-uno {
+    background-color: #3C7DEC !important;
+    color: white;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.20rem;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    font-weight: 600;
+    height: 10px;
+}
+
 .search {
     border: 0;
     border-bottom: 1px solid rgba(27, 77, 176, 1);

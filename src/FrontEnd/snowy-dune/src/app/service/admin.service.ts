@@ -26,11 +26,10 @@ export class AdminService {
   }
 
   public putEnterpriseStatus(id:number, status:number): Observable<any>{
-    return this.httpClient.put<any>(this.baseUrlUser + 'updateStatusEnterprise/' + id +'?status=' + status, null);
+    return this.httpClient.put<any>(this.baseUrlUser + 'updateActiveStatus/' + id +'?status=' + status, null);
   }
 
   public deleteUser(id:number,status:number): Observable<any>{
-    console.log("servicio")
     return this.httpClient.put<any>(this.baseUrlUser + 'updateUserStatus/' + id + "?status=" + status,null);
   }
 

@@ -18,6 +18,7 @@ import { SkiMaterialService } from 'src/app/service/ski-material.service';
 })
 export class EnterpriseCommentsComponent implements OnInit {
 
+  commentsChk = false;
   classes: Classes[];
   hotel: Hotel[];
   carRental: CarRental[];
@@ -41,10 +42,13 @@ export class EnterpriseCommentsComponent implements OnInit {
         this.listSkiMaterialWithComments(this.userId);
         this.listCarRentalWithComments(this.userId);
 
+        if (this.comments.length == 0){
+          this.commentsChk = true;
+        }
+
       }
     );
   }
-
 
   listClassesWithComments(userId: number){
 

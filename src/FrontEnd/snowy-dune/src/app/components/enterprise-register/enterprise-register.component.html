@@ -1,4 +1,35 @@
-<div class="row">
+<ng-template #isEnterprise>
+
+  <div class="row align-items-center h-100 pt-5">
+    <!--<p class="marca-uno w-100 text-center pb-1"></p>-->
+  <div class="col-12 text-center">
+    <h3 class="h3 pb-4 text-center">EMPRESA REGISTRADA</h3>
+    <hr class="hr2" />
+    <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">Tu empresa se encuentra registrada en nuestro sistema de forma correcta, si quieres dar de baja la empresa pulsa en el siguiente botón:</h1>
+    <button class="btn mb-5 mt-3" (click)="deleteEnterprise()">Pasar a inactiva</button>
+  </div>
+  <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
+</div>
+
+</ng-template>
+
+<ng-template #isEnterpriseInactive >
+
+  <div class="row align-items-center h-100 pt-5" *ngIf="inactiveEnterprise; else isEnterprise">
+    <!--<p class="marca-uno w-100 text-center pb-1"></p>-->
+  <div class="col-12 text-center">
+    <h3 class="h3 pb-4 text-center">EMPRESA INACTIVA O PENDIENTE</h3>
+    <hr class="hr2" />
+    <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">Tu empresa se encuentra en estado inactivo o se encuentra pendiente de aceptación por parte de nuestro equipo, si quieres darla de alta pulsa aquí:</h1>
+    <button class="btn mb-5 mt-3" (click)="deleteEnterpriseFromSystem()">Dar de Baja</button>
+  </div>
+  <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
+</div>
+
+</ng-template>
+
+
+<div class="row" *ngIf="!isEnterpriseChk && !inactiveEnterprise; else isEnterpriseInactive">
     <div class="col-9">
       <h3 class="h3 pb-4 pt-4 pl-5">REGISTRA TU EMPRESA</h3>
     </div>

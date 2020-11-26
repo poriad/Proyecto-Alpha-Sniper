@@ -16,6 +16,8 @@ import { StationService } from 'src/app/service/station.service';
   styleUrls: ['./enterprise-services.component.css']
 })
 export class EnterpriseServicesComponent implements OnInit {
+
+  enterpriseChk = false;
   stations: Station[];
   typeServices: string[] = ["Material de Ski", "Hotel", "Alquiler de vehículos", "Clases de ski"];
   serviceForm: FormGroup;
@@ -36,6 +38,14 @@ export class EnterpriseServicesComponent implements OnInit {
   ngOnInit(): void {
 
     this.getStations();
+
+    this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
+      data => {
+        if (data.isEnterprise == 1){
+          this.enterpriseChk = true;
+        }
+      }
+    );
 
     this.serviceForm = this.formBuilder.group({
       price: ['', Validators.required],
