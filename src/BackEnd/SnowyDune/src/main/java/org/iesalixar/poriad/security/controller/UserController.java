@@ -122,11 +122,11 @@ public class UserController {
 			if (!roles.contains("enterprise")) {
 				roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 			}
-
-		} else if(status == 0){
-			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
-			userService.deleteUserIsEnterprise(id);
 		}
+//		} else if(status == 0){
+//			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
+//			userService.deleteUserIsEnterprise(id);
+//		}
 
 		userSnowy.setRoles(roles);
 
@@ -153,10 +153,10 @@ public class UserController {
 			if (!roles.contains("enterprise")) {
 				roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 			}
-
-		} else {
-			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 		}
+//		} else {
+//			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
+//		}
 
 		userSnowy.setRoles(roles);
 

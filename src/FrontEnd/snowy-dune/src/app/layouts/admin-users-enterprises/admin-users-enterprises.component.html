@@ -67,8 +67,8 @@
           <h5 class="text-center h5-submit">{{deleteMessage}}</h5>
         </div>
 
-        <div *ngIf="submitted && !isDeleteUserFail" class="col-12">
-          <h5 class=" text-center h5-error">Error: {{ deleteMessage }}</h5>
+        <div *ngIf="submitted && !isDeleteUserFail && isUpdateEnterpriseFail" class="col-12">
+          <h5 class=" text-center h5-error">{{ deleteMessage }}</h5>
         </div>
       </div>
 
@@ -127,7 +127,7 @@
             </div>
     
             <div *ngIf="submitted && !isUpdateEnterpriseFail" class="col-12">
-              <h5 class=" text-center h5-error">Error: {{ updateMessageEnterprise }}</h5>
+              <h5 class=" text-center h5-error">{{ updateMessageEnterprise }}</h5>
             </div>
 
         </div>

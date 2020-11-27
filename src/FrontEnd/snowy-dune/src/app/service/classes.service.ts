@@ -9,10 +9,10 @@ import { Classes } from '../models/classes';
 })
 export class ClassesService {
 
-  baseUrl = "http://localhost:8082/api/classes/";
-  baseUrlTwo = "http://localhost:8082/classes/"
-  //baseUrl = "http://192.168.1.134:8082/api/classes/";
-  //baseUrlTwo = "http://192.168.1.134:8082/classes/";
+  //baseUrl = "http://localhost:8082/api/classes/";
+  //baseUrlTwo = "http://localhost:8082/classes/"
+  baseUrl = "http://192.168.1.134:8082/api/classes/";
+  baseUrlTwo = "http://192.168.1.134:8082/classes/";
   
 
   constructor(private httpClient: HttpClient) { }

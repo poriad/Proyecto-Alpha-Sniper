@@ -9,10 +9,10 @@ import { Hotel } from '../models/hotel';
 })
 export class HotelService {
 
-  baseUrl = "http://localhost:8082/api/hotel/";
-  baseUrlTwo = "http://localhost:8082/hotel/";
-  //baseUrl = "http://192.168.1.134:8082/api/hotel/";
-  //baseUrlTwo = "http://192.168.1.134:8082/hotel/";
+  //baseUrl = "http://localhost:8082/api/hotel/";
+  //baseUrlTwo = "http://localhost:8082/hotel/";
+  baseUrl = "http://192.168.1.134:8082/api/hotel/";
+  baseUrlTwo = "http://192.168.1.134:8082/hotel/";
   
 
   constructor(private httpClient: HttpClient) { }

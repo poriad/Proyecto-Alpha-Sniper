@@ -9,10 +9,10 @@ import { SkiMaterial } from '../models/ski-material';
 })
 export class SkiMaterialService {
 
-  baseUrl = "http://localhost:8082/api/ski-material/";
-  baseUrlTwo = "http://localhost:8082/skiMaterial/";
-  //baseUrl = "http://192.168.1.134:8082/api/ski-material/";
-  //baseUrlTwo = "http://192.168.1.134:8082/skiMaterial/";
+  //baseUrl = "http://localhost:8082/api/ski-material/";
+  //baseUrlTwo = "http://localhost:8082/skiMaterial/";
+  baseUrl = "http://192.168.1.134:8082/api/ski-material/";
+  baseUrlTwo = "http://192.168.1.134:8082/skiMaterial/";
 
   constructor(private httpClient: HttpClient) { }
 

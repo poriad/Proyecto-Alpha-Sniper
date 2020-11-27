@@ -8,10 +8,10 @@ import { Comentario } from '../models/comment';
 })
 export class CommentService {
 
-  baseUrl = "http://localhost:8082/api/comment/";
-  baseUrlTwo = "http://localhost:8082/comment/";
-  //baseUrl = "http://192.168.1.134:8082/api/comment/";
-  //baseUrlTwo = "http://192.168.1.134:8082/comment/";
+  //baseUrl = "http://localhost:8082/api/comment/";
+  //baseUrlTwo = "http://localhost:8082/comment/";
+  baseUrl = "http://192.168.1.134:8082/api/comment/";
+  baseUrlTwo = "http://192.168.1.134:8082/comment/";
 
   constructor(private httpClient: HttpClient) { }
 

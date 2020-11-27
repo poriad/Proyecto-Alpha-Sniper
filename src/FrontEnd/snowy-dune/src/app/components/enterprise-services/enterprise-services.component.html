@@ -1,12 +1,12 @@
 <ng-template #dontHaveEnterprise>
   <div class="row align-items-center h-100">
-    <p class="marca-uno w-100 text-center pb-1"></p>
+   <!-- <p class="marca-uno w-100 text-center pb-1"></p> -->
   <div class="col-12">
     <h3 class="h3 pb-4 text-center">SERVICIOS</h3>
     <hr class="hr2" />
     <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">Para poder registrar los servicios, primero debes registrar tu empresa y posteriormente, ser aceptada por un usuario Adminsitrador</h1>
   </div>
-  <p class="marca-dos w-100 text-center pb-1"></p>
+  <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
 </div>
 </ng-template>
 
@@ -39,6 +39,16 @@
                 El nombre es Obligatorio
               </div>
             </div>
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.minlength">
+                El nombre debe tener más de 4 caracteres
+              </div>
+            </div>
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.maxlength">
+                El nombre debe tener menos de 50 caracteres
+              </div>
+            </div>
           </div>
   
           <div
@@ -46,7 +56,7 @@
           >
             <label class="">Localización</label>
 
-                <select formControlName="location" id="location" class="form-control"
+                <select formControlName="location" id="location" class="form-control mx-auto"
                 [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
                   <option *ngFor="let station of stations" [value]="station.id">
                     {{station.name}}
@@ -64,13 +74,12 @@
             class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
           >
             <label class="">País</label>
-            <input
-            type="text"
-              class="form-control mx-auto"
-              placeholder="Ej. Francia"
-              formControlName="country"
-              [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
-            />
+            <select formControlName="country" id="country" class="form-control mx-auto"
+            [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+              <option *ngFor="let country of countries" [value]="country">
+                {{country}}
+              </option>
+            </select>
   
             <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
               <div *ngIf="f.country.errors.required">El país es Obligatorio</div>
@@ -94,6 +103,14 @@
                 El teléfono es Obligatorio
               </div>
             </div>
+            <div
+                *ngIf="submitted && f.phone.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.phone.errors.pattern">
+                  El teléfono no es válido
+                </div>
+              </div>
           </div>
   
           <div
@@ -112,6 +129,12 @@
               <div *ngIf="f.email.errors.required">
                 El email es Obligatorio
               </div>
+            </div>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.email">
+                El email no es válido
+              </div>
+
             </div>
           </div>
 
@@ -164,7 +187,7 @@
         >
                 <label for="my-textarea">Tipo de servicio</label>
 
-                <select formControlName="typeService" id="typeServices" class="form-control"
+                <select formControlName="typeService" id="typeServices" class="form-control mx-auto"
                 [ngClass]="{ 'is-invalid': submitted && f.typeService.errors }">
                   <option *ngFor="let typeService of typeServices" [value]="typeService">
                     {{typeService}}
@@ -183,7 +206,7 @@
           class="col-12 col-sm-6 col-md-6 col-lg-12 pt-3 text-center form-group"
         >
                 <label for="my-textarea">Descripción</label>
-                <textarea id="my-textarea" class="form-control" name="" rows="3" 
+                <textarea id="my-textarea" class="form-control mx-auto" name="" rows="3" 
                 [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
                 formControlName="description"></textarea>
          
@@ -194,6 +217,16 @@
                     <div *ngIf="f.description.errors.minlength">
                         La descripción debe tener al menos 50 caracteres
                       </div>
+                  </div>
+                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.minlength">
+                      La descripción debe tener más de 30 caracteres
+                    </div>
+                  </div>
+                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.maxlength">
+                      La descripción debe tener menos de 500 caracteres
+                    </div>
                   </div>
         </div>
   

@@ -9,10 +9,10 @@ import { CarRental } from '../models/car-rental';
 })
 export class CarRentalService {
 
-  //baseUrl = "http://192.168.1.134:8082/api/car-rental/";
-  //baseUrlTwo = "http://192.168.1.134:8082/carRental/";
-  baseUrl = "http://localhost:8082/api/car-rental/";
-  baseUrlTwo = "http://localhost:8082/carRental/";
+  baseUrl = "http://192.168.1.134:8082/api/car-rental/";
+  baseUrlTwo = "http://192.168.1.134:8082/carRental/";
+  //baseUrl = "http://localhost:8082/api/car-rental/";
+  //baseUrlTwo = "http://localhost:8082/carRental/";
 
   constructor(private httpClient: HttpClient) { }
 

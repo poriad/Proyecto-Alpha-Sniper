@@ -86,6 +86,7 @@ button:hover {
   background-color: white;
 }
 
+
 /* Formulario */ 
 
 label {
@@ -109,15 +110,25 @@ input {
   border: 0;
   border-bottom: 1px solid rgba(27, 77, 176, 1);
   background-color: rgba(27, 77, 176, 0.1);
-  
 }
 
 input:focus,input:active {
   border-bottom: 2px solid rgba(27, 77, 176, 1);
   background-color: rgba(27, 77, 176, 0.1);
   box-shadow: none;
+  outline: 0;
 }
 
+select {
+  color: rgba(27, 77, 176, 1);
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(27, 77, 176, 1);
+  background-color: rgba(27, 77, 176, 0.1);
+}
 
 .invalid-feedback {
   display: block;

@@ -16,7 +16,8 @@ import { CommonModule } from "@angular/common";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 /**
  * Material Modules
@@ -55,6 +56,7 @@ import { EnterpriseRegisterComponent } from './components/enterprise-register/en
 import { EnterpriseCommentsComponent } from './components/enterprise-comments/enterprise-comments.component';
 import { EnterpriseServicesComponent } from './components/enterprise-services/enterprise-services.component';
 import { EnterpriseListServicesComponent } from './components/enterprise-list-services/enterprise-list-services.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -87,12 +89,14 @@ import { EnterpriseListServicesComponent } from './components/enterprise-list-se
     EnterpriseRegisterComponent,
     EnterpriseCommentsComponent,
     EnterpriseServicesComponent,
-    EnterpriseListServicesComponent
+    EnterpriseListServicesComponent,
+    ConfirmDialogComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
@@ -103,9 +107,14 @@ import { EnterpriseListServicesComponent } from './components/enterprise-list-se
     MatCheckboxModule,
     NgbModule,
     CommonModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    
+    MatButtonModule
   ],
   providers: [interceptorProvider],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ConfirmDialogComponent
+  ]
 })
 export class AppModule { }

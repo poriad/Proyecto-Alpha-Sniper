@@ -12,7 +12,7 @@
   </ng-template>
 
 
-<div class="row" *ngIf="hasServiceSkiMaterial || hasServiceHotel || hasServiceCarRental || hasServiceClasses; else dontHaveServices">
+<div class="row" *ngIf="(hasServiceSkiMaterial || hasServiceHotel || hasServiceCarRental || hasServiceClasses); else dontHaveServices">
     <p class="marca-uno w-100 text-center pb-1"></p>
     <div class="col-12">
       <h3 class="h3 pb-3 pt-4 text-center">LISTADO DE SERVICIOS ACTIVOS</h3>
@@ -127,7 +127,7 @@
     </div>
   
     <div *ngIf="submittedDeleteHotel && !isDeleteHotelFail" class="col-12">
-      <h5 class="text-center h5-error">Error: {{ deleteHotelMessage }}</h5>
+      <h5 class="text-center h5-error">{{ deleteHotelMessage }}</h5>
     </div>
 
     <div *ngIf="submittedDeleteClasses && isDeleteClassesFail" class="col-12">
@@ -135,7 +135,7 @@
     </div>
   
     <div *ngIf="submittedDeleteClasses && !isDeleteClassesFail" class="col-12">
-      <h5 class="text-center h5-error">Error: {{ deleteClassesMessage }}</h5>
+      <h5 class="text-center h5-error">{{ deleteClassesMessage }}</h5>
     </div>
 
     <div *ngIf="submittedDeleteCarRental && isDeleteCarRentalFail" class="col-12">
@@ -143,7 +143,7 @@
     </div>
   
     <div *ngIf="submittedDeleteCarRental && !isDeleteCarRentalFail" class="col-12">
-      <h5 class="text-center h5-error">Error: {{ deleteCarRentalMessage }}</h5>
+      <h5 class="text-center h5-error">{{ deleteCarRentalMessage }}</h5>
     </div>
 
   <div *ngIf="submittedDeleteSkiMaterial && isDeleteSkiMaterialFail" class="col-12">
@@ -151,7 +151,7 @@
   </div>
 
   <div *ngIf="submittedDeleteSkiMaterial && !isDeleteSkiMaterialFail" class="col-12">
-    <h5 class="text-center h5-error">Error: {{ deleteSkiMaterialMessage }}</h5>
+    <h5 class="text-center h5-error">{{ deleteSkiMaterialMessage }}</h5>
   </div>
 </div>
   

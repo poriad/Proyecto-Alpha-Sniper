@@ -9,10 +9,10 @@ import { NewUser } from '../models/new-user';
 })
 export class AdminService {
 
-  baseUrl = "http://localhost:8082/api/user/";
-  baseUrlUser = "http://localhost:8082/user/";
-  //baseUrl = "http://192.168.1.134:8082/api/user/";
-  //baseUrlUser = "http://192.168.1.134:8082/user/";
+  //baseUrl = "http://localhost:8082/api/user/";
+  //baseUrlUser = "http://localhost:8082/user/";
+  baseUrl = "http://192.168.1.134:8082/api/user/";
+  baseUrlUser = "http://192.168.1.134:8082/user/";
 
   
 
