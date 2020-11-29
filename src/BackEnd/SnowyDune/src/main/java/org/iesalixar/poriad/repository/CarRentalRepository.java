@@ -24,9 +24,14 @@ public interface CarRentalRepository extends JpaRepository<CarRental, Long>{
 	@Query("SELECT s FROM CarRental s WHERE s.activated = :status")
 	Page<CarRental> listCarRentalStatusPageable(Pageable pageable,@Param("status") Integer status);
 	
+	@Query(value="SELECT s FROM CarRental s WHERE s.activated = :status and s.location = :location")
+	Page<CarRental> listCarRentalByLocationStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location);
+	
+	@Query("SELECT s FROM CarRental s WHERE s.activated = :status and s.location = :location and(:minPrice is null or s.price >= :minPrice) and (:maxPrice is null or s.price <= :maxPrice)")
+	Page<CarRental> listCarRentalByLocationAndPriceStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location, @Param("minPrice") Double minPrice, @Param("maxPrice") Double maxPrice);
+	
 	@Query(value="Select s FROM CarRental s WHERE s.user.id = :id and s.activated = 1")
 	List<CarRental> getCarRentalFromUser(@Param("id") Long userId);
-
 	
 	// activated = 2 -> borrado
 	// = 1 activado

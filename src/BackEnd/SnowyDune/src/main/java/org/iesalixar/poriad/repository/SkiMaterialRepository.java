@@ -24,6 +24,12 @@ public interface SkiMaterialRepository extends JpaRepository<SkiMaterial, Long>{
 	@Query("SELECT s FROM SkiMaterial s WHERE s.activated = :status")
 	Page<SkiMaterial> listSkiMaterialStatusPageable(Pageable pageable,@Param("status") Integer status);
 	
+	@Query(value="SELECT s FROM SkiMaterial s WHERE s.activated = :status and s.location = :location")
+	Page<SkiMaterial> listSkiMaterialByLocationStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location);
+	
+	@Query("SELECT s FROM SkiMaterial s WHERE s.activated = :status and s.location = :location and(:minPrice is null or s.priceDay >= :minPrice) and (:maxPrice is null or s.priceDay <= :maxPrice)")
+	Page<SkiMaterial> listSkiMaterialByLocationAndPriceStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location, @Param("minPrice") Double minPrice, @Param("maxPrice") Double maxPrice);
+	
 	@Query(value="Select s FROM SkiMaterial s WHERE s.user.id = :id and s.activated = 1")
 	List<SkiMaterial> getSkiMaterialFromUser(@Param("id") Long userId);
 	

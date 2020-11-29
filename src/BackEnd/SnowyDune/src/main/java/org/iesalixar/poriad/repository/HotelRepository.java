@@ -23,6 +23,16 @@ public interface HotelRepository extends JpaRepository<Hotel, Long>{
 	@Query("SELECT s FROM Hotel s WHERE s.activated = :status")
 	Page<Hotel> listHotelStatusPageable(Pageable pageable,@Param("status") Integer status);
 	
+	@Query("SELECT s FROM Hotel s WHERE s.activated = :status and s.location = :location")
+	Page<Hotel> listHotelByLocationStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location);
+	
+	@Query("SELECT s FROM Hotel s WHERE s.activated = :status and s.location = :location and (:stars is null or s.stars = :stars) and(:minPrice is null or s.priceDay >= :minPrice) and (:maxPrice is null or s.priceDay <= :maxPrice)")
+	Page<Hotel> listHotelByLocationAndPriceStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location,@Param("stars") Integer stars, @Param("minPrice") Double minPrice, @Param("maxPrice") Double maxPrice);
+	
+	// SE PUEDE BORRAR, MIRAR ANTES DE NADA
+	@Query("SELECT s FROM Hotel s WHERE s.activated = :status and s.location = :location and s.stars = :stars")
+	Page<Hotel> listHotelByStarsStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location, @Param("stars") Integer stars);
+	
 	@Query(value="Select s FROM Hotel s WHERE s.user.id = :id and s.activated = 1")
 	List<Hotel> getHotelFromUser(@Param("id") Long userId);
 	

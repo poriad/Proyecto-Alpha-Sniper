@@ -3,6 +3,7 @@ package org.iesalixar.poriad.repository;
 import java.util.List;
 
 import org.iesalixar.poriad.entity.Classes;
+import org.iesalixar.poriad.entity.Hotel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +22,12 @@ public interface ClassesRepository extends JpaRepository<Classes, Long>{
 	
 	@Query("SELECT s FROM Classes s WHERE s.activated = :status")
 	Page<Classes> listClassesStatusPageable(Pageable pageable,@Param("status") Integer status);
+	
+	@Query(value="SELECT s FROM Classes s WHERE s.activated = :status and s.location = :location")
+	Page<Classes> listClassesByLocationStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location);
+	
+	@Query("SELECT s FROM Classes s WHERE s.activated = :status and s.location = :location and(:minPrice is null or s.priceHour >= :minPrice) and (:maxPrice is null or s.priceHour <= :maxPrice)")
+	Page<Classes> listClassesByLocationAndPriceStatusPageable(Pageable pageable,@Param("status") Integer status,@Param("location") String location, @Param("minPrice") Double minPrice, @Param("maxPrice") Double maxPrice);
 	
 	@Query(value="Select s FROM Classes s WHERE s.user.id = :id and s.activated = 1")
 	List<Classes> getClassesFromUser(@Param("id") Long userId);
