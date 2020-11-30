@@ -3,11 +3,24 @@ import { AuthService } from '../../service/auth.service';
 import { TokenService } from '../../service/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('fade', [      
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(1000, style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        animate(1000, style({opacity: 0}))
+      ])
+    ])
+
+]
 })
 export class LoginComponent implements OnInit {
 

@@ -1,0 +1,329 @@
+.img-color{
+    position: relative;
+    background-color: white;
+}
+
+.btn-station {
+    font-size: 0.8rem;
+    letter-spacing: 0.2rem;
+    color: white;
+    background-color: rgba(27, 77, 176, 1);
+    border-radius: 0;
+}
+
+.btn-station:hover, .btn-station:active {
+    border: 1px solid rgba(27, 77, 176, 1);
+    color:  rgba(27, 77, 176, 1);
+    background-color: white;
+}
+
+.card-title {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
+.card-text {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+}
+
+.hr2{
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:90%;
+}
+
+.h2 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color:rgba(27, 77, 176, 1);
+}
+
+
+/* MODAL */
+.modal-dialog{
+    max-width: 40%;
+}
+
+.modal-header {
+    padding: 0;
+    height: 250px;
+    border: 0
+}
+.close{
+    color:white;
+    text-shadow: 0 1px 0 rgba(27, 77, 176, 1);
+    opacity: 1;
+}
+
+.modal-content {
+    border-radius: 0;
+}
+
+.modal-body p {
+    color:rgba(27, 77, 176, 1);
+    font-size: 0.9rem;
+    letter-spacing: 0.15rem;
+    
+}
+
+.img-modal {
+    position: absolute !important;
+    
+}
+
+.persona {
+    color:rgba(27, 77, 176, 1);
+    font-size: 0.9rem;
+    letter-spacing: 0.15rem;
+}
+
+.comentarios p {
+ background-color: rgba(27, 77, 176, 1);
+ color: white;
+ font-size: 1rem;
+    letter-spacing: 0.15rem;
+    width: 85%;
+    border-radius: 10px;
+}
+
+
+.modal-body {
+    background-color: white;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 14px;
+}
+.modal-footer {
+    padding-top: 0;
+    border-top: 0px;
+    color:rgba(27, 77, 176, 1);
+    background-color: white;
+}
+
+.modal-title {
+    position: absolute;
+    color: white;
+    font-size: 2.5rem;
+    letter-spacing: 0.25rem;
+    top:15.5%;
+    left:50%;
+    transform: translate(-50%,-20%);
+    text-shadow: 2px 0 0 rgba(27, 77, 176, 1),
+    -2px 0 0 rgba(27, 77, 176, 1),
+    0 2px 0 rgba(27, 77, 176, 1), 
+    0 -2px 0 rgba(27, 77, 176, 1),
+    1px 1px rgba(27, 77, 176, 1),
+    -1px -1px 0 rgba(27, 77, 176, 1),
+    1px -1px 0 rgba(27, 77, 176, 1),
+    -1px 1px 0 rgba(27, 77, 176, 1);
+}
+
+.close{
+    position: absolute;
+    right: 3%;
+    top:3%;
+
+}
+
+.btn-primary {
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+    color: white !important;
+    background-color: rgba(27, 77, 176, 1);
+    border-radius: 0;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    color: rgba(27, 77, 176, 1) !important;
+    background-color: white;
+    border: 1px solid rgba(27, 77, 176, 1);
+}
+
+ngb-pagination ::ng-deep a {
+    color: rgba(27, 77, 176, 1);
+    font-size: 1.3rem;
+    font-weight: 550;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 1);
+    
+  }
+
+ngb-pagination ::ng-deep .pagination .page-item .page-link {
+    border-radius: 0 !important;
+}
+
+
+/* Station */
+.fondo{
+    /*height: 75.2vh;*/
+    height: auto;
+    background: linear-gradient(to right bottom,rgba(255,255,255, 0.6),rgba(255,255,255, 0.7) ),url('../../../assets/Fondos/skimaterial.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.h1{
+    font-size: 2.2rem;
+    letter-spacing: 0.4rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.h3 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color: #3C7DEC;
+}
+.h2 {
+  font-size: 1.9rem;
+  letter-spacing: 0.2rem;
+  color:rgba(27, 77, 176, 1);
+}
+
+.h4 {
+    font-size: 1.4rem;
+    letter-spacing: 0.2rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.hr {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:30%;
+}
+
+.hr2{
+  border-top: 1px solid rgba(27, 77, 176, 1);
+  width:90%;
+}
+
+input {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);
+}
+
+input:focus, input:active {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    border: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);
+    outline: 0;
+}
+
+input::placeholder {
+    color: rgba(27, 77, 176, 1);
+}
+select {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);;
+  }
+
+  select:focus, select:active {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    border: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);;
+    outline: 0;
+}
+
+/* CARD */
+.card-body {
+    margin:0px !important
+}
+
+.card-img-top:after {
+  color: #3C7DEC;
+}
+
+.card-title {
+  color: rgba(27, 77, 176, 1);
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+}
+
+.card-text {
+  color: rgba(27, 77, 176, 1);
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+}
+
+
+.text-center .button-filter {
+  position: absolute !important;
+  height: 10px;
+  top:25%;
+  right: 20%;
+  padding: 0
+}
+
+.text-center .button-filter-2 {
+    position: absolute !important;
+    height: 10px;
+    top:25%;
+    right:5%;
+    padding: 0;
+  }
+
+  .button-filter-3 {
+    position: absolute !important;
+    height: 10px;
+    top:-15%;
+    left:7%;
+    padding: 0;
+    width: 19%
+  }
+
+
+
+.btn-secondary{
+  font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+    color: rgba(27, 77, 176, 1);
+    background-color: white;
+    border-radius: 0;
+    border: 1px solid rgba(27, 77, 176, 1);
+}
+.parrafo {
+    font-size: 1.2rem;
+    color: #3C7DEC;
+}
+
+.col-6 .bordeUno{
+    background-color: #3C7DEC !important;
+    height: 38px;
+    margin-bottom: 0;
+}
+
+.button-filter-2 .form-control{
+    width: 60%;
+}
+

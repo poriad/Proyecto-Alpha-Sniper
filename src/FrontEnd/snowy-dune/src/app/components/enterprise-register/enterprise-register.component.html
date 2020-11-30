@@ -57,20 +57,20 @@
                 class="form-control mx-auto"
                 placeholder="Ej. Snowy SA"
                 formControlName="nomComercial"
-                [ngClass]="{ 'is-invalid': submitted && f.nomComercial.errors }"
+                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['nomComercial'].valid && enterpriseForm.controls['nomComercial'].touched }"
               />
     
-              <div *ngIf="submitted && f.nomComercial.errors" class="invalid-feedback">
+              <div *ngIf="f.nomComercial.errors && enterpriseForm.controls['nomComercial'].touched " class="invalid-feedback">
                 <div *ngIf="f.nomComercial.errors.required">
                   El nombre comercial es Obligatorio
                 </div>
               </div>
-              <div *ngIf="submitted && f.nomComercial.errors" class="invalid-feedback">
+              <div *ngIf="f.nomComercial.errors && enterpriseForm.controls['nomComercial'].touched " class="invalid-feedback">
                 <div *ngIf="f.nomComercial.errors.minlength">
                   El nombre comercial debe tener más de 4 caracteres
                 </div>
               </div>
-              <div *ngIf="submitted && f.nomComercial.errors" class="invalid-feedback">
+              <div *ngIf="f.nomComercial.errors && enterpriseForm.controls['nomComercial'].touched " class="invalid-feedback">
                 <div *ngIf="f.nomComercial.errors.maxlength">
                   El nombre comercial debe tener menos de 50 caracteres
                 </div>
@@ -85,16 +85,16 @@
                 class="form-control mx-auto"
                 placeholder="Ej. A08001851"
                 formControlName="nif"
-                [ngClass]="{ 'is-invalid': submitted && f.nif.errors }"
+                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['nif'].valid && enterpriseForm.controls['nif'].touched }"
               />
     
-              <div *ngIf="submitted && f.nif.errors" class="invalid-feedback">
+              <div *ngIf="f.nif.errors && enterpriseForm.controls['nif'].touched" class="invalid-feedback">
                 <div *ngIf="f.nif.errors.required">
                   El NIF es Obligatorio
                 </div>
               </div>
 
-              <div *ngIf="submitted && f.nif.errors" class="invalid-feedback">
+              <div *ngIf="f.nif.errors && enterpriseForm.controls['nif'].touched" class="invalid-feedback">
                 <div *ngIf="f.nif.errors.pattern">
                   El NIF no es válido
                 </div>
@@ -110,14 +110,14 @@
                 class="form-control mx-auto"
                 placeholder="Ej. C101011011"
                 formControlName="cnae"
-                [ngClass]="{ 'is-invalid': submitted && f.cnae.errors }"
+                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['cnae'].valid && enterpriseForm.controls['cnae'].touched }"
               />
     
-              <div *ngIf="submitted && f.cnae.errors" class="invalid-feedback">
+              <div *ngIf="f.cnae.errors && enterpriseForm.controls['cnae'].touched" class="invalid-feedback">
                 <div *ngIf="f.cnae.errors.required">El CNAE es Obligatorio</div>
               </div>
 
-              <div *ngIf="submitted && f.cnae.errors" class="invalid-feedback">
+              <div *ngIf="f.cnae.errors && enterpriseForm.controls['cnae'].touched" class="invalid-feedback">
                 <div *ngIf="f.cnae.errors.pattern">El CNAE no es válido</div>
               </div>
             </div>
@@ -131,20 +131,20 @@
                 class="form-control mx-auto"
                 placeholder="Ej. Cadena de hoteles"
                 formControlName="activity"
-                [ngClass]="{ 'is-invalid': submitted && f.activity.errors }"
+                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['activity'].valid && enterpriseForm.controls['activity'].touched }"
               />
     
-              <div *ngIf="submitted && f.activity.errors" class="invalid-feedback">
+              <div *ngIf="f.activity.errors && enterpriseForm.controls['activity'].touched" class="invalid-feedback">
                 <div *ngIf="f.activity.errors.required">
                   La actividad es Obligatoria
                 </div>
               </div>
-              <div *ngIf="submitted && f.nomComercial.errors" class="invalid-feedback">
+              <div *ngIf="f.activity.errors && enterpriseForm.controls['activity'].touched" class="invalid-feedback">
                 <div *ngIf="f.activity.errors.minlength">
                   La actividad debe tener más de 4 caracteres
                 </div>
               </div>
-              <div *ngIf="submitted && f.nomComercial.errors" class="invalid-feedback">
+              <div *ngIf="f.activity.errors && enterpriseForm.controls['activity'].touched" class="invalid-feedback">
                 <div *ngIf="f.activity.errors.maxlength">
                   La actividad debe tener menos de 50 caracteres
                 </div>
@@ -157,38 +157,19 @@
             <label class="">Localización</label>
 
                 <select formControlName="location" id="location" class="form-control mx-auto"
-                [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
+                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['location'].valid && enterpriseForm.controls['location'].touched }">
                   <option *ngFor="let country of countries" [value]="country">
                     {{country}}
                   </option>
                 </select>
   
-            <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+            <div *ngIf="f.location.errors && enterpriseForm.controls['location'].touched" class="invalid-feedback">
               <div *ngIf="f.location.errors.required">
                 La localización es Obligatoria
               </div>
             </div>
           </div>
-    <!--
-            <div
-              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-            >
-              <label class="">Localización</label>
-              <input
-                type="text"
-                class="form-control mx-auto"
-                placeholder="Ej. Andorra"
-                formControlName="location"
-                [ngClass]="{ 'is-invalid': submitted && f.location.errors }"
-              />
-    
-              <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-                <div *ngIf="f.location.errors.required">
-                  La localización es Obligatoria
-                </div>
-              </div>
-            </div>
-          -->
+
             <div
               class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
             >
@@ -198,11 +179,11 @@
                 class="form-control mx-auto"
                 placeholder="Ej. 659009071"
                 formControlName="enterprisePhone"
-                [ngClass]="{ 'is-invalid': submitted && f.enterprisePhone.errors }"
+                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['enterprisePhone'].valid && enterpriseForm.controls['enterprisePhone'].touched}"
               />
     
               <div
-                *ngIf="submitted && f.enterprisePhone.errors"
+                *ngIf="f.enterprisePhone.errors && enterpriseForm.controls['enterprisePhone'].touched"
                 class="invalid-feedback"
               >
                 <div *ngIf="f.enterprisePhone.errors.required">
@@ -211,7 +192,7 @@
               </div>
 
               <div
-                *ngIf="submitted && f.enterprisePhone.errors"
+                *ngIf="f.enterprisePhone.errors && enterpriseForm.controls['enterprisePhone'].touched "
                 class="invalid-feedback"
               >
                 <div *ngIf="f.enterprisePhone.errors.pattern">
@@ -229,11 +210,11 @@
                 class="form-control mx-auto"
                 placeholder="Ej. hotel@gmail.com"
                 formControlName="enterpriseEmail"
-                [ngClass]="{ 'is-invalid': submitted && f.enterpriseEmail.errors }"
+                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['enterpriseEmail'].valid && enterpriseForm.controls['enterpriseEmail'].touched }"
               />
     
               <div
-                *ngIf="submitted && f.enterpriseEmail.errors"
+                *ngIf="f.enterpriseEmail.errors && enterpriseForm.controls['enterpriseEmail'].touched"
                 class="invalid-feedback"
               >
                 <div *ngIf="f.enterpriseEmail.errors.required">
@@ -241,7 +222,7 @@
                 </div>
               </div>
               <div
-                *ngIf="submitted && f.enterpriseEmail.errors"
+                *ngIf="f.enterpriseEmail.errors && enterpriseForm.controls['enterpriseEmail'].touched"
                 class="invalid-feedback"
               >
                 <div *ngIf="f.enterpriseEmail.errors.email">
@@ -255,6 +236,7 @@
                 type="submit"
                 value="Registrar"
                 class="submit"
+                [disabled] = "enterpriseForm.invalid"
               />
             </div>
           </div>

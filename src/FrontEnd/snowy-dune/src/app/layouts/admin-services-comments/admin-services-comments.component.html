@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 
-<div class="container-fluid fondo">
+<div @fade class="container-fluid fondo">
   <div class="row">
     <div class="col-12 pt-5 text-center">
       <h1 class="h1 pb-4 pb-sm-4">ADMINISTRACIÓN DE COMENTARIOS Y SERVICIOS</h1>
@@ -66,7 +66,7 @@
         </div>
 
         <div *ngIf="submitted && !isUpdateFail" class="col-12">
-          <h5 class="h5-error text-center">Error: {{ updateMessage }}</h5>
+          <h5 class="h5-error text-center">{{ updateMessage }}</h5>
         </div>
 
         <div *ngIf="submittedDelete && isDeleteFail" class="col-12">
@@ -74,7 +74,7 @@
         </div>
 
         <div *ngIf="submittedDelete && !isDeleteFail" class="col-12">
-          <h5 class="h5-error text-center">Error: {{ deleteMessage }}</h5>
+          <h5 class="h5-error text-center">{{ deleteMessage }}</h5>
         </div>
       </div>
       <!-- 
@@ -170,7 +170,7 @@ class="modal fade"
           </div>
           
           <div class="col-6 text-center pt-3 pb-3">
-            <input value="Modificar" (click)="onSubmit(comentario.value, id.value)" class="btn btn-admin-user pl-3 pr-3">
+            <input value="Modificar" (click)="onSubmit(comentario.value, id.value, comment.date)" class="btn btn-admin-user pl-3 pr-3">
           </div>
           <div class="col-6 text-center pt-3 pb-3">
             <input value="Borrar"  (click)="deleteComment(id.value)" class="btn btn-admin-user pl-3 pr-3" type="submit">

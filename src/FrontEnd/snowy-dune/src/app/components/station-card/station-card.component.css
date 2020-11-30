@@ -191,10 +191,53 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
   width:90%;
 }
 
-#pais{
-    color:rgba(27, 77, 176, 1);
+input {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
     border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);
+}
+
+input:focus, input:active {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
     border: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);
+    outline: 0;
+}
+
+input::placeholder {
+    color: rgba(27, 77, 176, 1);
+}
+select {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);;
+  }
+
+  select:focus, select:active {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    border: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);;
+    outline: 0;
 }
 
 /* CARD */
@@ -224,18 +267,29 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
 .text-center .button-filter {
   position: absolute !important;
   height: 10px;
-  top:10%;
-  left:10%;
+  top:25%;
+  right: 20%;
   padding: 0
 }
 
 .text-center .button-filter-2 {
     position: absolute !important;
     height: 10px;
-    top:10%;
-    right:10%;
-    padding: 0
+    top:25%;
+    right:5%;
+    padding: 0;
   }
+
+  .button-filter-3 {
+    position: absolute !important;
+    height: 10px;
+    top:-15%;
+    left:7%;
+    padding: 0;
+    width: 19%
+  }
+
+
 
 .btn-secondary{
   font-size: 1.5rem;

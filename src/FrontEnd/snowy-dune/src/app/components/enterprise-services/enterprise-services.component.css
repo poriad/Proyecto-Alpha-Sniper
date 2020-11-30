@@ -99,11 +99,28 @@ input {
   
 }
 
+
 input:focus,input:active {
   border-bottom: 2px solid rgba(27, 77, 176, 1);
   background-color: rgba(27, 77, 176, 0.1);
   box-shadow: none;
   outline: 0;
+}
+
+input #file-upload-button {
+  background: #3C7DEC !important;
+  
+}
+
+input[type="file"] {
+  display: none;
+ 
+}
+.custom-file-upload {
+  border: 1px solid  rgba(27, 77, 176, 1);
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }
 
 select {
@@ -127,6 +144,7 @@ textarea {
   border-bottom: 1px solid rgba(27, 77, 176, 1);
   background-color: rgba(27, 77, 176, 0.1);
 }
+
 
 
 .invalid-feedback {
@@ -153,6 +171,18 @@ textarea {
   background-color: white;
   border: 1px solid rgba(27, 77, 176, 1);
 }
+
+input[disabled] {
+  background-color:  rgba(27, 77, 176, 0.5);
+  border: 0;
+}
+
+input[disabled]:hover {
+  background-color:  rgba(27, 77, 176, 0.5);
+  border: 0;
+  color: white;
+}
+
 
 @media screen and (min-width: 1198px) {
   .submit{

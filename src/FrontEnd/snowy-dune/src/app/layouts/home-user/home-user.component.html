@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 
-<ng-template #loggedOut>
+<ng-template @fade #loggedOut>
 <div class="container-fluid fondo">
     <div class="row ">
         <div class="col-12 pt-5 text-center">
@@ -11,14 +11,14 @@
 </div>
 </ng-template>
 
-<div class="container-fluid fondo">
+<div @fade class="container-fluid fondo">
     <div class="row  pb-5" *ngIf="isLogged; else loggedOut">
             <div class="col-12 pt-5 text-center">
                 <h1 class="h1 pb-4 pb-sm-4">BIENVENIDO/A, {{username}}</h1>
                 <hr class="hr">
             </div>
-
-            <div class="col-12 col-sm mt-4 mt-sm-5 ml-sm-3 mr-sm-3 mb-5 fondo-blanco">
+            
+            <div class="col-12 col-sm mt-4 mt-sm-5 ml-sm-3 mr-sm-3 mb-5 mb-md-0 fondo-blanco">
                 
                 <div class="row">
                     <p class="marca-dos w-100 text-center pb-1"></p>
@@ -55,6 +55,7 @@
                 </div>
           
             </div>
+        </div>
         
-    </div>
+   
 </div>

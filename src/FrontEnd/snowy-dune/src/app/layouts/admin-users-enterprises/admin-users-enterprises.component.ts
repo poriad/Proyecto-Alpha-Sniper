@@ -7,11 +7,25 @@ import { NewUser } from 'src/app/models/new-user';
 import { AdminService } from 'src/app/service/admin.service';
 import { stringify } from 'querystring';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-admin-users-enterprises',
   templateUrl: './admin-users-enterprises.component.html',
-  styleUrls: ['./admin-users-enterprises.component.css']
+  styleUrls: ['./admin-users-enterprises.component.css'],
+  animations: [
+    trigger('fade', [      
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(1000, style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        animate(1000, style({opacity: 0}))
+      ])
+    ])
+]
 })
 export class AdminUsersEnterprisesComponent implements OnInit {
   @ViewChildren('closebutton') closebutton;
@@ -55,7 +69,7 @@ export class AdminUsersEnterprisesComponent implements OnInit {
   newsletter:number;
   phone:string;
 
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(private adminService: AdminService, private router: Router,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -67,31 +81,44 @@ export class AdminUsersEnterprisesComponent implements OnInit {
 
   onSubmit(id,firstName, lastName,email,address,username,password,phone,newsletter,enterprise): void{
 
-    if (newsletter == "Si"){
-      newsletter = 1;
-    } else {
-      newsletter = 0
-    }
     this.submitted = true;
 
-    this.newUser = new NewUser(firstName,lastName,username,email,password,address,newsletter,enterprise,phone);
+    this.iterateChildrenButton();
 
-    this.adminService.putUserDetails(this.newUser, id).subscribe(
-      data => {
-        this.isUpdateFail = true;
-        this.newUser = data;
-        this.closebutton.nativeElement.click();
-        this.updateMessage = "Registro actualizado";
-      }, err => {
-        this.closebutton.nativeElement.click();
-        this.isUpdateFail = false;
-        this.updateMessage = err.error.mensaje;
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessage = "";
-       },2000);
+        if (newsletter == "Si"){
+          newsletter = 1;
+        } else {
+          newsletter = 0
+        }
+        
+    
+        this.newUser = new NewUser(firstName,lastName,username,email,password,address,newsletter,enterprise,phone);
+    
+        this.adminService.putUserDetails(this.newUser, id).subscribe(
+          data => {
+            this.isUpdateFail = true;
+            this.newUser = data;
+            this.updateMessage = "Registro actualizado";
+            console.log(this.updateMessage);
+          }, err => {
+            this.isUpdateFail = false;
+            this.updateMessage = "No se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessage = "";
+           },2000);
+
+      }
+    })
   }
 
   orderList():void{
@@ -105,67 +132,102 @@ export class AdminUsersEnterprisesComponent implements OnInit {
   }
 
   updateEnterpriseStatus(id: number){
-    this.adminService.putEnterpriseStatus(id,1).subscribe(
-      data => {
-        this.submitted = true;
-        this.isUpdateEnterpriseFail = true;
-        this.updateMessageEnterprise = "Empresa activada";
-        this.iterateChildrenButton();
-        this.orderListEnterprise();
-        
-      }, err => {
-        this.iterateChildrenButton();
-        this.isUpdateEnterpriseFail = false;
-        this.updateMessageEnterprise = "No se ha podido activar";
-      });
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessageEnterprise = "";
-       },3000);
+    this.submitted = true;
+    this.iterateChildrenButton();
+
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+        this.adminService.putEnterpriseStatus(id,1).subscribe(
+        data => {
+            this.isUpdateEnterpriseFail = true;
+            this.updateMessageEnterprise = "Empresa activada";
+            this.orderListEnterprise();
+          }, err => {
+            this.iterateChildrenButton();
+            this.isUpdateEnterpriseFail = false;
+            this.updateMessageEnterprise = "No se ha podido activar";
+          });
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessageEnterprise = "";
+           },3000);
+      }
+    })
+
+    
   }
 
   deleteEnterpriseStatus(id: number){
-    this.adminService.putEnterpriseStatus(id,0).subscribe(
-      data => {
-        this.submitted = true;
-        this.isUpdateEnterpriseFail = true;
-        this.updateMessageEnterprise = "Empresa borrada";
-        this.iterateChildrenButton();
-        this.orderListEnterprise();
-        
-      }, err => {
-        this.iterateChildrenButton();
-        this.isUpdateEnterpriseFail = false;
-        this.updateMessageEnterprise = "No se ha podido borrada";
-      });
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessageEnterprise = "";
-       },3000);
+    this.submitted = true;
+    this.iterateChildrenButton();
+
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+
+        this.adminService.putEnterpriseStatus(id,0).subscribe(
+          data => {
+            this.isUpdateEnterpriseFail = true;
+            this.updateMessageEnterprise = "Empresa borrada";
+            this.orderListEnterprise();
+          }, err => {
+            this.iterateChildrenButton();
+            this.isUpdateEnterpriseFail = false;
+            this.updateMessageEnterprise = "No se ha podido borrada";
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessageEnterprise = "";
+           },3000);
+
+      }
+    })
+    
   }
   
   deleteUser(id:number): void{
-    this.adminService.deleteUser(id,2).subscribe(
-      data => {
-        this.submitted = true;
-        this.isDeleteUserFail = true;
-        this.deleteMessage = "Usuario borrado";
+
+    this.submitted = true;
+
+    this.iterateChildrenButton();
+
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+
+        this.adminService.deleteUser(id,2).subscribe(
+          data => {
+            this.isDeleteUserFail = true;
+            this.deleteMessage = "Usuario borrado";
+            this.orderList();
+          }, err => {
+            this.isDeleteUserFail = false;
+            this.deleteMessage = "No se ha podido borrar";
+          });
         
-        this.iterateChildrenButton();
-        this.orderList();
-      }, err => {
-        this.isDeleteUserFail = false;
-        this.iterateChildrenButton();
-        this.deleteMessage = "No se ha podido borrar";
-      });
+        setTimeout( () => { 
+          this.submitted = false;
+          this.deleteMessage = "";
+         },3000);
+
+
+      }
+    })
+
     
-     
-    setTimeout( () => { 
-      this.submitted = false;
-      this.deleteMessage = "";
-     },3000);
     
   }
 

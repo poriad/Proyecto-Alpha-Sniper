@@ -58,7 +58,7 @@ export class EnterpriseCommentsComponent implements OnInit {
 
         this.classes.forEach(element => {
           
-          this.commentService.getCommentByClasssId(element.id).subscribe(
+          this.commentService.getCommentByClassId(element.id).subscribe(
             dataDos => {
               this.commentsAux = dataDos._embedded.comment;
               this.commentsAux.forEach(element => {

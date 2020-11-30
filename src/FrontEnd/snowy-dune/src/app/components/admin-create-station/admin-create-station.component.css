@@ -78,59 +78,50 @@ label {
     color: rgba(27, 77, 176, 1)
 }
 
-.input {
+input {
+    color: rgba(27, 77, 176, 1);
+    text-align: center;
+    padding: 10px;
+    width: 80%;
+    border-radius: 0;
     border: 0;
     border-bottom: 1px solid rgba(27, 77, 176, 1);
     background-color: rgba(27, 77, 176, 0.1);
-}
-
-.input::placeholder{
-    color: #3C7DEC;
-    opacity: 0.5;
-}
-
-
-.input:focus {
-    outline: none !important;
-    border: 0;
+    
+  }
+  
+  input:focus,input:active {
     border-bottom: 2px solid rgba(27, 77, 176, 1);
-}
+    background-color: rgba(27, 77, 176, 0.1);
+    box-shadow: none;
+    outline: 0;
+  }
 
-.input-comment {
-    border: 0;
-    border-bottom: 1px solid rgba(27, 77, 176, 1);
-    width: 75%;
-}
-
-.input-comment::placeholder {
-    color: #3C7DEC;
-    opacity: 0.5;
-}
-
-.input-comment:focus {
-    outline: none !important;
-    border: 0;
-    border-bottom: 2px solid rgba(27, 77, 176, 1);
-}
-
-select {
+  select {
     color: rgba(27, 77, 176, 1);
-    border: 0;
-    border-bottom: 1px solid rgba(27, 77, 176, 1);
-}
-
-.btn-admin-user {
-    color: white;
-    background-color:  rgba(27, 77, 176, 1);
-    font-size: 1.1rem;
-    letter-spacing: 0.20rem;
+    text-align: center;
+    padding: 10px;
+    width: 80%;
     border-radius: 0;
-}
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+  }
 
-.btn-admin-user:hover {
+  textarea {
     color: rgba(27, 77, 176, 1);
-    background-color:  white;
-    border: 1px solid rgba(27, 77, 176, 1);
+    text-align: center;
+    padding: 10px;
+    width: 80%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+  }
+  
+.submit {
+    width: 30%;
+    transition: 0.3s;
 }
 
 .marca-uno {

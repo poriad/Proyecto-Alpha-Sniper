@@ -1,9 +1,9 @@
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-        <img src="../../../assets/Navbar/snowyDune2.png" alt="" class="img-snowy">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom" appStickyHeader>
+        <img src="../../../assets/Navbar/snowyDune2.png" alt="" class="img-snowy" id="id">
         <div class="col-3 col-md">
         
-            <a class="navbar-brand title" href="#" >SnowyDune</a>
+            <a class="navbar-brand title" routerLink="/HomeUser" >SnowyDune</a>
         </div>
        
         <div class="col-9 col-md text-right my-auto">
@@ -20,6 +20,7 @@
                 <a class="" routerLink="/HomeUser"><img class="img-fluid img-cart" src="../../../assets/Navbar/home.png" alt=""></a>
             </div>
             <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">
+                <div class="circulo"><span>0</span></div>
             <a class="" routerLink="/ManagementUser"><img class="img-fluid img-user" src="../../../assets/Navbar/user.png" alt=""></a>
             </div>
             <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">

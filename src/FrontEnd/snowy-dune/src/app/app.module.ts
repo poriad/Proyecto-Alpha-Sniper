@@ -44,7 +44,6 @@ import { AdminUsersEnterprisesComponent } from './layouts/admin-users-enterprise
 import { AdminServicesCommentsComponent } from './layouts/admin-services-comments/admin-services-comments.component';
 import { StationCardComponent } from './components/station-card/station-card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SearchComponent } from './components/search/search.component';
 import { HotelComponent } from './layouts/hotel/hotel.component';
 import { AdminClassesComponent } from './components/admin-classes/admin-classes.component';
 import { AdminCarRentalComponent } from './components/admin-car-rental/admin-car-rental.component';
@@ -57,6 +56,12 @@ import { EnterpriseCommentsComponent } from './components/enterprise-comments/en
 import { EnterpriseServicesComponent } from './components/enterprise-services/enterprise-services.component';
 import { EnterpriseListServicesComponent } from './components/enterprise-list-services/enterprise-list-services.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { StickyHeaderDirective } from './directives/sticky-header.directive';
+import { ConfirmDialogStationComponent } from './components/confirm-dialog-station/confirm-dialog-station.component';
+import { ClassesComponent } from './layouts/classes/classes.component';
+import { SkiMaterialComponent } from './layouts/ski-material/ski-material.component';
+import { CarRentalComponent } from './layouts/car-rental/car-rental.component';
+import { ImgurApiService } from './service/imgur-api.service';
 
 
 @NgModule({
@@ -78,7 +83,6 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     AdminUsersEnterprisesComponent,
     AdminServicesCommentsComponent,
     StationCardComponent,
-    SearchComponent,
     HotelComponent,
     AdminClassesComponent,
     AdminCarRentalComponent,
@@ -90,7 +94,12 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     EnterpriseCommentsComponent,
     EnterpriseServicesComponent,
     EnterpriseListServicesComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    StickyHeaderDirective,
+    ConfirmDialogStationComponent,
+    ClassesComponent,
+    SkiMaterialComponent,
+    CarRentalComponent
     
   ],
   imports: [
@@ -111,7 +120,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     
     MatButtonModule
   ],
-  providers: [interceptorProvider],
+  providers: [interceptorProvider,ImgurApiService],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmDialogComponent

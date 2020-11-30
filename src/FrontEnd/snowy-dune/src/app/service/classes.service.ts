@@ -25,6 +25,22 @@ export class ClassesService {
     return this.httpClient.get<GetResponseClasses>(searchUrl);
   }
 
+  public getClassesByCountryListPaginate(thePage: number, thePageSize: number, theClassesCountry:string): Observable<GetResponseClasses> {
+
+    const searchUrl = `${this.baseUrl}search/listClassesByLocationStatusPageable?status=1&location=${theClassesCountry}`
+                      + `&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseClasses>(searchUrl);
+  }
+
+  public getClassesByLocationPriceListPaginate(thePage: number, thePageSize: number, theClassesCountry:string, minPrice: number, maxPrice: number): Observable<GetResponseClasses> {
+
+    const searchUrl = `${this.baseUrl}search/listClassesByLocationAndPriceStatusPageable?status=1&location=${theClassesCountry}`
+                      + `&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseClasses>(searchUrl);
+  }
+
   public getClassesListByUser(userId:number){
     return this.httpClient.get<GetResponseClasses>(this.baseUrl + 'search/getClassesFromUser?id=' + userId);
   }

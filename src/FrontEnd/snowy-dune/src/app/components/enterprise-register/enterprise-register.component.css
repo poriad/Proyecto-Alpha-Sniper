@@ -134,6 +134,17 @@ select {
   display: block;
 }
 
+input.submit[disabled] {
+  background-color:  rgba(27, 77, 176, 0.5);
+  border: 0;
+}
+
+input.submit[disabled]:hover {
+  background-color:  rgba(27, 77, 176, 0.5);
+  border: 0;
+  color: white;
+}
+
 .submit{
   color: white;
   background-color: rgba(27, 77, 176, 1);
@@ -254,11 +265,11 @@ select {
     }
 
     .submit{
-
       font-size: 1.1rem;
-
       width: 50%;
     }
+
+   
 
     .enterprise-status {
       font-size: 0.6rem;

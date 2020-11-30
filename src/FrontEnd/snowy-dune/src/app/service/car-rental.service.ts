@@ -23,6 +23,22 @@ export class CarRentalService {
 
     return this.httpClient.get<GetResponseCarRental>(searchUrl);
   }
+  
+  public getCarRentalByCountryListPaginate(thePage: number, thePageSize: number, theCarRentalCountry:string): Observable<GetResponseCarRental> {
+
+    const searchUrl = `${this.baseUrl}search/listCarRentalByLocationStatusPageable?status=1&location=${theCarRentalCountry}`
+                      + `&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseCarRental>(searchUrl);
+  }
+
+  public getCarRentalByLocationPriceListPaginate(thePage: number, thePageSize: number, theCarRentalCountry:string, minPrice: number, maxPrice: number): Observable<GetResponseCarRental> {
+
+    const searchUrl = `${this.baseUrl}search/listCarRentalByLocationAndPriceStatusPageable?status=1&location=${theCarRentalCountry}`
+                      + `&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseCarRental>(searchUrl);
+  }
 
   public getCarRentalListByUser(userId:number){
     return this.httpClient.get<GetResponseCarRental>(this.baseUrl + 'search/getCarRentalFromUser?id=' + userId);

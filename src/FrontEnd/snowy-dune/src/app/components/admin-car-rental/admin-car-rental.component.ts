@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CarRental } from 'src/app/models/car-rental';
 import { CarRentalService } from 'src/app/service/car-rental.service';
 import { Header } from 'src/app/utils/header';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-car-rental',
@@ -30,7 +32,7 @@ export class AdminCarRentalComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
   
-  constructor(private carRentalService: CarRentalService) { }
+  constructor(private carRentalService: CarRentalService, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -41,48 +43,70 @@ export class AdminCarRentalComponent implements OnInit {
   updateStatusCarRental(id): void{
 
     this.submitted = true;
+    this.iterateChildrenButton();
 
-    this.carRentalService.putCarRentalToActive(id).subscribe(
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+
+        this.carRentalService.putCarRentalToActive(id).subscribe(
      
-      data => {
-        this.isUpdateFail = true;
-        this.updateMessage = "Servicio activado";
-        this.iterateChildrenButton()
-        this.orderCarRentalList();
-      }, err => {
-        this.iterateChildrenButton()
-        this.isUpdateFail = false;
-        this.updateMessage = "El servicio de vehículo no se ha podido actualizar";
-        this.orderCarRentalList();
-      });
+          data => {
+            this.isUpdateFail = true;
+            this.updateMessage = "Servicio activado";
+            this.orderCarRentalList();
+          }, err => {
+            this.isUpdateFail = false;
+            this.updateMessage = "El servicio de vehículo no se ha podido actualizar";
+            this.orderCarRentalList();
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessage = "";
+           },3000);
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessage = "";
-       },3000);
+      }
+    })
+
+    
   }
 
   deleteCarRental(id): void {
 
     this.submittedDelete = true;
-    console.log(id)
-    this.carRentalService.deleteCarRental(id).subscribe(
-      data => {
-        this.isDeleteFail = true;
-        this.deleteMessage = "Servicio pasado a Inactivo";
-        this.iterateChildrenButton()
-        this.orderCarRentalList();
-      }, err => {
-        this.iterateChildrenButton()
-        this.isDeleteFail = false;
-        this.deleteMessage = "El servicio de vehñiculo no se ha podido borrar";
-        this.orderCarRentalList();
-      });
+    this.iterateChildrenButton();
 
-      setTimeout( () => { 
-        this.submittedDelete = false;
-        this.deleteMessage = "";
-       },3000);
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+
+        this.carRentalService.deleteCarRental(id).subscribe(
+          data => {
+            this.isDeleteFail = true;
+            this.deleteMessage = "Servicio pasado a Inactivo";
+            this.orderCarRentalList();
+          }, err => {
+            this.isDeleteFail = false;
+            this.deleteMessage = "El servicio de vehñiculo no se ha podido borrar";
+            this.orderCarRentalList();
+          });
+    
+          setTimeout( () => { 
+            this.submittedDelete = false;
+            this.deleteMessage = "";
+           },3000);
+
+      }
+    })
+
+    
   }
 
   updateOrderListCarRental(columnName:string){

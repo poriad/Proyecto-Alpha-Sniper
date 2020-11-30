@@ -29,39 +29,41 @@
           </div>
         </div>
 
-        <div
-          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-        >
-          <label class="">Localización</label>
-          <input
-            class="form-control mx-auto"
-            placeholder="Ej. Granada"
-            formControlName="location"
-            [ngClass]="{ 'is-invalid': submitted && f.location.errors }"
-          />
 
-          <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-            <div *ngIf="f.location.errors.required">
-              La localización es Obligatoria
+        <div
+            class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+          >
+            <label class="">País</label>
+            <select formControlName="country" id="country" class="form-control mx-auto"
+            [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+              <option *ngFor="let country of countries" [value]="country">
+                {{country}}
+              </option>
+            </select>
+  
+            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+              <div *ngIf="f.country.errors.required">El país es Obligatorio</div>
             </div>
           </div>
-        </div>
 
-        <div
-          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-        >
-          <label class="">País</label>
-          <input
-            class="form-control mx-auto"
-            placeholder="Ej. España"
-            formControlName="country"
-            [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
-          />
+          <div
+            class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+          >
+            <label class="">Localización</label>
 
-          <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-            <div *ngIf="f.country.errors.required">El país es Obligatorio</div>
+                <select formControlName="location" id="location" class="form-control mx-auto"
+                [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
+                  <option *ngFor="let station of stations" [value]="station.id">
+                    {{station.name}}
+                  </option>
+                </select>
+  
+            <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+              <div *ngIf="f.location.errors.required">
+                La localización es Obligatoria
+              </div>
+            </div>
           </div>
-        </div>
 
         <div
           class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
@@ -127,7 +129,7 @@
           class="col-12 col-sm-6 col-md-12 col-lg-12 pt-3 text-center form-group"
         >
                 <label for="my-textarea">Descripción</label>
-                <textarea id="my-textarea" class="form-control" name="" rows="3" 
+                <textarea id="my-textarea" class="form-control mx-auto" name="" rows="3" 
                 [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
                 formControlName="description"></textarea>
          

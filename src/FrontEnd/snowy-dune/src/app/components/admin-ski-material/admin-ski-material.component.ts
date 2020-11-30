@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SkiMaterial } from 'src/app/models/ski-material';
 import { SkiMaterialService } from 'src/app/service/ski-material.service';
 import { Header } from 'src/app/utils/header';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-ski-material',
@@ -30,7 +32,7 @@ export class AdminSkiMaterialComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
 
-  constructor(private skiMaterialService:SkiMaterialService) { }
+  constructor(private skiMaterialService:SkiMaterialService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.orderSkiMaterialList();
@@ -40,45 +42,65 @@ export class AdminSkiMaterialComponent implements OnInit {
   updateStatusSkiMaterial(id): void{
 
     this.submitted = true;
+    this.iterateChildrenButton();
 
-    this.skiMaterialService.putSkiMaterialToActive(id).subscribe(
-      data => {
-        this.isUpdateFail = true;
-        this.updateMessage = "Servicio activado";
-        this.iterateChildrenButton();
-        this.orderSkiMaterialList();
-      }, err => {
-        this.isUpdateFail = false;
-        this.iterateChildrenButton();
-        this.updateMessage = "El servicio no se ha podido actualizar";
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+        this.skiMaterialService.putSkiMaterialToActive(id).subscribe(
+          data => {
+            this.isUpdateFail = true;
+            this.updateMessage = "Servicio activado";
+            this.orderSkiMaterialList();
+          }, err => {
+            this.isUpdateFail = false;
+            this.updateMessage = "El servicio no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessage = "";
+           },3000);
+      }
+    })
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessage = "";
-       },3000);
+    
   }
 
   deleteSkiMaterial(id): void {
 
     this.submittedDelete = true;
+    this.iterateChildrenButton();
 
-    this.skiMaterialService.deleteSkiMaterial(id).subscribe(
-      data => {
-        this.isDeleteFail = true;
-        this.deleteMessage = "Servicio pasado a Inactivo";
-        this.iterateChildrenButton();
-        this.orderSkiMaterialList();
-      }, err => {
-        this.isDeleteFail = false;
-        this.iterateChildrenButton();
-        this.deleteMessage = "El servicio no se ha podido actualizar";
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
 
-      setTimeout( () => { 
-        this.submittedDelete = false;
-        this.deleteMessage = "";
-       },3000);
+        this.skiMaterialService.deleteSkiMaterial(id).subscribe(
+          data => {
+            this.isDeleteFail = true;
+            this.deleteMessage = "Servicio pasado a Inactivo";
+            this.orderSkiMaterialList();
+          }, err => {
+            this.isDeleteFail = false;
+            this.deleteMessage = "El servicio no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submittedDelete = false;
+            this.deleteMessage = "";
+           },3000);
+
+      }
+    })
+
+    
   }
 
   updateOrderListSkiMaterial(columnName:string){

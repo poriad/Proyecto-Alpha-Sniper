@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 
-<div class="container-fluid fondo">
+<div @fade class="container-fluid fondo">
   <div class="row">
     <div class="col-12 pt-5 text-center">
       <h1 class="h1 pb-4 pb-sm-4">ADMINISTRACIÓN DE USUARIOS Y EMPRESAS</h1>
@@ -62,6 +62,14 @@
               (pageChange) = orderList()>
 
       </ngb-pagination>
+      
+        </div>
+        <div *ngIf="submitted && isUpdateFail" class="col-12">
+          <h5 class="h5-submit text-center">{{ updateMessage }}</h5>
+        </div>
+
+        <div *ngIf="submitted && !isUpdateFail" class="col-12">
+          <h5 class="h5-error text-center">{{ updateMessage }}</h5>
         </div>
         <div *ngIf="submitted && isDeleteUserFail" class="col-12">
           <h5 class="text-center h5-submit">{{deleteMessage}}</h5>
@@ -186,7 +194,7 @@ class="modal fade"
         </button>
       </div>
       <div class="modal-body">
-        <form  (ngSubmit)="onSubmit(id.value,firstName.value,lastName.value,email.value,address.value,username.value,password.value,phone.value,newsletter.value,enterprise.value)" >
+        <form>
         <div class="row">
           
           <div class="col-4 text-center pt-3 pb-4">
@@ -291,21 +299,13 @@ class="modal fade"
           </div>
           
           <div class="col-6 text-center pt-3 pb-3">
-            <input value="Modificar" type="submit" class="btn btn-admin-user pl-3 pr-3">
+            <input value="Modificar" type="submit" (click) = "onSubmit(id.value,firstName.value,lastName.value,email.value,address.value,username.value,password.value,phone.value,newsletter.value,enterprise.value)" class="btn btn-admin-user pl-3 pr-3">
           </div>
           <div class="col-6 text-center pt-3 pb-3">
             <input value="Borrar" (click) = "deleteUser(user.id)" class="btn btn-admin-user pl-3 pr-3" type="submit">
 
           
           </div>
-          <div *ngIf="submitted && isUpdateFail" class="col-12">
-            <h5 class="h5-submit text-center">{{updateMessage}}</h5>
-          </div>
-  
-          <div *ngIf="submitted && !isUpdateFail" class="col-12">
-            <h5 class="h5-error text-center">Error: {{ updateMessage }}</h5>
-          </div>
-        
         </div>
       </form>
       </div>

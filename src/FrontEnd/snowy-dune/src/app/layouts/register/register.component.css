@@ -172,6 +172,7 @@ input:focus,input:active {
   padding-left: 20px;
   padding-right: 20px;
   border: 1px solid rgba(27, 77, 176, 1);
+  transition: 0.2s;
 }
 
 .submit:hover{

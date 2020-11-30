@@ -24,6 +24,22 @@ export class SkiMaterialService {
     return this.httpClient.get<GetResponseSkiMaterial>(searchUrl);
   }
 
+  public getSkiMaterialByCountryListPaginate(thePage: number, thePageSize: number, theSkiMaterialCountry:string): Observable<GetResponseSkiMaterial> {
+
+    const searchUrl = `${this.baseUrl}search/listSkiMaterialByLocationStatusPageable?status=1&location=${theSkiMaterialCountry}`
+                      + `&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseSkiMaterial>(searchUrl);
+  }
+
+  public getSkiMaterialByLocationPriceListPaginate(thePage: number, thePageSize: number, theSkiMaterialCountry:string,minPrice: number, maxPrice: number): Observable<GetResponseSkiMaterial> {
+
+    const searchUrl = `${this.baseUrl}search/listSkiMaterialByLocationAndPriceStatusPageable?status=1&location=${theSkiMaterialCountry}`
+                      + `&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseSkiMaterial>(searchUrl);
+  }
+
   public getSkiMaterialListByUser(userId:number){
     return this.httpClient.get<GetResponseSkiMaterial>(this.baseUrl + 'search/getSkiMaterialFromUser?id=' + userId);
   }

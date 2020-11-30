@@ -1,1 +1,174 @@
-<p>hotel works!</p>
+<app-navigation></app-navigation>
+
+<div  @fade class="container-fluid fondo">
+    <div class="row">
+        <div class="col-12 mt-4 mt-sm-5">
+            <div class="row">
+  
+                <div class="col-12 pt-3 pb-4 text-center ">
+            
+                  <h1 class="h1 pb-4 pb-sm-4">HOTEL</h1>
+                  <hr class="hr" />
+                </div>
+                
+              </div>
+
+              <div class="row pb-4">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-xl-2 my-auto">
+                      <h3 class="h4 text-center">Filtros</h3>
+                      
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-2">
+                      <h3 class="h4 text-center">Búsqueda</h3>
+                  <input
+                      class="form-control search mx-auto"
+                      type="text"
+                      name="search"
+                      [(ngModel)]="searchText"
+                      autocomplete="off"
+                      placeholder="Busca un hotel..."
+                    />
+                  </div>
+                <div class="col-12 col-md-6 offset-xl-1 col-xl-2">
+                  <div class="form-group">
+                    <h3 class="h4 text-center">Estrellas</h3>
+                    <select (change)="updateHotelStarsSelect($event.target.value)" class="form-control mx-auto">
+                    <option selected="true" value="">Seleciona el nº de Estrellas...</option>
+                      <option>5</option>
+                      <option>4</option>
+                      <option>3</option>
+                      <option>2</option>
+                      <option>1</option>
+                    </select>
+                  </div>
+                  </div>
+
+                  <div class="col-12 col-md-6 offset-xl-1 col-xl-2">
+                    <div class="form-group">
+                      <h3 class="h4 text-center">Precio</h3>
+                      <select (change)="updateHotelPriceSelect($event.target.value)" class="form-control mx-auto">
+                      <option selected="true" value="0">Rango de precios...</option>
+                        <option value="1">Menos de 30 €</option>
+                        <option value="2">31 - 60 €</option>
+                        <option value="3">61 - 100 €</option>
+                        <option value="4">101 - 200 €</option>
+                        <option value="5">+ 201 €</option>
+                      </select>
+                    </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+              
+              <div class="row pb-5 pt-4 align-content-center">
+                <div  *ngFor="let hotel of hotels | filter: searchText" class="col col-xl-3 mb-5">
+                  <div class="card mx-auto" style="width: 18rem">
+                    <div class="img-color purple-gradient">
+                      <img
+                        class="card-img-top"
+                        src="{{ hotel.urlImages }}"
+                        alt="Card image cap"
+                      />
+                    </div>
+                    <div class="card-body mx-auto">
+                      <h5 class="card-title text-center">{{ hotel.name }}</h5>
+                      <p class="card-text text-center">
+                        {{ hotel.location }}, {{ hotel.country }}
+                      </p>
+                      <div class="row">
+                        <div class="col-12 text-center">
+                          <button
+                            href="#"
+                            class="btn btn-station"
+                            data-toggle="modal"
+                            [attr.data-target]="'#'+ hotel.id"
+                            (click) = "loadComments(hotel.id)"
+                          >
+                            DETALLES
+                          </button>
+                          <button href="#" class="btn btn-station ml-5" (click) = "validateInfo(hotel.name,hotel.id)">ELEGIR</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="row pt-3">
+                 
+                  <div class="col">
+                    <p class="lead text-center mb-4">
+                      <a class="btn btn-primary btn-lg mb-3" (click) = "backToStation()" role="button">VOLVER</a>
+                    </p>
+                  </div>
+              
+                  <div class="col d-flex justify-content-center">
+                    <ngb-pagination [(page)]="thePageNumber"
+                    [pageSize] ="thePageSize"
+                    [collectionSize]= "theTotalElements"
+                    [maxSize] = 5
+                    [boundaryLinks]="true"
+                    (pageChange) = loadHotel()>
+              
+                    </ngb-pagination>
+                  </div>
+
+                  <div class="col">
+                    <p class="lead text-center mb-4">
+                      <a class="btn btn-primary btn-lg mb-3" (click) = "continueToClasses()" role="button">CONTINUAR</a>
+                    </p>
+              
+                </div>
+              </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let hotel of hotels" class="modal fade" id="{{hotel.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="{{hotel.urlImages}}" alt="" class="img-fluid imagen-modal">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{hotel.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row h-auto">
+          <div class="col-7 pt-2 text-justify">
+            <p class="pt-3">{{hotel.description}}</p>
+             <br>
+             <p>Precio por día: {{hotel.price}}</p> 
+          </div>
+          <div class="col-5 comentarios my-auto text-center ">
+            
+            <h2 class="h2 pt-3">Últimos Comentarios</h2>
+            <hr class="hr2">
+            <div *ngFor="let comment of comments; let i = index">
+              <span class="persona">{{ user[i] }} - {{ comment.date }}</span>
+              <p class="text-center mx-auto py-2">{{comment.comment}}</p>
+            </div>
+            
+          </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <div class="col">
+            <hr class="hr2">
+            <h2 class="h2">DESCRIPCIÓN</h2>
+          </div>
+          <div class="col text-center ">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

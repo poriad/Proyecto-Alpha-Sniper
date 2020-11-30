@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,6 +9,7 @@ import { CarRentalService } from 'src/app/service/car-rental.service';
 import { ClassesService } from 'src/app/service/classes.service';
 import { EnterpriseService } from 'src/app/service/enterprise.service';
 import { HotelService } from 'src/app/service/hotel.service';
+import { ImgurApiService } from 'src/app/service/imgur-api.service';
 import { SkiMaterialService } from 'src/app/service/ski-material.service';
 import { StationService } from 'src/app/service/station.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -16,6 +18,17 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   selector: 'app-enterprise-services',
   templateUrl: './enterprise-services.component.html',
   styleUrls: ['./enterprise-services.component.css'],
+  animations: [
+    trigger('fade', [      
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(1000, style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        animate(1000, style({opacity: 0}))
+      ])
+    ])
+]
 })
 export class EnterpriseServicesComponent implements OnInit {
   enterpriseChk = false;
@@ -50,7 +63,8 @@ export class EnterpriseServicesComponent implements OnInit {
     private classesService: ClassesService,
     private carRentalService: CarRentalService,
     private skiMaterialService: SkiMaterialService,
-    public dialogo: MatDialog
+    public dialogo: MatDialog,
+    private imgurService: ImgurApiService
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +79,7 @@ export class EnterpriseServicesComponent implements OnInit {
       });
 
     this.serviceForm = this.formBuilder.group({
-      price: ['', Validators.required],
+      price: [null, {validators: [Validators.required], updateOn: 'blur'}],
       name: [
         '',
         [
@@ -87,7 +101,8 @@ export class EnterpriseServicesComponent implements OnInit {
           Validators.maxLength(500),
         ],
       ],
-      typeService: ['', Validators.required],
+      typeService: ['', Validators.required]
+      
     });
   }
 
@@ -324,6 +339,11 @@ export class EnterpriseServicesComponent implements OnInit {
     this.stationService.stationList().subscribe((data) => {
       this.stations = data;
     });
+  }
+
+  onChange(file) {
+    this.imgurService.upload(file)
+      .subscribe(res => console.log(res));
   }
 }
 

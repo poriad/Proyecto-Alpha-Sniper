@@ -68,7 +68,7 @@
     </div>
   
     <div *ngIf="submitted && !isUpdateFail" class="col-12">
-      <h5 class="text-center h5-error">Error: {{ updateMessage }}</h5>
+      <h5 class="text-center h5-error">{{ updateMessage }}</h5>
     </div>
   
     <div *ngIf="submittedDelete && isDeleteFail" class="col-12">
@@ -76,7 +76,7 @@
     </div>
   
     <div *ngIf="submittedDelete && !isDeleteFail" class="col-12">
-      <h5 class="text-center h5-error">Error: {{ deleteMessage }}</h5>
+      <h5 class="text-center h5-error">{{ deleteMessage }}</h5>
     </div>
   </div>
   
@@ -115,7 +115,7 @@
           <form >
           <div class="row">
             
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               
               <label for="firstName" class="d-block">Nombre</label>
               
@@ -128,18 +128,8 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
-              <label for="lastName" class="d-block">Descripción</label>
-              <input #description
-                type="text"
-                placeholder="Apellidos..."
-                name="lastName"
-                value="{{ carRental.description }}"
-                class="input pt-2"
-                readonly
-              />
-            </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Localización</label>
               <input #location
                 type="text"
@@ -151,7 +141,7 @@
               />
             </div>
             
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Precio</label>
               <input #address
                 type="text"
@@ -162,7 +152,7 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               <label for="username" class="d-block">Teléfono</label>
               <input #username
                 type="text"
@@ -173,7 +163,7 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4 ">
               <label for="email" class="d-block">Email</label>
               <input #password
                 type="text"
@@ -184,7 +174,7 @@
                 readonly
               />
             </div>
-            <div class="col-12 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Url Imagen</label>
               <input #imagen
                 type="text"
@@ -203,7 +193,18 @@
               value="{{ carRental.id }}"
               />
             </div>
-  
+            <div class="col-12 text-center pt-3 pb-4 ">
+              <label for="lastName" class="d-block">Descripción</label>
+              <textarea #description
+              rows="3" cols="70"
+                type="text"
+                placeholder="Apellidos..."
+                name="lastName"
+                value="{{ carRental.description }}"
+                class="input pt-2"
+                readonly
+              ></textarea>
+            </div>
             <div class="col-12">
               <hr class="hr3" />
             </div>

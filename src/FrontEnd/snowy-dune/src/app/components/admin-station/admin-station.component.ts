@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Station } from 'src/app/models/station';
 import { StationService } from 'src/app/service/station.service';
 import { Header } from 'src/app/utils/header';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-station',
@@ -31,7 +33,7 @@ export class AdminStationComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
   
-  constructor(private stationService: StationService) { }
+  constructor(private stationService: StationService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -40,47 +42,67 @@ export class AdminStationComponent implements OnInit {
   }
 
   updateStatusStation(id): void{
-    console.log(id)
+
     this.submitted = true;
+    this.iterateChildrenButton();
+    
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
 
-    this.stationService.putStationToActive(id).subscribe(
-      data => {
-        this.isUpdateFail = true;
-        this.updateMessage = "Estación activada";
-        this.iterateChildrenButton();
-        this.orderStationList();
-      }, err => {
-        this.isUpdateFail = false;
-        this.iterateChildrenButton();
-        this.updateMessage = "La estación no se ha podido actualizar";
-      });
+        this.stationService.putStationToActive(id).subscribe(
+          data => {
+            this.isUpdateFail = true;
+            this.updateMessage = "Estación activada";
+            this.orderStationList();
+          }, err => {
+            this.isUpdateFail = false;
+            this.updateMessage = "La estación no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessage = "";
+           },3000);
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessage = "";
-       },3000);
+      }
+    })
+
+    
   }
 
   deleteStation(id): void {
 
     this.submittedDelete = true;
+    this.iterateChildrenButton();
 
-    this.stationService.deleteStation(id).subscribe(
-      data => {
-        this.isDeleteFail = true;
-        this.deleteMessage = "Estación pasada a Inactiva";
-        this.iterateChildrenButton();
-        this.orderStationList();
-      }, err => {
-        this.isDeleteFail = false;
-        this.iterateChildrenButton();
-        this.deleteMessage = "La estación no se ha podido actualizar";
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+        this.stationService.deleteStation(id).subscribe(
+          data => {
+            this.isDeleteFail = true;
+            this.deleteMessage = "Estación pasada a Inactiva";
+            this.orderStationList();
+          }, err => {
+            this.isDeleteFail = false;
+            this.deleteMessage = "La estación no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submittedDelete = false;
+            this.deleteMessage = "";
+           },3000);
+      }
+    })
 
-      setTimeout( () => { 
-        this.submittedDelete = false;
-        this.deleteMessage = "";
-       },3000);
+    
   }
 
   updateOrderListStation(columnName:string){

@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Hotel } from 'src/app/models/hotel';
 import { HotelService } from 'src/app/service/hotel.service';
 import { Header } from 'src/app/utils/header';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-hotel',
@@ -31,7 +33,7 @@ export class AdminHotelComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
 
-  constructor(private hotelService:HotelService) { }
+  constructor(private hotelService:HotelService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.orderHotelList();
@@ -40,46 +42,65 @@ export class AdminHotelComponent implements OnInit {
   updateStatusHotel(id): void{
 
     this.submitted = true;
+    this.iterateChildrenButton();
 
-    this.hotelService.putHotelToActive(id).subscribe(
-      data => {
-        this.isUpdateFail = true;
-        this.updateMessage = "Servicio activado";
-        this.iterateChildrenButton();
-        
-        this.orderHotelList();
-      }, err => {
-        this.isUpdateFail = false;
-        this.iterateChildrenButton();
-        this.updateMessage = "El servicio no se ha podido actualizar";
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessage = "";
-       },3000);
+        this.hotelService.putHotelToActive(id).subscribe(
+          data => {
+            this.isUpdateFail = true;
+            this.updateMessage = "Servicio activado";
+            this.orderHotelList();
+          }, err => {
+            this.isUpdateFail = false;
+            this.updateMessage = "El servicio no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessage = "";
+           },3000);
+      }
+    })
+    
   }
 
   deleteHotel(id): void {
 
     this.submittedDelete = true;
+    this.iterateChildrenButton();
 
-    this.hotelService.deleteHotel(id).subscribe(
-      data => {
-        this.isDeleteFail = true;
-        this.deleteMessage = "Servicio pasado a Inactivo";
-        this.iterateChildrenButton();
-        this.orderHotelList();
-      }, err => {
-        this.isDeleteFail = false;
-        this.iterateChildrenButton();
-        this.deleteMessage = "El servicio no se ha podido actualizar";
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
 
-      setTimeout( () => { 
-        this.submittedDelete = false;
-        this.deleteMessage = "";
-       },3000);
+        this.hotelService.deleteHotel(id).subscribe(
+          data => {
+            this.isDeleteFail = true;
+            this.deleteMessage = "Servicio pasado a Inactivo";
+            this.orderHotelList();
+          }, err => {
+            this.isDeleteFail = false;
+            this.deleteMessage = "El servicio no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submittedDelete = false;
+            this.deleteMessage = "";
+           },3000);
+
+      }
+    })
+
+    
   }
 
   updateOrderListHotel(columnName:string){

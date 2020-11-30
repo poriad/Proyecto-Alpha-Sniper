@@ -1,5 +1,8 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { NewUser } from 'src/app/models/new-user';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -12,7 +15,18 @@ import { MustMatch } from 'src/app/utils/validador';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations: [
+    trigger('fade', [      
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(1000, style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        animate(1000, style({opacity: 0}))
+      ])
+    ])
+]
 })
 export class RegisterComponent implements OnInit {
 
@@ -25,7 +39,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private tokenService: TokenService,
     private formBuilder: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     if(this.tokenService.getToken()){
@@ -65,6 +79,12 @@ export class RegisterComponent implements OnInit {
         return;
     }
 
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de realizar el registro?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
     let firstName = this.registerForm.get('firstName').value;
     let lastName = this.registerForm.get('lastName').value;
     let email = this.registerForm.get('email').value;
@@ -89,6 +109,13 @@ export class RegisterComponent implements OnInit {
         this.Message = err.error.mensaje;
       }
     );
+      }
+    })
+
+    setTimeout( () => { 
+      this.submitted = false;
+      this.Message = "";
+     },3000);
   }
 
   onReset() {

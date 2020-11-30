@@ -91,7 +91,7 @@ export class EnterpriseRegisterComponent implements OnInit {
     .afterClosed()
     .subscribe((confirmado:Boolean) => {
       if (confirmado){
-        let nomComercial = this.enterpriseForm.get('nomComercial').value;
+    let nomComercial = this.enterpriseForm.get('nomComercial').value;
     let nif = this.enterpriseForm.get('nif').value;
     let cnae = this.enterpriseForm.get('cnae').value;
     let activity = this.enterpriseForm.get('activity').value;
@@ -103,8 +103,6 @@ export class EnterpriseRegisterComponent implements OnInit {
     this.enterprise = new Enterprise(nomComercial,nif,cnae,activity,location,enterprisePhone,enterpriseEmail);
 
     this.username = sessionStorage.getItem('AuthUsername');
-
-    console.log(this.username);
 
     this.enterpriseService.getIdUsername(this.username).subscribe(
       data => {

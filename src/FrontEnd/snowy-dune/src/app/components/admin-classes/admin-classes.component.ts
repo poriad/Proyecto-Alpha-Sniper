@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Classes } from 'src/app/models/classes';
 import { ClassesService } from 'src/app/service/classes.service';
 import { Header } from 'src/app/utils/header';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-classes',
@@ -30,7 +32,7 @@ export class AdminClassesComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
 
-  constructor(private classesService:ClassesService) { }
+  constructor(private classesService:ClassesService, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -41,45 +43,65 @@ export class AdminClassesComponent implements OnInit {
   updateStatusClasses(id): void{
 
     this.submitted = true;
+    this.iterateChildrenButton();
 
-    this.classesService.putClassesToActive(id).subscribe(
-      data => {
-        this.isUpdateFail = true;
-        this.updateMessage = "Clase activada";
-        this.iterateChildrenButton();
-        this.orderClassesList();
-      }, err => {
-        this.isUpdateFail = false;
-        this.iterateChildrenButton();
-        this.updateMessage = "La clase no se ha podido actualizar";
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessage = "";
-       },3000);
+        this.classesService.putClassesToActive(id).subscribe(
+          data => {
+            this.isUpdateFail = true;
+            this.updateMessage = "Clase activada";
+            this.orderClassesList();
+          }, err => {
+            this.isUpdateFail = false;
+            
+            this.updateMessage = "La clase no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessage = "";
+           },3000);
+
+      }
+    })
+    
   }
 
   deleteClasses(id): void {
 
     this.submittedDelete = true;
+    this.iterateChildrenButton();
 
-    this.classesService.deleteClass(id).subscribe(
-      data => {
-        this.isDeleteFail = true;
-        this.deleteMessage = "Clase pasada a Inactiva";
-        this.iterateChildrenButton();
-        this.orderClassesList();
-      }, err => {
-        this.isDeleteFail = false;
-        this.iterateChildrenButton();
-        this.deleteMessage = "La clase no se ha podido actualizar";
-      });
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
 
-      setTimeout( () => { 
-        this.submittedDelete = false;
-        this.deleteMessage = "";
-       },3000);
+        this.classesService.deleteClass(id).subscribe(
+          data => {
+            this.isDeleteFail = true;
+            this.deleteMessage = "Clase pasada a Inactiva";
+            this.orderClassesList();
+          }, err => {
+            this.isDeleteFail = false;
+            this.deleteMessage = "La clase no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submittedDelete = false;
+            this.deleteMessage = "";
+           },3000);
+      }
+    })
+    
   }
 
   updateOrderListClasses(columnName:string){

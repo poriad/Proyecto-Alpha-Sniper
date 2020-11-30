@@ -1,35 +1,107 @@
 
- <div class="row">
-   <app-search></app-search>
-    <div class="col-12 pt-3 pb-4 text-center">
-      <div class="button-filter">
-        <div class="form-group">
-          <h3 class="h2">PAÍS</h3>
-          <select class="form-control" id="pais">
-            <option>España</option>
-            <option>Reino Unido</option>
-            <option>Italia</option>
-            <option>Francia</option>
-            <option>Rumanía</option>
-          </select>
-        </div>
-      </div>
-      <div class="button-filter-2">
-      <div class="form-group">
-        <h3 class="h4">Nº Elementos</h3>
-        <select (change)="updatePageSize($event.target.value)" class="form-control mx-auto">
-          <option selected="true">10</option>
-          <option>20</option>
-          <option>50</option>
-        </select>
-      </div>
-    </div>
+ <div @fade class="row">
+  
+    <div class="col-12 pt-3 pb-4 text-center ">
+
       <h1 class="h1 pb-4 pb-sm-4">ESTACIÓN, FECHAS Y PERSONAS</h1>
       <hr class="hr" />
     </div>
+
   </div>
+
+  <div class="row pb-4">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 col-md-6 col-xl-2 my-auto">
+          <h3 class="h4 text-center">Filtros</h3>
+          
+        </div>
+        <div class="col-12 col-md-6 col-xl-2">
+          <h3 class="h4 text-center">Búsqueda</h3>
+      <input
+          class="form-control search mx-auto"
+          type="text"
+          name="search"
+          [(ngModel)]="searchText"
+          autocomplete="off"
+          placeholder="Introduce una palabra..."
+        />
+      </div>
+      <div class="col-12 col-md-6 offset-xl-1 col-xl-2">
+        <div class="form-group">
+        <h3 class="h4 text-center">País</h3>
+        <select  id="pais" class="form-control mx-auto" (change)="updateStationSelect($event.target.value)">
+                  <option *ngFor="let country of countries" [value]="country" >
+                    {{country}}
+                  </option>
+        </select>
+        
+      </div>
+    </div>
+    <div class="col-12 col-md-6 offset-xl-1 col-xl-2">
+      <div class="form-group">
+        <h3 class="h4 text-center">Nº Elementos</h3>
+        <select (change)="updatePageSize($event.target.value)" class="form-control mx-auto">
+          <option selected="true">8</option>
+          <option>16</option>
+          <option>32</option>
+        </select>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="col-12 d-inline">
+    <form [formGroup]="tripForm">
+      <div class="row">
+        <div class="col-12 col-md-6 col-xl-2 my-auto">
+          <h3 class="h4 text-center">Datos del Viaje</h3>
+          
+        </div>
+      <div class="col-12 col-md-6 col-xl-2 form-group">
+        <h3 class="h4 text-center">Nº Personas</h3>
+        <input
+          class="form-control search mx-auto"
+          formControlName="personNumber"
+          type="number"
+          name="search"
+          autocomplete="off"
+          [ngClass]="{ 'is-invalid': submitted && f.personNumber.errors }"
+        />
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-2 offset-xl-1 form-group">
+        <h3 class="h4 text-center">Fecha de entrada</h3>
+        <input
+          class="form-control search mx-auto"
+          formControlName="entryDate"
+          type="Date"
+          name="fechaEntrada"
+          autocomplete="off"
+          [ngClass]="{ 'is-invalid': submitted && f.entryDate.errors }"
+        />
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-2 offset-xl-1 form-group" >
+        <h3 class="h4 text-center">Nº de días</h3>
+        <input
+          class="form-control search mx-auto"
+          formControlName="numberDays"
+          type="number"
+          name="Nº Días"
+          autocomplete="off"
+          [ngClass]="{ 'is-invalid': submitted && f.numberDays.errors }"
+        />
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
 <div class="row pb-5 pt-4 align-content-center">
-  <div *ngFor="let station of stations" class="col">
+  <div  *ngFor="let station of stations | filter: searchText" class="col col-xl-3 mb-5">
     <div class="card mx-auto" style="width: 18rem">
       <div class="img-color purple-gradient">
         <img
@@ -49,11 +121,12 @@
               href="#"
               class="btn btn-station"
               data-toggle="modal"
-              [attr.data-target]="'#'+ station.name"
+              [attr.data-target]="'#'+ station.id"
+              (click) = "loadComments(station.id)"
             >
               DETALLES
             </button>
-            <button href="#" class="btn btn-station ml-5">ELEGIR</button>
+            <button href="#" class="btn btn-station ml-5" (click) = "validateInfo(station.name,station.id)">ELEGIR</button>
           </div>
         </div>
       </div>
@@ -80,16 +153,11 @@
 
       </ngb-pagination>
     </div>
-    <div class="col">
-      <p class="lead text-center mb-4">
-        <a class="btn btn-primary btn-lg mb-3" href="#" role="button"
-          >CONTINUAR</a>
-      </p>
-    </div>
+    <div class="col"></div>
   
 </div>
 
-<div *ngFor="let station of stations" class="modal fade" id="{{station.name}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div *ngFor="let station of stations" class="modal fade" id="{{station.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -107,14 +175,13 @@
         </div>
         <div class="col-5 comentarios my-auto text-center ">
           
-          <h2 class="h2 pt-3">COMENTARIOS</h2>
+          <h2 class="h2 pt-3">Últimos Comentarios</h2>
           <hr class="hr2">
-            <span class="persona">Manolito</span>
-            <p class="text-center mx-auto py-2">Fantástica Estación</p>
-            <span class="persona ">El Many en paz Descanse</span>
-            <p class="text-center mx-auto py-2"> Nos escantó, estamos deseando volver</p>
-            <span class="persona">El fary</span>
-            <p class="text-center mx-auto py-2"> Demasiada gente en las colas, es recomendable ir entre semana</p>
+          <div *ngFor="let comment of comments">
+            <span class="persona">{{ user }} - {{ comment.date }}</span>
+            <p class="text-center mx-auto py-2">{{comment.comment}}</p>
+          </div>
+          
         </div>
       </div>
       </div>
@@ -130,33 +197,3 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- 
-<div class="row">
-    <div class="col">
-      <p class="lead text-center mb-4">
-        <a class="btn btn-primary btn-lg mb-3" href="#" role="button">VOLVER</a>
-      </p>
-    </div>
-    <div class="col">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item ">
-            <a class="page-link" href="#" tabindex="-1"><</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">></a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-  
- 
-
--->

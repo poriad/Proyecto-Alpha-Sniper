@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 
-<div class="text-center" *ngIf="isLogged; else loggedOut">
+<div @fade class="text-center" *ngIf="isLogged; else loggedOut">
   <div class="container-fluid fondo">
       <div class="row pb-5">
           <div class="col-12 pt-5 text-center mt-4 ">
@@ -40,7 +40,7 @@
 
 <ng-template #loggedOut>
 
-<div class="container-fluid fondo">
+<div @fade class="container-fluid fondo">
   <div class="row">
     <div class="col-12 col-md-6"></div>
 
@@ -169,7 +169,7 @@
 <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center  form-group form-check">
   <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input checkbox" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
   <label for="acceptTerms" class="form-check-label">Aceptar Términos y Condiciones</label>
-  <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
+  <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Los términos y condiciones son Obligatorios</div>
 </div>
 
 <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center  form-group form-check">
@@ -178,7 +178,7 @@
 </div>
           
          
-          <div class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-5">
+          <div class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-3 pb-lg-5">
             <input type="submit" value="Enviar" class="submit" />
           </div>
 
@@ -192,7 +192,7 @@
         </div>
 
         <div *ngIf="submitted && !isRegisterFail" class="">
-          <h5 class="h5-error">Error: {{ Message }}</h5>
+          <h5 class="h5-error">{{ Message }}</h5>
         </div>
       </div>
         </form>

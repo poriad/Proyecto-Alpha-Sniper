@@ -15,6 +15,10 @@ import { HomeEnterpriseComponent } from './layouts/home-enterprise/home-enterpri
 import { UserManagementComponent } from './layouts/user-management/user-management.component';
 import { ProdGuardService as guard } from './guards/prod-guard.service'
 import { StationCardComponent } from './components/station-card/station-card.component';
+import { HotelComponent } from './layouts/hotel/hotel.component';
+import { ClassesComponent } from './layouts/classes/classes.component';
+import { SkiMaterialComponent } from './layouts/ski-material/ski-material.component';
+import { CarRentalComponent } from './layouts/car-rental/car-rental.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -24,6 +28,10 @@ const routes: Routes = [
   { path: 'Station', component: StationComponent, canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},
   { path: 'Station/search/:keyword', component: StationComponent, canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},
   { path: 'Checkout', component: CheckoutComponent,canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},
+  { path: 'Hotel', component: HotelComponent,canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']} },
+  { path: 'Classes', component: ClassesComponent,canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']} },
+  { path: 'SkiMaterial', component: SkiMaterialComponent,canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']} },
+  { path: 'CarRental', component: CarRentalComponent,canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']} },
   { path: 'Trip', component: TripComponent, canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},
   { path: 'ManagementUser', component: UserManagementComponent, canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},
   { path: 'Cart', component: CartComponent, canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},

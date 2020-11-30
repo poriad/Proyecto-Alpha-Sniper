@@ -25,6 +25,31 @@ export class HotelService {
     return this.httpClient.get<GetResponseHotel>(searchUrl);
   }
 
+  public getHotelByCountryListPaginate(thePage: number, thePageSize: number, theHotelCountry:string): Observable<GetResponseHotel> {
+
+    const searchUrl = `${this.baseUrl}search/listHotelByLocationStatusPageable?status=1&location=${theHotelCountry}`
+                      + `&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseHotel>(searchUrl);
+  }
+
+  public getHotelByStarsListPaginate(thePage: number, thePageSize: number, theHotelCountry:string, stars:number): Observable<GetResponseHotel> {
+
+    const searchUrl = `${this.baseUrl}search/listHotelByStarsStatusPageable?status=1&location=${theHotelCountry}`
+                      + `&stars=${stars}&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseHotel>(searchUrl);
+  }
+
+  public getHotelByStarsPriceListPaginate(thePage: number, thePageSize: number, theHotelCountry:string, minPrice: number, maxPrice: number, stars:number): Observable<GetResponseHotel> {
+
+    const searchUrl = `${this.baseUrl}search/listHotelByLocationAndPriceStatusPageable?status=1&location=${theHotelCountry}`
+                      + `&stars=${stars}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${thePage}&size=${thePageSize}&sort=name,asc`;
+
+    return this.httpClient.get<GetResponseHotel>(searchUrl);
+  }
+
+  
   public getHotelListByUser(userId:number){
     return this.httpClient.get<GetResponseHotel>(this.baseUrl + 'search/getHotelFromUser?id=' + userId);
   }

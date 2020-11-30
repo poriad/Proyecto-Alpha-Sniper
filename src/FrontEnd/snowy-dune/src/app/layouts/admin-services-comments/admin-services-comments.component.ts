@@ -1,5 +1,8 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { ViewChild, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { Comentario } from 'src/app/models/comment';
 import { CommentService } from 'src/app/service/comment.service';
 import { Header } from 'src/app/utils/header';
@@ -7,7 +10,18 @@ import { Header } from 'src/app/utils/header';
 @Component({
   selector: 'app-admin-services-comments',
   templateUrl: './admin-services-comments.component.html',
-  styleUrls: ['./admin-services-comments.component.css']
+  styleUrls: ['./admin-services-comments.component.css'],
+  animations: [
+    trigger('fade', [      
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(1000, style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        animate(1000, style({opacity: 0}))
+      ])
+    ])
+]
 })
 export class AdminServicesCommentsComponent implements OnInit {
   @ViewChildren('closebutton') closebutton;
@@ -32,7 +46,7 @@ export class AdminServicesCommentsComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
   
-  constructor(private commentService: CommentService) { }
+  constructor(private commentService: CommentService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -40,49 +54,72 @@ export class AdminServicesCommentsComponent implements OnInit {
 
   }
 
-  onSubmit(comment,id): void{
+  // REVISAR EL DATE
+  onSubmit(comment,id,date): void{
 
     this.submitted = true;
-    this.comment = new Comentario(id,comment);
+    this.iterateChildrenButton();
 
-    this.commentService.putComment(this.comment, id).subscribe(
-      data => {
-        this.isUpdateFail = true;
-        this.comment = data;
-        this.updateMessage = "Comentario actualizado";
-        this.iterateChildrenButton();
-        this.orderCommentList();
-      }, err => {
-        this.iterateChildrenButton();
-        this.isUpdateFail = false;
-        this.updateMessage = "El comentario no se ha podido actualizar";
-      });
 
-      setTimeout( () => { 
-        this.submitted = false;
-        this.updateMessage = "";
-       },2000);
+
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+        this.comment = new Comentario(id,date,comment);
+
+        this.commentService.putComment(this.comment, id).subscribe(
+          data => {
+            this.isUpdateFail = true;
+            this.comment = data;
+            this.updateMessage = "Comentario actualizado";
+            this.orderCommentList();
+          }, err => {
+            this.isUpdateFail = false;
+            this.updateMessage = "El comentario no se ha podido actualizar";
+          });
+    
+          setTimeout( () => { 
+            this.submitted = false;
+            this.updateMessage = "";
+           },3000);
+      }
+    })
+    
   }
 
   deleteComment(id):void{
     
     this.submittedDelete = true;
-    this.commentService.deleteComment(id).subscribe(
-      data => {
-        this.isDeleteFail = true;
-        this.deleteMessage = "Comentario borrado";
-        this.iterateChildrenButton();
-        this.orderCommentList();
-      }, err => {
-        this.iterateChildrenButton();
-        this.isDeleteFail = false;
-        this.deleteMessage = "El comentario no se ha podido borrado";
-      });
+    this.iterateChildrenButton();
 
-      setTimeout( () => { 
-        this.submittedDelete = false;
-        this.updateMessage = "";
-       },2000);
+    this.dialogo.open(ConfirmDialogComponent, {
+      data:`¿Estás seguro de esta acción?`
+    })
+    .afterClosed()
+    .subscribe((confirmado:Boolean) => {
+      if (confirmado){
+
+        this.commentService.deleteComment(id).subscribe(
+          data => {
+            this.isDeleteFail = true;
+            this.deleteMessage = "Comentario borrado";
+            this.orderCommentList();
+          }, err => {
+            this.isDeleteFail = false;
+            this.deleteMessage = "El comentario no se ha podido borrado";
+          });
+    
+          setTimeout( () => { 
+            this.submittedDelete = false;
+            this.updateMessage = "";
+           },3000);
+
+      }
+    })
+    
   }
 
   updatePageSize(pageSize: number){
