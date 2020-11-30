@@ -56,55 +56,117 @@
                 <div class="col-12">
                     <h5 class="h5 pl-4 pt-5 pb-4">DIRECCIÓN Y DATOS DE CONTACTO</h5>
                 </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">NOMBRE:</p>
+                <div class="col-12">
+               
+                <form [formGroup]="userForm"  class="">
+
+                    <div class="form-group row">
+
+                        <label class="col-4">Nombre:</label>
+                        <div class="col-8">
+                            <input
+                            class="form-control mx-auto"
+                            placeholder="Ej. Snowy SA"
+                            formControlName="nomComercial"
+                            />
+
+                    </div>
                 </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">Juan Carlos</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">APELLIDOS:</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">Sánchez Martínez</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">DIRECCIÓN:</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">C/ República 123</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">CÓDIGO POSTAL:</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">00001</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">PROVINCIA:</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">Sevilla</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">PAÍS:</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">Españita</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">EMAIL:</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">comunista.sexy001@gmail.com</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion pl-5">TELÉFONO:</p>
-                </div>
-                <div class="col-6 pb-2">
-                    <p class="p-direccion">901001001</p>
-                </div>
+                      <div
+                        class="form-group row"
+                      >
+                        <label class="col-4">Apellidos:</label>
+                        <div class="col-8">
+                        <input
+                          class="form-control mx-auto"
+                          placeholder="Ej. A08001851"
+                          formControlName="nif"
+                        />
+                    </div>
+
+                      </div>
+              
+                      <div
+                        class="form-group row"
+                      >
+                        <label class="col-4">Dirección:</label>
+                        <div class="col-8">
+                        <input
+                        type="text"
+                          class="form-control mx-auto"
+                          placeholder="Ej. C101011011"
+                          formControlName="cnae"
+                        />
+                    </div>
+                      </div>
+                      <div
+                        class="form-group row"
+                      >
+                        <label class="col-4">Teléfono:</label>
+                        <div class="col-8">
+                        <input
+                        type="text"
+                          class="form-control mx-auto"
+                          placeholder="Ej. C101011011"
+                          formControlName="cnae"
+                        />
+                    </div>
+                      </div>
+
+                      <div
+                        class="form-group row"
+                      >
+                        <label class="col-4">Email:</label>
+                        <div class="col-8">
+                        <input
+                        type="text"
+                          class="form-control mx-auto"
+                          placeholder="Ej. C101011011"
+                          formControlName="cnae"
+                        />
+                    </div>
+                      </div>
+              
+                      <div
+                        class="form-group row"
+                      >
+                        <label class="col-4">Nombre de Usuario:</label>
+                        <div class="col-8">
+                        <input
+                        type="text"
+                          class="form-control mx-auto"
+                          placeholder="Ej. C101011011"
+                          formControlName="cnae"
+                        />
+                    </div>
+                      </div>
+          
+                        <div
+                            class="form-group row"
+                        >
+                            <label class="col-4">Contraseña:</label>
+                            <div class="col-8">
+                            <input
+                            type="text"
+                            class="form-control mx-auto"
+                            placeholder="Ej. C101011011"
+                            formControlName="cnae"
+                            />
+                        </div>
+                      </div>
+              
+                      <div class="col-12 col-md-12  text-center pt-3">
+                        <input
+                          type="submit"
+                          value="Registrar"
+                          class="submit"
+                          [disabled] = "userForm.invalid"
+                        />
+                      </div>
+                   
+                  </form>
                 
+                </div>
                 <div class="col-12">
                     <hr class="hr3">
                     <h3 class="h3 pl-4 pb-4 pt-3">DATOS PERSONALES</h3>
@@ -222,3 +284,56 @@
         </div>
     </div>
 </div>
+
+<!--
+ <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">NOMBRE:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">Juan Carlos</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">APELLIDOS:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">Sánchez Martínez</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">DIRECCIÓN:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">C/ República 123</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">CÓDIGO POSTAL:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">00001</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">PROVINCIA:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">Sevilla</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">PAÍS:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">Españita</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">EMAIL:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">comunista.sexy001@gmail.com</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion pl-5">TELÉFONO:</p>
+                </div>
+                <div class="col-6 pb-2">
+                    <p class="p-direccion">901001001</p>
+                </div>
+
+
+-->
