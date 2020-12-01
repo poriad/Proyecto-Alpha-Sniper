@@ -56,6 +56,7 @@ public class Comment {
 	@JoinColumn(name = "classes_id", nullable = true)
 	private Classes classes;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = true)
 	private UserSnowy user;

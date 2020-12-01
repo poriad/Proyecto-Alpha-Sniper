@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/comment")
@@ -44,6 +45,7 @@ public class CommentController {
 		
 		commentService.saveComment(comment);
 		
+		
 		return new ResponseEntity(comment, HttpStatus.OK);
 	}
 	
@@ -65,6 +67,55 @@ public class CommentController {
 		
 	}
 	
+	@PreAuthorize("hasRole('USER')")
+	@PutMapping("/updateCommentStation")
+	public ResponseEntity<?> updateCommentStation(@RequestParam Long userId, @RequestParam Long stationId,@RequestParam Long commentId){
+		
+		commentService.updateCommentStation(stationId, userId, commentId);
+		
+		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
+		
+	}
+
+	@PreAuthorize("hasRole('USER')")
+	@PutMapping("/updateCommentHotel")
+	public ResponseEntity<?> updateCommentHotel(@RequestParam Long userId, @RequestParam Long hotelId,@RequestParam Long commentId){
+		
+		commentService.updateCommentHotel(hotelId, userId, commentId);
+		
+		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@PutMapping("/updateCommentClasses")
+	public ResponseEntity<?> updateCommentClasses(@RequestParam Long userId, @RequestParam Long classesId,@RequestParam Long commentId){
+		
+		commentService.updateCommentClasses(classesId, userId, commentId);
+		
+		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@PutMapping("/updateCommentSkiMaterial")
+	public ResponseEntity<?> updateCommentSkiMaterial(@RequestParam Long userId, @RequestParam Long skiMaterialId,@RequestParam Long commentId){
+		
+		commentService.updateCommentSkiMaterial(skiMaterialId, userId, commentId);
+		
+		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
+		
+	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@PutMapping("/updateCommentCarRental")
+	public ResponseEntity<?> updateCommentCarRental(@RequestParam Long userId, @RequestParam Long carRentalId,@RequestParam Long commentId){
+		
+		commentService.updateCommentCarRental(carRentalId, userId, commentId);
+		
+		return new ResponseEntity(new Mensaje("Comentario actualizado correctamente"),HttpStatus.OK);
+		
+	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("delete/{id}")

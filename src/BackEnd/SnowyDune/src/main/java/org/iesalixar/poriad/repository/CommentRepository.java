@@ -33,6 +33,26 @@ public interface CommentRepository extends JpaRepository<Comment, Long>{
 	Page<Comment> listComments(Pageable pageable);
 	
 	@Modifying
+	@Query(value="UPDATE Comment c SET c.station.id = :stationId, c.user.id = :userId, c.active = 1 WHERE c.id = :commentId")
+	void updateCommentsStation(@Param("stationId") Long stationId, @Param("userId") Long userId, @Param("commentId") Long commentId);
+	
+	@Modifying
+	@Query(value="UPDATE Comment c SET c.hotel.id = :hotelId, c.user.id = :userId, c.active = 1 WHERE c.id = :commentId")
+	void updateCommentsHotel(@Param("hotelId") Long stationId, @Param("userId") Long userId, @Param("commentId") Long commentId);
+	
+	@Modifying
+	@Query(value="UPDATE Comment c SET c.classes.id = :classesId, c.user.id = :userId, c.active = 1 WHERE c.id = :commentId")
+	void updateCommentsClasses(@Param("classesId") Long stationId, @Param("userId") Long userId, @Param("commentId") Long commentId);
+	
+	@Modifying
+	@Query(value="UPDATE Comment c SET c.skiMaterial.id = :skiMaterialId, c.user.id = :userId, c.active = 1 WHERE c.id = :commentId")
+	void updateCommentsSkiMaterial(@Param("skiMaterialId") Long stationId, @Param("userId") Long userId, @Param("commentId") Long commentId);
+	
+	@Modifying
+	@Query(value="UPDATE Comment c SET c.carRental.id = :carRentalId, c.user.id = :userId, c.active = 1 WHERE c.id = :commentId")
+	void updateCommentsCarRental(@Param("carRentalId") Long stationId, @Param("userId") Long userId, @Param("commentId") Long commentId);
+	
+	@Modifying
 	@Query(value="DELETE FROM Comment c WHERE c.station.id = :id")
 	void deleteCommentsStation(@Param("id") Long id);
 	

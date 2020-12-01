@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ComentarioDto } from '../components/modal-user-comments/modal-user-comments.component';
 import { Comentario } from '../models/comment';
 import { NewUser } from '../models/new-user';
 
@@ -77,8 +78,32 @@ export class CommentService {
     return this.httpClient.put<any>(this.baseUrlTwo + 'update/' + id, comment);
   }
 
+  public putCommentByStationUserId(stationId: number, userId: number, commentId: number){
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateCommentStation?userId=' + userId + '&stationId=' + stationId + '&commentId=' + commentId, null);
+  }
+
+  public putCommentByHotelUserId(hotelId: number, userId: number, commentId: number){
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateCommentHotel?userId=' + userId + '&hotelId=' + hotelId + '&commentId=' + commentId, null);
+  }
+
+  public putCommentByClassesUserId(classesId: number, userId: number, commentId: number){
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateCommentClasses?userId=' + userId + '&classesId=' + classesId + '&commentId=' + commentId, null);
+  }
+
+  public putCommentBySkiMaterialUserId(skiMaterialId: number, userId: number, commentId: number){
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateCommentSkiMaterial?userId=' + userId + '&skiMaterialId=' + skiMaterialId + '&commentId=' + commentId, null);
+  }
+
+  public putCommentByCarRentalUserId(carRentalId: number, userId: number, commentId: number){
+    return this.httpClient.put<any>(this.baseUrlTwo + 'updateCommentCarRental?userId=' + userId + '&carRentalId=' + carRentalId + '&commentId=' + commentId, null);
+  }
+
   public deleteComment(id:number): Observable<any>{
     return this.httpClient.delete<any>(this.baseUrlTwo + 'delete/' + id);
+  }
+
+  public newComment(comment: ComentarioDto): Observable<any>{
+    return this.httpClient.post<any>(this.baseUrlTwo + 'create', comment);
   }
 }
 

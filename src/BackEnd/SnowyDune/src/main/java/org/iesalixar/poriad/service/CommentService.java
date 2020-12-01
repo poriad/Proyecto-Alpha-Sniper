@@ -54,6 +54,27 @@ public class CommentService {
 	public void deleteCommentsCarRental(Long id) {
 		commentRepository.deleteCommentsCarRental(id);
 	}
+	
+	public void updateCommentStation(Long stationId, Long userId, Long commentId) {
+		commentRepository.updateCommentsStation(stationId, userId, commentId);
+	}
+	
+	public void updateCommentHotel(Long hotelId, Long userId, Long commentId) {
+		commentRepository.updateCommentsHotel(hotelId, userId, commentId);
+	}
+	
+	public void updateCommentClasses(Long classesId, Long userId, Long commentId) {
+		commentRepository.updateCommentsClasses(classesId, userId, commentId);
+	}
+	
+	public void updateCommentSkiMaterial(Long skiMaterialId, Long userId, Long commentId) {
+		commentRepository.updateCommentsSkiMaterial(skiMaterialId, userId, commentId);
+	}
+	
+	public void updateCommentCarRental(Long carRentalId, Long userId, Long commentId) {
+		commentRepository.updateCommentsCarRental(carRentalId, userId, commentId);
+	}
+	
 		
 	
 }

@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CarRental } from '../models/car-rental';
+import { Classes } from '../models/classes';
+import { Hotel } from '../models/hotel';
+import { SkiMaterial } from '../models/ski-material';
 import { Station } from '../models/station';
 import { Trip } from '../models/trip';
 
@@ -32,6 +36,22 @@ export class TripService {
 
   public getStationTrip(id:number): Observable<Station> {
     return this.httpClient.get<Station>(this.baseUrl + id +'/station');
+  }
+
+  public getClassesTrip(id:number): Observable<Classes> {
+    return this.httpClient.get<Classes>(this.baseUrl + id +'/classes');
+  }
+
+  public getHotelTrip(id:number): Observable<Hotel> {
+    return this.httpClient.get<Hotel>(this.baseUrl + id +'/hotel');
+  }
+
+  public getSkiMaterialTrip(id:number): Observable<SkiMaterial> {
+    return this.httpClient.get<SkiMaterial>(this.baseUrl + id +'/skiMaterial');
+  }
+
+  public getCarRentalTrip(id:number): Observable<CarRental> {
+    return this.httpClient.get<CarRental>(this.baseUrl + id +'/carRental');
   }
 }
 

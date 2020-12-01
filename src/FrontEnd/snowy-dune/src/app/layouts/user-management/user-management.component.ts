@@ -252,7 +252,8 @@ export class UserManagementComponent implements OnInit {
 
   getComments(){
     this.dialogo.open(ModalUserCommentsComponent, {
-      data:`¿Estás seguro de realizar el registro?`
+      width: '70vw',
+      maxWidth: '100vw',
     })
     .afterOpened().subscribe(
      data =>{

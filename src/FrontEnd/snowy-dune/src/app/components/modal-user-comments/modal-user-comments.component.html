@@ -1,12 +1,131 @@
 <h1 mat-dialog-title class="text-center h3">Comentarios Activos</h1>
-<div mat-dialog-content>
-    <div class="col-12">
-        <p class="text-center mensaje">{{mensaje}}</p>
+<div
+  mat-dialog-content
+  *ngIf="stations && hotel && carRental && classes && skiMaterial"
+>
+  <div class="col-12">
+    <p class="text-center mensaje">{{ mensaje }}</p>
+  </div>
+
+  <div class="row">
+    <div class="col-3 text-center align-items-center my-auto">
+      <p class="h3">Estaciones</p>
     </div>
+    <div class="col-9">
+      <div class="row" *ngFor="let station of stations">
+        <div class="col-4">
+          <p class="text-center mensaje">{{ station.name }}</p>
+        </div>
+        <form class="col-8">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" value="Deja tu comentario..." />
+            </div>
+            <div class="col-6 text-center">
+              <input type="submit" value="Mandar Comentario" (click) = "createComment(station.id, 1)"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 text-center align-items-center my-auto">
+      <p class="h3">Hoteles</p>
+    </div>
+    <div class="col-9">
+      <div class="row" *ngFor="let hotel of hotel">
+        <div class="col-4">
+          <p class="text-center mensaje">{{ hotel.name }}</p>
+        </div>
+        <form class="col-8">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" value="Deja tu comentario..." />
+            </div>
+            <div class="col-6 text-center">
+              <input type="submit" value="Mandar Comentario" (click) = "createComment(hotel.id, 2)"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 text-center align-items-center my-auto">
+      <p class="h3">Alquiler de Vehículos</p>
+    </div>
+    <div class="col-9">
+      <div class="row" *ngFor="let carRental of carRental">
+        <div class="col-4">
+          <p class="text-center mensaje">{{ carRental.name }}</p>
+        </div>
+        <form class="col-8">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" value="Deja tu comentario..." />
+            </div>
+            <div class="col-6 text-center">
+              <input type="submit" value="Mandar Comentario"(click) = "createComment(carRental.id, 3)"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 text-center align-items-center my-auto">
+      <p class="h3">Clases</p>
+    </div>
+    <div class="col-9">
+      <div class="row" *ngFor="let class of classes">
+        <div class="col-4">
+          <p class="text-center mensaje">{{ class.name }}</p>
+        </div>
+        <form class="col-8">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" value="Deja tu comentario..." />
+            </div>
+            <div class="col-6 text-center">
+              <input type="submit" value="Mandar Comentario" (click) = "createComment(class.id, 4)"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 text-center align-items-center my-auto">
+      <p class="h3">Alquiler de Material</p>
+    </div>
+    <div class="col-9">
+      <div class="row" *ngFor="let skiMaterial of skiMaterial">
+        <div class="col-4">
+          <p class="text-center mensaje">{{ skiMaterial.name }}</p>
+        </div>
+        <form class="col-8">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" value="Deja tu comentario..." />
+            </div>
+            <div class="col-6  text-center">
+
+              <input type="submit" value="Mandar Comentario" (click) = "createComment(skiMaterial.id, 5)" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </div>
 <div mat-dialog-actions>
-    <div class="col-12 text-center">
-        <button mat-button (click)="cerrarDialogo()" class="cancel">Cerrar</button>
-    </div>
-
+  <div class="col-12 text-center">
+    <button mat-button (click)="cerrarDialogo()" class="cancel">Cerrar</button>
+  </div>
 </div>
