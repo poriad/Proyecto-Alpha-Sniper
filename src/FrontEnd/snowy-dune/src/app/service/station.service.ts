@@ -18,7 +18,7 @@ export class StationService {
   public stationList(): Observable<Station[]> {
     return this.httpClient.get<Station[]>(this.stationURL + 'list');
   }
-  
+
   public getStationListPaginate(thePage: number, thePageSize: number, theStationCountry:string): Observable<GetResponseStations> {
 
     const searchUrl = `${this.baseUrl}/search/findByCountry?country=${theStationCountry}`

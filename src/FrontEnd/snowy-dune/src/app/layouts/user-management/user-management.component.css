@@ -114,3 +114,91 @@
     -1px 1px 0 rgba(27, 77, 176, 1);
     
 }
+
+.input {
+    color: rgba(27, 77, 176, 1);
+    text-align: center;
+    padding: 10px;
+    width: 60%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+    transition: 0.2s;
+  }
+  
+  .input:focus,.input:active {
+    border-bottom: 2px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+    box-shadow: none;
+    outline: 0;
+  }
+
+.input:disabled {
+    background-color: rgba(27, 77, 176, 0.199);
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    cursor: not-allowed;
+}
+.modify-input {
+    background-color: white;
+    border: 1px solid rgba(27, 77, 176, 1);
+    color:  rgba(27, 77, 176, 1);
+    font-size: 1.1rem;
+    letter-spacing: 0.13rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: 0.2s;
+}
+
+.modify-input:hover {
+    background-color: rgba(27, 77, 176, 1);
+    border:0;
+    color:  white;
+    font-size: 1.1rem;
+    letter-spacing: 0.13rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.modify-input:focus,.modify-input:active {
+    background-color: rgba(27, 77, 176, 1);
+    border:0;
+    color:  white;
+    font-size: 1.1rem;
+    letter-spacing: 0.13rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.modify-input:disabled {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: not-allowed;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.13rem;
+}
+
+.h5-submit {
+    color: rgba(27, 77, 176, 1);
+    font-size: 1.1rem;
+    letter-spacing: 0.13rem;
+}
+
+.h5-error {
+    color: #dc3545;;
+    font-size: 1.1rem;
+    letter-spacing: 0.13rem;
+}

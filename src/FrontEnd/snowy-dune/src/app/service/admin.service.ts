@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserSnowy } from '../layouts/user-management/user-management.component';
 import { EnterpriseUser } from '../models/enterprise-user';
 import { NewUser } from '../models/new-user';
 
@@ -23,6 +24,10 @@ export class AdminService {
 
   public putUserDetails(newUser: NewUser, id:number): Observable<any>{
     return this.httpClient.put<any>(this.baseUrlUser + 'update/' + id, newUser);
+  }
+
+  public putUserManagement(newUser: UserSnowy, id:number): Observable<any>{
+    return this.httpClient.put<any>(this.baseUrlUser + 'updateUserSnowy/' + id, newUser);
   }
 
   public putEnterpriseStatus(id:number, status:number): Observable<any>{

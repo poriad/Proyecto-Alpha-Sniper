@@ -35,6 +35,8 @@ public class Comment {
 	
 	private String comment;
 	
+	private Integer active;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "hotel_id", nullable = true)

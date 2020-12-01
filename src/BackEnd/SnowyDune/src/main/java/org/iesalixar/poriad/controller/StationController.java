@@ -48,6 +48,14 @@ public class StationController {
 		return new ResponseEntity(listStation,HttpStatus.OK);
 	}
 	
+	@GetMapping("/stationId")
+	public ResponseEntity<Station> findStationById(@PathVariable Long id) {
+	
+		Station listStation = stationService.findById(id);
+		
+		return new ResponseEntity(listStation,HttpStatus.OK);
+	}
+	
 	@GetMapping("/listStatus/{status}")
 	public ResponseEntity<List<Station>> listStationStatus(@PathVariable Integer status) {
 		

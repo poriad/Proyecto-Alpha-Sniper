@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import {MatBadgeModule} from '@angular/material/badge';
 
 /**
  * Material Modules
@@ -62,6 +63,7 @@ import { ClassesComponent } from './layouts/classes/classes.component';
 import { SkiMaterialComponent } from './layouts/ski-material/ski-material.component';
 import { CarRentalComponent } from './layouts/car-rental/car-rental.component';
 import { ImgurApiService } from './service/imgur-api.service';
+import { ModalUserCommentsComponent } from './components/modal-user-comments/modal-user-comments.component';
 
 
 @NgModule({
@@ -99,13 +101,15 @@ import { ImgurApiService } from './service/imgur-api.service';
     ConfirmDialogStationComponent,
     ClassesComponent,
     SkiMaterialComponent,
-    CarRentalComponent
+    CarRentalComponent,
+    ModalUserCommentsComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
+   
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
@@ -114,6 +118,7 @@ import { ImgurApiService } from './service/imgur-api.service';
     MatSlideToggleModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatBadgeModule,
     NgbModule,
     CommonModule,
     Ng2SearchPipeModule,

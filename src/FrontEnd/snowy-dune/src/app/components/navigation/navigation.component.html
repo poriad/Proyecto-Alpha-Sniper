@@ -20,11 +20,11 @@
                 <a class="" routerLink="/HomeUser"><img class="img-fluid img-cart" src="../../../assets/Navbar/home.png" alt=""></a>
             </div>
             <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">
-                <div class="circulo"><span>0</span></div>
+                <!--<div class="circulo"><span>0</span></div>-->
             <a class="" routerLink="/ManagementUser"><img class="img-fluid img-user" src="../../../assets/Navbar/user.png" alt=""></a>
             </div>
             <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">
-                <a class="" routerLink="/Cart"><img class="img-fluid img-user" src="../../../assets/Navbar/shopping-cart-black-shape.png" alt=""></a>
+                <a class="" matBadge="8" matBadgeColor="primary" routerLink="/Cart"><img class="img-fluid img-user" src="../../../assets/Navbar/shopping-cart-black-shape.png" alt=""></a>
                 </div>
             <div class="d-inline " *ngIf="isLogged" (click)="onLogOut()">
                 <a class="cursor" ><img class="img-fluid img-cart" src="../../../assets/Navbar/logout.png" alt=""></a>

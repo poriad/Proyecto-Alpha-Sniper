@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,9 @@ public class UserController {
 
 	@Autowired
 	RoleService roleService;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/list")
@@ -67,6 +71,31 @@ public class UserController {
 		userSnowy.setLastName(userDto.getLastName());
 		userSnowy.setUsername(userDto.getUsername());
 		userSnowy.setEmail(userDto.getEmail());
+		userSnowy.setAddress(userDto.getAddress());
+		userSnowy.setNewsletter(userDto.isNewsletter());
+		userSnowy.setPhone(userDto.getPhone());
+
+		userService.save(userSnowy);
+
+		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
+
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/updateUserSnowy/{id}")
+	public ResponseEntity<?> updateUserSnowy(@PathVariable Long id, @RequestBody UserSnowy userDto) {
+
+		if (!userService.existById(id)) {
+			return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
+		}
+
+		UserSnowy userSnowy = userService.findById(id);
+		
+		userSnowy.setFirstName(userDto.getFirstName());
+		userSnowy.setLastName(userDto.getLastName());
+		userSnowy.setUsername(userDto.getUsername());
+		userSnowy.setEmail(userDto.getEmail());
+		userSnowy.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userSnowy.setAddress(userDto.getAddress());
 		userSnowy.setNewsletter(userDto.isNewsletter());
 		userSnowy.setPhone(userDto.getPhone());

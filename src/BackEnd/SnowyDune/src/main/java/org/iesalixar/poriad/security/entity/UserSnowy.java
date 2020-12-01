@@ -53,7 +53,6 @@ public class UserSnowy {
 	@Column(unique = true)
 	private String username;
 
-	@JsonIgnore
 	@NotNull
 	private String password;
 

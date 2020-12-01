@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
+
     if(this.tokenService.getToken()){
       this.isLogged = true;
     }
@@ -124,4 +125,4 @@ export class RegisterComponent implements OnInit {
   }
 
 }
- 
+
