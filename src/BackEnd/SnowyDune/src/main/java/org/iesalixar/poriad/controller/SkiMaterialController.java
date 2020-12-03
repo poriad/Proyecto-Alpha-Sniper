@@ -5,6 +5,7 @@ import java.util.List;
 import org.iesalixar.poriad.entity.Classes;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.entity.SkiMaterial;
+import org.iesalixar.poriad.entity.Station;
 import org.iesalixar.poriad.service.CommentService;
 import org.iesalixar.poriad.service.SkiMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,15 @@ public class SkiMaterialController {
 		List<SkiMaterial> listSkiMaterial = skiMaterialService.listSkiMaterial();
 		
 		return new ResponseEntity(listSkiMaterial,HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/skiMaterialId/{id}")
+	public ResponseEntity<SkiMaterial> findSkiMaterialById(@PathVariable Long id) {
+	
+		SkiMaterial skiMaterial = skiMaterialService.findById(id);
+		
+		return new ResponseEntity(skiMaterial,HttpStatus.OK);
 	}
 	
 	@GetMapping("/listStatus/{status}")

@@ -48,10 +48,6 @@ public class Station {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
-	private Set<Trip> trip;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "station")
 	private Set<SkiMaterial> skiMaterial;
 	
 	@JsonIgnore

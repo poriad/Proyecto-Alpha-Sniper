@@ -51,6 +51,15 @@ public class CarRentalController {
 		return new ResponseEntity(listCarRental,HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/carRentalId/{id}")
+	public ResponseEntity<CarRental> findCarRentalById(@PathVariable Long id) {
+	
+		CarRental carRental = carRentalService.findById(id);
+		
+		return new ResponseEntity(carRental,HttpStatus.OK);
+	}
+	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
 	public ResponseEntity<?> createStation(@RequestBody CarRental carRental){

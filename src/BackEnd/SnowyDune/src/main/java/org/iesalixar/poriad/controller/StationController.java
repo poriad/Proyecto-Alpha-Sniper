@@ -48,7 +48,8 @@ public class StationController {
 		return new ResponseEntity(listStation,HttpStatus.OK);
 	}
 	
-	@GetMapping("/stationId")
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/stationId/{id}")
 	public ResponseEntity<Station> findStationById(@PathVariable Long id) {
 	
 		Station listStation = stationService.findById(id);

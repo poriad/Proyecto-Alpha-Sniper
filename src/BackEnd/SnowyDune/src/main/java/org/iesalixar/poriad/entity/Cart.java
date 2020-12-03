@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.iesalixar.poriad.security.entity.UserSnowy;
@@ -26,8 +29,8 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToMany(mappedBy = "cart")
-	private Set<Trip> trips;
+	@OneToMany(mappedBy = "cart")
+	private Set<Trip> Trip;
 	
 	@OneToOne(mappedBy = "cart")
 	private UserSnowy user;

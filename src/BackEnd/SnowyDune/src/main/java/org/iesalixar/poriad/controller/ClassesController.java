@@ -43,6 +43,15 @@ public class ClassesController {
 		return new ResponseEntity(listClasses,HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/classesId/{id}")
+	public ResponseEntity<Classes> findClassesById(@PathVariable Long id) {
+	
+		Classes classes = classesService.findById(id);
+		
+		return new ResponseEntity(classes,HttpStatus.OK);
+	}
+	
 	@GetMapping("/listClasses/{id}")
 	public ResponseEntity<List<Classes>> getClassesFromUser(@PathVariable Long id) {
 		

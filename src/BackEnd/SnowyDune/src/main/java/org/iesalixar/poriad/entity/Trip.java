@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.iesalixar.poriad.security.entity.UserSnowy;
@@ -38,36 +39,38 @@ public class Trip {
 	
 	private Date entryDate;
 	
-	@ManyToMany
-	@JoinTable(
-			  name = "Cart_items", 
-			  joinColumns = @JoinColumn(name = "trip_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "cart_id"))
-	private Set<Cart> cart;
+	private int totalPersons;
+	
+	private int checkout;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "hotel_id", nullable = true)
+	@JoinColumn(name = "cart_id", nullable = true)
+	private Cart cart;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "payment_id", nullable = true)
+	private Payment payment;
+	
+	@OneToOne(orphanRemoval = true)
+	@JoinColumn(name = "hotel_id",referencedColumnName = "id", nullable = true)
 	private Hotel hotel;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "skiMaterial_id", nullable = true)
+	@OneToOne(orphanRemoval = true)
+	@JoinColumn(name = "skiMaterial_id",referencedColumnName = "id", nullable = true)
 	private SkiMaterial skiMaterial;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "carRental_id", nullable = true)
+	@OneToOne(orphanRemoval = true)
+	@JoinColumn(name = "carRental_id", referencedColumnName = "id",nullable = true)
 	private CarRental carRental;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "classes_id", nullable = true)
+	@OneToOne(orphanRemoval = true)
+	@JoinColumn(name = "classes_id",referencedColumnName = "id", nullable = true)
 	private Classes classes;
 	
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "station_id", nullable = true)
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+	@JoinColumn(name = "station_id",referencedColumnName = "id", nullable = true)
 	private Station station;
 	
 	@OneToOne(cascade = CascadeType.ALL)

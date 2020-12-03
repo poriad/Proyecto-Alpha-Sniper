@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.iesalixar.poriad.entity.Hotel;
 import org.iesalixar.poriad.entity.Mensaje;
+import org.iesalixar.poriad.entity.SkiMaterial;
+import org.iesalixar.poriad.entity.Station;
 import org.iesalixar.poriad.service.CommentService;
 import org.iesalixar.poriad.service.HotelService;
 import org.iesalixar.poriad.service.TripService;
@@ -50,6 +52,15 @@ public class HotelController {
 		List<Hotel> listHotel = hotelService.listHotelsStatus(status);
 		
 		return new ResponseEntity(listHotel,HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/hotelId/{id}")
+	public ResponseEntity<Hotel> findHotelById(@PathVariable Long id) {
+	
+		Hotel hotel = hotelService.findById(id);
+		
+		return new ResponseEntity(hotel,HttpStatus.OK);
 	}
 	
 	//@PreAuthorize("hasRole('USER')")

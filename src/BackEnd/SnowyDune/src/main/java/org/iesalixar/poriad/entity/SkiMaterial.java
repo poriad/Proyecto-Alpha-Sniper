@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.iesalixar.poriad.security.entity.UserSnowy;
 
@@ -57,9 +58,5 @@ public class SkiMaterial {
 	@JsonIgnore
 	@OneToMany(mappedBy = "skiMaterial")
 	private Set<Comment> comments;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "skiMaterial")
-	private Set<Trip> trip;
 	
 }

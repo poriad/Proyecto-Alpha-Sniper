@@ -112,7 +112,8 @@ public class UserSnowy {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Payment> payment;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToOne
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 

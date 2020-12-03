@@ -21,12 +21,20 @@ public class TripService {
 		return tripRepository.findAll();
 	}
 	
+	public List<Trip> getTripsInCart(Long id){
+		return tripRepository.getTripsInCart(id);
+	}
+	
+	public List<Trip> getTripsInCartForCheckout(Long id){
+		return tripRepository.getTripsInCartForCheckout(id);
+	}
+	
 	public void saveTrip(Trip trip) {
 		tripRepository.save(trip);
 	}
 	
 	public void deleteTrip(Long id) {
-		tripRepository.deleteById(id);
+		tripRepository.deleteTrip(id);
 	}
 	
 	public boolean existById(Long id) {
@@ -35,6 +43,18 @@ public class TripService {
 	}
 	public Trip findById(Long id) {
 		return tripRepository.getOne(id);
+	}
+	
+	public void updateTrip(Long id, Long userId, Long stationId, Long hotelId, Long classesId, Long skiMaterialId, Long carRentalId, Long cartId) {
+		tripRepository.updateTrip(id, userId, stationId, hotelId, classesId, skiMaterialId, carRentalId, cartId);
+	}
+	
+	public void updateTripToCheckout(Long tripId) {
+		tripRepository.updateTripToCheckout(tripId);
+	}
+	
+	public void updateTripPaymentDone(Long paymentId, Long tripId ) {
+		tripRepository.updateTripPaymentDone(paymentId, tripId);
 	}
 	
 }
