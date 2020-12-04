@@ -30,10 +30,10 @@ public interface TripRepository extends JpaRepository<Trip, Long>{
 	@Query(value="SELECT * FROM trip where entry_date BETWEEN '2019-01-30' AND '2020-01-01' ORDER BY entry_date ASC Limit 0, 3",nativeQuery=true)
 	List<Trip> getTripsDoneLastYear();
 	
-	@Query(value="SELECT t FROM Trip t WHERE t.cart.id is not null AND t.user.id = :id")	
+	@Query(value="SELECT t FROM Trip t WHERE t.cart.id is not null AND t.user.id = :id and t.checkout = 0")	
 	List<Trip> getTripsInCart(@Param("id") Long id);
 	
-	@Query(value="SELECT t FROM Trip t WHERE t.cart.id is not null AND t.user.id = :id and t.checkout = 1")	
+	@Query(value="SELECT t FROM Trip t WHERE t.cart.id is not null AND t.user.id = :id and t.checkout = 1 and t.payment.id is null")	
 	List<Trip> getTripsInCartForCheckout(@Param("id") Long id);
 	
 	@Modifying
