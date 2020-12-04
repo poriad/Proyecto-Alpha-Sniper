@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.iesalixar.poriad.entity.Cart;
 import org.iesalixar.poriad.entity.Mensaje;
 import org.iesalixar.poriad.security.dto.JwtDto;
 import org.iesalixar.poriad.security.dto.LoginUser;
@@ -79,6 +80,10 @@ public class AuthController {
 		
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleService.getByRoleName(RoleName.ROLE_USER).get());
+		
+		Cart cart = new Cart();
+		
+		userSnowy.setCart(cart);
 		
 		if (newUser.getRoles().contains("admin")) {
 			roles.add(roleService.getByRoleName(RoleName.ROLE_ADMIN).get());

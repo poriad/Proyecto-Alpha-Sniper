@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface TripRepository extends JpaRepository<Trip, Long>{
 	
 	//@Query(value="SELECT t FROM Trip t WHERE t.entryDate > current_date ORDER BY t.entryDate ASC Limit 0, 25",nativeQuery=true)
-	@Query(value="SELECT * FROM trip where entry_date > SYSDATE() ORDER BY entry_date ASC Limit 0, 5",nativeQuery=true)
-	List<Trip> getTripsSysdate();
+	@Query(value="SELECT * FROM trip where entry_date > SYSDATE() and user_id = :userId ORDER BY entry_date ASC Limit 0, 5",nativeQuery=true)
+	List<Trip> getTripsSysdate(@Param("userId") Integer userId);
 	
 	//@Query(value="SELECT t FROM Trip t WHERE t.entryDate < current_date and t.entryDate >")
 	@Query(value="SELECT * FROM trip where user_id = :userId and (entry_date BETWEEN '2020-01-01' AND SYSDATE()) ORDER BY entry_date ASC Limit 0, 3",nativeQuery=true)
@@ -27,10 +27,10 @@ public interface TripRepository extends JpaRepository<Trip, Long>{
 	List<Trip> getTripsDoneLastMonth(@Param("userId") Integer userId);
 	
 	//@Query(value="SELECT t FROM Trip t WHERE t.entryDate < 2019-12-31")
-	@Query(value="SELECT * FROM trip where entry_date BETWEEN '2019-01-30' AND '2020-01-01' ORDER BY entry_date ASC Limit 0, 3",nativeQuery=true)
-	List<Trip> getTripsDoneLastYear();
+	@Query(value="SELECT * FROM trip where entry_date BETWEEN '2019-01-30' AND '2020-01-01' AND user_id = :userId ORDER BY entry_date ASC Limit 0, 3",nativeQuery=true)
+	List<Trip> getTripsDoneLastYear(@Param("userId") Integer userId);
 	
-	@Query(value="SELECT t FROM Trip t WHERE t.cart.id is not null AND t.user.id = :id and t.checkout = 0")	
+	@Query(value="SELECT t FROM Trip t WHERE t.cart.id is not null AND t.user.id = :id and (t.checkout = 0 or t.checkout = 1) and t.payment.id is null")	
 	List<Trip> getTripsInCart(@Param("id") Long id);
 	
 	@Query(value="SELECT t FROM Trip t WHERE t.cart.id is not null AND t.user.id = :id and t.checkout = 1 and t.payment.id is null")	

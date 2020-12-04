@@ -113,7 +113,7 @@ public class UserSnowy {
 	private Set<Payment> payment;
 
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 

@@ -48,7 +48,7 @@ public class UserController {
 		return new ResponseEntity(listUsers, HttpStatus.OK);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/getByUsername")
 	public ResponseEntity<UserSnowy> getByUsernameEnterprise(@RequestParam String username) {
 
@@ -133,9 +133,9 @@ public class UserController {
 	}
 	
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER')")
 	@PutMapping("/updateStatusEnterprise/{id}")
-	public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestParam int status) {
+	public ResponseEntity<?> updateUser(@PathVariable Long id) {
 
 		if (!userService.existById(id)) {
 			return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
@@ -143,23 +143,17 @@ public class UserController {
 
 		UserSnowy userSnowy = userService.findById(id);
 
-		userSnowy.setIsEnterprise(status);
 
 		Set<Role> roles = userSnowy.getRoles();
 
-		if (status == 1) {
-			if (!roles.contains("enterprise")) {
+		if (!roles.contains("enterprise")) {
 				roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 			}
-		}
-//		} else if(status == 0){
-//			roles.remove(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
-//			userService.deleteUserIsEnterprise(id);
-//		}
+
 
 		userSnowy.setRoles(roles);
 
-		userService.updateUserEnterprise(id, status);
+		userService.save(userSnowy);
 
 		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
 	}
