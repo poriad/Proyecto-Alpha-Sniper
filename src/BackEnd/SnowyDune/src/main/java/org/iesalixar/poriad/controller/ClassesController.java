@@ -91,7 +91,7 @@ public class ClassesController {
 		
 		classesService.saveClasses(classes);
 		
-		logger.info("Se ha consumido el servicio classes/create, con body de respuesta" + classes);
+		logger.info("Se ha consumido el servicio classes/create, con el nombre: " + classes.getName());
 		
 		return new ResponseEntity(classes, HttpStatus.OK);
 	}
@@ -160,7 +160,7 @@ public class ClassesController {
 		
 		classesService.updateStationIdClasses(id, station);
 		
-		logger.info("Se ha consumido el servicio classes/updateStatus/ " + id + ", con estación" + station);
+		logger.info("Se ha consumido el servicio classes/updateStatus/ " + id + ", con estación " + station);
 		
 		return new ResponseEntity(new Mensaje("Servicio actualizado correctamente"),HttpStatus.OK);
 		

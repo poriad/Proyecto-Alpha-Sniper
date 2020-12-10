@@ -83,7 +83,7 @@ public class HotelController {
 		
 		hotelService.saveHotel(hotel);
 		
-		logger.info("Servicio consumido /hotel/create, con body de respuesta: " + hotel);
+		logger.info("Servicio consumido /hotel/create, con el nombre : " + hotel.getName());
 		
 		return new ResponseEntity(hotel, HttpStatus.OK);
 	}

@@ -60,7 +60,7 @@ public class UserController {
 
 		UserSnowy userSnowy = userService.getByUsernameEnterprise(username);
 
-		logger.info("Se ha consumido el servicio /getByUsername devolviendo como resultado: " + userSnowy);
+		logger.info("Se ha consumido el servicio /getByUsername ");
 
 		return new ResponseEntity(userSnowy, HttpStatus.OK);
 	}
@@ -82,7 +82,7 @@ public class UserController {
 
 		UserSnowy userSnowy = userService.findById(id);
 
-		logger.info("El usuario a modificar tiene los datos iniciales: " + userSnowy);
+		logger.info("El usuario a modificar tiene los datos iniciales ");
 
 		userSnowy.setFirstName(userDto.getFirstName());
 		userSnowy.setLastName(userDto.getLastName());
@@ -94,7 +94,7 @@ public class UserController {
 
 		userService.save(userSnowy);
 
-		logger.info("El usuario se ha modificado: " + userSnowy);
+		logger.info("El usuario se ha modificado: " + userSnowy.getUsername());
 
 		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
 
@@ -116,7 +116,7 @@ public class UserController {
 
 		UserSnowy userSnowy = userService.findById(id);
 
-		logger.info("El usuario a modificar tiene los datos iniciales: " + userSnowy);
+		logger.info("El usuario a modificar tiene los datos iniciales ");
 
 		userSnowy.setFirstName(userDto.getFirstName());
 		userSnowy.setLastName(userDto.getLastName());
@@ -162,7 +162,7 @@ public class UserController {
 
 		userService.save(userSnowy);
 
-		logger.info("Se ha consumido el servicio /updateToEnterprise/" + id + ", el usuario guardado es: " + userSnowy);
+		logger.info("Se ha consumido el servicio /updateToEnterprise/" + id + ", el usuario guardado es: " + userSnowy.getUsername());
 
 		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
 

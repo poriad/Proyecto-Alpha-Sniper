@@ -79,7 +79,7 @@ public class CarRentalController {
 
 		carRentalService.saveCarRental(carRental);
 
-		logger.info("Se ha consumido el servicio carRental/create con el body de respuesta: " + carRental);
+		logger.info("Se ha consumido el servicio carRental/create para el negocio: " + carRental.getName());
 
 		return new ResponseEntity(carRental, HttpStatus.OK);
 	}
