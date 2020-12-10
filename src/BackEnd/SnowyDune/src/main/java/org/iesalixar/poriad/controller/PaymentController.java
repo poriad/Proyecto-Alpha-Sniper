@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/payment")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class PaymentController {
 	
 	@Autowired

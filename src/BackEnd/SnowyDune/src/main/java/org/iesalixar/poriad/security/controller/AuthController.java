@@ -16,6 +16,8 @@ import org.iesalixar.poriad.security.enums.RoleName;
 import org.iesalixar.poriad.security.jwt.JwtProvider;
 import org.iesalixar.poriad.security.service.RoleService;
 import org.iesalixar.poriad.security.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AuthController {
 
 	@Autowired
@@ -51,20 +53,32 @@ public class AuthController {
 
 	@Autowired
 	JwtProvider jwtProvider;
-
+	
+	final static Logger logger = LoggerFactory.getLogger(AuthController.class);
+	
+	// Servicio para crear un nuevo usuario en el sistema
 	@PostMapping("/nuevo")
 	public ResponseEntity<?> nuevo(@Valid @RequestBody NewUser newUser, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
+			
+			logger.error("Fallo en la creación, servicio auth/nuevo");
+			
 			return new ResponseEntity(new Mensaje("Campos mal puestos o Email invalido"), HttpStatus.BAD_REQUEST);
 
 		}
 
 		if (userService.existsByUsername(newUser.getUsername())) {
+			
+			logger.error("Fallo en la creación, servicio auth/nuevo");
+			
 			return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
 		}
 
 		if (userService.existsByEmail(newUser.getEmail())) {
+			
+			logger.error("Fallo en la creación, servicio auth/nuevo");
+			
 			return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
 		}
 
@@ -101,12 +115,18 @@ public class AuthController {
 		userSnowy.setRoles(roles);
 		userService.save(userSnowy);
 		
+		logger.info("Consumido el servicio auth/nuevo, usuario creado: " + userSnowy);
+		
 		return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
 	}
 	
+	// Servicio que genera y provee el Json Web Token
 	@PostMapping("/login")
 	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUser loginUser, BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
+			
+			logger.error("Error en los datos, servicio auth/login");
+			
 			return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
 
 		}
@@ -119,6 +139,8 @@ public class AuthController {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		
 		JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+		
+		logger.info("Servicio consumido con éxito. auth/login");
 		return new ResponseEntity(jwtDto, HttpStatus.OK);
 	}
 

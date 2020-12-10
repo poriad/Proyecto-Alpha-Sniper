@@ -44,7 +44,7 @@ public class Hotel {
 	
 	private String country;
 	
-	private String ulrImages;
+	private String urlImages;
 	
 	private Integer activated;
 	

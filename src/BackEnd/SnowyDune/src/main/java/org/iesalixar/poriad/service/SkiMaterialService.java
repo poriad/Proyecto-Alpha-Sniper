@@ -20,7 +20,7 @@ public class SkiMaterialService {
 		return skiMaterialRepository.findAll();
 	}
 	
-	public List<SkiMaterial> listHotelsStatus(Integer status){
+	public List<SkiMaterial> listSkiMaterialsStatus(Integer status){
 		return skiMaterialRepository.listSkiMaterialStatus(status);
 	}
 	
