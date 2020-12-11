@@ -25,6 +25,14 @@ public class TripService {
 		return tripRepository.getTripsInCart(id);
 	}
 	
+	public List<Trip> getTripsDoneLastYear(Integer id){
+		return tripRepository.getTripsDoneLastYear(id);
+	}
+	
+	public List<Trip> getTripsDoneThisYear(Integer id){
+		return tripRepository.getTripsDoneThisYear(id);
+	}
+	
 	public List<Trip> getTripsInCartForCheckout(Long id){
 		return tripRepository.getTripsInCartForCheckout(id);
 	}

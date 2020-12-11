@@ -58,6 +58,27 @@ public class TripController {
 		return new ResponseEntity(listTrips,HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/listLastYearTrip")
+	public ResponseEntity<List<Trip>> getTripsDoneLastYear(@RequestParam Integer id) {
+		
+		List<Trip> listTrips = tripService.getTripsDoneLastYear(id);
+		
+		logger.info("Servicio consumido /trip/listCart");
+		
+		return new ResponseEntity(listTrips,HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/listThisYearTrips")
+	public ResponseEntity<List<Trip>> getTripsDoneThisYear(@RequestParam Integer id) {
+		
+		List<Trip> listTrips = tripService.getTripsDoneThisYear(id);
+		
+		logger.info("Servicio consumido /trip/listThisYearTrips");
+		
+		return new ResponseEntity(listTrips,HttpStatus.OK);
+	}
 	// Servicio que devuelve el listado de viajes que un usuario tiene para realizar el checkout
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/listCheckout")
