@@ -60,7 +60,7 @@ public class PaymentController {
 	}
 	
 	// Servicio que crea un pago
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/create")
 	public ResponseEntity<?> createPayment(@RequestBody Payment payment){
 		

@@ -17,7 +17,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-/*
+
 @Component
 public class CreateRoles implements CommandLineRunner{
 
@@ -91,4 +91,4 @@ public class CreateRoles implements CommandLineRunner{
 		}
 	
 }
-*/
+
