@@ -1,0 +1,101 @@
+<app-navigation></app-navigation>
+
+<div @fade class="text-center" *ngIf="isLogged; else loggedOut">
+    <div class="container-fluid fondo">
+        <div class="row pb-5">
+            <div class="col-12 pt-5 text-center mt-4 ">
+                <h3 class="h3-blue pb-2">YA TE ENCUENTRAS LOGUEADO</h3>
+                <hr class="hr">
+            </div>
+
+            <div class="col-4 offset-3 fondo-blanco mt-5 mb-5">
+                
+                <div class="row">
+                    <div class="col">
+                        <p class="marca-uno w-100 text-center pb-1"></p>
+                        <h5 class="h5 pt-4 pb-4">¿Quieres acceder al Login o al registro?</h5>
+
+                        <p class="p pb-2">Si quieres acceder al menú de Login primero prueba a cerrar la sesión que mantienes abierta</p>
+                        <p class="p pb-2">Puedes hacerlo en el icono para ello situado en la parte superior derecha</p>
+                        <p class="p pb-3">O puedes salir pulsando este botón</p>
+
+                        <button (click)="onLogOut()" class="btn mb-4 boton-alt">SALIR DE LA APLICACIÓN</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 fondo-blanco mt-5 mb-5">
+    
+                    <div class="container">
+                      
+                        <img src="../../../assets/Login/alreadyLogin.png" alt="Snow" class="img-fluid">
+                 
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<ng-template #loggedOut>
+<div @fade class="container-fluid fondo">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+        </div>
+
+        <div class="col-12 col-md-6 h  mt-5 mt-md-0 mb-5 mb-md-0">
+            <div class="row ">
+                <div class="col-12 pt-5 pb-5 text-center">
+                    <h1 class="h1 text-center">SnowyDune</h1>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pb-4">
+                    <h1 class="h3 text-center pb-4">Login</h1>
+                    <hr class="hr">
+                </div>
+            </div>
+            
+            
+            <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+            <div class="row text-center">
+                
+                <div class="col-12 pb-2">
+                    <div *ngIf="f.submitted && isLoginFail" class="mt-3 error">
+                        Se ha producido un error, el usuario o la contraseña no existen
+                    </div>
+                
+                    <label class="pb-2">Usuario</label><br>
+                    <input type="text" value="Usuario" id="#username" name="username" class="form-control mx-auto"
+                    [(ngModel)]="userName" required>
+                </div>
+                <div class="col-12 pb-4 form-group">
+                    <label class="pb-2">Contraseña</label><br>
+                    <input type="password" value="Email" id="#password" name="password" class="form-control mx-auto "
+                    [(ngModel)]="password" required>
+                </div>
+                <div class="col-12 pb-4 form-group">
+                    <button class="btn" [disabled]="!f.valid">Iniciar Sesión</button>
+                </div>
+                <div class="col-12 pb-4">
+                    <img src="../../../assets/Login/Facebook.JPG" alt="" class="facebook">
+                </div>
+                <div class="col-12 pb-4">
+                    <img src="../../../assets/Login/btn_google_signin_dark_pressed_web.png" alt="" class="google">
+                </div>
+            
+                <div class="col-12 pb-5">
+                    <a routerLink="/Register" class="registro">¿No estás registrado? Entra aquí</a>
+                </div>
+            </div>
+        </form>
+            
+
+        </div>
+    </div>
+
+</div>
+
+</ng-template>

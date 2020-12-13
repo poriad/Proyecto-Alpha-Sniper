@@ -1,0 +1,156 @@
+.fondo{
+    height: auto;
+    background: linear-gradient(to right bottom,rgba(255,255,255, 0.6),rgba(255,255,255, 0.7) ),url('../../../assets/Fondos/Trip.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.h {
+    background-color: white;
+}
+
+.h1{
+    font-size: 2.2rem;
+    letter-spacing: 0.4rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.h3 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color: #3C7DEC;
+}
+
+.h4 {
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+    color: #3C7DEC;
+}
+
+.concepto {
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
+.text-center button {
+    background-color: rgba(27, 77, 176, 1);
+    color: white;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+    border: 0;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p{
+    color:rgba(27, 77, 176, 1);
+    font-size: 0.9rem;
+    letter-spacing: 0.15rem;
+}
+
+.h5 {
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+}
+
+
+.hr {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:40%;
+}
+
+.hr2 {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:60%;
+}
+
+.hr3 {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:80%;
+}
+
+
+.resumen {
+    background-color: white;
+    font-size: 1.1rem;
+    letter-spacing: 0.17rem;
+    color: rgba(27, 77, 176, 1);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+.container img {
+    opacity: 0.6;
+}
+
+.estacion {
+    background-color:  rgba(27, 77, 176, 1);
+    color: white;
+    font-size: 0.95rem;
+    letter-spacing: 0.17rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3rem;
+    letter-spacing: 0.17rem;
+    color: white;
+    text-shadow: 1px 0 0 rgba(27, 77, 176, 1),
+    -1px 0 0 rgba(27, 77, 176, 1),
+    0 1px 0 rgba(27, 77, 176, 1), 
+    0 -1px 0 rgba(27, 77, 176, 1),
+    1px 1px rgba(27, 77, 176, 1),
+    -1px -1px 0 rgba(27, 77, 176, 1),
+    1px -1px 0 rgba(27, 77, 176, 1),
+    -1px 1px 0 rgba(27, 77, 176, 1);
+    
+}
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+    
+    
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+
+    .resumen {
+        background-color: white;
+        font-size: 1.1rem;
+        letter-spacing: 0.17rem;
+        color: rgba(27, 77, 176, 1);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-weight: 600;
+    }
+   
+    .h3 {
+        font-size: 1.4rem;
+        letter-spacing: 0.2rem;
+        color: #3C7DEC;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+   
+
+}
+
+@media screen and (max-width: 575px) {
+   
+   
+}

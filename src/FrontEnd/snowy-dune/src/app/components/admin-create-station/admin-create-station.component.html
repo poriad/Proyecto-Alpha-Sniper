@@ -1,0 +1,166 @@
+<div class="row">
+  <p class="marca-uno w-100 text-center pb-1"></p>
+  <div class="col-12">
+    <h3 class="h3 pb-3 pt-4 text-center">CREACIÓN DE ESTACIÓN</h3>
+    <hr class="hr2" />
+  </div>
+
+  <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 mx-auto">
+    <form [formGroup]="stationForm" (ngSubmit)="onSubmit()" class="">
+      <div class="row">
+          <div class="col-12">
+            <h4 class="h4 pb-3 text-center">Registra una nueva estación rellenando el formulario</h4>
+          </div>
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Nombre</label>
+          <input
+            class="form-control mx-auto"
+            placeholder="Ej. Juan Carlos"
+            formControlName="name"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+          />
+
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">
+              El nombre es Obligatorio
+            </div>
+          </div>
+        </div>
+
+
+        <div
+            class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+          >
+            <label class="">País</label>
+            <select formControlName="country" id="country" class="form-control mx-auto"
+            [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+              <option *ngFor="let country of countries" [value]="country">
+                {{country}}
+              </option>
+            </select>
+  
+            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+              <div *ngIf="f.country.errors.required">El país es Obligatorio</div>
+            </div>
+          </div>
+
+          <div
+            class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+          >
+            <label class="">Localización</label>
+
+                <select formControlName="location" id="location" class="form-control mx-auto"
+                [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
+                  <option *ngFor="let station of stations" [value]="station.id">
+                    {{station.name}}
+                  </option>
+                </select>
+  
+            <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+              <div *ngIf="f.location.errors.required">
+                La localización es Obligatoria
+              </div>
+            </div>
+          </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Fecha Apertura</label>
+          <input
+          type="date"
+            class="form-control mx-auto"
+            placeholder="Ej. 07-07-2020"
+            formControlName="openingDate"
+            [ngClass]="{ 'is-invalid': submitted && f.openingDate.errors }"
+          />
+
+          <div *ngIf="submitted && f.openingDate.errors" class="invalid-feedback">
+            <div *ngIf="f.openingDate.errors.required">
+              La fecha de apertura es Obligatoria
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Fecha de cierre</label>
+          <input
+            type="date"
+            class="form-control mx-auto"
+            placeholder="Ej. 07-07-2020"
+            formControlName="closingDate"
+            [ngClass]="{ 'is-invalid': submitted && f.closingDate.errors }"
+          />
+
+          <div *ngIf="submitted && f.closingDate.errors" class="invalid-feedback">
+            <div *ngIf="f.closingDate.errors.required">
+              La fecha de cierre es Obligatoria
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Precio Forfait</label>
+          <input
+            type="number"
+            class="form-control mx-auto"
+            placeholder=""
+            formControlName="price"
+            [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
+          />
+
+          <div
+            *ngIf="submitted && f.price.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.price.errors.required">
+              El precio del forfait es Obligatorio
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-12 pt-3 text-center form-group"
+        >
+                <label for="my-textarea">Descripción</label>
+                <textarea id="my-textarea" class="form-control mx-auto" name="" rows="3" 
+                [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+                formControlName="description"></textarea>
+         
+                <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.required">
+                      La descripción es Obligatoria
+                    </div>
+                    <div *ngIf="f.description.errors.minlength">
+                        La descripción debe tener al menos 50 caracteres
+                      </div>
+                  </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-12  text-center pt-3">
+          <input
+            type="submit"
+            value="CREAR"
+            class="submit"
+          />
+        </div>
+      </div>
+      <div class="col-12 pt-3 text-center">
+        <div *ngIf="submitted && isRegisterFail" class="">
+          <h5 class="h5-submit">{{ Message }}</h5>
+        </div>
+
+        <div *ngIf="submitted && !isRegisterFail" class="">
+          <h5 class="h5-error">{{ Message }}</h5>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,118 @@
+.border-bottom {
+    border-bottom: 1px solid rgba(27, 77, 176, 1)!important
+}
+
+nav{
+    z-index: 999 !important;
+}
+.img-user{
+    height: 2rem;
+}
+
+.img-cart {
+    height: 2rem;
+}
+
+.title {
+    color: rgba(27, 77, 176, 1);
+    font-weight: 750;
+    font-size: 25px;
+    letter-spacing: 0.4rem;
+    transition: 0.2s;
+}
+
+.title:hover {
+    color: rgba(27, 77, 176, 0.753);
+}
+
+.h3 {
+    color: rgba(27, 77, 176, 1);
+    font-weight: 750;
+    font-size: 20px;
+    letter-spacing: 0.3rem;
+}
+.img-snowy {
+    height: 5.8rem;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-17%);
+    z-index: 1000;
+}
+
+.menu {
+    color: #3C7DEC !important;
+    font-weight: 700;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #3C7DEC !important;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.circulo {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(27, 77, 176, 1);
+    background-color: white;
+    color: white;
+    font-size: 8pt;
+    text-align: center;
+    line-height: 20px;
+    right: 7.1%;
+    top: -15%;
+    z-index: 50;
+}
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+    
+    
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+   
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    .img-user{
+        height: 1.15rem;
+    }
+    
+    .img-cart {
+        height: 1.15rem;
+    }
+    .img-snowy {
+        height: 4.5rem;
+    
+        transform: translate(-50%,-8%);
+    }
+
+}
+
+@media screen and (max-width: 575px) {
+   
+   .title {
+    font-size: 20px;
+    letter-spacing: 0.3rem;
+   }
+
+   .img-user{
+    height: 1.1rem;
+}
+
+.img-cart {
+    height: 1.1rem;
+}
+.img-snowy {
+    height: 3.5rem;
+
+    transform: translate(-50%,0%);
+}
+
+}

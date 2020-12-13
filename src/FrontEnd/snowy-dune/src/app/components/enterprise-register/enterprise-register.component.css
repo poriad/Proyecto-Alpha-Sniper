@@ -1,0 +1,280 @@
+.h3 {
+    font-size: 1.9rem;
+    letter-spacing: 0.2rem;
+    color: rgba(27, 77, 176, 1);
+}
+
+.h4 {
+    font-size: 1.4rem;
+    letter-spacing: 0.27rem;
+    color: #3C7DEC
+}
+
+.h4-b {
+  font-size: 1.5rem;
+  letter-spacing: 0.3rem;
+  color:rgba(27, 77, 176, 1)
+}
+
+.h5-submit {
+  color: rgba(27, 77, 176, 1);
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+}
+
+.hr2 {
+    border-top: 1px solid rgba(27, 77, 176, 1);
+    width:85%;
+}
+
+.marca-uno {
+  background: linear-gradient(to right,rgba(27, 77, 176, 1), #3C7DEC);
+  color: white;
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.20rem;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  font-weight: 600;
+  height: 30%;
+  margin-left: 15px !important;
+}
+
+.marca-dos {
+  background: linear-gradient(to left,rgba(27, 77, 176, 1), #3C7DEC);
+  color: white;
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.20rem;
+  border-radius: 0;
+  position: absolute;
+  bottom: 0;
+  font-weight: 600;
+  height: 30%;
+  margin-left: 15px !important;
+}
+
+.enterprise-status {
+  border: 1px solid#3C7DEC;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  color: #3C7DEC;
+  font-weight: bold;
+
+}
+
+.enterprise-status span {
+  padding: 5px;
+}
+
+button {
+  border: 1px solid  rgba(27, 77, 176, 1);
+  border-radius: 0;
+  color:  rgba(27, 77, 176, 1);
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+  font-weight: 600;
+  padding-left: 55px;
+  padding-right: 55px;
+  color:  white;
+  background-color: rgba(27, 77, 176, 1);
+}
+
+button:hover {
+  color:  rgba(27, 77, 176, 1);
+  background-color: white;
+}
+
+
+/* Formulario */ 
+
+label {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  color: rgba(27, 77, 176, 1);
+}
+
+.checkbox-label {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  color: rgba(27, 77, 176, 1);
+}
+
+input {
+  color: rgba(27, 77, 176, 1);
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(27, 77, 176, 1);
+  background-color: rgba(27, 77, 176, 0.1);
+}
+
+input:focus,input:active {
+  border-bottom: 2px solid rgba(27, 77, 176, 1);
+  background-color: rgba(27, 77, 176, 0.1);
+  box-shadow: none;
+  outline: 0;
+}
+
+select {
+  color: rgba(27, 77, 176, 1);
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(27, 77, 176, 1);
+  background-color: rgba(27, 77, 176, 0.1);
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+input.submit[disabled] {
+  background-color:  rgba(27, 77, 176, 0.5);
+  border: 0;
+}
+
+input.submit[disabled]:hover {
+  background-color:  rgba(27, 77, 176, 0.5);
+  border: 0;
+  color: white;
+}
+
+.submit{
+  color: white;
+  background-color: rgba(27, 77, 176, 1);
+  border-radius: 0;
+  border: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid rgba(27, 77, 176, 1);
+  width: 20%;
+  transition: 0.3s;
+}
+
+.submit:hover{
+  color: rgba(27, 77, 176, 1);
+  background-color: white;
+  border: 1px solid rgba(27, 77, 176, 1);
+}
+
+@media screen and (min-width: 1198px) {
+  .submit{
+    font-size: 1.3rem;
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+  .enterprise-status {
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+  
+  }
+}
+
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+    
+  .h3{
+    font-size: 1.3rem;
+    letter-spacing: 0.25rem;
+}
+.enterprise-status {
+  top: 6%;
+  right: 30%;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+
+}
+
+.h4 {
+    font-size: 1rem;
+    letter-spacing: 0.27rem;
+    color: #3C7DEC
+}
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 575px) and (max-width: 767px) {
+
+  .h3{
+    font-size: 1.3rem;
+    letter-spacing: 0.25rem;
+}
+
+.h4 {
+    font-size: 1rem;
+    letter-spacing: 0.27rem;
+    color: #3C7DEC
+}
+.enterprise-status {
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+
+}
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+  
+}
+
+@media screen and (max-width: 575px) {
+   
+    .h3{
+        font-size: 1.3rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .h4 {
+        font-size: 1rem;
+        letter-spacing: 0.27rem;
+        color: #3C7DEC
+    }
+
+    .submit{
+      font-size: 1.1rem;
+      width: 50%;
+    }
+
+   
+
+    .enterprise-status {
+      font-size: 0.6rem;
+      letter-spacing: 0.1rem;
+    
+    }
+
+}

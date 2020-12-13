@@ -1,0 +1,61 @@
+<app-navigation></app-navigation>
+
+<ng-template @fade #loggedOut>
+<div class="container-fluid fondo">
+    <div class="row ">
+        <div class="col-12 pt-5 text-center">
+            <h1 class="h1 pb-4 pb-sm-4">NO HAS INICIADO SESIÓN</h1>
+            <button class="btn" routerLink="/Login">Volver a Login</button>
+        </div>
+    </div>
+</div>
+</ng-template>
+
+<div @fade class="container-fluid fondo">
+    <div class="row  pb-5" *ngIf="isLogged; else loggedOut">
+            <div class="col-12 pt-5 text-center">
+                <h1 class="h1 pb-4 pb-sm-4">BIENVENIDO/A, {{username}}</h1>
+                <hr class="hr">
+            </div>
+            
+            <div class="col-12 col-sm mt-4 mt-sm-5 ml-sm-3 mr-sm-3 mb-5 mb-md-0 fondo-blanco">
+                
+                <div class="row">
+                    <p class="marca-dos w-100 text-center pb-1"></p>
+                    <div class="col-12">
+                    
+                    <h1 class="h1 pt-3 pt-sm-4 text-center pb-3">¡PERSONALIZA TU VIAJE!</h1>
+                    <hr class="mt-2 mb-4 hr2 d-none d-sm-block">
+                    <p class="h3 pb-3 pb-sm-4 text-center">CREA EL VIAJE DE TUS SUEÑOS</p>
+                </div>
+                    <p class="parrafo text-justify text-center ml-5 mr-5 mb-sm-4" >En SnowyDune puedes crear tu viaje personalizado en muy poco tiempo, pudiendo elegir el país, la estación así como el hotel, las clases de ski, el equipo necesario para practicarlo y el vehículo en caso de ser necesario.</p>
+                    <p class="parrafo text-justify text-center ml-5 mr-5 mb-sm-4">Haz click en "Crear Viaje" y empieza una nueva aventura, sigue los pasos establecidos, serán muy intuitivos, visualiza el viaje creado y realiza la compra del viaje.</p>
+                    <p class="parrafo text-justify text-center ml-5 mr-5 mb-sm-4"> Te mandaremos la confirmación del viaje y de lo demás... ¡Nos encargamos nosotros!</p>
+                    
+                    <p class="lead text-center mb-4  mx-auto">
+                      <a class="btn btn-primary btn-lg mb-3 " routerLink="/Station">CREAR VIAJE</a>
+                    </p>
+                  </div>
+            </div>
+            
+            <div class="col-12 col-sm  offset-md-1 mt-md-5 fondo-blanco mr-sm-3 ml-sm-3">
+ 
+                    <div class="row">
+                        <p class="marca-uno w-100 text-center pb-1"></p>
+                    <div class="col-12">
+                            
+                    
+                    <p class="h3 pb-3 text-center pt-5">VISITA LOS SERVICIOS CONTRATADOS Y VALORALOS</p>
+                    </div>
+                    <p class="parrafo text-justify text-center ml-5 mr-5 mb-4" >Mientras realizas el proceso de creación de un viaje, puedes acceder a la información detallada ya sea de la estación, el hotel, el equipo... Así como a los comentarios realizados por otras personas que han realiazado un viaje similar.</p>
+                    <p class="parrafo text-justify text-center ml-5 mr-5 mb-4">Cuando hayas realizado un viaje con nosotros, podrás de forma opcional realizar un comentario sobre los elementos que dediciste contratar así como una valoración.</p>
+                    <p class="parrafo text-justify text-center ml-5 mr-5 mb-4"> Comparte tu experiencia sobre los servicios. ¡Ayudas a mucha gente!</p>
+                    <hr class="mt-2 mb-4 hr2">
+                    <h1 class="h1 pt-3 text-center pb-3">REALIZA VIAJES Y COMENTA LA EXPERIENCIA</h1>
+                </div>
+          
+            </div>
+        </div>
+        
+   
+</div>

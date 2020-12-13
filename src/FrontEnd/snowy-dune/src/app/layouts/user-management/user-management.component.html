@@ -1,0 +1,292 @@
+<app-navigation></app-navigation>
+
+<div @fade class="container-fluid fondo">
+    <div class="row">
+        <div class="col pt-5 text-center">
+            <h1 class="h1 pb-4 pb-sm-4 pt-3">GESTIÓN DE LA CUENTA</h1>
+            <hr class="hr">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 offset-1  mb-4 pt-4">
+            <div class="row pt-4 fondo-blanco">
+                <div class="col-6 pb-3 text-center">
+                    <img src="../../../assets/UserManagement/visa.png" alt="" class="img-fluid visa">
+                    <p class="d-inline pl-2"> VISA Termina en 1432</p>
+                </div>
+                <div class="col-6 my-auto pb-3 text-center">
+                    <h5 class="d-inline">CADUCA: </h5>
+                    <p class="d-inline pl-2"> 07/2022</p>
+                </div>
+                <div class="col-6 pb-3 text-center">
+                    <img src="../../../assets/UserManagement/visa.png" alt="" class="img-fluid visa">
+                    <p class="d-inline pl-2"> VISA Termina en 7322</p>
+                </div>
+                <div class="col-6 my-auto pb-3 text-center">
+                    <h5 class="d-inline">CADUCA: </h5>
+                    <p class="d-inline pl-2"> 11/2025</p>
+                </div>
+                <div class="col-12">
+                    <hr class="hr2">
+                    <h3 class="h3 pl-4 pb-4">TARJETAS REGISTRADAS</h3>
+                </div>
+            </div>
+
+            <div class="row fondo-blanco mt-5"> 
+                <div class="col-12 pt-4">
+                    <h3 class="h3 pl-4">REALIZA COMENTARIOS</h3>
+                    <hr class="hr2">
+                </div>
+                <div class="col-12">
+                    <h5 class="h5 pl-4 pt-3 pb-3">COMENTA LOS SERVICIOS CONTRATADOS EN TUS VIAJES</h5>
+                </div>
+                <div class="col-12 text-justify pl-5 pr-5 pb-3">
+                    <p class="p">Una vez hayan pasado las fechas de tu viaje, podrás realizar un comentario a cada servicio contratado durante vuestra estancia.</p>
+                    <p class="p">Podrás realizarlo en un plazo máximo de 1 mes desde la fecha de finalización del viaje.</p>
+                </div>
+                <button (click) = getComments() class="btn comentarios col-12" data-toggle="modal" data-target="#sierra-nevada">VER COMENTARIOS DISPONIBLES</button>
+            </div>
+
+        </div>
+
+        <div class="col-6 fondo-blanco ml-5 mt-4 mb-4">
+            <div class="row">
+                <button href="#" class="btn comentarios col-12 " data-toggle="modal" data-target="#sierra-nevada" (click) = "enableModify()">¿DESEA MODIFICAR SUS DATOS? PULSE AQUÍ</button>
+                
+                
+                <div class="col-12">
+               
+                <form [formGroup]="userForm" *ngIf="user" class="">
+                    
+                    <div class="row pb-2">
+                        <div class="col-8">
+                            <h5 class="h5 pl-4 pt-4 pb-4">DIRECCIÓN Y DATOS DE CONTACTO</h5>
+                            
+                        </div>
+                        <div class="col-12 col-md-4  text-center pt-3 my-auto pb-3">
+                            <input
+                              type="submit"
+                              class="modify-input"
+                              value="Modificar"
+                              (click) = "onSubmit()"
+                              [disabled] = "!modifyEnabled"
+                            />
+                        </div>
+
+                    <label class="col-4 text-center">Nombre:</label>
+                        <div class="col-8 form-group">
+                            <input
+                            class="form-control mx-auto input"
+                            formControlName="firstName"
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}"
+                            />
+                            <div *ngIf="submitted && f.firstName.errors " class="invalid-feedback text-center">
+                                <div *ngIf="f.firstName.errors.required">El nombre es Obligatorio</div>
+                            </div>
+                    </div>
+                    
+                </div>
+                      <div
+                        class=" row pb-2"
+                      >
+                        <label class="col-4 text-center">Apellidos:</label>
+                        <div class="col-8 form-group">
+                        <input
+                          class="form-control mx-auto input"
+                          formControlName="lastName"
+                          [ngClass]="{ 'is-invalid': submitted && f.lastName.errors}"
+                        />
+                        <div *ngIf="submitted && f.lastName.errors " class="invalid-feedback text-center">
+                            <div *ngIf="f.lastName.errors.required">Los Apellidos son Obligatorios</div>
+                        </div>
+                    </div>
+
+                    </div>
+              
+                      <div
+                        class="row pb-2"
+                      >
+                        <label class="col-4 text-center">Dirección:</label>
+                        <div class="col-8 form-group ">
+                        <input
+                        type="text"
+                          class="form-control mx-auto input"
+                          placeholder=""
+                          formControlName="address"
+                          [ngClass]="{ 'is-invalid': submitted && f.address.errors}"
+                        />
+                        <div *ngIf="submitted && f.address.errors " class="invalid-feedback text-center">
+                            <div *ngIf="f.address.errors.required">La dirección es Obligatoria</div>
+                        </div>
+                    </div>
+                      </div>
+                      <div
+                        class=" row pb-2"
+                      >
+                        <label class="col-4 text-center">Teléfono:</label>
+                        <div class="col-8 form-group">
+                        <input
+                        type="text"
+                          class="form-control mx-auto input"
+                          placeholder=""
+                          formControlName="phone"
+                          [ngClass]="{ 'is-invalid': submitted && f.phone.errors}"
+                        />
+                        <div *ngIf="submitted && f.phone.errors  " class="invalid-feedback text-center">
+                            <div *ngIf="f.phone.errors.required">El Teléfono es obligatorio</div>
+                        </div>
+                        <div *ngIf="submitted && f.phone.errors " class="invalid-feedback text-center">
+                            <div *ngIf="f.phone.errors.minlength">El Teléfono debe tener 9 caracteres</div>
+                        </div>
+                    </div>
+                      </div>
+
+                      <div
+                        class=" row pb-2"
+                      >
+                        <label class="col-4 text-center">Email:</label>
+                        <div class="col-8 form-group">
+                        <input
+                        type="text"
+                          class="form-control mx-auto input"
+                          placeholder=""
+                          formControlName="email"
+                          [ngClass]="{ 'is-invalid': submitted && f.email.errors}"
+                        />
+                        <div *ngIf="submitted && f.email.errors  " class="invalid-feedback text-center">
+                            <div *ngIf="f.email.errors.required">El email es Obligatorio</div>
+                        </div>
+                        <div *ngIf="submitted && f.email.errors  " class="invalid-feedback text-center">
+                            <div *ngIf="f.email.errors.email">El email no es válido</div>
+                        </div>
+                    </div>
+                      </div>
+              
+                      <div
+                        class=" row pb-2"
+                      >
+                        <label class="col-4 text-center">Nombre de Usuario:</label>
+                        <div class="col-8 form-group">
+                        <input
+                        type="text"
+                          class="form-control mx-auto input"
+                          placeholder=""
+                          formControlName="userName"
+                          [ngClass]="{ 'is-invalid': submitted && f.userName.errors}"
+                        />
+                        <div *ngIf="submitted && f.userName.errors " class="invalid-feedback text-center">
+                            <div *ngIf="f.userName.errors.required">El nombre de usuario es Obligatorio</div>
+                        </div>
+                    </div>
+                      </div>
+          
+                        <div
+                            class="row pb-2"
+                        >
+                            <label class="col-4 text-center">Contraseña:</label>
+                            <div class="col-8 form-group ">
+                            <input
+                            type="text"
+                            class="form-control mx-auto text-center input"
+                            placeholder=""
+                            formControlName="password"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors}"
+                            />
+                            <div *ngIf="submitted && f.password.errors " class="invalid-feedback text-center">
+                                <div *ngIf="f.password.errors.required">La contraseña es Obligatoria</div>
+                            </div>
+                            <div *ngIf="submitted && f.password.errors " class="invalid-feedback text-center">
+                                <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 5 caracteres</div>
+                            </div>
+                        </div>
+                      </div>
+                      
+              
+                   
+                  </form>
+                
+                </div>
+                <div class="col-12">
+                <hr class="hr3">
+            </div>
+                <div class="col-6">
+                    
+                    <h3 class="h3 pl-4 pb-4 pt-3">DATOS PERSONALES</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pb-5">
+        <div class="col-5 offset-1 fondo-blanco mt-4 ">
+            <div class="row">
+                <div class="col-12 pb-2">
+                    <h3 class="h3 pl-4 pt-4">VIAJES PENDIENTES</h3>
+                    <hr class="hr2">
+                </div>
+                <div class="col-12">
+                    <div class="row text-center">
+                        <h4 class="h5 col pl-4 pt-3 pb-3">FECHA</h4>
+                        <h4 class="h5 col pl-4 pt-3 pb-3">ESTACIÓN</h4>
+                        <h4 class="h5 col pl-4 pt-3 pb-3">PAÍS</h4>
+                    </div>
+                </div>
+
+                <div *ngIf="trips && stationsTrip.length == trips.length" class="col-12">
+                    <div class="row text-center " *ngFor="let trip of trips;let i = index" >
+                        <h4 class="p-direccion col pl-4 pt-3 pb-3">{{trip.entryDate}}</h4>
+                        <h4 class="p-direccion col pl-4 pt-3 pb-3">{{stationsTrip[i].name}}</h4>
+                        <h4 class="p-direccion col pl-4 pt-3 pb-3">{{stationsTrip[i].country}}</h4>
+                    </div>
+                </div>
+
+
+                
+                
+                
+                <button routerLink="/Station" class="btn viaje mt-4 w-100 " data-toggle="modal" data-target="#sierra-nevada">¿QUIERES HACER UN VIAJE? EMPIEZA YA</button>
+            
+            </div>
+        </div>
+
+        <div class="col-5 fondo-blanco mt-4 ml-5">
+            <div class="row">
+                <button href="#" class="btn comentarios col-12" data-toggle="modal" data-target="#sierra-nevada">GENERAR PDF</button>
+                <div class="col-12">
+                    <h5 class="h5 pt-4"> VIAJES REALIZADOS EN 2020</h5>
+                </div>
+                <div class="col-4 pt-4 pb-4" *ngFor="let pastStation of pastStationTrips">
+                <div class="container" >
+                    
+                    <img src="{{pastStation.urlImages}}" alt="Snow" class="img-fluid img">
+                    <div class="centered">{{ pastStation.name.toUpperCase()}}</div>
+
+                </div>
+            </div>
+            
+            <div class="col-12">
+                <h5 class="h5 pt-4"> VIAJES REALIZADOS EN 2019</h5>
+            </div>
+
+            <div class="col-4 pt-4 pb-4" *ngFor="let pastStation of beforeThisYearStatioTrips">
+                <div class="container" >
+                    
+                    
+                    <img src="{{pastStation.urlImages}}" alt="Snow" class="img-fluid img">
+                    <div class="centered">{{ pastStation.name.toUpperCase()}}</div>
+
+                </div>
+            </div>
+            
+                <div class="col-12">
+                    <hr class="hr2">
+                    <h3 class="h3 pl-4">VIAJES REALIZADOS</h3>
+                    
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+.mat-dialog-container {
+    z-index: 9999 !important;
+}
+
+.h3 {
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    color:rgba(27, 77, 176, 1);
+    
+}
+
+.mensaje {
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    
+}
+
+button {
+    color:rgba(27, 77, 176, 1);
+    font-weight: bold;
+}
+
+button:hover {
+    color:white;
+    background-color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+}
+
+button:active, button:focus {
+    color:white;
+    background-color: rgba(27, 77, 176, 1);
+    border: 0;
+    outline:0;
+    font-weight: bold;
+}
+
+.cancel {
+    color: rgb(176, 27, 27);
+    font-weight: bold;
+}
+
+.cancel:hover {
+    color:white;
+    background-color: rgb(176, 27, 27);
+    font-weight: bold;
+}
+
+.cancel:active, .cancel:focus {
+    color:white;
+    background-color: rgb(176, 27, 27);
+    border: 0;
+    outline:0;
+    font-weight: bold;
+}
+
+  
