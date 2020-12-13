@@ -74,6 +74,18 @@ public class PaymentController {
 		
 		return new ResponseEntity(payment, HttpStatus.OK);
 	}
+
+	@PreAuthorize("hasRole('USER')")
+	@PostMapping("/createPayment")
+	public ResponseEntity<?> createPaymentStripe(){
+		Payment payment = new Payment();
+		
+		paymentService.savePayment(payment);
+		
+		logger.info("Servicio consumido /payment/createPayment, pago creado con identificador: " + payment.getId());
+		
+		return new ResponseEntity(payment, HttpStatus.OK);
+	}
 	
 	// Servicio que actualiza un pago
 	@PreAuthorize("hasRole('ADMIN')")

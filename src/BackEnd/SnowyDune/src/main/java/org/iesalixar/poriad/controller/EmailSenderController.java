@@ -59,7 +59,7 @@ public class EmailSenderController {
 			htmlMsg = htmlMsg.replace("|&comment&|", contact.getComment());
     
 			helper.setText(htmlMsg, true);
-			helper.setTo("pablo.oria1991@gmail.com");
+			helper.setTo("criscercu@gmail.com");
 			helper.setSubject("Se ha recibido un mensaje de un usuario");
 	    	helper.setFrom("alum.poriad@iesalixar.org");
 		} catch (MessagingException e) {
