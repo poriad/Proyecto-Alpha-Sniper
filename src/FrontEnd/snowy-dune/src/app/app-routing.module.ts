@@ -19,10 +19,13 @@ import { HotelComponent } from './layouts/hotel/hotel.component';
 import { ClassesComponent } from './layouts/classes/classes.component';
 import { SkiMaterialComponent } from './layouts/ski-material/ski-material.component';
 import { CarRentalComponent } from './layouts/car-rental/car-rental.component';
+import { ConfirmPasswordComponent } from './layouts/confirm-password/confirm-password.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'Login', component: LoginComponent },
   { path: 'Register', component: RegisterComponent },
+  { path: 'ConfirmPassword', component: ConfirmPasswordComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'HomeUser', component: HomeUserComponent, canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},
   { path: 'Station', component: StationComponent, canActivate: [guard], data: { expectedRol: ['admin','enterprise','user']}},
@@ -39,7 +42,7 @@ const routes: Routes = [
   { path: 'HomeAdmin', component: HomeAdminComponent,canActivate: [guard], data: { expectedRol: ['admin','enterprise']}},
   { path: 'UsersEnterprisesAdmin', component: AdminUsersEnterprisesComponent,canActivate: [guard], data: { expectedRol: 'admin'}},
   { path: 'ServicesCommentsAdmin', component: AdminServicesCommentsComponent,canActivate: [guard], data: { expectedRol: 'admin'}},
-  { path: '**', component: LoginComponent }
+  { path: '**', redirectTo: 'Login'}
 ];
 
 @NgModule({

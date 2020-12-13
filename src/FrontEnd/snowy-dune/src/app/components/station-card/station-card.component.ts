@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogStationComponent } from '../confirm-dialog-station/confirm-dialog-station.component';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { requiredDate } from 'src/app/utils/validador';
 
 
 @Component({
@@ -60,6 +62,8 @@ export class StationCardComponent implements OnInit {
       personNumber: ['', [Validators.required,Validators.pattern("[0-9]{1}")]],
       numberDays: ['', [Validators.required,Validators.pattern("[1-9]{1}[0-9]{0,1}")]],
       entryDate: ['', [Validators.required]]
+    }, {
+      validator: requiredDate()
     });
   }
 
@@ -90,7 +94,10 @@ export class StationCardComponent implements OnInit {
     if (this.tripForm.invalid) {
 
       this.dialogo.open(ConfirmDialogStationComponent, {
-        data:`Antes de seguir, debes rellenar el Nº de personas, la fecha de entrada y el Nº de días`
+        data:`Antes de seguir, debes rellenar el Nº de personas, la fecha de entrada y el Nº de días.
+        
+        Recuerda que las fechas solo se pueden poner a futuro.
+        `
       })
       
     } else {
@@ -106,7 +113,17 @@ export class StationCardComponent implements OnInit {
       window.sessionStorage.setItem('StationId', stationId)
 
       window.sessionStorage.setItem('Station', location)
-      this.router.navigate(['/Hotel'])
+
+      this.dialogo.open(ConfirmDialogComponent, {
+        data:`¿Estás seguro de elegir la estación ${location}?`
+      })
+      .afterClosed()
+      .subscribe((confirmado:Boolean) => {
+        if (confirmado){
+          this.router.navigate(['/Hotel'])
+        }
+      })
+      
     }
 
   }

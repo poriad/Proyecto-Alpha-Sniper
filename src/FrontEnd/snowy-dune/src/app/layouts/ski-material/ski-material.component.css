@@ -24,6 +24,10 @@
     letter-spacing: 0.2rem;
 }
 
+.card{
+    box-shadow: 1px 1px 5px #888888a2;
+}
+
 .card-text {
     color: rgba(27, 77, 176, 1);
     font-weight: bold;
@@ -45,7 +49,7 @@
 
 /* MODAL */
 .modal-dialog{
-    max-width: 40%;
+    max-width: 50%;
 }
 
 .modal-header {
@@ -327,3 +331,141 @@ select {
     width: 60%;
 }
 
+#btnReturn {
+    background-color: rgba(27, 77, 176, 1);
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#btnReturn:hover {
+    opacity: 0.8;
+}
+
+@media screen and (min-width: 991px) and (max-width: 1366px) {
+    
+    .modal-dialog{
+        max-width: 80%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+   
+    .modal-dialog{
+        max-width: 80%;
+    }
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    .modal-dialog{
+        max-width: 85%;
+    }
+
+    .modal-title {
+        position: absolute;
+        color: white;
+        font-size: 2rem;
+        letter-spacing: 0.25rem;
+        top:17%;
+        left:55%;
+    }
+
+    .h2 {
+        font-size: 1.1rem;
+        letter-spacing: 0.20rem;
+    }
+
+    .comentarios p {
+        font-size: 0.9rem;
+        letter-spacing: 0.15rem;
+
+    }
+
+    input {
+
+        width: 80%;
+
+    }
+
+    select {
+        width: 80%;
+    }
+
+    #exampleModalLongTitle {
+        font-size: 1.8rem;
+        top:17%;
+        left:55%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+   
+    .h1{
+        font-size: 1.6rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .h2 {
+        font-size: 0.8rem;
+        letter-spacing: 0.20rem;
+    }
+    
+ 
+    .h4 {
+        font-size: 1.1rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .modal-body p {
+        font-size: 0.6rem;
+        letter-spacing: 0.15rem;
+        
+    }
+
+    .comentarios p {
+        font-size: 0.7rem;
+        letter-spacing: 0.15rem;
+
+    }
+
+    .persona {
+        font-size: 0.6rem;
+        letter-spacing: 0.12rem;
+    }
+    
+    .btn-primary {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .modal-dialog{
+        max-width: 97%;
+    }
+
+    .modal-header{
+        height: auto;
+    }
+
+    .modal-title {
+        position: absolute;
+        color: white;
+        font-size: 1rem;
+        letter-spacing: 0.20rem;
+        top:15%;
+        left:53%;
+    }
+ }
+
+ @media screen and (max-width: 240px) {
+    .modal-title {
+        position: absolute;
+        color: white;
+        font-size: 1rem;
+        letter-spacing: 0.20rem;
+        top:10%;
+        left:53%;
+    }
+ }

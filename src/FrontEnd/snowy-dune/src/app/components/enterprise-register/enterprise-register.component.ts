@@ -18,6 +18,7 @@ import { StationService } from 'src/app/service/station.service';
 import { Station } from 'src/app/models/station';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-enterprise-register',
@@ -31,7 +32,6 @@ export class EnterpriseRegisterComponent implements OnInit {
   enterpriseStatus: string;
   inactiveEnterprise: boolean;
   submitted = false;
-  Message: string;
   isEnterpriseChk = false;
   isRegisterFail: boolean;
   isEnterprise: boolean;
@@ -51,7 +51,8 @@ export class EnterpriseRegisterComponent implements OnInit {
   username: string;
 
   constructor(private formBuilder: FormBuilder, private enterpriseService: EnterpriseService, private adminService: AdminService
-    ,private classesService: ClassesService, private hotelService: HotelService, private skiMaterialService: SkiMaterialService, private carRentalService: CarRentalService, private stationService: StationService
+    ,private classesService: ClassesService, private hotelService: HotelService, private skiMaterialService: SkiMaterialService, private carRentalService: CarRentalService,
+    private toastr: ToastrService, private stationService: StationService
     ,public dialogo: MatDialog) { }
   
   
@@ -109,19 +110,26 @@ export class EnterpriseRegisterComponent implements OnInit {
         this.userId = data.id
 
         if (data.isEnterprise == 2 || data.isEnterprise == 1){
-          this.Message = "Ya has registrado una empresa o está en proceso de admisión";
+          
+          this.toastr.warning('Ya has registrado una empresa o está en proceso de admisión', 'Registro', {
+            timeOut: 3000,
+          });
           return
         }
         
         this.enterpriseService.putUserDetailsToEnterprise(this.enterprise,this.userId).subscribe(
           data => {
             this.enterprise = data;
-            console.log(this.enterprise);
             this.isRegisterFail = true;
-            this.Message = "Solicitud de registro realizada";
+            this.toastr.success('Solicitud de registro realizada', 'Registro', {
+              timeOut: 3000,
+            });
+            window.location.reload();
           }, err => {
             this.isRegisterFail = false;
-            this.Message = err.error.mensaje;
+            this.toastr.error('Ha habido algún fallo', 'Registro', {
+              timeOut: 3000,
+            });
           }
         );
       }
@@ -129,9 +137,7 @@ export class EnterpriseRegisterComponent implements OnInit {
 
     setTimeout( () => { 
       this.submitted = false;
-      this.Message = "";
-      window.location.reload();
-     },3000);
+     },3500);
       }
     })
 

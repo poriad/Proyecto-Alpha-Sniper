@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-users-enterprises',
@@ -33,9 +34,6 @@ export class AdminUsersEnterprisesComponent implements OnInit {
   header: Header[] = [{title:"Nombre",id:"firstName"},{title:"Apellidos",id:"lastName"},{title:"Email",id:"email"},{title:"Nombre Usuario",id:"username"}];
   headerEnterprise: Header[] = [{title:"Nombre Comercial",id:"nomComercial"},{title:"NIF",id:"nif"},{title:"CNAE",id:"cnae"},{title:"Actividad",id:"activity"}];
 
-  updateMessage: string = "";
-  updateMessageEnterprise: string = "";
-  deleteMessage: string = "";
   isUpdateFail: boolean;
   isUpdateEnterpriseFail: boolean;
   isDeleteUserFail: boolean;
@@ -69,7 +67,7 @@ export class AdminUsersEnterprisesComponent implements OnInit {
   newsletter:number;
   phone:string;
 
-  constructor(private adminService: AdminService, private router: Router,public dialogo: MatDialog) { }
+  constructor(private adminService: AdminService, private router: Router,public dialogo: MatDialog,private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -101,21 +99,22 @@ export class AdminUsersEnterprisesComponent implements OnInit {
     
         this.newUser = new NewUser(firstName,lastName,username,email,password,address,newsletter,enterprise,phone);
     
-        this.adminService.putUserDetails(this.newUser, id).subscribe(
+        this.adminService.putUserManagement(this.newUser, id).subscribe(
           data => {
             this.isUpdateFail = true;
             this.newUser = data;
-            this.updateMessage = "Registro actualizado";
-            console.log(this.updateMessage);
+            this.toastr.success('Registro actualizado', 'Actualización', {
+              timeOut: 3000,
+            });
           }, err => {
             this.isUpdateFail = false;
-            this.updateMessage = "No se ha podido actualizar";
+            this.toastr.error('No se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
-            this.submitted = false;
-            this.updateMessage = "";
-           },2000);
+          this.submitted = false;
+
 
       }
     })
@@ -145,17 +144,19 @@ export class AdminUsersEnterprisesComponent implements OnInit {
         this.adminService.putEnterpriseStatus(id,1).subscribe(
         data => {
             this.isUpdateEnterpriseFail = true;
-            this.updateMessageEnterprise = "Empresa activada";
+            this.toastr.success('Empresa activada', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderListEnterprise();
           }, err => {
             this.iterateChildrenButton();
             this.isUpdateEnterpriseFail = false;
-            this.updateMessageEnterprise = "No se ha podido activar";
+            this.toastr.error('No se ha podido activar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
-          setTimeout( () => { 
             this.submitted = false;
-            this.updateMessageEnterprise = "";
-           },3000);
+
       }
     })
 
@@ -177,18 +178,20 @@ export class AdminUsersEnterprisesComponent implements OnInit {
         this.adminService.putEnterpriseStatus(id,0).subscribe(
           data => {
             this.isUpdateEnterpriseFail = true;
-            this.updateMessageEnterprise = "Empresa borrada";
+            this.toastr.success('Empresa borrada', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderListEnterprise();
           }, err => {
             this.iterateChildrenButton();
             this.isUpdateEnterpriseFail = false;
-            this.updateMessageEnterprise = "No se ha podido borrada";
+            this.toastr.error('No se ha podido borrar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
-    
-          setTimeout( () => { 
+     
             this.submitted = false;
-            this.updateMessageEnterprise = "";
-           },3000);
+
 
       }
     })
@@ -211,17 +214,20 @@ export class AdminUsersEnterprisesComponent implements OnInit {
         this.adminService.deleteUser(id,2).subscribe(
           data => {
             this.isDeleteUserFail = true;
-            this.deleteMessage = "Usuario borrado";
+            this.toastr.success('Usuario borrado', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderList();
           }, err => {
             this.isDeleteUserFail = false;
-            this.deleteMessage = "No se ha podido borrar";
+            this.toastr.error('No se ha podido borrar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
         
-        setTimeout( () => { 
+
           this.submitted = false;
-          this.deleteMessage = "";
-         },3000);
+
 
 
       }

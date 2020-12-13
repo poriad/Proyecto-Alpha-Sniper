@@ -49,6 +49,10 @@
      color: #3C7DEC;
      padding: 0;
  }
+ 
+ th {
+    cursor: pointer;
+}
 
  .table-striped > tbody > tr:nth-child(2n+1) > td > button, .table-striped > tbody > tr:nth-child(2n+1) > th {
     color: white;
@@ -194,6 +198,34 @@ select {
     letter-spacing: 0.2rem;
 }
 
+.btnReturn {
+    background-color: rgba(27, 77, 176, 1);
+    color:white;
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  
+  .btnReturn:hover {
+    opacity: 0.8;
+  }
+
+  ngb-pagination ::ng-deep a {
+    color: rgba(27, 77, 176, 1);
+    font-size: 1.1rem;
+    font-weight: 550;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 1);
+    
+  }
+
+ngb-pagination ::ng-deep .pagination .page-item .page-link {
+    border-radius: 0 !important;
+}
 
 @media screen and (min-width: 991px) and (max-width: 1198px) {
     
@@ -266,8 +298,8 @@ select {
 @media screen and (max-width: 575px) {
    
     .h1{
-        font-size: 1.6rem;
-        letter-spacing: 0.35rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.25rem;
     }
 
     .hr {
@@ -281,12 +313,31 @@ select {
     }
 
     .h3 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+    }
 
+    .btn-station{
+        font-size: 0.8rem;
+    }
+    .h4 {
+        font-size: 1.2rem;
+
+    }
+
+    th {
+        font-size: 0.8rem;
+    }
+
+    td {
+        font-size: 0.8rem;
     }
 
     .modal-lg {
         max-width: 100% !important;
+    }
+
+    .btnReturn {
+        font-size: 0.8rem;
     }
 
 }

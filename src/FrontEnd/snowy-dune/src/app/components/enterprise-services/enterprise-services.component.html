@@ -1,10 +1,10 @@
 <ng-template #dontHaveEnterprise>
   <div class="row align-items-center h-100">
-   <!-- <p class="marca-uno w-100 text-center pb-1"></p> -->
+    <p class="marca-uno w-100 text-center pb-1"></p>
   <div class="col-12">
-    <h3 class="h3 pb-4 text-center">SERVICIOS</h3>
+    <h3 class="h3 pb-2 text-center pt-4">SERVICIOS</h3>
     <hr class="hr2" />
-    <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">Para poder registrar los servicios, primero debes registrar tu empresa y posteriormente, ser aceptada por un usuario Adminsitrador</h1>
+    <h1 class="h4-b pb-4 pb-sm-4 pt-4 pl-3 pr-3 text-center">Para poder registrar los servicios, primero debes registrar tu empresa y posteriormente, ser aceptada por un usuario Adminsitrador</h1>
   </div>
   <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
 </div>
@@ -21,7 +21,7 @@
   </div>
 
   <div @fade class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pb-4 mx-auto">
-      <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="">
+      <form [formGroup]="serviceForm" class="">
         <div class="row">
           <div
             class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
@@ -31,20 +31,20 @@
               class="form-control mx-auto"
               placeholder="Ej. Ski Formigal"
               formControlName="name"
-              [ngClass]="{ 'is-invalid': !serviceForm.controls['name'].valid && serviceForm.controls['name'].touched }"
+              [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
             />
   
-            <div *ngIf="f.name.errors && serviceForm.controls['name'].touched " class="invalid-feedback">
+            <div *ngIf="submitted && f.name.errors " class="invalid-feedback">
               <div *ngIf="f.name.errors.required">
                 El nombre es Obligatorio
               </div>
             </div>
-            <div *ngIf="f.name.errors && serviceForm.controls['name'].touched " class="invalid-feedback">
+            <div *ngIf="submitted && f.name.errors " class="invalid-feedback">
               <div *ngIf="f.name.errors.minlength">
                 El nombre debe tener más de 4 caracteres
               </div>
             </div>
-            <div *ngIf="f.name.errors && serviceForm.controls['name'].touched " class="invalid-feedback">
+            <div *ngIf="submitted && f.name.errors " class="invalid-feedback">
               <div *ngIf="f.name.errors.maxlength">
                 El nombre debe tener menos de 50 caracteres
               </div>
@@ -57,13 +57,13 @@
             <label class="">Localización</label>
 
                 <select formControlName="location" id="location" class="form-control mx-auto"
-                [ngClass]="{ 'is-invalid': !serviceForm.controls['location'].valid && serviceForm.controls['location'].touched }">
+                [ngClass]="{ 'is-invalid': submitted && f.location.errors}">
                   <option *ngFor="let station of stations" [value]="station.id">
                     {{station.name}}
                   </option>
                 </select>
   
-            <div *ngIf="serviceForm.controls['location'].touched && f.location.errors" class="invalid-feedback">
+            <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
               <div *ngIf="f.location.errors.required">
                 La localización es Obligatoria
               </div>
@@ -75,13 +75,13 @@
           >
             <label class="">País</label>
             <select formControlName="country" id="country" class="form-control mx-auto"
-            [ngClass]="{ 'is-invalid': !serviceForm.controls['country'].valid && serviceForm.controls['country'].touched }">
+            [ngClass]="{ 'is-invalid': submitted && f.country.errors}">
               <option *ngFor="let country of countries" [value]="country">
                 {{country}}
               </option>
             </select>
   
-            <div *ngIf="f.country.errors && serviceForm.controls['country'].touched" class="invalid-feedback">
+            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
               <div *ngIf="f.country.errors.required">El país es Obligatorio</div>
             </div>
           </div>
@@ -91,14 +91,14 @@
           >
             <label class="">Teléfono</label>
             <input
-            type="text"
+            type="number"
               class="form-control mx-auto"
               placeholder="Ej. 659009071"
               formControlName="phone"
-              [ngClass]="{ 'is-invalid': !serviceForm.controls['phone'].valid && serviceForm.controls['phone'].touched }"
+              [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
             />
   
-            <div *ngIf="f.phone.errors && serviceForm.controls['phone'].touched" class="invalid-feedback">
+            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
               <div *ngIf="f.phone.errors.required">
                 El teléfono es Obligatorio
               </div>
@@ -122,15 +122,15 @@
               class="form-control mx-auto"
               placeholder="Ej. jmanuel@gmail.com"
               formControlName="email"
-              [ngClass]="{ 'is-invalid': !serviceForm.controls['email'].valid && serviceForm.controls['email'].touched }"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors}"
             />
   
-            <div *ngIf="f.email.errors && serviceForm.controls['email'].touched" class="invalid-feedback">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">
                 El email es Obligatorio
               </div>
             </div>
-            <div *ngIf="f.email.errors && serviceForm.controls['email'].touched" class="invalid-feedback">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.email">
                 El email no es válido
               </div>
@@ -147,11 +147,11 @@
               class="form-control mx-auto"
               placeholder=""
               formControlName="price"
-              [ngClass]="{ 'is-invalid': !serviceForm.controls['price'].valid && serviceForm.controls['price'].touched }"
+              [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
             />
   
             <div
-              *ngIf="f.price.errors && serviceForm.controls['price'].touched"
+              *ngIf="submitted && f.price.errors"
               class="invalid-feedback"
             >
               <div *ngIf="f.price.errors.required">
@@ -164,17 +164,17 @@
             class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group  my-auto"
           >
           <label for="file-upload" class="custom-file-upload">
-            <i class="fa fa-cloud-upload"></i> Sube una foto
+            <fa-icon [icon]="faDownload"></fa-icon> Sube una foto
         </label>
         <input id="file-upload" type="file"
         class="form-control mx-auto"
               placeholder=""
               formControlName="urlImages"
               (change)="onChange($event.target.files[0])"
-              [ngClass]="{ 'is-invalid': !serviceForm.controls['urlImages'].valid && serviceForm.controls['urlImages'].touched }"/>
+              [ngClass]="{ 'is-invalid': submitted && f.urlImages.errors}"/>
               
             <div
-              *ngIf="f.urlImages.errors && serviceForm.controls['urlImages'].touched"
+              *ngIf="submitted && f.urlImages.errors"
               class="invalid-feedback"
             >
               <div *ngIf="f.urlImages.errors.required">
@@ -189,13 +189,13 @@
                 <label for="my-textarea">Tipo de servicio</label>
 
                 <select formControlName="typeService" id="typeServices" class="form-control mx-auto"
-                [ngClass]="{ 'is-invalid': !serviceForm.controls['typeService'].valid && serviceForm.controls['typeService'].touched }">
+                [ngClass]="{ 'is-invalid': submitted && f.typeService.errors }">
                   <option *ngFor="let typeService of typeServices" [value]="typeService">
                     {{typeService}}
                   </option>
                 </select>
 
-                <div *ngIf="f.typeService.errors && serviceForm.controls['typeService'].touched" class="invalid-feedback">
+                <div *ngIf="submitted && f.typeService.errors" class="invalid-feedback">
                     <div *ngIf="f.typeService.errors.required">
                       El tipo de servicio es Obligatorio
                     </div>
@@ -208,20 +208,20 @@
         >
                 <label for="my-textarea">Descripción</label>
                 <textarea id="my-textarea" class="form-control mx-auto" name="" rows="3" 
-                [ngClass]="{ 'is-invalid': !serviceForm.controls['description'].valid && serviceForm.controls['description'].touched  }"
+                [ngClass]="{ 'is-invalid': submitted && f.description.errors  }"
                 formControlName="description"></textarea>
          
-                <div *ngIf="f.description.errors && serviceForm.controls['description'].touched" class="invalid-feedback">
+                <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                     <div *ngIf="f.description.errors.required">
                       La descripción es Obligatoria
                     </div>
                   </div>
-                  <div *ngIf="f.description.errors && serviceForm.controls['description'].touched" class="invalid-feedback">
+                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                     <div *ngIf="f.description.errors.minlength">
                       La descripción debe tener más de 30 caracteres
                     </div>
                   </div>
-                  <div *ngIf="f.description.errors && serviceForm.controls['description'].touched" class="invalid-feedback">
+                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                     <div *ngIf="f.description.errors.maxlength">
                       La descripción debe tener menos de 500 caracteres
                     </div>
@@ -229,21 +229,15 @@
         </div>
   
           <div class="col-12 col-md-12  text-center pt-3">
-            <input
-              type="submit"
-              value="Registrar"
-              class="submit"
-              [disabled] = "serviceForm.invalid"
-            />
-          </div>
-        </div>
-        <div class="col-12 pt-3 text-center">
-          <div *ngIf="submitted && isRegisterFail" class="">
-            <h5 class="h5-submit">{{ Message }}</h5>
-          </div>
-  
-          <div *ngIf="submitted && !isRegisterFail" class="">
-            <h5 class="h5-submit">{{ Message }}</h5>
+            <button mat-raised-button
+                    color="primary"
+                      id="btnReturn"
+                      data-toggle="modal"
+                      (click) = "onSubmit()"
+                    >
+                    Registrar
+                    </button>
+
           </div>
         </div>
       </form>

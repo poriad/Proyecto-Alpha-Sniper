@@ -19,10 +19,93 @@
     color: rgba(27, 77, 176, 1);
 }
 
-.h5 {
+.h4 {
     font-size: 1.2rem;
-    letter-spacing: 0.25rem;
+    letter-spacing: 0.20rem;
+    color: #3C7DEC;
+}
+
+.h6 {
+    font-size: 1.2rem;
+    letter-spacing: 0.20rem;
+    color: #3C7DEC;
+}
+
+.marca-uno {
+    background-color: #3C7DEC !important;
+    color: white;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.20rem;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    font-weight: 600;
+    height: 30px;
+}
+
+/* Mat Buttons */
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab{
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+}
+
+.mat-raised-button-wrapper {
+    color:white;
+    
+}
+
+.mat-raised-button:hover {
+    opacity: 0.70;
+    transition: 0.2s;
+
+  
+}
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background-color:  rgba(27, 77, 176, 1);
+}
+
+
+/* mat inputs */
+#search-form .mat-form-field .mat-form-field-label {
+    font-size: 1rem;
     color: rgba(27, 77, 176, 1);
+}
+
+#search-form .mat-form-field-underline {
+    background-color:  rgba(27, 77, 176, 1);
+}
+    
+#search-form .mat-form-field-ripple {
+    background-color: rgba(27, 77, 176, 1);
+}
+
+#search-form .mat-hint{
+    color: #3C7DEC;
+    font-size: 0.7rem;
+    letter-spacing: 0.10rem;
+}
+#search-form .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+    background-color: #f44336;
+}
+
+#search-form mat-form-field label {
+    font-size: 50px;
+  }
+
+
+#search-form .mat-form-field.mat-form-field-invalid .mat-input-element {
+    color: #f44336;
+}
+#search-form .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: #f44336;
+    
+}
+
+#search-form .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
+    color: #f44336;
 }
 
 .h5-white {
@@ -36,6 +119,11 @@ p {
     font-size: 0.95rem;
     letter-spacing: 0.17rem;
     color: rgba(27, 77, 176, 1);
+    font-weight: 600;
+}
+
+.img-snowy-dos {
+    width: 7%;
 }
 
 .hr {
@@ -62,22 +150,10 @@ p {
     width: 70%;
 }
 
+
 .prueba {
     background-color: white;
-}
-
-button{
-    position: absolute;
-    right: 7%;
-    top:15%;
-    color: white;
-    background-color: rgba(27, 77, 176, 1);
-    border: none;
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 1rem;
-    letter-spacing: 0.25rem;
+    box-shadow: 1px 1px 5px #888888a2;
 }
 
 .tbancaria {
@@ -87,7 +163,8 @@ button{
 
 
 .formulario-detalles {
-    background-color: white;  
+    background-color: white;
+    box-shadow: 1px 1px 5px #888888a2;
 }
 
 .label {
@@ -179,3 +256,63 @@ option {
     color:  rgba(27, 77, 176, 1);
     opacity: 80%;
 }
+
+.paypal-checkbox {
+    position: absolute; 
+    top:27.5%; 
+    left:24%
+}
+
+
+@media screen and (min-width: 1367px) {
+
+    .paypal-checkbox {
+
+        left:15%
+    }
+    
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+   
+    .paypal {
+        width: 50%;
+    }
+}
+
+
+@media screen and (max-width: 575px) {
+   
+    .h1{
+        font-size: 1.6rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .h3 {
+        font-size: 1.3rem;
+        letter-spacing: 0.20rem;
+    }
+
+    .h6 {
+        font-size: 1rem;
+        letter-spacing: 0.20rem;
+    }
+
+    .h4 {
+        font-size: 1.2rem;
+        letter-spacing: 0.20rem;
+    }
+ 
+    .h5-white {
+        font-size: 1.2rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .paypal-checkbox {
+
+        left:15%
+    }
+
+    
+ }
+

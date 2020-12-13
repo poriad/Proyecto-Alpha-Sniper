@@ -1,7 +1,7 @@
 <div class="row">
     <p class="marca-uno w-100 text-center pb-1"></p>
     <div class="col-12">
-      <h3 class="h3 pb-3 pt-4 pl-5">ACTIVACIÓN DE SERVICIOS. Material Ski</h3>
+      <h3 class="h3 pb-3 pt-4 text-center">ACTIVACIÓN DE SERVICIOS. Material Ski</h3>
       <hr class="hr2" />
     </div>
     <div class="col-12">
@@ -15,7 +15,7 @@
       />
     </div>
     <div
-      class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto"
+      class="col-10 pt-4 pb-4 table-responsive mx-auto"
     >
       <table class="table table-striped text-center">
         <thead>
@@ -94,9 +94,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <div class="col-11">
-            <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Solicitud de Servicio -  {{ skiMaterial.name }}</h3>
+            <h3 class="h3 pb-1 pt-4 text-center">Solicitud de Servicio -  {{ skiMaterial.name }}</h3>
             <hr class="hr3" />
-            <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
+            <h4 class="h4 pb-1 pt-4 text-center">
               Activación y borrado de Servicio
             </h4>
           </div>
@@ -148,11 +148,11 @@
                 placeholder="Dirección..."
                 name="direccion"
                 class="input pt-2"
-                value="{{ skiMaterial.priceDay }}"
+                value="{{ skiMaterial.priceDay }} €"
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
               <label for="username" class="d-block">Teléfono</label>
               <input #username
                 type="text"
@@ -163,7 +163,7 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4 ">
               <label for="email" class="d-block">Email</label>
               <input #password
                 type="text"
@@ -174,16 +174,9 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-              <label for="email" class="d-block">Url Imagen</label>
-              <input #imagen
-                type="text"
-                placeholder="Teléfono..."
-                name="phone"
-                class="input pt-2"
-                value="{{ skiMaterial.urlImage }}"
-                readonly
-              />
+            <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Imagen</label>
+              <img src="{{ skiMaterial.urlImages }}" alt="" class="img-fluid">
   
               <input #id
               type="hidden"
@@ -194,15 +187,14 @@
               />
             </div>
 
-            <div class="col-12 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
               <label for="lastName" class="d-block">Descripción</label>
               <textarea #description
-                rows="3" cols="70"
                 type="text"
-                placeholder="Apellidos..."
+                rows="5"
                 name="lastName"
                 value="{{ skiMaterial.description }}"
-                class="input pt-2"
+                class="textarea pt-2"
                 readonly
               ></textarea>
             </div>
@@ -211,13 +203,25 @@
               <hr class="hr3" />
             </div>
             
-            <div class="col-6 text-center pt-3 pb-3">
-              <input  (click)="updateStatusSkiMaterial(skiMaterial.id)" value="Activar" type="submit" class="btn btn-admin-user pl-3 pr-3">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-3">
+              <button mat-raised-button
+            color="primary"
+              class="btnReturn"
+              data-toggle="modal"
+              (click)="updateStatusSkiMaterial(skiMaterial.id)"
+            >
+            Activar
+            </button>
             </div>
-            <div class="col-6 text-center pt-3 pb-3">
-              <button (click)="deleteSkiMaterial(skiMaterial.id)" class="btn btn-admin-user pl-3 pr-3">Borrar</button>
-  
-            
+            <div class="col-12 col-sm-6 text-center pt-3 pb-3">
+              <button mat-raised-button
+            color="primary"
+              class="btnReturn"
+              data-toggle="modal"
+              (click)="deleteSkiMaterial(skiMaterial.id)"
+            >
+            Borrar
+            </button>  
             </div>
           </div>
         </form>

@@ -1,7 +1,8 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { ViewChild, ViewChildren } from '@angular/core';
+import { ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { Comentario } from 'src/app/models/comment';
 import { CommentService } from 'src/app/service/comment.service';
@@ -32,8 +33,6 @@ export class AdminServicesCommentsComponent implements OnInit {
   comment: Comentario;
 
   searchText;
-  updateMessage: string = "";
-  deleteMessage: string = "";
   isUpdateFail: boolean;
   isDeleteFail: boolean;
   submitted: boolean = false;
@@ -46,7 +45,7 @@ export class AdminServicesCommentsComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
   
-  constructor(private commentService: CommentService,public dialogo: MatDialog) { }
+  constructor(private commentService: CommentService,public dialogo: MatDialog,private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -74,17 +73,19 @@ export class AdminServicesCommentsComponent implements OnInit {
           data => {
             this.isUpdateFail = true;
             this.comment = data;
-            this.updateMessage = "Comentario actualizado";
+            this.toastr.success('Comentario actualizado', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderCommentList();
           }, err => {
             this.isUpdateFail = false;
-            this.updateMessage = "El comentario no se ha podido actualizar";
+            this.toastr.error('El comentario no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
             this.submitted = false;
-            this.updateMessage = "";
-           },3000);
+
       }
     })
     
@@ -105,17 +106,18 @@ export class AdminServicesCommentsComponent implements OnInit {
         this.commentService.deleteComment(id).subscribe(
           data => {
             this.isDeleteFail = true;
-            this.deleteMessage = "Comentario borrado";
+            this.toastr.success('Comentario borrado', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderCommentList();
           }, err => {
             this.isDeleteFail = false;
-            this.deleteMessage = "El comentario no se ha podido borrado";
+            this.toastr.error('El comentario no se ha podido borrado', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
             this.submittedDelete = false;
-            this.updateMessage = "";
-           },3000);
 
       }
     })

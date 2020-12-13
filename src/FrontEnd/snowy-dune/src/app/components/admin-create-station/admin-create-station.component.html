@@ -6,7 +6,7 @@
   </div>
 
   <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 mx-auto">
-    <form [formGroup]="stationForm" (ngSubmit)="onSubmit()" class="">
+    <form [formGroup]="stationForm" class="">
       <div class="row">
           <div class="col-12">
             <h4 class="h4 pb-3 text-center">Registra una nueva estación rellenando el formulario</h4>
@@ -50,13 +50,12 @@
             class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
           >
             <label class="">Localización</label>
+            <input
+            class="form-control mx-auto"
+            formControlName="location"
+            [ngClass]="{ 'is-invalid': submitted && f.location.errors }"
+          />
 
-                <select formControlName="location" id="location" class="form-control mx-auto"
-                [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
-                  <option *ngFor="let station of stations" [value]="station.id">
-                    {{station.name}}
-                  </option>
-                </select>
   
             <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
               <div *ngIf="f.location.errors.required">
@@ -104,12 +103,35 @@
         </div>
 
         <div
-          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+            class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group  my-auto"
+          >
+          <label for="file-upload" class="custom-file-upload">
+            <fa-icon [icon]="faDownload"></fa-icon> Sube una foto
+        </label>
+        <input id="file-upload" type="file"
+        class="form-control mx-auto"
+              placeholder=""
+              formControlName="urlImages"
+              (change)="onChange($event.target.files[0])"
+              [ngClass]="{ 'is-invalid': submitted && f.urlImages.errors}"/>
+              
+            <div
+              *ngIf="submitted && f.urlImages.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.urlImages.errors.required">
+                La imagen es Obligatoria
+              </div>
+            </div>
+          </div>
+
+        <div
+          class="col-12 pt-3 text-center form-group "
         >
           <label class="">Precio Forfait</label>
           <input
             type="number"
-            class="form-control mx-auto"
+            class="form-control mx-auto width-price"
             placeholder=""
             formControlName="price"
             [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
@@ -126,7 +148,7 @@
         </div>
 
         <div
-          class="col-12 col-sm-6 col-md-12 col-lg-12 pt-3 text-center form-group"
+          class="col-12 pt-3 text-center form-group"
         >
                 <label for="my-textarea">Descripción</label>
                 <textarea id="my-textarea" class="form-control mx-auto" name="" rows="3" 
@@ -143,21 +165,14 @@
                   </div>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-12  text-center pt-3">
-          <input
-            type="submit"
-            value="CREAR"
-            class="submit"
-          />
-        </div>
-      </div>
-      <div class="col-12 pt-3 text-center">
-        <div *ngIf="submitted && isRegisterFail" class="">
-          <h5 class="h5-submit">{{ Message }}</h5>
-        </div>
+        <div class="col-12  text-center pt-3">
+          <button mat-raised-button
+                    color="primary"
+                    id="btnCreateStation"
+                    (click) = "onSubmit()">
+                    CREAR
+                  </button>
 
-        <div *ngIf="submitted && !isRegisterFail" class="">
-          <h5 class="h5-error">{{ Message }}</h5>
         </div>
       </div>
     </form>

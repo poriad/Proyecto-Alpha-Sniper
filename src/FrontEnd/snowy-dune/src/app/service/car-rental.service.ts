@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CarRentalDto } from '../components/enterprise-services/enterprise-services.component';
+import { CarRentalDto, GetResponseCarRental } from '../interfaces/car-rental-interface';
 import { CarRental } from '../models/car-rental';
 
 @Injectable({
@@ -11,10 +11,21 @@ export class CarRentalService {
 
   baseUrl = "http://192.168.1.134:8082/api/car-rental/";
   baseUrlTwo = "http://192.168.1.134:8082/carRental/";
+
   //baseUrl = "http://localhost:8082/api/car-rental/";
   //baseUrlTwo = "http://localhost:8082/carRental/";
+  
+  //baseUrl = "http://localhost:8082/snowyduneservice/api/car-rental/";
+  //baseUrlTwo = "http://localhost:8082/snowyduneservice/carRental/";
+
+  //baseUrl = "http://iesalixar.ddns.net:9095/snowyduneservice/api/car-rental/";
+  //baseUrlTwo = "http://iesalixar.ddns.net:9095/snowyduneservice/carRental/";
 
   constructor(private httpClient: HttpClient) { }
+
+  public getCarRentalById(carRentalId: number){
+    return this.httpClient.get<CarRental>(this.baseUrlTwo + 'carRentalId/' + carRentalId)
+  }
 
   public getCarRentalListPaginatedSorted(thePage: number, thePageSize: number, columnName:string, order:string): Observable<GetResponseCarRental> {
 
@@ -72,15 +83,3 @@ export class CarRentalService {
   
 }
 
-interface GetResponseCarRental {
-  _embedded: {
-    carRental: CarRental[];
-  },
-  page: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number
-  }
-
-}

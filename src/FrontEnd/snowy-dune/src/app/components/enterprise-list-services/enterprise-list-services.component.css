@@ -89,6 +89,26 @@ label {
     opacity: 0.5;
 }
 
+.textarea {
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+    width: 80%;
+}
+
+.textarea:focus,.textarea:active {
+    background-color: rgba(27, 77, 176, 0.1);
+    outline: 0;
+    border-bottom: 2px solid rgba(27, 77, 176, 1);
+}
+
+
+.textarea::placeholder{
+    color: #3C7DEC;
+    opacity: 0.5;
+}
+
+
 
 .input:focus {
     outline: none !important;
@@ -183,6 +203,23 @@ select {
     letter-spacing: 0.2rem;
 }
 
+.btnReturn {
+    background-color: rgba(27, 77, 176, 1);
+    color:white;
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  
+  .btnReturn:hover {
+    opacity: 0.8;
+  }
+  
+  .btnReturn:disabled {
+    opacity: 0.7;
+  }
+
 
 @media screen and (min-width: 991px) and (max-width: 1198px) {
     
@@ -274,8 +311,17 @@ select {
 
     }
 
+    .h4 {
+        font-size: 1rem;
+        color: #3C7DEC;
+        font-weight: 550;
+       }
+
     .modal-lg {
         max-width: 100% !important;
     }
 
+    td {
+        font-size: 0.8rem;
+    }
 }

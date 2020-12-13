@@ -1,58 +1,58 @@
 <app-navigation></app-navigation>
 
 <div @fade class="container-fluid fondo">
-    <div class="row">
-        <div class="col pt-5 text-center">
-            <h1 class="h1 pb-4 pb-sm-4 pt-3">GESTIÓN DE LA CUENTA</h1>
+    <div class="row" id="hola">
+        <div class="col pt-5 text-center mb-5">
+            <h1 class="h1 pb-4 pb-sm-4 pt-3"> {{ 'MANAGEMENTUSER.TITLE' | translate }}</h1>
             <hr class="hr">
         </div>
     </div>
 
     <div class="row">
-        <div class="col-4 offset-1  mb-4 pt-4">
+        <div class="col-12 col-lg-5 col-xl-5  mb-4  ml-lg-4 ml-xl-5">
             <div class="row pt-4 fondo-blanco">
                 <div class="col-6 pb-3 text-center">
-                    <img src="../../../assets/UserManagement/visa.png" alt="" class="img-fluid visa">
-                    <p class="d-inline pl-2"> VISA Termina en 1432</p>
+                    <img src="./assets/UserManagement/visa.png" alt="" class="img-fluid visa">
+                    <p class="d-inline pl-2"> VISA {{ 'MANAGEMENTUSER.CREDITCARDTWO' | translate }} 1432</p>
                 </div>
                 <div class="col-6 my-auto pb-3 text-center">
-                    <h5 class="d-inline">CADUCA: </h5>
+                    <h4 class="h4 d-inline">{{ 'MANAGEMENTUSER.CREDITCARDONE' | translate }}: </h4>
                     <p class="d-inline pl-2"> 07/2022</p>
                 </div>
                 <div class="col-6 pb-3 text-center">
-                    <img src="../../../assets/UserManagement/visa.png" alt="" class="img-fluid visa">
-                    <p class="d-inline pl-2"> VISA Termina en 7322</p>
+                    <img src="./assets/UserManagement/visa.png" alt="" class="img-fluid visa">
+                    <p class="d-inline pl-2"> VISA {{ 'MANAGEMENTUSER.CREDITCARDTWO' | translate }} 7322</p>
                 </div>
                 <div class="col-6 my-auto pb-3 text-center">
-                    <h5 class="d-inline">CADUCA: </h5>
+                    <h4 class="h4 d-inline">{{ 'MANAGEMENTUSER.CREDITCARDONE' | translate }}: </h4>
                     <p class="d-inline pl-2"> 11/2025</p>
                 </div>
                 <div class="col-12">
                     <hr class="hr2">
-                    <h3 class="h3 pl-4 pb-4">TARJETAS REGISTRADAS</h3>
+                    <h3 class="h3 pl-4 pb-4">{{ 'MANAGEMENTUSER.CREDITCARDTITLE' | translate }}</h3>
                 </div>
             </div>
 
             <div class="row fondo-blanco mt-5"> 
                 <div class="col-12 pt-4">
-                    <h3 class="h3 pl-4">REALIZA COMENTARIOS</h3>
+                    <h3 class="h3 pl-4">{{ 'MANAGEMENTUSER.COMMENT' | translate }}</h3>
                     <hr class="hr2">
                 </div>
                 <div class="col-12">
-                    <h5 class="h5 pl-4 pt-3 pb-3">COMENTA LOS SERVICIOS CONTRATADOS EN TUS VIAJES</h5>
+                    <h4 class="h4 pl-4 pt-3 pb-3">{{ 'MANAGEMENTUSER.COMMENTONE' | translate }}</h4>
                 </div>
                 <div class="col-12 text-justify pl-5 pr-5 pb-3">
-                    <p class="p">Una vez hayan pasado las fechas de tu viaje, podrás realizar un comentario a cada servicio contratado durante vuestra estancia.</p>
-                    <p class="p">Podrás realizarlo en un plazo máximo de 1 mes desde la fecha de finalización del viaje.</p>
+                    <p class="p">{{ 'MANAGEMENTUSER.COMMENTTWO' | translate }}</p>
+                    <p class="p">{{ 'MANAGEMENTUSER.COMMENTTHREE' | translate }}</p>
                 </div>
-                <button (click) = getComments() class="btn comentarios col-12" data-toggle="modal" data-target="#sierra-nevada">VER COMENTARIOS DISPONIBLES</button>
+                <button (click) = getComments() class="btn comentarios col-12" data-toggle="modal" data-target="#sierra-nevada">{{ 'MANAGEMENTUSER.COMMENTBUTTON' | translate }}</button>
             </div>
 
         </div>
 
-        <div class="col-6 fondo-blanco ml-5 mt-4 mb-4">
+        <div class="col-12 col-lg-6 fondo-blanco  mt-lg-0 ml-lg-5 mt-4 mb-4">
             <div class="row">
-                <button href="#" class="btn comentarios col-12 " data-toggle="modal" data-target="#sierra-nevada" (click) = "enableModify()">¿DESEA MODIFICAR SUS DATOS? PULSE AQUÍ</button>
+                <button href="#" class="btn comentarios col-12 " data-toggle="modal" data-target="#sierra-nevada" (click) = "enableModify()">{{ 'MANAGEMENTUSER.DATABUTTON' | translate }}</button>
                 
                 
                 <div class="col-12">
@@ -60,22 +60,23 @@
                 <form [formGroup]="userForm" *ngIf="user" class="">
                     
                     <div class="row pb-2">
-                        <div class="col-8">
-                            <h5 class="h5 pl-4 pt-4 pb-4">DIRECCIÓN Y DATOS DE CONTACTO</h5>
+                        <div class="col-12 col-md-8">
+                            <h4 class="h4 pl-4 pt-4 pb-4">{{ 'MANAGEMENTUSER.DATA' | translate }}</h4>
                             
                         </div>
                         <div class="col-12 col-md-4  text-center pt-3 my-auto pb-3">
-                            <input
-                              type="submit"
-                              class="modify-input"
-                              value="Modificar"
-                              (click) = "onSubmit()"
-                              [disabled] = "!modifyEnabled"
-                            />
+                            <button mat-raised-button
+                                color="primary"
+                                id="btnCreateStation"
+                                (click) = "onSubmit()"
+                                [disabled] = "!modifyEnabled">
+                                {{ 'MANAGEMENTUSER.DATABUTTONONE' | translate }}
+                            </button>
+                            
                         </div>
 
-                    <label class="col-4 text-center">Nombre:</label>
-                        <div class="col-8 form-group">
+                    <label class="col-12 col-md-4 text-center">{{ 'MANAGEMENTUSER.DATANAME' | translate }}:</label>
+                        <div class="col-12 col-md-8 form-group">
                             <input
                             class="form-control mx-auto input"
                             formControlName="firstName"
@@ -90,8 +91,8 @@
                       <div
                         class=" row pb-2"
                       >
-                        <label class="col-4 text-center">Apellidos:</label>
-                        <div class="col-8 form-group">
+                        <label class="col-12 col-md-4 text-center">{{ 'MANAGEMENTUSER.DATALASTNAME' | translate }}:</label>
+                        <div class="col-12 col-md-8 form-group">
                         <input
                           class="form-control mx-auto input"
                           formControlName="lastName"
@@ -107,8 +108,8 @@
                       <div
                         class="row pb-2"
                       >
-                        <label class="col-4 text-center">Dirección:</label>
-                        <div class="col-8 form-group ">
+                        <label class="col-12 col-md-4 text-center">{{ 'MANAGEMENTUSER.DATAADDRESS' | translate }}:</label>
+                        <div class="col-12 col-md-8 form-group ">
                         <input
                         type="text"
                           class="form-control mx-auto input"
@@ -124,8 +125,8 @@
                       <div
                         class=" row pb-2"
                       >
-                        <label class="col-4 text-center">Teléfono:</label>
-                        <div class="col-8 form-group">
+                        <label class="col-12 col-md-4 text-center">{{ 'MANAGEMENTUSER.DATAPHONE' | translate }}:</label>
+                        <div class="col-12 col-md-8 form-group">
                         <input
                         type="text"
                           class="form-control mx-auto input"
@@ -145,8 +146,8 @@
                       <div
                         class=" row pb-2"
                       >
-                        <label class="col-4 text-center">Email:</label>
-                        <div class="col-8 form-group">
+                        <label class="col-12 col-md-4 text-center">{{ 'MANAGEMENTUSER.DATAEMAIL' | translate }}:</label>
+                        <div class="col-12 col-md-8 form-group">
                         <input
                         type="text"
                           class="form-control mx-auto input"
@@ -166,8 +167,8 @@
                       <div
                         class=" row pb-2"
                       >
-                        <label class="col-4 text-center">Nombre de Usuario:</label>
-                        <div class="col-8 form-group">
+                        <label class="col-12 col-md-4 text-center">{{ 'MANAGEMENTUSER.DATAUSERNAME' | translate }}:</label>
+                        <div class="col-12 col-md-8 form-group">
                         <input
                         type="text"
                           class="form-control mx-auto input"
@@ -184,8 +185,8 @@
                         <div
                             class="row pb-2"
                         >
-                            <label class="col-4 text-center">Contraseña:</label>
-                            <div class="col-8 form-group ">
+                            <label class="col-12 col-md-4 text-center">{{ 'MANAGEMENTUSER.DATAPASSWORD' | translate }}:</label>
+                            <div class="col-12 col-md-8 form-group ">
                             <input
                             type="text"
                             class="form-control mx-auto text-center input"
@@ -210,26 +211,31 @@
                 <div class="col-12">
                 <hr class="hr3">
             </div>
-                <div class="col-6">
+                <div class="col-12 ">
                     
-                    <h3 class="h3 pl-4 pb-4 pt-3">DATOS PERSONALES</h3>
+                    <h3 class="h3 pl-4 pb-4 pt-3">{{ 'MANAGEMENTUSER.DATAONE' | translate }}</h3>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row pb-5">
-        <div class="col-5 offset-1 fondo-blanco mt-4 ">
-            <div class="row">
+        <div class="col-12 col-md-6 col-lg-5 offset-lg-1 ml-md-4 ml-lg-4 ml-xl-5 mt-4 ">
+            <div class="row fondo-blanco">
                 <div class="col-12 pb-2">
-                    <h3 class="h3 pl-4 pt-4">VIAJES PENDIENTES</h3>
+                    <h3 class="h3 pl-4 pt-4">{{ 'MANAGEMENTUSER.TRIPSPENDING' | translate }}</h3>
                     <hr class="hr2">
                 </div>
                 <div class="col-12">
-                    <div class="row text-center">
-                        <h4 class="h5 col pl-4 pt-3 pb-3">FECHA</h4>
-                        <h4 class="h5 col pl-4 pt-3 pb-3">ESTACIÓN</h4>
-                        <h4 class="h5 col pl-4 pt-3 pb-3">PAÍS</h4>
+                    <div class="row pt-4" *ngIf="trips && trips.length == 0">
+                        <div class="col-12">
+                        <p class=" h4 text-center">{{ 'MANAGEMENTUSER.TRIPSPENDINGFOUR' | translate }}</p>
+                    </div>
+                    </div>
+                    <div class="row text-center" *ngIf="trips && trips.length > 0">
+                        <h4 class="h4 col pl-4 pt-3 pb-3">{{ 'MANAGEMENTUSER.TRIPSPENDINGONE' | translate }}</h4>
+                        <h4 class="h4 col pl-4 pt-3 pb-3">{{ 'MANAGEMENTUSER.TRIPSPENDINGTWO' | translate }}</h4>
+                        <h4 class="h4 col pl-4 pt-3 pb-3">{{ 'MANAGEMENTUSER.TRIPSPENDINGTHREE' | translate }}</h4>
                     </div>
                 </div>
 
@@ -240,23 +246,24 @@
                         <h4 class="p-direccion col pl-4 pt-3 pb-3">{{stationsTrip[i].country}}</h4>
                     </div>
                 </div>
-
-
                 
-                
-                
-                <button routerLink="/Station" class="btn viaje mt-4 w-100 " data-toggle="modal" data-target="#sierra-nevada">¿QUIERES HACER UN VIAJE? EMPIEZA YA</button>
+                <button routerLink="/Station" class="btn comentarios mt-4 w-100 mb-0 " data-toggle="modal" data-target="#sierra-nevada">{{ 'MANAGEMENTUSER.TRIPSPENDINGBUTTON' | translate }}</button>
             
             </div>
         </div>
 
-        <div class="col-5 fondo-blanco mt-4 ml-5">
-            <div class="row">
-                <button href="#" class="btn comentarios col-12" data-toggle="modal" data-target="#sierra-nevada">GENERAR PDF</button>
+        <div class="col-12 col-md-5 ml-md-4 ml-lg-0 col-lg-6  mt-4 ml-md-4 ml-lg-5" #content>
+            <div class="row fondo-blanco">
+                <button (click)="downloadPDF()" class="btn comentarios col-12" [disabled] = "beforeThisYearStatioTrips.length == 0 && pastStationTrips.length == 0">{{ 'MANAGEMENTUSER.TRIPSDONEBUTTON' | translate }}</button>
                 <div class="col-12">
-                    <h5 class="h5 pt-4"> VIAJES REALIZADOS EN 2020</h5>
+                <div class="row" id="contentDos">
+                <div class="col-12">
+                    <h4 class="h4 pt-4"> {{ 'MANAGEMENTUSER.TRIPSDONE' | translate }}</h4>
                 </div>
-                <div class="col-4 pt-4 pb-4" *ngFor="let pastStation of pastStationTrips">
+                <div class="col-12" *ngIf="pastTrips && pastTrips.length == 0">
+                    <p class="p text-center pt-3">{{ 'MANAGEMENTUSER.TRIPSDONEONE' | translate }}</p>
+                </div> 
+                <div class="col-12 col-sm-4 col-md-12 col-lg-6 col-xl-4  pt-4 pb-4" *ngFor="let pastStation of pastStationTrips">
                 <div class="container" >
                     
                     <img src="{{pastStation.urlImages}}" alt="Snow" class="img-fluid img">
@@ -266,12 +273,13 @@
             </div>
             
             <div class="col-12">
-                <h5 class="h5 pt-4"> VIAJES REALIZADOS EN 2019</h5>
+                <h4 class="h4 pt-4"> {{ 'MANAGEMENTUSER.TRIPSDONETWO' | translate }}</h4>
             </div>
-
-            <div class="col-4 pt-4 pb-4" *ngFor="let pastStation of beforeThisYearStatioTrips">
+            <div class="col-12" *ngIf="beforeThisYearTrips && beforeThisYearTrips.length == 0">
+                <p class="p text-center pt-3">{{ 'MANAGEMENTUSER.TRIPSDONETHREE' | translate }}</p>
+            </div>
+            <div class="col-12 col-sm-4 col-md-12 col-lg-6 col-xl-4 pt-4 pb-4" *ngFor="let pastStation of beforeThisYearStatioTrips">
                 <div class="container" >
-                    
                     
                     <img src="{{pastStation.urlImages}}" alt="Snow" class="img-fluid img">
                     <div class="centered">{{ pastStation.name.toUpperCase()}}</div>
@@ -281,12 +289,133 @@
             
                 <div class="col-12">
                     <hr class="hr2">
-                    <h3 class="h3 pl-4">VIAJES REALIZADOS</h3>
+                    <h3 class="h3 pl-4">{{ 'MANAGEMENTUSER.TRIPSDONETITLE' | translate }}</h3>
                     
                 </div>
 
-                
             </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>
+
+
+<div  class="modal fade" role="dialog" aria-labelledby="exampleModalCenterTitle" >
+    <div id="contentTres" role="document" class="row " >
+        
+        <div class="col-12" >
+            <div class="row" *ngIf="pastTripsComplete && thisYearTripsComplete">
+                <div class="col-12">
+                    
+            <h1 class="h1-pdf text-center">SnowyDune</h1>
+            <hr class="hr">
+        </div>
+        <div class="col-12" *ngIf="pastTripsComplete">
+            <h1 class="h2-pdf text-center pt-4">Viajes Realizados en 2019</h1>
+
+        </div>
+            <div class="col-12" *ngFor="let trip of pastTripsComplete; let i=index">
+                <div class="row">
+                    <div class="col-4">
+                    <h3 class="h3-pdf pt-4">Viaje {{i+1}}</h3>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h3 class="h3-pdf pt-4">Fecha Inicio {{trip.entryDate}}</h3>
+                    </div>
+                    <div class="col-12">
+                    <h4 class="h4-pdf pt-4"><strong>Personas {{trip.totalPersons}} | Número de días {{ trip.totalDays }}</strong></h4>
+                    <h4 class="pt-4 p-pdf"><strong>Estación:</strong> {{ trip.station.name }} ({{trip.station.location}}, {{trip.station.country}})</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.hotel">
+                    <h4 class="pt-3 p-pdf"><strong>Hotel:</strong> {{ trip.hotel.name }}</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.hotel">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.hotel.priceDay * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.classes">
+                    <h4 class="pt-3 p-pdf"><strong>Clases:</strong> {{ trip.classes.name }}</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.classes">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.classes.priceHour * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.skiMaterial">
+                    <h4 class="pt-3 p-pdf"><strong>Material:</strong> {{ trip.skiMaterial.name }}</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.skiMaterial">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.skiMaterial.priceDay * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.carRental">
+                    <h4 class="pt-3 p-pdf"><strong>Vehículo:</strong> {{ trip.carRental.name }} </h4>
+                </div>
+                <div class="col-6" *ngIf="trip.carRental">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.carRental.price * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio Total</strong> </h4>
+                </div>
+                <div class="col-6">
+                    <h4 class="pt-3 p-pdf text-center"><strong>{{(trip.carRental?.price * trip.totalPersons * trip.totalDays) + (trip.skiMaterial?.priceDay * trip.totalPersons * trip.totalDays) 
+                        + (trip.classes?.priceHour * trip.totalPersons * trip.totalDays) + (trip.hotel?.priceDay * trip.totalPersons * trip.totalDays)}} €</strong> </h4>
+                </div>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="thisYearTripsComplete">
+                <h1 class="h2-pdf text-center pt-5">Viajes Realizados en 2020</h1>
+    
+            </div>
+            <div class="col-12" *ngFor="let trip of thisYearTripsComplete; let i=index">
+                <div class="row">
+                    <div class="col-4">
+                    <h3 class="h3-pdf pt-4">Viaje {{i+1}}</h3>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h3 class="h3-pdf pt-4">Fecha Inicio {{trip.entryDate}}</h3>
+                    </div>
+                    <div class="col-12">
+                    <h4 class="h4-pdf pt-4"><strong>Personas {{trip.totalPersons}} | Número de días {{ trip.totalDays }}</strong></h4>
+                    <h4 class="pt-4 p-pdf"><strong>Estación:</strong> {{ trip.station.name }} ({{trip.station.location}}, {{trip.station.country}})</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.hotel">
+                    <h4 class="pt-3 p-pdf"><strong>Hotel:</strong> {{ trip.hotel.name }}</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.hotel">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.hotel.priceDay * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.classes">
+                    <h4 class="pt-3 p-pdf"><strong>Clases:</strong> {{ trip.classes.name }}</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.classes">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.classes.priceHour * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.skiMaterial">
+                    <h4 class="pt-3 p-pdf"><strong>Material:</strong> {{ trip.skiMaterial.name }}</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.skiMaterial">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.skiMaterial.priceDay * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6" *ngIf="trip.carRental">
+                    <h4 class="pt-3 p-pdf"><strong>Vehículo:</strong> {{ trip.carRental.name }} </h4>
+                </div>
+                <div class="col-6" *ngIf="trip.carRental">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio:</strong> {{ trip.carRental.price * trip.totalPersons * trip.totalDays }} €</h4>
+                </div>
+                <div class="col-6">
+                    <h4 class="pt-3 p-pdf text-center"><strong>Precio Total</strong> </h4>
+                </div>
+                <div class="col-6">
+                    <h4 class="pt-3 p-pdf text-center"><strong>{{(trip.carRental?.price * trip.totalPersons * trip.totalDays) + (trip.skiMaterial?.priceDay * trip.totalPersons * trip.totalDays) 
+                        + (trip.classes?.priceHour * trip.totalPersons * trip.totalDays) + (trip.hotel?.priceDay * trip.totalPersons * trip.totalDays)}} €</strong> </h4>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+       
+    
+    </div>
+
+    
+  </div>
+

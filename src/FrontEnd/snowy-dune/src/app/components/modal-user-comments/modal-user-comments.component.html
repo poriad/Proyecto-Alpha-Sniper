@@ -1,7 +1,22 @@
+
+
 <h1 mat-dialog-title class="text-center h3">Comentarios Activos</h1>
 <div
   mat-dialog-content
-  *ngIf="stations && hotel && carRental && classes && skiMaterial"
+  *ngIf="stations.length == 0 && hotel.length == 0 && carRental.length == 0 && classes.length == 0 && skiMaterial.length == 0"
+>
+  <div class="col-12 text-center">
+
+    <p class="parrafo"> No existe comentarios que puedas realizar, para poder hacerlos, tienes que realizar un viaje.</p>
+
+    <p class="parrafo"> Una vez realizado el viaje podrás realizar comentarios a partir de un mes desde su inicio.</p>
+
+  </div>
+
+</div>
+<div
+  mat-dialog-content
+  *ngIf="stations.length > 0 && (hotel.length > 0 || carRental.length > 0 || classes.length > 0 || skiMaterial.length > 0)"
 >
   <div class="col-12">
     <p class="text-center mensaje">{{ mensaje }}</p>
@@ -13,109 +28,125 @@
     </div>
     <div class="col-9">
       <div class="row" *ngFor="let station of stations">
-        <div class="col-4">
-          <p class="text-center mensaje">{{ station.name }}</p>
+        <div class="col-4 my-auto">
+          <p class="text-center h4  ">{{ station.name }}</p>
         </div>
-        <form class="col-8">
+        <form [formGroup]="stationForm" class="col-8">
           <div class="row">
-            <div class="col-6">
-              <input type="text" value="Deja tu comentario..." />
+            <div class="col-6 pb-2 my-auto">
+              <input type="text" 
+              formControlName="comment"
+              class="form-control input"
+              [ngClass]="{ 'is-invalid': !stationForm.controls['comment'].valid && stationForm.controls['comment'].touched}" />
             </div>
-            <div class="col-6 text-center">
-              <input type="submit" value="Mandar Comentario" (click) = "createComment(station.id, 1)"/>
+            <div class="col-6 text-center my-auto">
+              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(station.id, 1)"/>
+
+              
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-
+  <hr class="hr">
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Hoteles</p>
     </div>
     <div class="col-9">
       <div class="row" *ngFor="let hotel of hotel">
-        <div class="col-4">
-          <p class="text-center mensaje">{{ hotel.name }}</p>
+        <div class="col-4 my-auto my-auto">
+          <p class="text-center h4  ">{{ hotel.name }}</p>
         </div>
-        <form class="col-8">
+        <form [formGroup]="hotelForm" class="col-8">
           <div class="row">
-            <div class="col-6">
-              <input type="text" value="Deja tu comentario..." />
+            <div class="col-6 pb-2">
+              <input type="text"
+              class="form-control input"
+              formControlName="comment"
+               />
             </div>
-            <div class="col-6 text-center">
-              <input type="submit" value="Mandar Comentario" (click) = "createComment(hotel.id, 2)"/>
+            <div class="col-6 text-center my-auto">
+              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(hotel.id, 2)"/>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-
+  <hr class="hr">
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Alquiler de Vehículos</p>
     </div>
     <div class="col-9">
       <div class="row" *ngFor="let carRental of carRental">
-        <div class="col-4">
-          <p class="text-center mensaje">{{ carRental.name }}</p>
+        <div class="col-4 my-auto">
+          <p class="text-center h4 ">{{ carRental.name }}</p>
         </div>
-        <form class="col-8">
+        <form class="col-8" [formGroup]="carRentalForm">
           <div class="row">
-            <div class="col-6">
-              <input type="text" value="Deja tu comentario..." />
+            <div class="col-6 pb-2 my-auto">
+              <input type="text"
+              class="form-control input"
+              formControlName="comment"
+               />
             </div>
-            <div class="col-6 text-center">
-              <input type="submit" value="Mandar Comentario"(click) = "createComment(carRental.id, 3)"/>
+            <div class="col-6 text-center my-auto">
+              <input type="submit" value="Mandar Comentario"  class = "submit" (click) = "createComment(carRental.id, 3)"/>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-
+  <hr class="hr">
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Clases</p>
     </div>
     <div class="col-9">
       <div class="row" *ngFor="let class of classes">
-        <div class="col-4">
-          <p class="text-center mensaje">{{ class.name }}</p>
+        <div class="col-4 my-auto">
+          <p class="text-center h4">{{ class.name }}</p>
         </div>
-        <form class="col-8">
+        <form class="col-8" [formGroup]="classesForm">
           <div class="row">
-            <div class="col-6">
-              <input type="text" value="Deja tu comentario..." />
+            <div class="col-6 pb-2 my-auto">
+              <input type="text"
+              class="form-control input"
+              formControlName="comment"
+                />
             </div>
-            <div class="col-6 text-center">
-              <input type="submit" value="Mandar Comentario" (click) = "createComment(class.id, 4)"/>
+            <div class="col-6 text-center  my-auto">
+              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(class.id, 4)"/>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-
+  <hr class="hr">
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Alquiler de Material</p>
     </div>
     <div class="col-9">
       <div class="row" *ngFor="let skiMaterial of skiMaterial">
-        <div class="col-4">
-          <p class="text-center mensaje">{{ skiMaterial.name }}</p>
+        <div class="col-4 my-auto">
+          <p class="text-center h4 ">{{ skiMaterial.name }}</p>
         </div>
-        <form class="col-8">
+        <form class="col-8" [formGroup]="skiMaterialForm">
           <div class="row">
-            <div class="col-6">
-              <input type="text" value="Deja tu comentario..." />
+            <div class="col-6 pb-2 ">
+              <input type="text"
+              class="form-control input "
+              formControlName="comment" />
             </div>
-            <div class="col-6  text-center">
+            <div class="col-6  text-center my-auto">
 
-              <input type="submit" value="Mandar Comentario" (click) = "createComment(skiMaterial.id, 5)" />
+              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(skiMaterial.id, 5)" />
             </div>
           </div>
         </form>
@@ -129,96 +160,3 @@
     <button mat-button (click)="cerrarDialogo()" class="cancel">Cerrar</button>
   </div>
 </div>
-
-
-
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Document</title> 
-				 
-    <style> 
-				  
-				.hola { 
-				    background-image: url("https://wallpapercave.com/wp/wp4020827.jpg"); 
-				    background-color: #cccccc; 
-				    background-repeat: no-repeat; 
-				    background-size: cover; 
-				    height: 500px; 
-				    width: 800px; 
-				    } 
-				 
-    </style> 
-				 
-</head> 
-<body> 
-   <div class="hola"> 
-				<div style="background-color: #ffffff; 
-				height: 100%; 
-				position: absolute; 
-				top: 20%; 
-				left: 17%; 
-				border-bottom-color: #1B4DB0; 
-				opacity: 0.80;"
-				>
-				<h1 class="title" style="text-align: center;color: #1B4DB0; opacity: 1; padding-top: 80px; font-size: 30px;font-weight: bold;" >S n o w y D u n e</h1> 
-				<p style="line-height:20%; color:#1B4DB0; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;text-align: center;opacity: 1;font-weight: bold;">........................................................................................................................................</p> 
-        
-        <h5 style="color:#1B4DB0;text-align: center; font-size: 17px; padding-top: 30px;opacity: 1;font-weight: bold;">Se ha recibido un curriculum de parte de |&name&|, se adjunta el archivo PDF.</h5> 
-				 
-				<h5 style="color:#1B4DB0;text-align: center; font-size: 15px; padding-top: 30px;opacity: 1;font-weight: bold;">El email que ha facilitado es el siguiente: |&email&|</h5> 
-				 
-				 
-				</div> 
-				    </div>
-				</body>
-        </html>
-        
-
-        
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Document</title> 
-				 
-    <style> 
-				  
-				.hola { 
-				    background-image: url("https://wallpapercave.com/wp/wp4020827.jpg"); 
-				    background-color: #cccccc; 
-				    background-repeat: no-repeat; 
-				    background-size: cover; 
-				    height: 500px; 
-				    width: 800px; 
-				    } 
-				 
-    </style> 
-				 
-</head> 
-<body> 
-   <div class="hola"> 
-				<div style="background-color: #ffffff; 
-				height: 100%; 
-				position: absolute; 
-				top: 20%; 
-				left: 17%; 
-				border-bottom-color: #1B4DB0; 
-				opacity: 0.80;"
-				>
-				<h1 class="title" style="text-align: center;color: #1B4DB0; opacity: 1; padding-top: 80px; font-size: 30px;font-weight: bold;" >S n o w y D u n e</h1> 
-				<p style="line-height:20%; color:#1B4DB0; margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;text-align: center;opacity: 1;font-weight: bold;">........................................................................................................................................</p> 
-        
-        <h5 style="color:#1B4DB0;text-align: center; font-size: 17px; padding-top: 30px;opacity: 1;font-weight: bold;">Se ha recibido un comentario de |&name&|.</h5> 
-				 
-				<h5 style="color:#1B4DB0;text-align: center; font-size: 15px; padding-top: 30px;opacity: 1;font-weight: bold;">El email que ha facilitado es el siguiente: |&email&|</h5> 
-         
-        <h5 style="color:#1B4DB0;text-align: center; font-size: 15px; padding-top: 30px;opacity: 1;font-weight: bold;">El comentario que ha realizado e : |&comment&|</h5> 
-				 
-				</div> 
-				    </div>
-				</body>
-				</html>

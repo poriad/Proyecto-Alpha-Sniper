@@ -13,8 +13,17 @@ nav{
     height: 2rem;
 }
 
-.title {
+.mat-icon {
+    width: auto !important;
+}
+.mat-badge-content {
+    background-color: white;
+    border: 1px solid rgba(27, 77, 176, 1);
     color: rgba(27, 77, 176, 1);
+}
+
+.title {
+    color: rgba(27, 77, 176, 1) !important;
     font-weight: 750;
     font-size: 25px;
     letter-spacing: 0.4rem;
@@ -22,10 +31,10 @@ nav{
 }
 
 .title:hover {
-    color: rgba(27, 77, 176, 0.753);
+    color: rgba(27, 77, 176, 0.753) !important;
 }
 
-.h3 {
+.snowydunetrip {
     color: rgba(27, 77, 176, 1);
     font-weight: 750;
     font-size: 20px;
@@ -69,23 +78,37 @@ nav{
     z-index: 50;
 }
 
-@media screen and (min-width: 991px) and (max-width: 1198px) {
+@media screen and (min-width: 991px) and (max-width: 1366px) {
     
+    .img-snowy {
+        height: 4.7rem;
     
+        transform: translate(-50%,-10%);
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 990px) {
-   
+
+    .img-snowy {
+        height: 4.5rem;
+    
+        transform: translate(-50%,-8%);
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
 
     .img-user{
-        height: 1.15rem;
+        height: 1.35rem;
     }
-    
+    .mat-badge-medium .mat-badge-content{
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+
     .img-cart {
-        height: 1.15rem;
+        height: 1.35rem;
     }
     .img-snowy {
         height: 4.5rem;
@@ -98,21 +121,41 @@ nav{
 @media screen and (max-width: 575px) {
    
    .title {
-    font-size: 20px;
-    letter-spacing: 0.3rem;
+    font-size: 15px;
+    letter-spacing: 0.2rem;
    }
 
    .img-user{
-    height: 1.1rem;
+    height: 1.35rem;
+}
+.mat-badge-medium.mat-badge-above .mat-badge-content {
+    top: -7px;
+}
+
+.mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content{
+    right: -6px;
+}
+
+.mat-badge-content {
+    font-size: 11px;
+}
+
+.mat-badge-medium .mat-badge-content{
+    width: 18px;
+    height: 18px;
+    line-height: 20px;
 }
 
 .img-cart {
-    height: 1.1rem;
+    height: 1.35rem;
 }
-.img-snowy {
-    height: 3.5rem;
 
-    transform: translate(-50%,0%);
+.img-snowy {
+    height: 1.7rem;
+    position: relative;
+    left: 0;
+    top:0;
+    z-index: 1000;
 }
 
 }

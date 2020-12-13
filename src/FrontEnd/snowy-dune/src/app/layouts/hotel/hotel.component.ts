@@ -8,6 +8,7 @@ import { Comentario } from 'src/app/models/comment';
 import { Hotel } from 'src/app/models/hotel';
 import { CommentService } from 'src/app/service/comment.service';
 import { HotelService } from 'src/app/service/hotel.service';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-hotel',
@@ -26,10 +27,10 @@ import { HotelService } from 'src/app/service/hotel.service';
 ]
 })
 export class HotelComponent implements OnInit {
-
+  faStar= faStar;
   hotels: Hotel[];
   comments: Comentario[];
-  
+
   searchText;
   user: string[] = [];
   currentStars: number;
@@ -174,7 +175,12 @@ export class HotelComponent implements OnInit {
     })
   }
 
+  array(n: number): any[] {
+    return Array(n);
+  }
+
   continueToClasses() {
+
     if (window.sessionStorage.getItem('HotelId') == undefined){
       this.dialogo.open(ConfirmDialogComponent, {
         data:`¿Estás seguro que quieres continuar? No has seleccionado ningun hotel`
@@ -184,6 +190,17 @@ export class HotelComponent implements OnInit {
         if (confirmado){
   
           window.sessionStorage.removeItem('HotelId');
+          this.router.navigate(['/Classes']);
+  
+        }
+      })
+    } else {
+      this.dialogo.open(ConfirmDialogComponent, {
+        data:`¿Estás seguro que quieres continuar?`
+      })
+      .afterClosed()
+      .subscribe((confirmado:Boolean) => {
+        if (confirmado){
           this.router.navigate(['/Classes']);
   
         }

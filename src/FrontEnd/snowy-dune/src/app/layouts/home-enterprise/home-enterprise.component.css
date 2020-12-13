@@ -10,6 +10,7 @@
 .fondo-blanco {
     background-color: white;
     padding-left: 0 !important;
+    box-shadow: 1px 1px 5px #888888a2;
 }
 
 .h1{
@@ -82,3 +83,14 @@
 }
 
 
+
+@media screen and (max-width: 575px) {
+   
+    .h1{
+        font-size: 1.4rem;
+        letter-spacing: 0.25rem;
+    }
+
+
+    
+ }

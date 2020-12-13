@@ -2,19 +2,26 @@
 
 <div @fade class="container-fluid fondo">
   <div class="row">
-    <div class="col-12 pt-5 text-center">
+    <div class="col-12 col-xl-8 offset-xl-2 pt-5 text-center">
       <h1 class="h1 pb-4 pb-sm-4">ADMINISTRACIÓN DE USUARIOS Y EMPRESAS</h1>
       <hr class="hr" />
-      <button class="btn btn-return" routerLink="/HomeAdmin">VOLVER</button>
     </div>
+    <div class="col-12 col-xl-2 text-center my-auto pt-4 pt-xl-0">
+      <button mat-raised-button
+                    color="primary"
+                    id="btnUserEnterprises"
 
+                    routerLink="/HomeAdmin">
+                    VOLVER
+                  </button>
+    </div>
   </div>
     <div class="row pb-5 mt-5">
       <div class="col-12 col-md-10 col-xl-5 offset-md-1 offset-xl-1 fondo-blanco text-center">
         <div class="row">
           <p class="marca-uno w-100 text-center pb-1"></p>
           <div class="col-12">
-            <h3 class="h3 pl-4 pb-3 pt-4 pl-5">ADMINISTRACIÓN DE USUARIOS</h3>
+            <h3 class="h3 pb-3 pt-4 text-center">ADMINISTRACIÓN DE USUARIOS</h3>
             <hr class="hr2" />
           </div>
           <div class="col-12">
@@ -22,7 +29,7 @@
           </div>
           
 
-          <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto">
+          <div class="col-10  pt-4 pb-4 table-responsive mx-auto">
             <table class="table table-striped ">
               <thead>
                 <tr>
@@ -64,33 +71,20 @@
       </ngb-pagination>
       
         </div>
-        <div *ngIf="submitted && isUpdateFail" class="col-12">
-          <h5 class="h5-submit text-center">{{ updateMessage }}</h5>
-        </div>
 
-        <div *ngIf="submitted && !isUpdateFail" class="col-12">
-          <h5 class="h5-error text-center">{{ updateMessage }}</h5>
-        </div>
-        <div *ngIf="submitted && isDeleteUserFail" class="col-12">
-          <h5 class="text-center h5-submit">{{deleteMessage}}</h5>
-        </div>
-
-        <div *ngIf="submitted && !isDeleteUserFail && isUpdateEnterpriseFail" class="col-12">
-          <h5 class=" text-center h5-error">{{ deleteMessage }}</h5>
-        </div>
       </div>
 
       <div class="col-12 col-md-10 col-xl-5 offset-md-1 fondo-blanco ml-xl-5 mt-5 mt-xl-0">
         <div class="row">
           <p class="marca-uno w-100 text-center pb-1"></p>
             <div class="col-12">
-                <h3 class="h3 pb-3 pt-4 pl-5">SOLICITUDES DE INGRESO. EMPRESAS.</h3>
+                <h3 class="h3 pb-3 pt-4 text-center">SOLICITUDES DE INGRESO. EMPRESAS.</h3>
                 <hr class="hr2" />
             </div>
             <div class="col-12">
               <input class="form-control search mx-auto" type="text" name="search" [(ngModel)]="searchTextEnterprise" autocomplete="off" placeholder="Busca por coincidencias en el campo...">
             </div>
-            <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto">
+            <div class="col-10  pt-4 pb-4 table-responsive mx-auto">
                 <table class="table table-striped text-center ">
                     <thead>
                       <tr>
@@ -104,7 +98,7 @@
                   
                         <td>{{ enterprise.nomComercial }}</td>
                         <td>{{ enterprise.nif }}</td>
-                        <td>{{ enterprise.cnae }}</td>
+                        <td>{{ enterprise.email }}</td>
                         <td>{{ enterprise.activity }}</td>
                         <td>
                           <button
@@ -130,23 +124,10 @@
     
           </ngb-pagination>
             </div>
-            <div *ngIf="submitted && isUpdateEnterpriseFail" class="col-12">
-              <h5 class="text-center h5-submit">{{updateMessageEnterprise}}</h5>
-            </div>
-    
-            <div *ngIf="submitted && !isUpdateEnterpriseFail" class="col-12">
-              <h5 class=" text-center h5-error">{{ updateMessageEnterprise }}</h5>
-            </div>
 
         </div>
 
     </div>
-
-
-
-
-
-
 
     </div>
 
@@ -178,7 +159,7 @@ class="modal fade"
         <div class="col-11">
           <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Usuario {{ user.username }}</h3>
           <hr class="hr3" />
-          <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
+          <h4 class="h4 pl-4 pb-1 pt-4 ">
             Modificación de Datos y Borrado de Usuario
           </h4>
         </div>
@@ -197,7 +178,7 @@ class="modal fade"
         <form>
         <div class="row">
           
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-lg-4 text-center pt-3 pb-4">
             
             <label for="firstName" class="d-block">Nombre</label>
             
@@ -210,7 +191,7 @@ class="modal fade"
               
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4 ">
+          <div class="col-12 col-sm-6 col-lg-4 text-center pt-3 pb-4 ">
             <label for="lastName" class="d-block">Apellidos</label>
             <input #lastName
               type="text"
@@ -220,7 +201,7 @@ class="modal fade"
               class="input pt-2"
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-lg-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">Email</label>
             <input #email
               type="text"
@@ -231,7 +212,7 @@ class="modal fade"
             />
           </div>
           
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-lg-4 text-center pt-3 pb-4">
             <label for="email" class="d-block">Dirección</label>
             <input #address
               type="text"
@@ -241,7 +222,7 @@ class="modal fade"
               value="{{ user.address }}"
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-lg-4 text-center pt-3 pb-4">
             <label for="username" class="d-block">Nombre Usuario</label>
             <input #username
               type="text"
@@ -251,17 +232,15 @@ class="modal fade"
               value="{{ user.username }}"
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4 ">
+          <div class="col-12 col-sm-6 col-lg-4 text-center pt-3 pb-4 ">
             <label for="email" class="d-block">Contraseña</label>
             <input #password
-              type="text"
-              placeholder="Email..."
+              type="password"
               name="password"
               class="input pt-2"
-              value="{{ user.password }}"
             />
           </div>
-          <div class="col-6 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-6 text-center pt-3 pb-4">
             <label for="email" class="d-block">Teléfono</label>
             <input #phone
               type="text"
@@ -286,7 +265,7 @@ class="modal fade"
             />
           </div>
 
-          <div class="col-6 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-6 text-center pt-3 pb-4">
             <label for="email" class="d-block">Newsletter</label>
             <select #newsletter name="newsletter" class="mt-2">
               <option>Si</option>
@@ -299,12 +278,25 @@ class="modal fade"
           </div>
           
           <div class="col-6 text-center pt-3 pb-3">
-            <input value="Modificar" type="submit" (click) = "onSubmit(id.value,firstName.value,lastName.value,email.value,address.value,username.value,password.value,phone.value,newsletter.value,enterprise.value)" class="btn btn-admin-user pl-3 pr-3">
+            <button mat-raised-button
+                    color="primary"
+                      class="btnReturn"
+                      data-toggle="modal"
+                      (click) = "onSubmit(id.value,firstName.value,lastName.value,email.value,address.value,username.value,password.value,phone.value,newsletter.value,enterprise.value)"
+                    >
+                     Modificar
+                    </button>
           </div>
           <div class="col-6 text-center pt-3 pb-3">
-            <input value="Borrar" (click) = "deleteUser(user.id)" class="btn btn-admin-user pl-3 pr-3" type="submit">
+            <button mat-raised-button
+                    color="primary"
+                      class="btnReturn"
+                      data-toggle="modal"
+                      (click) = "deleteUser(user.id)"
+                    >
+                    Borrar
+              </button>
 
-          
           </div>
         </div>
       </form>
@@ -347,7 +339,7 @@ class="modal fade"
         <form >
         <div class="row">
           
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-6  text-center pt-3 pb-4">
             
             <label for="firstName" class="d-block">Nombre Comercial</label>
             
@@ -360,7 +352,7 @@ class="modal fade"
               readonly
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4 ">
+          <div class="col-12 col-sm-6 col-6  text-center pt-3 pb-4 ">
             <label for="lastName" class="d-block">NIF</label>
             <input #lastName
               type="text"
@@ -371,7 +363,7 @@ class="modal fade"
               readonly
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-6  text-center pt-3 pb-4">
             <label for="email" class="d-block">CNAE</label>
             <input #email
               type="text"
@@ -383,7 +375,7 @@ class="modal fade"
             />
           </div>
           
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-6  text-center pt-3 pb-4">
             <label for="email" class="d-block">Actividad</label>
             <input #address
               type="text"
@@ -394,7 +386,7 @@ class="modal fade"
               readonly
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4">
+          <div class="col-12 col-sm-6 col-6  text-center pt-3 pb-4">
             <label for="username" class="d-block">Localizacion</label>
             <input #username
               type="text"
@@ -405,7 +397,7 @@ class="modal fade"
               readonly
             />
           </div>
-          <div class="col-4 text-center pt-3 pb-4 ">
+          <div class="col-12 col-sm-6 col-6  text-center pt-3 pb-4 ">
             <label for="email" class="d-block">Email</label>
             <input #password
               type="text"
@@ -447,11 +439,24 @@ class="modal fade"
           </div>
           
           <div class="col-6 text-center pt-3 pb-3">
-            <input  (click)="updateEnterpriseStatus(enterprise.id)" value="Activar" type="submit" class="btn btn-admin-user pl-3 pr-3">
+            <button mat-raised-button
+            color="primary"
+              class="btnReturn"
+              data-toggle="modal"
+              (click)="updateEnterpriseStatus(enterprise.id)"
+            >
+            Activar
+          </button>
           </div>
           <div class="col-6 text-center pt-3 pb-3">
-            <button (click)="deleteEnterpriseStatus(enterprise.id)" class="btn btn-admin-user pl-3 pr-3">Borrar</button>
-
+            <button mat-raised-button
+            color="primary"
+              class="btnReturn"
+              data-toggle="modal"
+              (click)="deleteEnterpriseStatus(enterprise.id)"
+            >
+            Borrar
+          </button>
           
           </div>
         </div>

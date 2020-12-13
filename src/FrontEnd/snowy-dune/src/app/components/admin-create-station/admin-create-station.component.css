@@ -1,5 +1,6 @@
 .fondo-blanco {
     background-color: white;
+    box-shadow: 1px 1px 5px #888888a2;
 }
 
 .h1{
@@ -156,10 +157,43 @@ input {
     width: 70%;
 }
 
+.width-price {
+    width: 40%;
+}
+
+input #file-upload-button {
+    background: #3C7DEC !important;
+  
+  }
+  
+  input[type="file"] {
+    display: none;
+   
+  }
+
+.custom-file-upload {
+    border: 1px solid  rgba(27, 77, 176, 1);
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
 .btn-return:hover {
     color: rgba(27, 77, 176, 1);
     background-color:  white;
 
+}
+
+#btnCreateStation {
+    background-color: rgba(27, 77, 176, 1);
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#btnCreateStation:hover {
+    opacity: 0.8;
 }
 
 .h5-submit {
@@ -234,7 +268,9 @@ input {
         max-width: 80% !important;
     }
 
-
+    .width-price {
+        width: 80%;
+    }
 
 }
 
@@ -260,14 +296,17 @@ input {
         max-width: 90% !important;
     }
 
+    .width-price {
+        width: 100%;
+    }
     
 }
 
 @media screen and (max-width: 575px) {
    
     .h1{
-        font-size: 1.6rem;
-        letter-spacing: 0.35rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.25rem;
     }
 
     .hr {
@@ -281,13 +320,38 @@ input {
     }
 
     .h3 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
 
+    }
+
+    .h4 {
+        font-size: 1rem;
     }
 
     .modal-lg {
         max-width: 100% !important;
     }
 
+    label {
+        font-size: 0.95rem;
+    }
+    select {
+        width: 100%;
+    }
    
+    input {
+        width: 100%;
+    }
+
+    textarea {
+        width: 100%;
+    }
+    
+    #btnCreateStation{
+        font-size: 0.8rem;
+    }
+
+    .width-price {
+        width: 100%;
+    }
 }

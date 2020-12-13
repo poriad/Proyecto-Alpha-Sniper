@@ -7,17 +7,17 @@ export class SkiMaterial {
     email: string;
     location: string;
     country:string;
-    urlImage: string;
+    urlImages: string;
     activated: number;
 
-    constructor(id: number, priceDay: number, name: string, phone: string,email: string, location: string, urlImagen: string, activated: number){
+    constructor(id: number, priceDay: number, name: string, phone: string,email: string, location: string, urlImages: string, activated: number){
         this.id = id;
         this.priceDay = priceDay;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.location = location;
-        this.urlImage = urlImagen;
+        this.urlImages = urlImages;
         this.activated = activated;
     }
 }

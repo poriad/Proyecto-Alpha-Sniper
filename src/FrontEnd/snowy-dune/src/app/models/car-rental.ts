@@ -6,17 +6,17 @@ export class CarRental {
     phone: string;
     email: string;
     location: string;
-    urlImage: string;
+    urlImages: string;
     activated: number;
 
-    constructor(id: number, price: number, name: string, phone: string,email: string, location: string, urlImagen: string, activated: number){
+    constructor(id: number, price: number, name: string, phone: string,email: string, location: string, urlImages: string, activated: number){
         this.id = id;
         this.price = price;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.location = location;
-        this.urlImage = urlImagen;
+        this.urlImages = urlImages;
         this.activated = activated;
     }
 }

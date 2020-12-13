@@ -11,6 +11,23 @@
     background-color: white;
 }
 
+input #file-upload-button {
+    background: #3C7DEC !important;
+  
+  }
+  
+  input[type="file"] {
+    display: none;
+   
+  }
+
+.custom-file-upload {
+    border: 1px solid  rgba(27, 77, 176, 1);
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
 .h1{
     font-size: 2.2rem;
     letter-spacing: 0.4rem;
@@ -57,20 +74,42 @@ label {
     color: rgba(27, 77, 176, 1)
 }
 
-.input {
+input {
+    color: rgba(27, 77, 176, 1);
+    text-align: center;
+    padding: 10px;
+    width: 80%;
+    border-radius: 0;
     border: 0;
     border-bottom: 1px solid rgba(27, 77, 176, 1);
-}
-.input::placeholder{
-    color: #3C7DEC;
-    opacity: 0.5;
-}
-
-.input:focus{
-    outline: none !important;
-    border: 0;
+    background-color: rgba(27, 77, 176, 0.1);
+    
+  }
+  
+  input:focus,input:active {
     border-bottom: 2px solid rgba(27, 77, 176, 1);
-}
+    background-color: rgba(27, 77, 176, 0.1);
+    box-shadow: none;
+    outline: 0;
+  }
+
+  textarea {
+    color: rgba(27, 77, 176, 1);
+    text-align: center;
+    padding: 10px;
+    width: 80%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+  }
+
+  textarea:focus,textarea:active {
+    border-bottom: 2px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+    box-shadow: none;
+    outline: 0;
+  }
 
 .input-comment {
     border: 0;
@@ -139,6 +178,17 @@ label {
     border-bottom: 1px solid rgba(27, 77, 176, 1);
 }
 
+#btnContact {
+    background-color: rgba(27, 77, 176, 1);
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#btnContact:hover {
+    opacity: 0.8;
+}
 @media screen and (min-width: 991px) and (max-width: 1198px) {
     
     

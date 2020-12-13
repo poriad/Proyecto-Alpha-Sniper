@@ -24,5 +24,5 @@ export class ImgurApiService {
     formData.append('image', b64Image);
     return this.http.post(`${this.IMGUR_UPLOAD_URL}`, formData, httpOptions);
   }
-
+  
 }

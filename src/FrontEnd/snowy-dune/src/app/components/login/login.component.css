@@ -13,6 +13,11 @@
     padding-right: 0;
 }
 
+.fondo-azul {
+    background-color: rgba(27, 77, 176, 0.76);
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .h1{
     font-size: 3rem;
@@ -92,8 +97,6 @@ input:focus,input:active {
 }
 
 button {
-    border: 1px solid  rgba(27, 77, 176, 1);
-    border-radius: 0;
     color:  rgba(27, 77, 176, 1);
     font-size: 1.3rem;
     letter-spacing: 0.2rem;
@@ -102,12 +105,12 @@ button {
     padding-right: 55px;
     color:  white;
     background-color: rgba(27, 77, 176, 1);
-}
-
-button:hover {
-    color:  rgba(27, 77, 176, 1);
-    background-color: white;
-}
+    transition: 0.2s;
+  }
+  
+  button:hover {
+    opacity: 0.7;
+  }
 
 .boton-alt {
     font-size: 1.5rem;
@@ -163,6 +166,10 @@ button:hover {
             animation: fadein 1.5s;
 }
 
+#snowydunelogo {
+    width: 50%;
+}
+
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
@@ -215,6 +222,10 @@ button:hover {
     .btn {
         width: 50%;
     }
+
+    button{
+        font-size: 0.9rem;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -229,6 +240,19 @@ button:hover {
         font-weight: 500;
     }
 
+    .h3-blue {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .h5 {
+        font-size: 1.2rem;
+    }
+
+    .p {
+        font-size: 0.9rem;
+    }
+
     input {
         width: 70%;
     }
@@ -238,4 +262,11 @@ button:hover {
         font-size: 0.8rem;
     }
 
+    button{
+        font-size: 0.8rem;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    
 }

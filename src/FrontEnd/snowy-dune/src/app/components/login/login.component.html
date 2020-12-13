@@ -8,29 +8,33 @@
                 <hr class="hr">
             </div>
 
-            <div class="col-4 offset-3 fondo-blanco mt-5 mb-5">
-                
-                <div class="row">
-                    <div class="col">
-                        <p class="marca-uno w-100 text-center pb-1"></p>
+            <div class="col-12 col-md-10 col-xl-4 offset-md-1 offset-xl-3 fondo-blanco mt-5 mb-5">
+                <p class="marca-uno w-100 text-center pb-1"></p>
+                <div class="row w-100">
+                    <div class="col-12 text-center">
+                        
                         <h5 class="h5 pt-4 pb-4">¿Quieres acceder al Login o al registro?</h5>
 
                         <p class="p pb-2">Si quieres acceder al menú de Login primero prueba a cerrar la sesión que mantienes abierta</p>
                         <p class="p pb-2">Puedes hacerlo en el icono para ello situado en la parte superior derecha</p>
                         <p class="p pb-3">O puedes salir pulsando este botón</p>
 
-                        <button (click)="onLogOut()" class="btn mb-4 boton-alt">SALIR DE LA APLICACIÓN</button>
-
+                        <div class="col-12 text-center pb-3">
+                            <button mat-raised-button
+                            (click)="onLogOut()">
+                            Cerrar Sesión
+                          </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-2 fondo-blanco mt-5 mb-5">
+            <div class="d-none d-xl-block  col-xl-2 fondo-azul mt-5 mb-5 align-items-center">
     
-                    <div class="container">
-                      
-                        <img src="../../../assets/Login/alreadyLogin.png" alt="Snow" class="img-fluid">
-                 
+                    <div class="row h-100">
+                      <div class="col my-auto">
+                        <img src="./assets/Navbar/snowyDune2.png" alt="Snow" class="img-fluid" id="snowydunelogo">
+                    </div>
                 </div>
             </div>
             
@@ -63,9 +67,6 @@
             <div class="row text-center">
                 
                 <div class="col-12 pb-2">
-                    <div *ngIf="f.submitted && isLoginFail" class="mt-3 error">
-                        Se ha producido un error, el usuario o la contraseña no existen
-                    </div>
                 
                     <label class="pb-2">Usuario</label><br>
                     <input type="text" value="Usuario" id="#username" name="username" class="form-control mx-auto"
@@ -79,16 +80,15 @@
                 <div class="col-12 pb-4 form-group">
                     <button class="btn" [disabled]="!f.valid">Iniciar Sesión</button>
                 </div>
-                <div class="col-12 pb-4">
-                    <img src="../../../assets/Login/Facebook.JPG" alt="" class="facebook">
+
+                <div class="col-12 pb-5">
+                    <a routerLink="/ConfirmPassword" class="registro">¿Has olvidado la contraseña?</a>
                 </div>
-                <div class="col-12 pb-4">
-                    <img src="../../../assets/Login/btn_google_signin_dark_pressed_web.png" alt="" class="google">
-                </div>
-            
+
                 <div class="col-12 pb-5">
                     <a routerLink="/Register" class="registro">¿No estás registrado? Entra aquí</a>
                 </div>
+                
             </div>
         </form>
             

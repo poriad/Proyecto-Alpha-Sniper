@@ -1,6 +1,6 @@
 import { TripService } from './../../service/trip.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,10 @@ import { Trip } from 'src/app/models/trip';
 import { StationService } from 'src/app/service/station.service';
 import { Station } from 'src/app/models/station';
 import { ModalUserCommentsComponent } from 'src/app/components/modal-user-comments/modal-user-comments.component';
+import * as html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import {jsPDF} from 'jspdf';
+
 
 @Component({
   selector: 'app-user-management',
@@ -36,6 +40,8 @@ export class UserManagementComponent implements OnInit {
   userId: number;
   trips: Trip[];
   pastTrips: Trip[];
+  pastTripsComplete: Trip[];
+  thisYearTripsComplete: Trip[];
   beforeThisYearTrips: Trip[];
   pastStationTrips: Station[] = [];
   beforeThisYearStatioTrips: Station[] = [];
@@ -50,14 +56,15 @@ export class UserManagementComponent implements OnInit {
      private enterpriseService: EnterpriseService, public dialogo: MatDialog,
       private adminService: AdminService,
       private toastr: ToastrService,
-      private tripService: TripService,
-      private stationService: StationService) { }
+      private tripService: TripService) { }
 
   ngOnInit(): void {
     this.getUserDetails();
     this.getFutureTrips();
     this.getPastTripsThisYear();
     this.getPastTripsBeforeThisYear();
+    this.getPastTripsComplete();
+    this.getTripsThisYearComplete();
   }
 
   get f() { return this.userForm.controls; }
@@ -100,15 +107,12 @@ export class UserManagementComponent implements OnInit {
         this.tripService.getFutureTrips(this.userId).subscribe(
           data => {
             this.trips = data._embedded.trip;
-            console.log(this.trips)
             
             this.trips.forEach(element => {
     
               this.tripService.getStationTrip(element.id).subscribe(
                 data => {
                   this.stationsTrip.push(data);
-                  console.log(data)
-                  console.log( this.stationsTrip)
                 }
               )
             }); 
@@ -236,7 +240,7 @@ export class UserManagementComponent implements OnInit {
                 });
               }, error => {
                 this.isModifyFail = false;
-                this.toastr.error('Error en la modificación con éxito', 'Modificación', {
+                this.toastr.error('Error en la modificación', 'Modificación', {
                   timeOut: 3000,
                 });
               }
@@ -255,10 +259,64 @@ export class UserManagementComponent implements OnInit {
       width: '70vw',
       maxWidth: '100vw',
     })
-    .afterOpened().subscribe(
-     data =>{
-      console.log("hola");
-     })
+    .afterOpened().subscribe()
+  }
+
+
+
+  getPastTripsComplete(){
+
+    this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
+      data => {
+        this.userId = data.id;
+
+        this.tripService.getPastTripsComplete(this.userId).subscribe(
+          data => {
+            this.pastTripsComplete = data;
+            console.log(this.pastTripsComplete)
+            
+          }
+    
+        )
+
+      }
+    );
+  }
+
+  getTripsThisYearComplete(){
+
+    this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
+      data => {
+        this.userId = data.id;
+
+        this.tripService.getThisYearTripsComplete(this.userId).subscribe(
+          data => {
+            this.thisYearTripsComplete = data;
+            console.log(this.thisYearTripsComplete)
+            
+          }
+    
+        )
+
+      }
+    );
+  }
+
+  downloadPDF(){
+    
+    var data = document.getElementById('contentTres');
+
+    var opt = {
+      margin:       1,
+      filename:     'Informacion_viajes.pdf',
+      image:        { type: 'jpg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    
+    // New Promise-based usage:
+    html2pdf(data, opt);
+
   }
 
 }

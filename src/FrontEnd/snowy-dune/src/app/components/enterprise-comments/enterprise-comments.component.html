@@ -1,6 +1,5 @@
 <ng-template #dontHaveComments>
 
-  <p class="marca-uno w-100 text-center pb-1"></p>
   <div class="col-12">
     <h3 class="h3 pb-4 pt-4 text-center">COMENTARIOS</h3>
     <hr class="hr2" />
@@ -11,9 +10,9 @@
   </div>
   </ng-template>
 
-<div class="row" *ngIf="!commentsChk; else dontHaveComments">
-  <p class="marca-uno w-100 text-center pb-1"></p>
+<div class="row" *ngIf="comments.length != 0; else dontHaveComments">
   <div class="col-12">
+    
     <h3 class="h3 pb-4 pt-4 text-center">COMENTARIOS</h3>
     <hr class="hr2" />
   </div>
@@ -32,7 +31,7 @@
     />
   </div>
     <div
-      class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto"
+      class="col-10 pt-4 pb-4 table-responsive mx-auto"
     >
       <table class="table table-striped text-center">
         <thead>

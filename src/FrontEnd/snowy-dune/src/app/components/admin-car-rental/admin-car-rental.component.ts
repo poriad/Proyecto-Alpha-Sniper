@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { CarRental } from 'src/app/models/car-rental';
 import { CarRentalService } from 'src/app/service/car-rental.service';
 import { Header } from 'src/app/utils/header';
@@ -19,8 +20,6 @@ export class AdminCarRentalComponent implements OnInit {
   carRental: CarRental;
   
   searchText;
-  updateMessage: string = "";
-  deleteMessage: string = "";
   isUpdateFail: boolean;
   isDeleteFail: boolean;
   submitted: boolean = false;
@@ -32,7 +31,7 @@ export class AdminCarRentalComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
   
-  constructor(private carRentalService: CarRentalService, public dialogo: MatDialog) { }
+  constructor(private carRentalService: CarRentalService, public dialogo: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -56,18 +55,21 @@ export class AdminCarRentalComponent implements OnInit {
      
           data => {
             this.isUpdateFail = true;
-            this.updateMessage = "Servicio activado";
+            this.toastr.success('Servicio activado', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderCarRentalList();
           }, err => {
             this.isUpdateFail = false;
-            this.updateMessage = "El servicio de vehículo no se ha podido actualizar";
+            this.toastr.error('El servicio de vehículo no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderCarRentalList();
           });
     
-          setTimeout( () => { 
+
             this.submitted = false;
-            this.updateMessage = "";
-           },3000);
+
 
       }
     })
@@ -90,18 +92,21 @@ export class AdminCarRentalComponent implements OnInit {
         this.carRentalService.deleteCarRental(id).subscribe(
           data => {
             this.isDeleteFail = true;
-            this.deleteMessage = "Servicio pasado a Inactivo";
+            this.toastr.success('Servicio pasado a Inactivo', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderCarRentalList();
           }, err => {
             this.isDeleteFail = false;
-            this.deleteMessage = "El servicio de vehñiculo no se ha podido borrar";
+            this.toastr.error('El servicio de vehículo no se ha podido borrar', 'Borrado', {
+              timeOut: 3000,
+            });
             this.orderCarRentalList();
           });
     
-          setTimeout( () => { 
+
             this.submittedDelete = false;
-            this.deleteMessage = "";
-           },3000);
+
 
       }
     })

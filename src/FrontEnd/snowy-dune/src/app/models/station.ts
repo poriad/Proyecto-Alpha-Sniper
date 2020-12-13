@@ -1,3 +1,5 @@
+import { Forfait } from './forfait';
+
 export class Station {
 
     id?: number;
@@ -9,11 +11,12 @@ export class Station {
     description: String;
     urlImages: string;
     activated:number;
-    priceForfait: number;
+    forfaitPrice: Forfait;
+    //priceForfait: number;
 
     constructor(name: string, location: string, country: string,
         openingDate: Date, closingDate: Date, description: string,
-        urlImages: string,activated:number,priceForfait: number){
+        urlImages: string,activated:number, forfaitPrice: Forfait){
         this.name = name;
         this.location = location;
         this.country = country;
@@ -22,7 +25,8 @@ export class Station {
         this.description = description;
         this.urlImages = urlImages;
         this.activated = activated;
-        this.priceForfait = priceForfait;
+        this.forfaitPrice = forfaitPrice;
+        //this.priceForfait = priceForfait;
     }
 
 

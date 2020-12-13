@@ -64,7 +64,8 @@ export class CarRentalComponent implements OnInit {
     
     this.commentService.getCommentByCarRentalIdPaginated(0,id).subscribe(
       data => {
-        this.comments = data._embedded.comment;
+        //this.comments = data._embedded.comment;
+        console.log(data);
 
         this.comments.forEach(element => {
 

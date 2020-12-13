@@ -7,13 +7,11 @@
     letter-spacing: 0.1rem;
     font-weight: bold;
     color:rgba(27, 77, 176, 1);
-    
 }
 
 .mensaje {
     font-size: 1.1rem;
-    letter-spacing: 0.1rem;
-    
+    letter-spacing: 0.1rem; 
 }
 
 button {
@@ -33,6 +31,48 @@ button:active, button:focus {
     border: 0;
     outline:0;
     font-weight: bold;
+}
+
+.submit {
+    border: 1px solid  rgba(27, 77, 176, 1);
+    border-radius: 0;
+    color:  rgba(27, 77, 176, 1);
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    color:  white;
+    background-color: rgba(27, 77, 176, 1);
+    width: 70%;
+    transition: 0.2s;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .submit:hover {
+    color:  rgba(27, 77, 176, 1);
+    background-color: white;
+  }
+
+div .input {
+    color: rgba(27, 77, 176, 1);
+    text-align: center;
+    padding: 10px;
+    width: 80%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+  }
+  
+  div .input:focus,div .input:active {
+    border-bottom: 2px solid rgba(27, 77, 176, 1);
+    background-color: rgba(27, 77, 176, 0.1);
+    box-shadow: none;
+    outline: 0;
+  }
+
+.border-comentarios {
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
 }
 
 .cancel {

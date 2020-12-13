@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
@@ -50,6 +51,7 @@ roles: Array<string> = [];
 
   public logOut(): void{
     window.sessionStorage.clear();
+
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { Hotel } from 'src/app/models/hotel';
 import { HotelService } from 'src/app/service/hotel.service';
 import { Header } from 'src/app/utils/header';
@@ -33,7 +34,7 @@ export class AdminHotelComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
 
-  constructor(private hotelService:HotelService,public dialogo: MatDialog) { }
+  constructor(private hotelService:HotelService,private toastr: ToastrService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.orderHotelList();
@@ -54,17 +55,18 @@ export class AdminHotelComponent implements OnInit {
         this.hotelService.putHotelToActive(id).subscribe(
           data => {
             this.isUpdateFail = true;
-            this.updateMessage = "Servicio activado";
+            this.toastr.success('Servicio activado', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderHotelList();
           }, err => {
             this.isUpdateFail = false;
-            this.updateMessage = "El servicio no se ha podido actualizar";
+            this.toastr.error('El servicio no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
             this.submitted = false;
-            this.updateMessage = "";
-           },3000);
       }
     })
     
@@ -85,17 +87,18 @@ export class AdminHotelComponent implements OnInit {
         this.hotelService.deleteHotel(id).subscribe(
           data => {
             this.isDeleteFail = true;
-            this.deleteMessage = "Servicio pasado a Inactivo";
+            this.toastr.success('Servicio pasado a Inactivo', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderHotelList();
           }, err => {
             this.isDeleteFail = false;
-            this.deleteMessage = "El servicio no se ha podido actualizar";
+            this.toastr.error('El servicio no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
             this.submittedDelete = false;
-            this.deleteMessage = "";
-           },3000);
 
       }
     })

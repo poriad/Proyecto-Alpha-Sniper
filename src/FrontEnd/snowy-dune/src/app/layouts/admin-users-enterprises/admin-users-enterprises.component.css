@@ -9,6 +9,7 @@
 
 .fondo-blanco {
     background-color: white;
+    box-shadow: 1px 1px 5px #888888a2;
 }
 
 .h1{
@@ -119,7 +120,6 @@ label {
     letter-spacing: 0.20rem;
     color: rgba(27, 77, 176, 1)
 }
-
 .input {
     border: 0;
     border-bottom: 1px solid rgba(27, 77, 176, 1);
@@ -182,6 +182,18 @@ select {
     border: 1px solid rgba(27, 77, 176, 1);
 }
 
+#btnUserEnterprises {
+    background-color: rgba(27, 77, 176, 1);
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#btnUserEnterprises:hover {
+    opacity: 0.8;
+}
+
 .marca-uno {
     background-color: #3C7DEC !important;
     color: white;
@@ -195,27 +207,14 @@ select {
     height: 10px;
 }
 
-.btn-return {
-    position: absolute;
-    right: 7%;
-    top: 70%;
-    color: white;
-    background-color:  rgba(27, 77, 176, 1);
-    font-size: 1.1rem;
-    letter-spacing: 0.20rem;
-    border-radius: 0;
-}
-
-.btn-return:hover {
-    color: rgba(27, 77, 176, 1);
-    background-color:  white;
-
-}
-
 .table {
     margin: auto;
     width: 100% !important; 
  }
+
+ th {
+    cursor: pointer;
+}
 
  .margen-izquierda {
     margin-left:8.333% !important;
@@ -237,6 +236,22 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
     border-radius: 0 !important;
 }
 
+.modal-lg {
+    max-width: 50% !important;
+}
+
+.btnReturn {
+    background-color: rgba(27, 77, 176, 1);
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btnReturn:hover {
+    opacity: 0.8;
+}
+
 @media screen and (min-width: 991px) and (max-width: 1198px) {
     
     .h3 {
@@ -247,6 +262,10 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
 
     .margen-izquierda {
         margin-left:8.333% !important;
+    }
+
+    .modal-lg {
+        max-width: 80% !important;
     }
 }
 
@@ -277,6 +296,10 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
     .margen-izquierda {
         margin-left:8.333% !important;
     }
+
+    .modal-lg {
+        max-width: 80% !important;
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
@@ -300,14 +323,28 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
     .margen-izquierda {
         margin-left:0!important;
     }
+
+    .modal-lg {
+        max-width: 90% !important;
+    }
+
     
 }
 
+
 @media screen and (max-width: 575px) {
    
+    .btn-return {
+        font-size: 0.8rem;
+    }
+    
+    #btnUserEnterprises{
+        font-size: 0.8rem;
+    }
+
     .h1{
-        font-size: 1.6rem;
-        letter-spacing: 0.35rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.25rem;
     }
 
     .hr {
@@ -321,12 +358,31 @@ ngb-pagination ::ng-deep .pagination .page-item .page-link {
     }
 
     .h3 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
 
+    }
+
+    ul{
+        width: 80%;
+    }
+    th {
+        font-size: 0.8rem;
+    }
+
+    td {
+        font-size: 0.8rem;
+    }
+    .h4 {
+        font-size: 1.2rem;
     }
 
     .margen-izquierda {
         margin-left:0!important;
     }
 
+    .modal-lg {
+        max-width: 100% !important;
+    }
+
+   
 }

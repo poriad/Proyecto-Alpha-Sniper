@@ -1,25 +1,24 @@
-<ng-template #dontHaveServices>
-
-  
+<div class="row" *ngIf="(!hasServiceSkiMaterial && !hasServiceHotel && !hasServiceCarRental && !hasServiceClasses)">
+  <p class="marca-uno w-100 text-center pb-1"></p>
   <div class="col-12">
     
     <h3 class="h3 pb-3 pt-4 text-center">LISTADO DE SERVICIOS ACTIVOS</h3>
     <hr class="hr2" />
   </div>
   <div class="col-12">
-    <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-5">No existen servicios activos, procede a registrar la empresa y posteriormente el servicio.</h1>
+    <h1 class="h4 pb-4 pb-sm-4 pt-3 pt-3 pl-3 pr-3">No existen servicios activos, procede a registrar la empresa y posteriormente el servicio.</h1>
 </div>
-  </ng-template>
+</div>
 
 
-<div class="row" *ngIf="(hasServiceSkiMaterial || hasServiceHotel || hasServiceCarRental || hasServiceClasses); else dontHaveServices">
+<div class="row" *ngIf="(hasServiceSkiMaterial || hasServiceHotel || hasServiceCarRental || hasServiceClasses)">
     <p class="marca-uno w-100 text-center pb-1"></p>
     <div class="col-12">
       <h3 class="h3 pb-3 pt-4 text-center">LISTADO DE SERVICIOS ACTIVOS</h3>
       <hr class="hr2" />
     </div>
     <div class="col-12">
-      <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-5">En la siguiente lista puedes ver el listado de servicios activos de tu empresa.</h1>
+      <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-3 pr-3">En la siguiente lista puedes ver el listado de servicios activos de tu empresa.</h1>
   </div>
     <div class="col-12">
       <input
@@ -32,7 +31,7 @@
       />
     </div>
     <div
-      class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto"
+      class="col-10 pt-4 pb-4 table-responsive mx-auto"
     >
       <table class="table table-striped text-center">
         <thead>
@@ -122,37 +121,6 @@
         </tbody>
       </table>
     </div>
-    <div *ngIf="submittedDeleteHotel && isDeleteHotelFail" class="col-12">
-      <h5 class="text-center h5-submit">{{ deleteHotelMessage }}</h5>
-    </div>
-  
-    <div *ngIf="submittedDeleteHotel && !isDeleteHotelFail" class="col-12">
-      <h5 class="text-center h5-error">{{ deleteHotelMessage }}</h5>
-    </div>
-
-    <div *ngIf="submittedDeleteClasses && isDeleteClassesFail" class="col-12">
-      <h5 class="text-center h5-submit">{{ deleteClassesMessage }}</h5>
-    </div>
-  
-    <div *ngIf="submittedDeleteClasses && !isDeleteClassesFail" class="col-12">
-      <h5 class="text-center h5-error">{{ deleteClassesMessage }}</h5>
-    </div>
-
-    <div *ngIf="submittedDeleteCarRental && isDeleteCarRentalFail" class="col-12">
-      <h5 class="text-center h5-submit">{{ deleteCarRentalMessage }}</h5>
-    </div>
-  
-    <div *ngIf="submittedDeleteCarRental && !isDeleteCarRentalFail" class="col-12">
-      <h5 class="text-center h5-error">{{ deleteCarRentalMessage }}</h5>
-    </div>
-
-  <div *ngIf="submittedDeleteSkiMaterial && isDeleteSkiMaterialFail" class="col-12">
-    <h5 class="text-center h5-submit">{{ deleteSkiMaterialMessage }}</h5>
-  </div>
-
-  <div *ngIf="submittedDeleteSkiMaterial && !isDeleteSkiMaterialFail" class="col-12">
-    <h5 class="text-center h5-error">{{ deleteSkiMaterialMessage }}</h5>
-  </div>
 </div>
   
   <div
@@ -190,7 +158,7 @@
           <form >
           <div class="row">
             
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               
               <label for="firstName" class="d-block">Nombre</label>
               
@@ -203,18 +171,8 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
-              <label for="lastName" class="d-block">Descripción</label>
-              <input #description
-                type="text"
-                placeholder="Apellidos..."
-                name="lastName"
-                value="{{ skiMaterial.description }}"
-                class="input pt-2"
-                readonly
-              />
-            </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Localización</label>
               <input #location
                 type="text"
@@ -226,7 +184,7 @@
               />
             </div>
             
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Precio</label>
               <input #address
                 type="text"
@@ -237,7 +195,7 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  text-center pt-3 pb-4">
               <label for="username" class="d-block">Teléfono</label>
               <input #username
                 type="text"
@@ -248,7 +206,7 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6  text-center pt-3 pb-4 ">
               <label for="email" class="d-block">Email</label>
               <input #password
                 type="text"
@@ -259,16 +217,9 @@
                 readonly
               />
             </div>
-            <div class="col-12 text-center pt-3 pb-4">
-              <label for="email" class="d-block">Url Imagen</label>
-              <input #imagen
-                type="text"
-                placeholder="Teléfono..."
-                name="phone"
-                class="input pt-2"
-                value="{{ skiMaterial.urlImage }}"
-                readonly
-              />
+            <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Imagen</label>
+              <img src="{{ skiMaterial.urlImages }}" alt="" class="img-fluid">
   
               <input #id
               type="hidden"
@@ -278,14 +229,33 @@
               value="{{ skiMaterial.id }}" visibility="hidden" style="width: 0;"
               />
             </div>
+
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+              <label for="lastName" class="d-block">Descripción</label>
+              <textarea #description
+                type="text"
+                rows="5"
+                placeholder="Apellidos..."
+                name="lastName"
+                value="{{ skiMaterial.description }}"
+                class="textarea pt-2"
+                readonly
+              ></textarea>
+            </div>
   
             <div class="col-12">
               <hr class="hr3" />
             </div>
             
             <div class="col-12 text-center pt-3 pb-3">
-              <button (click)="deleteSkiMaterial(skiMaterial.id)" class="btn btn-admin-user pl-3 pr-3">Solicitar Borrado</button>
-  
+              <button mat-raised-button
+                    color="primary"
+                      class="btnReturn"
+                      data-toggle="modal"
+                      (click)="deleteSkiMaterial(skiMaterial.id)"
+                    >
+                    Solicitar Borrado
+                </button>
             
             </div>
           </div>
@@ -333,7 +303,7 @@
           <form >
           <div class="row">
             
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               
               <label for="firstName" class="d-block">Nombre</label>
               
@@ -346,18 +316,8 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
-              <label for="lastName" class="d-block">Descripción</label>
-              <input #description
-                type="text"
-                placeholder="Apellidos..."
-                name="lastName"
-                value="{{ hotel.description }}"
-                class="input pt-2"
-                readonly
-              />
-            </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Localización</label>
               <input #location
                 type="text"
@@ -369,7 +329,7 @@
               />
             </div>
             
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Precio</label>
               <input #address
                 type="text"
@@ -380,7 +340,7 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6   text-center pt-3 pb-4">
               <label for="username" class="d-block">Teléfono</label>
               <input #username
                 type="text"
@@ -391,7 +351,7 @@
                 readonly
               />
             </div>
-            <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6   text-center pt-3 pb-4 ">
               <label for="email" class="d-block">Email</label>
               <input #password
                 type="text"
@@ -402,24 +362,28 @@
                 readonly
               />
             </div>
-            <div class="col-12 text-center pt-3 pb-4">
-              <label for="email" class="d-block">Url Imagen</label>
-              <input #imagen
-                type="text"
-                placeholder="Teléfono..."
-                name="phone"
-                class="input pt-2"
-                value="{{ hotel.urlImage }}"
-                readonly
-              />
+            <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Imagen</label>
+              <img src="{{ hotel.urlImages }}" alt="" class="img-fluid">
   
               <input #id
               type="hidden"
-              placeholder="Teléfono..."
               name="phone"
               class="input pt-2"
               value="{{ hotel.id }}" visibility="hidden" style="width: 0;"
               />
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+              <label for="lastName" class="d-block">Descripción</label>
+              <textarea #description
+                type="text"
+                rows="5"
+                placeholder="Apellidos..."
+                name="lastName"
+                value="{{ hotel.description }}"
+                class="textarea pt-2"
+                readonly
+              ></textarea>
             </div>
   
             <div class="col-12">
@@ -427,7 +391,14 @@
             </div>
             
             <div class="col-12 text-center pt-3 pb-3">
-              <button (click)="deleteHotel(hotel.id)" class="btn btn-admin-user pl-3 pr-3">Solicitar Borrado</button>
+              <button mat-raised-button
+              color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="deleteHotel(hotel.id)"
+              >
+              Solicitar Borrado
+          </button>
   
             
             </div>
@@ -455,9 +426,9 @@
        <div class="modal-content">
          <div class="modal-header">
            <div class="col-11">
-             <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Servicio de Clases -  {{ class.name }}</h3>
+             <h3 class="h3 pl-4 pb-1 pt-4 text-center">Servicio de Clases -  {{ class.name }}</h3>
              <hr class="hr3" />
-             <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
+             <h4 class="h4 pl-4 pb-1 pt-4 text-center">
                Activación y borrado de Servicio
              </h4>
            </div>
@@ -476,7 +447,7 @@
            <form >
            <div class="row">
              
-             <div class="col-6 col-md-4 text-center pt-3 pb-4">
+             <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
                
                <label for="firstName" class="d-block">Nombre</label>
                
@@ -489,18 +460,7 @@
                  readonly
                />
              </div>
-             <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
-               <label for="lastName" class="d-block">Descripción</label>
-               <input #description
-                 type="text"
-                 placeholder="Apellidos..."
-                 name="lastName"
-                 value="{{ class.description }}"
-                 class="input pt-2"
-                 readonly
-               />
-             </div>
-             <div class="col-6 col-md-4 text-center pt-3 pb-4">
+             <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
                <label for="email" class="d-block">Localización</label>
                <input #location
                  type="text"
@@ -512,7 +472,7 @@
                />
              </div>
              
-             <div class="col-6 col-md-4 text-center pt-3 pb-4">
+             <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
                <label for="email" class="d-block">Precio</label>
                <input #address
                  type="text"
@@ -523,7 +483,7 @@
                  readonly
                />
              </div>
-             <div class="col-6 col-md-4 text-center pt-3 pb-4">
+             <div class="col-12 col-sm-6  text-center pt-3 pb-4">
                <label for="username" class="d-block">Teléfono</label>
                <input #username
                  type="text"
@@ -534,7 +494,7 @@
                  readonly
                />
              </div>
-             <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
+             <div class="col-12 col-sm-6 text-center pt-3 pb-4 ">
                <label for="email" class="d-block">Email</label>
                <input #password
                  type="text"
@@ -545,16 +505,9 @@
                  readonly
                />
              </div>
-             <div class="col-12 text-center pt-3 pb-4">
-               <label for="email" class="d-block">Url Imagen</label>
-               <input #imagen
-                 type="text"
-                 placeholder="Teléfono..."
-                 name="phone"
-                 class="input pt-2"
-                 value="{{ class.urlImage }}"
-                 readonly
-               />
+             <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
+               <label for="email" class="d-block">Imagen</label>
+               <img src="{{ class.urlImages }}" alt="" class="img-fluid">
    
                <input #id
                type="hidden"
@@ -564,13 +517,33 @@
                value="{{ class.id }}" visibility="hidden" style="width: 0;"
                />
              </div>
+
+             <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+              <label for="lastName" class="d-block">Descripción</label>
+              <textarea #description
+                type="text"
+                rows="5"
+                placeholder="Apellidos..."
+                name="lastName"
+                value="{{ class.description }}"
+                class="textarea pt-2"
+                readonly
+              ></textarea>
+            </div>
    
              <div class="col-12">
                <hr class="hr3" />
              </div>
              
              <div class="col-12 text-center pt-3 pb-3">
-               <button (click)="deleteClass(class.id)" class="btn btn-admin-user pl-3 pr-3">Solicitar Borrado</button>
+              <button mat-raised-button
+              color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="deleteClass(class.id)"
+              >
+              Solicitar Borrado
+          </button>
    
              
              </div>
@@ -618,7 +591,7 @@
          <form >
          <div class="row">
            
-           <div class="col-6 col-md-4 text-center pt-3 pb-4">
+           <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
              
              <label for="firstName" class="d-block">Nombre</label>
              
@@ -631,18 +604,8 @@
                readonly
              />
            </div>
-           <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
-             <label for="lastName" class="d-block">Descripción</label>
-             <input #description
-               type="text"
-               placeholder="Apellidos..."
-               name="lastName"
-               value="{{ carRental.description }}"
-               class="input pt-2"
-               readonly
-             />
-           </div>
-           <div class="col-6 col-md-4 text-center pt-3 pb-4">
+
+           <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
              <label for="email" class="d-block">Localización</label>
              <input #location
                type="text"
@@ -654,7 +617,7 @@
              />
            </div>
            
-           <div class="col-6 col-md-4 text-center pt-3 pb-4">
+           <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
              <label for="email" class="d-block">Precio</label>
              <input #address
                type="text"
@@ -665,7 +628,7 @@
                readonly
              />
            </div>
-           <div class="col-6 col-md-4 text-center pt-3 pb-4">
+           <div class="col-12 col-sm-6   text-center pt-3 pb-4">
              <label for="username" class="d-block">Teléfono</label>
              <input #username
                type="text"
@@ -676,7 +639,7 @@
                readonly
              />
            </div>
-           <div class="col-6 col-md-4 text-center pt-3 pb-4 ">
+           <div class="col-12 col-sm-6  text-center pt-3 pb-4 ">
              <label for="email" class="d-block">Email</label>
              <input #password
                type="text"
@@ -687,16 +650,9 @@
                readonly
              />
            </div>
-           <div class="col-12 text-center pt-3 pb-4">
+           <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
              <label for="email" class="d-block">Url Imagen</label>
-             <input #imagen
-               type="text"
-               placeholder="Teléfono..."
-               name="phone"
-               class="input pt-2"
-               value="{{ carRental.urlImage }}"
-               readonly
-             />
+             <img src="{{ carRental.urlImages }}" alt="" class="img-fluid">
  
              <input #id
              type="hidden"
@@ -706,13 +662,34 @@
              value="{{ carRental.id }}" visibility="hidden" style="width: 0;"
              />
            </div>
+
+           <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+            <label for="lastName" class="d-block">Descripción</label>
+            <textarea #description
+              type="text"
+              rows="5"
+              placeholder="Apellidos..."
+              name="lastName"
+              value="{{ carRental.description }}"
+              class="textarea pt-2"
+              readonly
+            ></textarea>
+          </div>
  
            <div class="col-12">
              <hr class="hr3" />
            </div>
            
            <div class="col-12 text-center pt-3 pb-3">
-             <button (click)="deleteCarRental(carRental.id)" class="btn btn-admin-user pl-3 pr-3">Solicitar Borrado</button>
+            <button mat-raised-button
+            color="primary"
+              class="btnReturn"
+              data-toggle="modal"
+              (click)="deleteCarRental(carRental.id)" 
+            >
+            Solicitar Borrado
+        </button>
+
  
            
            </div>

@@ -4,6 +4,7 @@ import { TokenService } from '../../service/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -30,11 +31,11 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
   roles: string[] = [];
-  errorMsj: string;
-
+  
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -70,8 +71,9 @@ export class LoginComponent implements OnInit {
       err => {
         this.isLogged = false;
         this.isLoginFail = true;
-        this.errorMsj = err.error.message;
-        //console.log(this.errorMsj)
+        this.toastr.error('Error en el login', 'Datos', {
+          timeOut: 3000,
+        });
       }
     )
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { Station } from 'src/app/models/station';
 import { StationService } from 'src/app/service/station.service';
 import { Header } from 'src/app/utils/header';
@@ -14,14 +15,12 @@ export class AdminStationComponent implements OnInit {
   
   @ViewChildren('closebutton') closebutton;
 
-  header: Header[] = [{title:"Nombre",id:"name"},{title:"Localizacion",id:"location"},{title:"Teléfono",id:"phone"}];
+  header: Header[] = [{title:"Nombre",id:"name"},{title:"Localizacion",id:"location"},{title:"País",id:"country"}];
 
   resorts: Station[] = [];
   resort: Station;
   
   searchText;
-  updateMessage: string = "";
-  deleteMessage: string = "";
   isUpdateFail: boolean;
   isDeleteFail: boolean;
   submitted: boolean = false;
@@ -33,7 +32,7 @@ export class AdminStationComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
   
-  constructor(private stationService: StationService,public dialogo: MatDialog) { }
+  constructor(private stationService: StationService, private toastr: ToastrService, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -56,17 +55,19 @@ export class AdminStationComponent implements OnInit {
         this.stationService.putStationToActive(id).subscribe(
           data => {
             this.isUpdateFail = true;
-            this.updateMessage = "Estación activada";
+            this.toastr.success('Estación activada', 'Actualización', {
+              timeOut: 3000,
+            });
+
             this.orderStationList();
           }, err => {
             this.isUpdateFail = false;
-            this.updateMessage = "La estación no se ha podido actualizar";
+            this.toastr.error('La estación no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
-            this.submitted = false;
-            this.updateMessage = "";
-           },3000);
+          this.submitted = false;
 
       }
     })
@@ -88,17 +89,19 @@ export class AdminStationComponent implements OnInit {
         this.stationService.deleteStation(id).subscribe(
           data => {
             this.isDeleteFail = true;
-            this.deleteMessage = "Estación pasada a Inactiva";
+            this.toastr.success('Estación Inactiva', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderStationList();
           }, err => {
             this.isDeleteFail = false;
-            this.deleteMessage = "La estación no se ha podido actualizar";
+            this.toastr.error('La estación no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
-            this.submittedDelete = false;
-            this.deleteMessage = "";
-           },3000);
+          this.submittedDelete = false;
+          
       }
     })
 

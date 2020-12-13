@@ -2,6 +2,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { NewUser } from 'src/app/models/new-user';
 import { AuthService } from 'src/app/service/auth.service';
@@ -35,11 +36,10 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   newUser: NewUser;
   submitted = false;
-  Message: string;
 
   constructor(private tokenService: TokenService,
     private formBuilder: FormBuilder,
-    private authService: AuthService,public dialogo: MatDialog) { }
+    private authService: AuthService,private toastr: ToastrService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -104,19 +104,22 @@ export class RegisterComponent implements OnInit {
       data => {
         this.isRegisterFail = true;
         this.newUser = data;
-        this.Message = "Registro realizado";
+        this.onReset();
+        this.toastr.success('Registro realizado con éxito', 'Registro', {
+          timeOut: 3000,
+        });
       }, err => {
         this.isRegisterFail = false;
-        this.Message = err.error.mensaje;
+        this.toastr.error('El nombre de usuario o el email ya se encuentra en uso', 'Registro', {
+          timeOut: 3000,
+        });
       }
     );
       }
     })
 
-    setTimeout( () => { 
       this.submitted = false;
-      this.Message = "";
-     },3000);
+
   }
 
   onReset() {

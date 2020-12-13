@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HotelDto } from '../components/enterprise-services/enterprise-services.component';
+import { GetResponseHotel, HotelDto } from '../interfaces/hotel-interface';
 import { Hotel } from '../models/hotel';
 
 @Injectable({
@@ -11,11 +11,23 @@ export class HotelService {
 
   //baseUrl = "http://localhost:8082/api/hotel/";
   //baseUrlTwo = "http://localhost:8082/hotel/";
+  
   baseUrl = "http://192.168.1.134:8082/api/hotel/";
   baseUrlTwo = "http://192.168.1.134:8082/hotel/";
+
+  //baseUrl = "http://localhost:8082/snowyduneservice/api/hotel/";
+  //baseUrlTwo = "http://localhost:8082/snowyduneservice/hotel/";
+
+  //baseUrl = "http://iesalixar.ddns.net:9095/snowyduneservice/api/hotel/";
+  //baseUrlTwo = "http://iesalixar.ddns.net:9095/snowyduneservice/hotel/";
+
   
 
   constructor(private httpClient: HttpClient) { }
+
+  public getHotelById(hotelId: number){
+    return this.httpClient.get<Hotel>(this.baseUrlTwo + 'hotelId/' + hotelId)
+  }
 
   public getHotelListPaginatedSorted(thePage: number, thePageSize: number, columnName:string, order:string): Observable<GetResponseHotel> {
 
@@ -81,15 +93,3 @@ export class HotelService {
   }
 }
 
-interface GetResponseHotel {
-  _embedded: {
-    hotel: Hotel[];
-  },
-  page: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number
-  }
-
-}

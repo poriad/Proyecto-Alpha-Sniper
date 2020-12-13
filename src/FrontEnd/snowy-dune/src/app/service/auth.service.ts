@@ -11,7 +11,14 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   //authURL = 'http://localhost:8082/auth/';
+  
   authURL = 'http://192.168.1.134:8082/auth/'
+  
+  //authURL = 'http://localhost:8082/snowyduneservice/auth/'
+  //authURL = 'http://iesalixar.ddns.net:9095/snowyduneservice/auth/'
+
+  
+ 
 
   constructor(private httpClient: HttpClient) { }
 

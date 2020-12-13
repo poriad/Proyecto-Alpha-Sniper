@@ -2,12 +2,13 @@ import { interceptorProvider } from './interceptors/prod-interceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatSelectModule} from '@angular/material/select';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { CommonModule } from "@angular/common";
-
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { CommonModule, DatePipe } from "@angular/common";
+import { NgxStripeModule } from 'ngx-stripe';
 
 /**
  * Componentes
@@ -19,6 +20,15 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatIconModule} from '@angular/material/icon';
+import {StripePaymentModalComponent} from './components/stripe-payment-modal/stripe-payment-modal.component'
+
 
 /**
  * Material Modules
@@ -64,7 +74,13 @@ import { SkiMaterialComponent } from './layouts/ski-material/ski-material.compon
 import { CarRentalComponent } from './layouts/car-rental/car-rental.component';
 import { ImgurApiService } from './service/imgur-api.service';
 import { ModalUserCommentsComponent } from './components/modal-user-comments/modal-user-comments.component';
+import { TutorialDialogComponent } from './components/tutorial-dialog/tutorial-dialog.component';
+import { AccessEnterpriseDialogComponent } from './components/access-enterprise-dialog/access-enterprise-dialog.component';
+import { ConfirmPasswordComponent } from './layouts/confirm-password/confirm-password.component';
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -102,14 +118,16 @@ import { ModalUserCommentsComponent } from './components/modal-user-comments/mod
     ClassesComponent,
     SkiMaterialComponent,
     CarRentalComponent,
-    ModalUserCommentsComponent
-    
+    ModalUserCommentsComponent,
+    TutorialDialogComponent,
+    AccessEnterpriseDialogComponent,
+    ConfirmPasswordComponent,
+    StripePaymentModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
-   
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
@@ -117,15 +135,28 @@ import { ModalUserCommentsComponent } from './components/modal-user-comments/mod
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatTabsModule,
     MatCheckboxModule,
     MatBadgeModule,
+    MatInputModule,
+    MatIconModule,
+    MatRadioModule,
+    MatStepperModule,
     NgbModule,
     CommonModule,
     Ng2SearchPipeModule,
-    
-    MatButtonModule
+    MatButtonModule,
+    FontAwesomeModule,
+    NgxStripeModule.forRoot('pk_test_51Hxha3JZAUyTCM1IB9B8LGmm5ssAQ859AmJkVbpCoGXyorNIZlepONWwOKY4P7u4baT0LZn3sAV5t3aR9yhgKK6o00MHYQmQZr'),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
-  providers: [interceptorProvider,ImgurApiService],
+  providers: [interceptorProvider,ImgurApiService,DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmDialogComponent

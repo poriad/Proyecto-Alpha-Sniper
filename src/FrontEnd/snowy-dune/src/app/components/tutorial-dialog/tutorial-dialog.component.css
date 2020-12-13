@@ -1,0 +1,88 @@
+.mat-dialog-container {
+    z-index: 9999 !important;
+}
+
+.h3 {
+    font-size: 1.4rem;
+    letter-spacing: 0.15rem;
+    font-weight: bold;
+    color:rgba(27, 77, 176, 1);
+    
+}
+.h4 {
+    font-size: 1.3rem;
+    letter-spacing: 0.15rem;
+    font-weight: bold;
+    color:rgba(27, 77, 176, 1);
+}
+
+.mensaje {
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    
+}
+.p{
+    font-size: 1rem;
+    color:black;
+    font-weight: 600;
+}
+
+button {
+    color:rgba(27, 77, 176, 1);
+    font-weight: bold;
+}
+
+button:hover {
+    color:white;
+    background-color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+}
+
+button:active, button:focus {
+    color:white;
+    background-color: rgba(27, 77, 176, 1);
+    border: 0;
+    outline:0;
+    font-weight: bold;
+}
+
+.cancel {
+    color: rgb(176, 27, 27);
+    font-weight: bold;
+}
+
+.cancel:hover {
+    color:white;
+    background-color: rgb(176, 27, 27);
+    font-weight: bold;
+}
+
+.cancel:active, .cancel:focus {
+    color:white;
+    background-color: rgb(176, 27, 27);
+    border: 0;
+    outline:0;
+    font-weight: bold;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: rgba(27, 77, 176, 1) !important;
+}
+
+.mat-horizontal-content-container {
+    overflow: visible  !important;
+    padding: 0 0 0 0 !important;
+}
+
+@media screen and (max-width: 575px) {
+   
+    .h4{
+        font-size: 0.9rem;
+        letter-spacing: 0.20rem;
+    }
+
+    .p {
+        font-size: 0.7rem;
+    }
+
+ }

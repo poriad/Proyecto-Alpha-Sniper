@@ -1,0 +1,73 @@
+<h1 mat-dialog-title class="text-center h3">Tutorial</h1>
+
+<div mat-dialog-actions>
+  <div class="col-12 text-center pr-0 pl-0">
+    <mat-horizontal-stepper>
+        <!-- #docregion label -->
+          <mat-step label="Elije una estación" [completed]="false">
+            <div class="row pt-4">
+              <div class="col-12 col-lg-7 pr-0 pl-0">
+                <h4 class="h4">{{ 'CART.CARTEMPTYTWO' | translate }}</h4>
+                <p class="p">{{ 'CART.CARTEMPTYTHREE' | translate }}</p>
+                <p class="p">{{ 'CART.CARTEMPTYFOUR' | translate }}</p>
+                <p class="p">{{ 'CART.CARTEMPTYFIVE' | translate }}</p>
+              </div>
+              
+              <div class="col-12 col-lg-5">
+                <img src="./assets/Stepper/paso2.JPG" class="img-fluid" alt="">
+              
+              </div>
+            </div>
+
+          </mat-step>
+        <!-- #enddocregion label -->
+          <mat-step label="Selecciona entre los distintos servicios" [completed]="false">
+            <div class="row pt-4">
+              <div class="col-12 col-lg-5 pb-4 pb-md-0">
+                <img src="./assets/Stepper/paso2.JPG" class="img-fluid" alt="">
+              
+              </div>
+              <div class="col-12 col-lg-7 ">
+                <h4 class="h4">{{ 'CART.CARTEMPTYSIX' | translate }}</h4>
+                <p class="p">{{ 'CART.CARTEMPTYSEVEN' | translate }}</p>
+                <p class="p">{{ 'CART.CARTEMPTYEIGHT' | translate }}</p>
+                <p class="p">{{ 'CART.CARTEMPTYNINE' | translate }}</p>
+                <p class="p">{{ 'CART.CARTEMPTYTEN' | translate }}</p>
+              </div>
+              
+              
+            </div>
+          </mat-step>
+          <mat-step label="Realiza el pago" [completed]="false">
+            <div class="row pt-4">
+              
+              <div class="col-12 col-lg-5">
+                <h4 class="h4">{{ 'CART.CARTEMPTYELEVEN' | translate }}</h4>
+                <p class="p">{{ 'CART.CARTEMPTYTWELVE' | translate }}</p>
+                <p class="p">{{ 'CART.CARTEMPTYTHIRTEEN' | translate }}</p>
+                <p class="p">{{ 'CART.CARTEMPTYFOURTEEN' | translate }}</p>
+              </div>
+
+              <div class="col-12 col-lg-7">
+
+                <img src="./assets/Stepper/paso3.JPG" class="img-fluid" alt="">
+              </div>
+          </div>
+          </mat-step>
+        
+          <!-- Icon overrides. -->
+        <!-- #docregion override-icons -->
+          <ng-template matStepperIcon="phone">
+            <mat-icon>call_end</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="chat">
+            <mat-icon>forum</mat-icon>
+          </ng-template>
+        </mat-horizontal-stepper>
+</div>
+
+    <div class="col-12 text-center">
+        <button mat-button (click)="cerrarDialogo()" class="cancel">Cerrar</button>
+    </div>
+
+</div>

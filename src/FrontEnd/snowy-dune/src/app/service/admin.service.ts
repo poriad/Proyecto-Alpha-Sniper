@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GetResponseUsers, GetResponseUsersEnterprise } from '../interfaces/users';
 import { UserSnowy } from '../layouts/user-management/user-management.component';
 import { EnterpriseUser } from '../models/enterprise-user';
 import { NewUser } from '../models/new-user';
@@ -12,8 +13,15 @@ export class AdminService {
 
   //baseUrl = "http://localhost:8082/api/user/";
   //baseUrlUser = "http://localhost:8082/user/";
+  
   baseUrl = "http://192.168.1.134:8082/api/user/";
   baseUrlUser = "http://192.168.1.134:8082/user/";
+  
+  //baseUrl = "http://localhost:8082/snowyduneservice/api/user/"
+  //baseUrlUser = "http://localhost:8082/snowyduneservice/user/";
+
+  //baseUrl = "http://iesalixar.ddns.net:9095/snowyduneservice/api/user/"
+  //baseUrlUser = "http://iesalixar.ddns.net:9095/snowyduneservice/user/";
 
   
 
@@ -22,8 +30,13 @@ export class AdminService {
   ngOnInit(): void {
   }
 
+
   public putUserDetails(newUser: NewUser, id:number): Observable<any>{
     return this.httpClient.put<any>(this.baseUrlUser + 'update/' + id, newUser);
+  }
+
+  public putUserPassword(id:number,password:string): Observable<any>{
+    return this.httpClient.put<any>(this.baseUrlUser + 'updatePassword/' + id + "?password="+ password, null);
   }
 
   public putUserManagement(newUser: UserSnowy, id:number): Observable<any>{
@@ -64,28 +77,3 @@ export class AdminService {
 
 }
 
-interface GetResponseUsers {
-  _embedded: {
-    user: NewUser[];
-  },
-  page: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number
-  }
-
-}
-
-interface GetResponseUsersEnterprise {
-  _embedded: {
-    user: EnterpriseUser[];
-  },
-  page: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number
-  }
-
-}

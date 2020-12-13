@@ -3,8 +3,9 @@ footer{
     color: white;
 }
 
-.h1 {
+#language {
     font-size: 1.50rem;
+    color: white;
 }
 
 .idioma  h5{
@@ -14,6 +15,34 @@ footer{
 
 .iconos {
     height: 35px;
+}
+
+.contacto {
+    cursor: pointer;
+}
+
+.contacto {
+    outline: 0;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(255, 255, 255, 0.473) !important;
+    
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb{
+    background-color: #00247D !important;
+    border: 1px solid white;
+}
+
+.mat-slide-toggle-thumb{
+    background-color: #dc3545 !important;
+    border: 1px solid white;
+    
+}
+
+.mat-slide-toggle-bar{
+    background-color:#dc354670 !important;
 }
 
 @media screen and (min-width: 768px) and (max-width: 990px) {
@@ -29,3 +58,15 @@ footer{
 
 }
 
+@media screen and (max-width: 575px) {
+   
+    .idioma  h5{
+        font-size: 0.8rem;
+        letter-spacing: 0.2rem
+    }
+
+    .iconos {
+        height: 25px;
+    }
+ 
+ }

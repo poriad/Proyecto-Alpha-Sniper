@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { CarRental } from 'src/app/models/car-rental';
 import { Classes } from 'src/app/models/classes';
 import { Hotel } from 'src/app/models/hotel';
@@ -37,7 +38,7 @@ export class EnterpriseListServicesComponent implements OnInit{
   isEnterprise = false;
 
   constructor(private enterpriseService: EnterpriseService, private classesService: ClassesService,
-     private hotelService: HotelService, private skiMaterialService: SkiMaterialService,
+     private hotelService: HotelService, private skiMaterialService: SkiMaterialService,private toastr: ToastrService,
       private carRentalService: CarRentalService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
@@ -112,7 +113,6 @@ export class EnterpriseListServicesComponent implements OnInit{
     );
   }
 
-  deleteHotelMessage: string = "";
   isDeleteHotelFail: boolean;
   submittedDeleteHotel: boolean = false;
 
@@ -131,24 +131,26 @@ export class EnterpriseListServicesComponent implements OnInit{
           this.hotelService.desactiveHotel(id).subscribe(
             data => {
               this.isDeleteHotelFail = true;
-              this.deleteHotelMessage = "Solicitud enviada";
+              this.toastr.success('Solicitud enviada', 'Petición', {
+                timeOut: 3000,
+              });
               this.listAllServices();
             }, err => {
               this.isDeleteHotelFail = false;
-              this.deleteHotelMessage = "La solicitud no se ha podido enviar";
+              this.toastr.error('La solicitud no se ha podido enviar', 'Petición', {
+                timeOut: 3000,
+              });
             });
       
-            setTimeout( () => { 
-              this.submittedDeleteHotel = false;
-              this.deleteHotelMessage = "";
-             },3000);
+
+            this.submittedDeleteHotel = false;
+            
         }
 
       })
     
   }
 
-  deleteClassesMessage: string = "";
   isDeleteClassesFail: boolean;
   submittedDeleteClasses: boolean = false;
 
@@ -167,23 +169,24 @@ export class EnterpriseListServicesComponent implements OnInit{
           this.classesService.desactiveClass(id).subscribe(
             data => {
               this.isDeleteClassesFail = true;
-              this.deleteClassesMessage = "Solicitud enviada";
+              this.toastr.success('Solicitud enviada', 'Petición', {
+                timeOut: 3000,
+              });
               this.listAllServices();
             }, err => {
               this.isDeleteClassesFail = false;
-              this.deleteClassesMessage = "La solicitud no se ha podido enviar";
+              this.toastr.error('La solicitud no se ha podido enviar', 'Petición', {
+                timeOut: 3000,
+              });
             });
       
-            setTimeout( () => { 
-              this.submittedDeleteClasses = false;
-              this.deleteClassesMessage = "";
-             },3000);
+            this.submittedDeleteClasses = false;
+             
         }
       })
     
   }
 
-  deleteCarRentalMessage: string = "";
   isDeleteCarRentalFail: boolean;
   submittedDeleteCarRental: boolean = false;
 
@@ -203,24 +206,26 @@ export class EnterpriseListServicesComponent implements OnInit{
           this.carRentalService.desactiveCarRental(id).subscribe(
             data => {
               this.isDeleteCarRentalFail = true;
-              this.deleteCarRentalMessage = "Solicitud enviada";
+              this.toastr.success('Solicitud enviada', 'Petición', {
+                timeOut: 3000,
+              });
               this.listAllServices();
             }, err => {
               this.isDeleteCarRentalFail = false;
-              this.deleteCarRentalMessage = "La solicitud no se ha podido enviar";
+              this.toastr.error('La solicitud no se ha podido enviar', 'Petición', {
+                timeOut: 3000,
+              });
             });
       
-            setTimeout( () => { 
-              this.submittedDeleteCarRental = false;
-              this.deleteCarRentalMessage = "";
-             },3000);
+           
+            this.submittedDeleteCarRental = false;
+         
 
         }
       })
     
   }
 
-  deleteSkiMaterialMessage: string = "";
   isDeleteSkiMaterialFail: boolean;
   submittedDeleteSkiMaterial: boolean = false;
 
@@ -239,19 +244,19 @@ export class EnterpriseListServicesComponent implements OnInit{
           this.skiMaterialService.desactiveSkiMaterial(id).subscribe(
             data => {
               this.isDeleteSkiMaterialFail = true;
-              this.deleteSkiMaterialMessage = "Servicio pasado a Inactivo";
+              this.toastr.success('Servicio pasado a Inactivo', 'Petición', {
+                timeOut: 3000,
+              });
               
               this.listAllServices();
             }, err => {
               this.isDeleteSkiMaterialFail = false;
-              
-              this.deleteSkiMaterialMessage = "La solicitud no se ha podido enviar";
+              this.toastr.error('La solicitud no se ha podido enviar', 'Petición', {
+                timeOut: 3000,
+              });
             });
       
-            setTimeout( () => { 
-              this.submittedDeleteSkiMaterial = false;
-              this.deleteSkiMaterialMessage = "";
-             },3000);
+            this.submittedDeleteSkiMaterial = false;
 
         }
       })

@@ -9,6 +9,7 @@
 
 .h {
     background-color: white;
+    box-shadow: 1px 1px 5px #888888a2;
 }
 
 .h1{
@@ -51,9 +52,10 @@ p{
     letter-spacing: 0.15rem;
 }
 
-.h5 {
+.h5-trip {
     font-size: 1.3rem;
     letter-spacing: 0.2rem;
+    color:  rgba(27, 77, 176, 1);
 }
 
 
@@ -72,6 +74,34 @@ p{
     width:80%;
 }
 
+.info-trip-head{
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.info-trip {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 60%;
+    font-size: 1rem;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);
+}
+
+.info-trip-personas {
+    color: rgba(27, 77, 176, 1);
+    font-weight: bold;
+    text-align: center;
+    width: 40%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(27, 77, 176, 1);
+    background-color: rgba(255, 255, 255, 0.418);
+}
 
 .resumen {
     background-color: white;
@@ -121,6 +151,18 @@ p{
     
 }
 
+#btnReturn {
+    background-color: rgba(27, 77, 176, 1);
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#btnReturn:hover {
+    opacity: 0.8;
+}
+
 @media screen and (min-width: 991px) and (max-width: 1198px) {
     
     
@@ -146,11 +188,54 @@ p{
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
+    .resumen {
+        background-color: white;
+        font-size: 1.1rem;
+        letter-spacing: 0.17rem;
+        color: rgba(27, 77, 176, 1);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-weight: 600;
+    }
    
+    .h3 {
+        font-size: 1.4rem;
+        letter-spacing: 0.2rem;
+        color: #3C7DEC;
+    }
 
 }
 
 @media screen and (max-width: 575px) {
    
+   .h5-trip {
+       font-size: 1rem;
+   }
    
+   .concepto {
+    font-size: 1rem;
+   }
+
+    .h1{
+        font-size: 1.6rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .h4 {
+        font-size: 1rem;
+    }
+     
+    .h3 {
+        font-size: 1.1rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .info-trip-head {
+        font-size: 1.1rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .centered {
+        font-size: 1.1rem;
+    }
 }

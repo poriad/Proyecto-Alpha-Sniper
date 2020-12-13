@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { SkiMaterial } from 'src/app/models/ski-material';
 import { SkiMaterialService } from 'src/app/service/ski-material.service';
 import { Header } from 'src/app/utils/header';
@@ -32,7 +33,7 @@ export class AdminSkiMaterialComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
 
-  constructor(private skiMaterialService:SkiMaterialService,public dialogo: MatDialog) { }
+  constructor(private skiMaterialService:SkiMaterialService,private toastr: ToastrService,public dialogo: MatDialog) { }
 
   ngOnInit(): void {
     this.orderSkiMaterialList();
@@ -53,17 +54,19 @@ export class AdminSkiMaterialComponent implements OnInit {
         this.skiMaterialService.putSkiMaterialToActive(id).subscribe(
           data => {
             this.isUpdateFail = true;
-            this.updateMessage = "Servicio activado";
+            this.toastr.success('Servicio activado', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderSkiMaterialList();
           }, err => {
             this.isUpdateFail = false;
-            this.updateMessage = "El servicio no se ha podido actualizar";
+            this.toastr.error('El servicio no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
-            this.submitted = false;
-            this.updateMessage = "";
-           },3000);
+          this.submitted = false;
+           
       }
     })
 
@@ -85,17 +88,18 @@ export class AdminSkiMaterialComponent implements OnInit {
         this.skiMaterialService.deleteSkiMaterial(id).subscribe(
           data => {
             this.isDeleteFail = true;
-            this.deleteMessage = "Servicio pasado a Inactivo";
+            this.toastr.success('Servicio pasado a Inactivo', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderSkiMaterialList();
           }, err => {
             this.isDeleteFail = false;
-            this.deleteMessage = "El servicio no se ha podido actualizar";
+            this.toastr.error('El servicio no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
-            this.submittedDelete = false;
-            this.deleteMessage = "";
-           },3000);
+          this.submittedDelete = false;
 
       }
     })

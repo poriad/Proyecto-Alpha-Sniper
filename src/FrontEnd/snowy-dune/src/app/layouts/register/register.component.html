@@ -2,40 +2,44 @@
 
 <div @fade class="text-center" *ngIf="isLogged; else loggedOut">
   <div class="container-fluid fondo">
-      <div class="row pb-5">
-          <div class="col-12 pt-5 text-center mt-4 ">
-              <h3 class="h3-blue pb-2">YA TE ENCUENTRAS LOGUEADO</h3>
-              <hr class="hr">
-          </div>
+    <div class="row pb-5">
+        <div class="col-12 pt-5 text-center mt-4 ">
+            <h3 class="h3-blue pb-2">YA TE ENCUENTRAS LOGUEADO</h3>
+            <hr class="hr">
+        </div>
 
-          <div class="col-4 offset-3 fondo-blanco mt-5 mb-5">
-              
-              <div class="row">
-
-                  <div class="col">
-                      <p class="marca-uno w-100 text-center pb-1"></p>
-                      <h5 class="h5 pt-4 pb-4">¿Quieres acceder al Login o al registro?</h5>
-
-                      <p class="p pb-2">Si quieres acceder al menú de Login primero prueba a cerrar la sesión que mantienes abierta</p>
-                      <p class="p pb-2">Puedes hacerlo en el icono para ello situado en la parte superior derecha</p>
-                      <p class="p pb-3">O puedes salir pulsando este botón</p>
-
-                      <button (click)="onLogOut()" class="btn mb-4 boton-alt">SALIR DE LA APLICACIÓN</button>
-
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-2 fondo-blanco mt-5 mb-5">
-  
-                  <div class="container">
+        <div class="col-12 col-md-10 col-xl-4 offset-md-1 offset-xl-3 fondo-blanco mt-5 mb-5">
+            <p class="marca-uno w-100 text-center pb-1"></p>
+            <div class="row w-100">
+                <div class="col-12 text-center">
                     
-                      <img src="../../../assets/Login/alreadyLogin.png" alt="Snow" class="img-fluid">
-               
-              </div>
-          </div> 
-      </div>
-  </div>
+                    <h5 class="h5 pt-4 pb-4">¿Quieres acceder al Login o al registro?</h5>
+
+                    <p class="p pb-2">Si quieres acceder al menú de Login primero prueba a cerrar la sesión que mantienes abierta</p>
+                    <p class="p pb-2">Puedes hacerlo en el icono para ello situado en la parte superior derecha</p>
+                    <p class="p pb-3">O puedes salir pulsando este botón</p>
+
+                    <div class="col-12 text-center pb-3">
+                        <button mat-raised-button
+                        (click)="onLogOut()">
+                        Cerrar Sesión
+                      </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-none d-xl-block  col-xl-2 fondo-azul mt-5 mb-5 align-items-center">
+
+                <div class="row h-100">
+                  <div class="col my-auto">
+                    <img src="./assets/Navbar/snowyDune2.png" alt="Snow" class="img-fluid" id="snowydunelogo">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
 </div>
 
 <ng-template #loggedOut>
@@ -58,7 +62,7 @@
 
       <div class="row">
         <div class="col-12 ">
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="">
+          <form [formGroup]="registerForm" class="">
           <div class="row">
          
           <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
@@ -179,25 +183,28 @@
           
          
           <div class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-3 pb-lg-5">
-            <input type="submit" value="Enviar" class="submit" />
+            <button mat-raised-button
+                    (click) = "onSubmit()"
+                    >
+                    Enviar
+            </button>
           </div>
+
+          
 
           <div class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-5">
-            <input type="reset" value="Limpiar" (click)="onReset()" class="submit" />
+            <button mat-raised-button
+                    (click) = "onReset()"
+                    >
+                    Limpiar
+            </button>
           </div>
         </div>
-        <div class="col-12 pb-5 text-center">
-        <div *ngIf="submitted && isRegisterFail" class="">
-          <h5 class="h5-submit">{{Message}}</h5>
-        </div>
-
-        <div *ngIf="submitted && !isRegisterFail" class="">
-          <h5 class="h5-error">{{ Message }}</h5>
-        </div>
-      </div>
         </form>
         </div>
-      
+        <div class="col-12 text-center pt-3 pb-5">
+          <p class="p-two" ><a routerLink="/Login">¿Ya estás registrado? ¡Vuelve a Login y entra!</a></p>
+        </div>
         
       
       </div>

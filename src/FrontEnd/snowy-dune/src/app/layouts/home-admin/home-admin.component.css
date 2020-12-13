@@ -9,6 +9,7 @@
 
 .fondo-blanco {
     background-color: white;
+    box-shadow: 1px 1px 5px #888888a2;
 }
 
 .h1{
@@ -191,3 +192,112 @@ select {
 }
 
 
+@media screen and (max-width: 575px) {
+   
+    .h1{
+        font-size: 1.4rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .h3 {
+        font-size: 1.3rem;
+        letter-spacing: 0.2rem;
+
+    }
+
+    .h4 {
+        font-size: 1rem;
+        font-weight: 550;
+    }
+
+    .p {
+        font-size: 0.9rem;
+    }
+    
+ }
+
+
+ @media screen and (min-width: 1198px) {
+  .submit{
+    font-size: 1.3rem;
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+    
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+  .submit{
+
+    font-size: 1.1rem;
+
+    width: 50%;
+  }
+  
+}
+
+@media screen and (max-width: 575px) {
+   
+    .h3{
+        font-size: 1rem;
+        letter-spacing: 0.20rem;
+    }
+
+    .h1{
+        font-size: 1.1rem;
+    }
+
+    .h4 {
+        font-size: 0.8rem;
+        letter-spacing: 0.15rem;
+        color: #3C7DEC
+    }
+
+    .h4-b {
+      font-size: 1rem;
+      color: #3C7DEC;
+      font-weight: 550;
+     }
+
+    .submit{
+
+      font-size: 1.1rem;
+
+      width: 50%;
+    }
+
+    .p{
+        font-size: 0.8rem;
+        letter-spacing: 0.15rem;
+    }
+
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ClassesDto } from '../components/enterprise-services/enterprise-services.component';
+import { ClassesDto, GetResponseClasses } from '../interfaces/classes-interface';
 import { Classes } from '../models/classes';
 
 @Injectable({
@@ -11,11 +11,22 @@ export class ClassesService {
 
   //baseUrl = "http://localhost:8082/api/classes/";
   //baseUrlTwo = "http://localhost:8082/classes/"
+
   baseUrl = "http://192.168.1.134:8082/api/classes/";
   baseUrlTwo = "http://192.168.1.134:8082/classes/";
   
+  //baseUrl = "http://localhost:8082/snowyduneservice/api/classes/";
+  //baseUrlTwo = "http://localhost:8082/snowyduneservice/classes/";
+
+  //baseUrl = "http://iesalixar.ddns.net:9095/snowyduneservice/api/classes/";
+  //baseUrlTwo = "http://iesalixar.ddns.net:9095/snowyduneservice/classes/";
 
   constructor(private httpClient: HttpClient) { }
+
+  public getClassesById(classesId: number){
+    return this.httpClient.get<Classes>(this.baseUrlTwo + 'classesId/' + classesId)
+  }
+
 
   public getClassesListPaginatedSorted(thePage: number, thePageSize: number, columnName:string, order:string): Observable<GetResponseClasses> {
 
@@ -72,15 +83,3 @@ export class ClassesService {
   }
 }
 
-interface GetResponseClasses {
-  _embedded: {
-    classes: Classes[];
-  },
-  page: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number
-  }
-
-}

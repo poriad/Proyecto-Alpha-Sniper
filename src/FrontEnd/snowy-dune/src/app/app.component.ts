@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 declare var $:any;
 @Component({
   selector: 'app-root',
@@ -6,6 +8,5 @@ declare var $:any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'snowy-dune';
-  
+  title = 'snowy-dune';  
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { Classes } from 'src/app/models/classes';
 import { ClassesService } from 'src/app/service/classes.service';
 import { Header } from 'src/app/utils/header';
@@ -19,8 +20,6 @@ export class AdminClassesComponent implements OnInit {
   class: Classes;
   
   searchText;
-  updateMessage: string = "";
-  deleteMessage: string = "";
   isUpdateFail: boolean;
   isDeleteFail: boolean;
   submitted: boolean = false;
@@ -32,7 +31,7 @@ export class AdminClassesComponent implements OnInit {
   columnName:string = "";
   order:string = "asc";
 
-  constructor(private classesService:ClassesService, public dialogo: MatDialog) { }
+  constructor(private classesService:ClassesService, public dialogo: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -55,18 +54,23 @@ export class AdminClassesComponent implements OnInit {
         this.classesService.putClassesToActive(id).subscribe(
           data => {
             this.isUpdateFail = true;
-            this.updateMessage = "Clase activada";
+            this.toastr.success('Clase activada', 'Actualización', {
+              timeOut: 3000,
+            });
+
             this.orderClassesList();
           }, err => {
             this.isUpdateFail = false;
-            
-            this.updateMessage = "La clase no se ha podido actualizar";
+            this.toastr.error('La clase no se ha podido actualizar', 'Actualización', {
+              timeOut: 3000,
+            });
+
           });
     
-          setTimeout( () => { 
+
             this.submitted = false;
-            this.updateMessage = "";
-           },3000);
+
+
 
       }
     })
@@ -88,17 +92,18 @@ export class AdminClassesComponent implements OnInit {
         this.classesService.deleteClass(id).subscribe(
           data => {
             this.isDeleteFail = true;
-            this.deleteMessage = "Clase pasada a Inactiva";
+            this.toastr.success('Clase pasada a Inactiva', 'Actualización', {
+              timeOut: 3000,
+            });
             this.orderClassesList();
           }, err => {
             this.isDeleteFail = false;
-            this.deleteMessage = "La clase no se ha podido actualizar";
+            this.toastr.error('La clase no se ha podido borrar', 'Actualización', {
+              timeOut: 3000,
+            });
           });
     
-          setTimeout( () => { 
             this.submittedDelete = false;
-            this.deleteMessage = "";
-           },3000);
       }
     })
     

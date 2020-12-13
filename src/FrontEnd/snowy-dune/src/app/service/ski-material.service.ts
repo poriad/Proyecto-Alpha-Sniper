@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SkiMaterialDto } from '../components/enterprise-services/enterprise-services.component';
+import { GetResponseSkiMaterial, SkiMaterialDto } from '../interfaces/ski-material-interface';
 import { SkiMaterial } from '../models/ski-material';
 
 @Injectable({
@@ -9,12 +9,25 @@ import { SkiMaterial } from '../models/ski-material';
 })
 export class SkiMaterialService {
 
-  //baseUrl = "http://localhost:8082/api/ski-material/";
-  //baseUrlTwo = "http://localhost:8082/skiMaterial/";
+
   baseUrl = "http://192.168.1.134:8082/api/ski-material/";
   baseUrlTwo = "http://192.168.1.134:8082/skiMaterial/";
 
+  //baseUrl = "http://localhost:8082/api/ski-material/";
+  //baseUrlTwo = "http://localhost:8082/skiMaterial/";
+  
+  //baseUrl = "http://localhost:8082/snowyduneservice/api/ski-material/";
+  //baseUrlTwo = "http://localhost:8082/snowyduneservice/skiMaterial/";
+
+  //baseUrl = "http://iesalixar.ddns.net:9095/snowyduneservice/api/ski-material/";
+  //baseUrlTwo = "http://iesalixar.ddns.net:9095/snowyduneservice/skiMaterial/";
+
+
   constructor(private httpClient: HttpClient) { }
+
+  public getSkiMaterialById(skiMaterialId: number){
+    return this.httpClient.get<SkiMaterial>(this.baseUrlTwo + 'skiMaterialId/' + skiMaterialId)
+  }
 
   public getSkiMaterialListPaginatedSorted(thePage: number, thePageSize: number, columnName:string, order:string): Observable<GetResponseSkiMaterial> {
 
@@ -71,14 +84,3 @@ export class SkiMaterialService {
   
 }
 
-interface GetResponseSkiMaterial {
-  _embedded: {
-    skiMaterial: SkiMaterial[];
-  },
-  page: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number
-  }
-}

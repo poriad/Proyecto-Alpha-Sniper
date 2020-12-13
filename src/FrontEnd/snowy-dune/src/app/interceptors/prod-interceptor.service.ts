@@ -12,12 +12,17 @@ export class ProdInterceptorService implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let intReq = req;
+
+    if(intReq.url.includes('imgur')){
+      return next.handle(intReq);
+    }
+
     const token = this.tokenService.getToken();
 
     if(token != null) {
       intReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) })
     }
-
+    
     return next.handle(intReq);
 
   }

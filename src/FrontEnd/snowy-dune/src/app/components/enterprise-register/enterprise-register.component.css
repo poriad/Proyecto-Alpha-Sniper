@@ -13,7 +13,8 @@
 .h4-b {
   font-size: 1.5rem;
   letter-spacing: 0.3rem;
-  color:rgba(27, 77, 176, 1)
+  color: #3C7DEC;
+  font-weight: 550;
 }
 
 .h5-submit {
@@ -68,22 +69,22 @@
   padding: 5px;
 }
 
-button {
-  border: 1px solid  rgba(27, 77, 176, 1);
-  border-radius: 0;
-  color:  rgba(27, 77, 176, 1);
-  font-size: 1.3rem;
-  letter-spacing: 0.2rem;
-  font-weight: 600;
-  padding-left: 55px;
-  padding-right: 55px;
-  color:  white;
+
+#btnReturn {
   background-color: rgba(27, 77, 176, 1);
+  color:white;
+  font-size: 1rem;
+  letter-spacing: 0.20rem;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
-button:hover {
-  color:  rgba(27, 77, 176, 1);
-  background-color: white;
+#btnReturn:hover {
+  opacity: 0.8;
+}
+
+#btnReturn:disabled {
+  opacity: 0.7;
 }
 
 
@@ -251,6 +252,25 @@ input.submit[disabled]:hover {
   
 }
 
+@media screen and (min-width: 991px) and (max-width: 1366px) {
+    
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+ 
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+  .h4-b {
+    font-size: 1.2rem;
+    color: #3C7DEC;
+    font-weight: 550;
+   }
+
+}
+
 @media screen and (max-width: 575px) {
    
     .h3{
@@ -269,12 +289,23 @@ input.submit[disabled]:hover {
       width: 50%;
     }
 
-   
+   .h4-b {
+    font-size: 1rem;
+    color: #3C7DEC;
+    font-weight: 550;
+   }
 
     .enterprise-status {
       font-size: 0.6rem;
       letter-spacing: 0.1rem;
     
+    }
+
+    button {
+      width: 70%;
+      font-size: 0.8rem;
+      padding-left: 25px;
+  padding-right: 25px;
     }
 
 }

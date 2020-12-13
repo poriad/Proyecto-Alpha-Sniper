@@ -2,377 +2,302 @@
 
 <div @fade class="container-fluid fondo">
   <div class="row">
-    <div class="col-3 offset-1 pt-3 text-center">
-        <div class="row fondo-blanco pb-2">
+    <div class="col-3 d-none d-xl-block  offset-1 pt-3 text-center" >
+        <div class="row fondo-blanco-suave pb-2" *ngIf="trips.length > 0">
             <div class="col-12 padding">
-                <h5 class="h5">TOTAL VIAJES</h5>
-            </div>
-            <div class="col-8 text-left ">
-                <p class="p-dos pl-3">VIAJE SIERRA NEVADA</p>
-            </div>
-            <div class="col-4">
-                <p class="p-dos">800 €</p>
-            </div>
-            <div class="col-8 text-left ">
-                <p class="p-dos  pl-3">VIAJE BAQUEIRA-BERET</p>
-            </div>
-            <div class="col-4">
-                <p class="p-dos">800 €</p>
-            </div>
-            <div class="col-8 text-left">
-                <p class="p-dos pl-3">VIAJE VAL-THORENS</p>
-            </div>
-            <div class="col-4 ">
-                <p class="p-dos">800 €</p>
-            </div>
-            <div class="col-8 text-left">
-                <p class="h5">TOTAL</p>
-            </div>
-            <div class="col-4">
-                <p class="h5">2400 €</p>
+                <h5 class="h5 pt-1 pb-1">{{ 'CART.TRIPSTOTAL' | translate }}</h5>
+                <div class="row" *ngFor="let trip of trips">
+                  <div class="col-9 text-left " >
+                      <p class="p-dos pl-4">{{ 'CART.TRIPSTOTALONE' | translate }} {{trip.station.name.toUpperCase()}}</p>
+                  </div>
+                  <div class="col-3">
+                      <p class="p-dos pr-2">{{ trip.totalPrice }} €</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8 pl-5 text-left">
+                    <h3 class="h4">TOTAL</h3>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="h4">{{totalPrice}} €</h3>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-4 pt-5 text-center">
-        <h1 class="h1 pb-4 pb-sm-4 pt-3">CARRITO</h1>
+    <div class="col-12 col-xl-4 pt-5 text-center">
+        <h1 class="h1 pb-4 pb-sm-4 pt-3">{{ 'CART.TITLE' | translate }}</h1>
         <hr class="hr" />
       </div>
-      <div class="col-4 pt-5 text-center my-auto">
-        <button class="btn boton">FINALIZAR COMPRA</button>
-      </div>
-
-    <div class="col-10 offset-1 mb-4">
-      <div class="row mb-4 mt-4" id="tabs">
-        <p class="viaje mt-4 w-100 text-center pt-1 pb-1">CESTA</p>
-        <div class="col-12 mb-4">
-          <nav>
-            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-              <a
-                class="nav-item nav-link active"
-                id="nav-home-tab"
-                data-toggle="tab"
-                href="#nav-home"
-                role="tab"
-                aria-controls="nav-home"
-                aria-selected="true"
-                >SIERRA NEVADA</a
-              >
-              <a
-                class="nav-item nav-link"
-                id="nav-profile-tab"
-                data-toggle="tab"
-                href="#nav-profile"
-                role="tab"
-                aria-controls="nav-profile"
-                aria-selected="false"
-                >BAQUEIRA-BERET</a
-              >
-              <a
-                class="nav-item nav-link"
-                id="nav-contact-tab"
-                data-toggle="tab"
-                href="#nav-contact"
-                role="tab"
-                aria-controls="nav-contact"
-                aria-selected="false"
-                >VAL-THORENS</a
-              >
-              <a
-                class="nav-item nav-link"
-                id="nav-about-tab"
-                data-toggle="tab"
-                href="#nav-about"
-                role="tab"
-                aria-controls="nav-about"
-                aria-selected="false"
-                >LA MOLINA</a
-              >
+      <div class="col-12 col-md-10 offset-md-1 offset-lg-0 ml-lg-3 col-lg-8 d-xl-none pt-3 text-center" >
+        <div class="row fondo-blanco-suave pb-2" *ngIf="trips.length > 0">
+            <div class="col-12 padding">
+                <h5 class="h5 pt-1 pb-1">{{ 'CART.TRIPSTOTAL' | translate }}</h5>
+                <div class="row" *ngFor="let trip of trips">
+                  <div class="col-8 col-md-9 col-xl-8 text-left " >
+                      <p class="p-dos pl-4">{{ 'CART.TRIPSTOTALONE' | translate }} {{trip.station.name.toUpperCase()}}</p>
+                  </div>
+                  <div class="col-4 col-md-3 col-xl-4">
+                      <p class="p-dos pr-2 pr-md-4">{{ trip.totalPrice }} €</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8 pl-5 text-left">
+                    <h3 class="h4">TOTAL</h3>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="h4">{{totalPrice}} €</h3>
+                  </div>
+                </div>
             </div>
-          </nav>
-          <div class="tab-content py-3 px-3 px-sm-0 mt-3" id="nav-tabContent">
-            <div
-              class="tab-pane fade show active"
-              id="nav-home"
-              role="tabpanel"
-              aria-labelledby="nav-home-tab"
-            >
-              <div class="row">
-                <div class="col-3">
-                  <div class="row">
-                    <div class="container">
-                      <img
-                        src="../../../assets/StationPhoto/sierra-nevada.jpg"
-                        alt="Snow"
-                        class="img-fluid img"
-                      />
-                      <div class="centered">SIERRA NEVADA</div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 text-center pt-3">
-                      <p class="p">11/12/2020 - 15/12/2020</p>
-                    </div>
-                    <div class="col-12 text-center">
-                      <p class="p">2 PERSONAS</p>
-                    </div>
-                    <div class="col-12 text-center">
-                      <button class="btn boton ">AÑADIR VIAJE</button>
-                    </div>
-                    <div class="col-12 mt-3 text-center">
-                        <button class="btn boton">ELIMINAR VIAJE</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-5">
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/HotelPhoto/BaqueiraBeret/bb1.jpg"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">HOTEL</div>
-                      </div>
-                    </div>
-
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/ClassesPhoto/BB4.PNG"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">CLASES</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row pt-4">
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/MaterialPhoto/david-becker-F7SBonu15d8-unsplash.jpg"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">ALQUILER</div>
-                      </div>
-                    </div>
-
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/CarPhoto/SN7.png"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">COCHE</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="row">
-                    <div class="col-12">
-                      <h3 class="h3 pl-4">RESUMEN</h3>
-                      <hr class="hr2" />
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline ">HOTEL</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">CLASES</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">EQUIPO</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">VEHÍCULO</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-12 text-center">
-                        <hr class="hr2">
-                    </div>
-                    <div class="col-6 ">
-                        <p class="h4 pl-5">TOTAL</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="d-inline h4">800 €</p>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade"
-              id="nav-profile"
-              role="tabpanel"
-              aria-labelledby="nav-profile-tab"
-            >
-            <div class="row">
-                <div class="col-3">
-                  <div class="row">
-                    <div class="container">
-                      <img
-                        src="../../../assets/StationPhoto/Baqueira-Beret.jpg"
-                        alt="Snow"
-                        class="img-fluid img"
-                      />
-                      <div class="centered">BAQUEIRA-BERET</div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 text-center pt-3">
-                      <p>11/12/2020 - 15/12/2020</p>
-                    </div>
-                    <div class="col-12 text-center">
-                      <p>2 PERSONAS</p>
-                    </div>
-                    <div class="col-12 text-center">
-                      <button class="btn boton ">AÑADIR VIAJE</button>
-                    </div>
-                    <div class="col-12 mt-3 text-center">
-                        <button class="btn boton">ELIMINAR VIAJE</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-5">
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/HotelPhoto/BaqueiraBeret/bb1.jpg"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">HOTEL</div>
-                      </div>
-                    </div>
-
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/ClassesPhoto/BB4.PNG"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">CLASES</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row pt-4">
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/MaterialPhoto/david-becker-F7SBonu15d8-unsplash.jpg"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">ALQUILER</div>
-                      </div>
-                    </div>
-
-                    <div class="col-6">
-                      <div class="container">
-                        <img
-                          src="../../../assets/CarPhoto/SN7.png"
-                          alt="Snow"
-                          class="img-fluid img"
-                        />
-                        <div class="centered">COCHE</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="row">
-                    <div class="col-12">
-                      <h3 class="h3 pl-4">RESUMEN</h3>
-                      <hr class="hr2" />
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline ">HOTEL</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">CLASES</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">EQUIPO</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">VEHÍCULO</p>
-                    </div>
-                    <div class="col-6 text-center pt-3 pb-3">
-                      <p class="d-inline">200 €</p>
-                    </div>
-                    <div class="col-12 text-center">
-                        <hr class="hr2">
-                    </div>
-                    <div class="col-6 ">
-                        <p class="h4 pl-5">TOTAL</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="d-inline h4">800 €</p>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade"
-              id="nav-contact"
-              role="tabpanel"
-              aria-labelledby="nav-contact-tab"
-            >
-              Et et consectetur ipsum labore excepteur est proident excepteur ad
-              velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt
-              anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
-              Velit non irure adipisicing aliqua ullamco irure incididunt irure
-              non esse consectetur nostrud minim non minim occaecat. Amet duis
-              do nisi duis veniam non est eiusmod tempor incididunt tempor dolor
-              ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non
-              adipisicing reprehenderit do dolore. Duis reprehenderit occaecat
-              anim ullamco ad duis occaecat ex.
-            </div>
-            <div
-              class="tab-pane fade"
-              id="nav-about"
-              role="tabpanel"
-              aria-labelledby="nav-about-tab"
-            >
-              Et et consectetur ipsum labore excepteur est proident excepteur ad
-              velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt
-              anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
-              Velit non irure adipisicing aliqua ullamco irure incididunt irure
-              non esse consectetur nostrud minim non minim occaecat. Amet duis
-              do nisi duis veniam non est eiusmod tempor incididunt tempor dolor
-              ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non
-              adipisicing reprehenderit do dolore. Duis reprehenderit occaecat
-              anim ullamco ad duis occaecat ex.
-            </div>
-          </div>
         </div>
+    </div>
+      <div class="col-12 col-lg-3 col-xl-3 pt-5 pt-md-4 text-center my-auto">
+        <button mat-raised-button
+                    color="primary"
+                    class="example-delete-tab-button mx-auto"
+                    (click) = "goToCheckout()"
+                    [disabled] = "tripsInCheckOut.length === 0"
+                    >
+                    {{ 'CART.HEADERBUTTON' | translate }}
+                  </button>
       </div>
+    
+    <div class="col-10 offset-1 fondo-blanco mt-4 mb-5 pl-0 pr-0" *ngIf="trips.length === 0" >
+
+      <div class="col-12 text-center">
+        <h2 class="h3 pt-5 pb-4">{{ 'CART.CARTEMPTY' | translate }}</h2>
+          <h2 class="h4 pb4">{{ 'CART.CARTEMPTYONE' | translate }}</h2>
+        <mat-horizontal-stepper>
+            <!-- #docregion label -->
+              <mat-step label="Elije una estación" [completed]="false">
+                <div class="row pt-4">
+                  <div class="col-12 col-lg-7">
+                    <h4 class="h4">{{ 'CART.CARTEMPTYTWO' | translate }}</h4>
+                    <p class="p">{{ 'CART.CARTEMPTYTHREE' | translate }}</p>
+                    <p class="p">{{ 'CART.CARTEMPTYFOUR' | translate }}</p>
+                    <p class="p">{{ 'CART.CARTEMPTYFIVE' | translate }}</p>
+                  </div>
+                  
+                  <div class="col-12 col-lg-5">
+                    <img src="./assets/Stepper/paso2.JPG" class="img-fluid" alt="">
+                  
+                  </div>
+                </div>
+
+              </mat-step>
+            <!-- #enddocregion label -->
+              <mat-step label="Selecciona entre los distintos servicios" [completed]="false">
+                <div class="row pt-4">
+                  <div class="col-12 col-lg-5 pb-4 pb-md-0">
+                    <img src="./assets/Stepper/paso2.JPG" class="img-fluid" alt="">
+                  
+                  </div>
+                  <div class="col-12 col-lg-7 ">
+                    <h4 class="h4">{{ 'CART.CARTEMPTYSIX' | translate }}</h4>
+                    <p class="p">{{ 'CART.CARTEMPTYSEVEN' | translate }}</p>
+                    <p class="p">{{ 'CART.CARTEMPTYEIGHT' | translate }}</p>
+                    <p class="p">{{ 'CART.CARTEMPTYNINE' | translate }}</p>
+                    <p class="p">{{ 'CART.CARTEMPTYTEN' | translate }}</p>
+                  </div>
+                  
+                  
+                </div>
+              </mat-step>
+              <mat-step label="Realiza el pago" [completed]="false">
+                <div class="row pt-4">
+                  
+                  <div class="col-12 col-lg-5">
+                    <h4 class="h4">{{ 'CART.CARTEMPTYELEVEN' | translate }}</h4>
+                    <p class="p">{{ 'CART.CARTEMPTYTWELVE' | translate }}</p>
+                    <p class="p">{{ 'CART.CARTEMPTYTHIRTEEN' | translate }}</p>
+                    <p class="p">{{ 'CART.CARTEMPTYFOURTEEN' | translate }}</p>
+                  </div>
+                  
+                  <div class="col-12 col-lg-7 pb-4">
+
+                    <img src="./assets/Stepper/paso3.JPG" class="img-fluid" alt="">
+                  </div>
+              </div>
+              </mat-step>
+            
+              <!-- Icon overrides. -->
+            <!-- #docregion override-icons -->
+              <ng-template matStepperIcon="phone">
+                <mat-icon>call_end</mat-icon>
+              </ng-template>
+              <ng-template matStepperIcon="chat">
+                <mat-icon>forum</mat-icon>
+              </ng-template>
+            </mat-horizontal-stepper>
+    </div>
+
+
+    </div>
+
+    <div class="col-12 col-md-10 offset-md-1 fondo-blanco mt-4 mb-5 pl-0 pr-0" *ngIf="trips.length > 0" >
+      <mat-tab-group mat-stretch-tabs >
+        <mat-tab *ngFor="let trip of trips;let index = index"  label="{{trip.station.name}}">
+          <div class="row pl-0 pr-0 pt-5 pb-5 ml-0 mr-0">
+            <p class="viaje mt-4 w-100 text-center pt-1 pb-1">{{ 'CART.BASKET' | translate }}</p>
+            <div class="col-12 col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+              <div class="container">
+                <img
+                  src="{{trip.station.urlImages}}"
+                  alt="Snow"
+                  class="img-fluid img"
+                />
+                <div class="centered">{{trip.station.name.toUpperCase()}}</div>
+                <div class="col-12 pl-0 pr-0">
+                  <p class="estacion text-center">{{ 'CART.RESORT' | translate }}</p>
+              </div>
+              </div>
+            
+            <div class="row pb-3">
+              <div class="col-12 text-center pt-3">
+                <p class="p">{{ trip.entryDate }} / {{trip.totalDays}} Días</p>
+              </div>
+              <div class="col-12 text-center">
+                <p class="p">{{ trip.totalPersons }} PERSONAS</p>
+              </div>
+              <div class="col-12 col-md-6 col-lg-12 col-xl-6 text-center">
+                <button mat-raised-button
+                    color="primary"
+                    id="btnTrip"
+                    class="example-delete-tab-button"
+                    [disabled]="trips.length === 0 || trip.checkout === 1"
+                    (click)="addTrip(trip.id)">
+                    {{ 'CART.CARTBUTTON' | translate }}
+                  </button>
+              </div>
+              <div class="col-12 mt-3 mt-md-0 col-md-6 col-lg-12 col-xl-6 mt-lg-3 mt-xl-0 text-center">
+
+                    <button mat-raised-button
+                    color="primary"
+                    class="example-delete-tab-button"
+                    [disabled]="trips.length === 0"
+                    (click)="removeTab(index, trip.id)">
+                    {{ 'CART.CARTBUTTONONE' | translate }}
+                  </button>
+                
+              </div>
+            </div>
+ 
+          </div>
+          <div class="col-12 col-lg-7 col-xl-5">
+            <div class="row">
+              <div class="col-12 col-sm-6" *ngIf="trip.hotel">
+                <div class="container">
+                  <img
+                    src="{{trip.hotel.urlImages}}"
+                    alt="Snow"
+                    class="img-fluid img"
+                  />
+                  <div class="centered">{{ trip.hotel.name }}</div>
+
+                  <div class="col-12 pl-0 pr-0">
+                    <p class="estacion text-center">{{ 'CART.HOTEL' | translate }}</p>
+                </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 " *ngIf="trip.classes">
+                <div class="container">
+                  <img
+                    src="{{trip.classes.urlImages}}"
+                    alt="Snow"
+                    class="img-fluid img"
+                  />
+                  <div class="centered">{{ trip.classes.name }}</div>
+                  <div class="col-12 pl-0 pr-0">
+                    <p class="estacion text-center">{{ 'CART.CLASSES' | translate }}</p>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-md-4">
+              <div class="col-12 col-sm-6" *ngIf="trip.skiMaterial">
+                <div class="container">
+                  <img
+                    src="{{trip.skiMaterial.urlImages}}"
+                    alt="Snow"
+                    class="img-fluid img"
+                  />
+                  <div class="centered">{{ trip.skiMaterial.name }}</div>
+                  <div class="col-12 pl-0 pr-0">
+                    <p class="estacion text-center">{{ 'CART.SKIMATERIAL' | translate }}</p>
+                </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6" *ngIf="trip.carRental">
+                <div class="container">
+                  <img
+                    src="{{trip.carRental.urlImages}}"
+                    alt="Snow"
+                    class="img-fluid img"
+                  />
+                  <div class="centered">{{ trip.carRental.name }}</div>
+                  <div class="col-12 pl-0 pr-0">
+                    <p class="estacion text-center">{{ 'CART.CARRENTAL' | translate }}</p>
+                </div>
+                </div>
+              </div>
+            </div>
+            
+
+  
+          </div>
+          <div class="col-12 col-xl-3">
+            <div class="row">
+              <div class="col-12 text-sm-center pt-lg-3">
+                <h3 class="h3 pl-4 pl-xl-0">{{ 'CART.TRIPRESUME' | translate }}</h3>
+                <hr class="hr2" />
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.hotel">
+                <p class="d-inline " >{{ 'CART.HOTEL' | translate }}</p>
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.hotel">
+                <p class="d-inline">{{trip.hotel.priceDay * trip.totalDays * trip.totalPersons }} €</p>
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.classes">
+                <p class="d-inline">{{ 'CART.CLASSES' | translate }}</p>
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.classes">
+                <p class="d-inline">{{ trip.classes.priceHour * trip.totalDays * trip.totalPersons}} €</p>
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.skiMaterial">
+                <p class="d-inline">{{ 'CART.SKIMATERIAL' | translate }}</p>
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.skiMaterial">
+                <p class="d-inline">{{ trip.skiMaterial.priceDay * trip.totalDays * trip.totalPersons}} €</p>
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.carRental">
+                <p class="d-inline">{{ 'CART.CARRENTAL' | translate }}</p>
+              </div>
+              <div class="col-6 text-center pt-3 pb-3" *ngIf="trip.carRental">
+                <p class="d-inline">{{trip.carRental.price * trip.totalDays * trip.totalPersons}} €</p>
+              </div>
+              <div class="col-12 text-center">
+                  <hr class="hr2">
+              </div>
+              <div class="col-6 mb-0">
+                  <p class="h4 pl-md-5 pl-lg-0 pl-xl-4 text-lg-center">TOTAL</p>
+                </div>
+                <div class="col-6 text-center">
+                  <p class="d-inline h4">{{ (trip.hotel?.priceDay * trip.totalDays * trip.totalPersons) + (trip.classes?.priceHour * trip.totalDays * trip.totalPersons) + (trip.skiMaterial?.priceDay * trip.totalDays * trip.totalPersons) + (trip.carRental?.price * trip.totalDays * trip.totalPersons) }} €</p>
+                </div>
+            </div>
+
+        </div>
+      </div>  
+
+
+
+        </mat-tab>
+
+      </mat-tab-group>
+   
     </div>
   </div>
 </div>

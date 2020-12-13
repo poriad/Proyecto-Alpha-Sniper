@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { data } from 'jquery';
+import { ToastrService } from 'ngx-toastr';
+import { CarRentalDto } from 'src/app/interfaces/car-rental-interface';
+import { ClassesDto } from 'src/app/interfaces/classes-interface';
+import { HotelDto } from 'src/app/interfaces/hotel-interface';
+import { SkiMaterialDto } from 'src/app/interfaces/ski-material-interface';
 import { Hotel } from 'src/app/models/hotel';
 import { Station } from 'src/app/models/station';
 import { CarRentalService } from 'src/app/service/car-rental.service';
@@ -13,6 +18,7 @@ import { ImgurApiService } from 'src/app/service/imgur-api.service';
 import { SkiMaterialService } from 'src/app/service/ski-material.service';
 import { StationService } from 'src/app/service/station.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-enterprise-services',
@@ -31,7 +37,9 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 ]
 })
 export class EnterpriseServicesComponent implements OnInit {
+  faDownload = faDownload;
   enterpriseChk = false;
+  urlImages: string;
   stations: Station[];
   typeServices: string[] = [
     'Material de Ski',
@@ -41,7 +49,6 @@ export class EnterpriseServicesComponent implements OnInit {
   ];
   serviceForm: FormGroup;
   submitted = false;
-  Message: string;
   isRegisterFail: boolean;
   isEnterprise: boolean;
   userId: number;
@@ -64,7 +71,8 @@ export class EnterpriseServicesComponent implements OnInit {
     private carRentalService: CarRentalService,
     private skiMaterialService: SkiMaterialService,
     public dialogo: MatDialog,
-    private imgurService: ImgurApiService
+    private imgurService: ImgurApiService,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -113,6 +121,7 @@ export class EnterpriseServicesComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+
     if (this.serviceForm.invalid) {
       return;
     }
@@ -131,8 +140,9 @@ export class EnterpriseServicesComponent implements OnInit {
           let country = this.serviceForm.get('country').value;
           let phone = this.serviceForm.get('phone').value;
           let email = this.serviceForm.get('email').value;
-          let urlImages = this.serviceForm.get('urlImages').value;
+          let urlImages = this.urlImages;
           let typeService = this.serviceForm.get('typeService').value;
+          
 
           let location: string;
 
@@ -174,19 +184,21 @@ export class EnterpriseServicesComponent implements OnInit {
                       this.hotelService
                         .putHotelStationId(hotelId, stationId)
                         .subscribe();
-                      this.Message =
-                        'Servicio Creado, en cuanto un usuario administrador lo valide, será visible.';
+                        this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                          timeOut: 3000,
+                        });
+
+                        this.serviceForm.reset();
                     });
                 },
                 (err) => {
-                  this.Message = 'El Servicio no se ha podido crear';
+                  this.toastr.error('El Servicio no se ha podido crear', 'Servicio', {
+                    timeOut: 3000,
+                  });
                 }
               );
 
-              setTimeout(() => {
-                this.submitted = false;
-                this.Message = '';
-              }, 5000);
+              this.submitted = false;
 
               break;
             }
@@ -221,20 +233,22 @@ export class EnterpriseServicesComponent implements OnInit {
                       this.skiMaterialService
                         .putSkiMaterialStationId(skiMaterialId, stationId)
                         .subscribe();
-                      this.Message =
-                        'Servicio Creado, en cuanto un usuario administrador lo valide, será visible.';
+
+                    this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                        timeOut: 3000,
+                      });
+                      this.serviceForm.reset();
                     });
                 },
                 (err) => {
-                  this.Message = 'El Servicio no se ha podido crear';
+                  this.toastr.error('El Servicio no se ha podido crear', 'Servicio', {
+                    timeOut: 3000,
+                  });
                 }
               );
 
-              setTimeout(() => {
                 this.submitted = false;
-                this.Message = '';
-              }, 5000);
-
+ 
               break;
             }
             case 'Alquiler de vehículos': {
@@ -267,19 +281,20 @@ export class EnterpriseServicesComponent implements OnInit {
                       this.carRentalService
                         .putCarRentalStationId(carRentalId, stationId)
                         .subscribe();
-                      this.Message =
-                        'Servicio Creado, en cuanto un usuario administrador lo valide, será visible.';
+                        this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                          timeOut: 3000,
+                        });
+                        this.serviceForm.reset();
                     });
                 },
                 (err) => {
-                  this.Message = 'El Servicio no se ha podido crear';
+                  this.toastr.error('El Servicio no se ha podido crear', 'Servicio', {
+                    timeOut: 3000,
+                  });
                 }
               );
 
-              setTimeout(() => {
                 this.submitted = false;
-                this.Message = '';
-              }, 5000);
 
               break;
             }
@@ -314,19 +329,22 @@ export class EnterpriseServicesComponent implements OnInit {
                         .putClassesStationId(classesId, stationId)
                         .subscribe();
 
-                      this.Message =
-                        'Servicio Creado, en cuanto un usuario administrador lo valide, será visible.';
+                        this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                          timeOut: 3000,
+                        });
+                        this.serviceForm.reset();
+
                     });
                 },
                 (err) => {
-                  this.Message = 'El Servicio no se ha podido crear';
+                  this.toastr.error('El Servicio no se ha podido crear', 'Servicio', {
+                    timeOut: 3000,
+                  });
                 }
               );
 
-              setTimeout(() => {
-                this.submitted = false;
-                this.Message = '';
-              }, 5000);
+              this.submitted = false;
+
 
               break;
             }
@@ -343,55 +361,29 @@ export class EnterpriseServicesComponent implements OnInit {
 
   onChange(file) {
     this.imgurService.upload(file)
-      .subscribe(res => console.log(res));
-  }
+      .subscribe(data =>
+        Object.values(data).map(value => {
+          
+          if(typeof value === 'object'){
+            
+            Object.values(value).map(valueObject => {
+              if(typeof valueObject === 'string'){
+
+                if (valueObject.includes('imgur')){
+                  this.urlImages = valueObject;
+                }
+                
+              }
+              
+            });
+
+          }
+          
+        }
+      )
+    )}
 }
 
-export interface HotelDto {
-  price: number;
-  description: string;
-  name: string;
-  phone: string;
-  email: string;
-  location: string;
-  country: string;
-  urlImages: string;
-  activated: number;
-  stars: number;
-}
 
-export interface SkiMaterialDto {
-  priceDay: number;
-  description: string;
-  name: string;
-  phone: string;
-  email: string;
-  location: string;
-  country: string;
-  urlImages: string;
-  activated: number;
-}
 
-export interface ClassesDto {
-  priceHour: number;
-  description: string;
-  name: string;
-  phone: string;
-  email: string;
-  location: string;
-  country: string;
-  urlImages: string;
-  activated: number;
-}
 
-export interface CarRentalDto {
-  price: number;
-  description: string;
-  name: string;
-  phone: string;
-  email: string;
-  location: string;
-  country: string;
-  urlImages: string;
-  activated: number;
-}

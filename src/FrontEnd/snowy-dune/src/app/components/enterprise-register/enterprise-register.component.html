@@ -2,11 +2,21 @@
 
   <div class="row align-items-center h-100 pt-5">
     <!--<p class="marca-uno w-100 text-center pb-1"></p>-->
-  <div class="col-12 text-center">
+  <div class="col-12 pr-0 text-center">
     <h3 class="h3 pb-4 text-center">EMPRESA REGISTRADA</h3>
     <hr class="hr2" />
-    <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">Tu empresa se encuentra registrada en nuestro sistema de forma correcta, si quieres dar de baja la empresa debes solicitad la inactividad de los servicios y una vez inactivos, puedes solicitad la inactividad pulsando aqui:</h1>
-    <button class="btn mb-5 mt-3" [disabled]="hasServiceSkiMaterial == true || hasServiceHotel == true || hasServiceClasses == true || hasServiceCarRental == true" (click)="deleteEnterprise()">Pasar a inactiva</button>
+    <h1 class="h4-b pl-3 pr-3 pb-4 pt-4 pb-sm-4 text-center">Tu empresa se encuentra registrada en nuestro sistema de forma correcta, si quieres dar de baja la empresa debes solicitad la inactividad de los servicios y una vez inactivos, puedes solicitad la inactividad pulsando aqui:</h1>
+    <button mat-raised-button
+                    color="primary"
+                    class="mb-5 mt-3"
+                      id="btnReturn"
+                      data-toggle="modal"
+                      [disabled]="hasServiceSkiMaterial == true || hasServiceHotel == true || hasServiceClasses == true || hasServiceCarRental == true"
+                      (click)="deleteEnterprise()"
+                    >
+                    Pasar a inactiva
+              </button>
+  
   </div>
   <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
 </div>
@@ -17,11 +27,19 @@
 
   <div class="row align-items-center h-100 pt-5" *ngIf="inactiveEnterprise; else isEnterprise">
     <!--<p class="marca-uno w-100 text-center pb-1"></p>-->
-  <div class="col-12 text-center">
+  <div class="col-12 pr-0 text-center">
     <h3 class="h3 pb-4 text-center">EMPRESA INACTIVA O PENDIENTE</h3>
     <hr class="hr2" />
     <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">Tu empresa se encuentra en estado inactivo o se encuentra pendiente de aceptación por parte de nuestro equipo, si quieres darla de alta pulsa aquí:</h1>
-    <button  class="btn mb-5 mt-3" (click)="deleteEnterpriseFromSystem()">Dar de Baja</button>
+    <button mat-raised-button
+                    color="primary"
+                    class="mb-5 mt-3"
+                      id="btnReturn"
+                      data-toggle="modal"
+                      (click)="deleteEnterpriseFromSystem()"
+                    >
+                    Dar de Baja
+              </button>
   </div>
   <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
 </div>
@@ -30,13 +48,10 @@
 
 
 <div class="row" *ngIf="!isEnterpriseChk && !inactiveEnterprise; else isEnterpriseInactive">
-    <div class="col-9">
-      <h3 class="h3 pb-4 pt-4 pl-5">REGISTRA TU EMPRESA</h3>
+    <div class="col-12 text-center pr-0">
+      <h3 class="h3 pb-4 pt-4">REGISTRA TU EMPRESA</h3>
     </div>
 
-    <div class="col-3">
-      <h3 class=" enterprise-status text-center pt-2 pb-2 mt-4">{{ enterpriseStatus }}</h3>
-    </div>
 
     <div class="col-12">
       <hr class="hr2" />
@@ -47,7 +62,7 @@
     </div>
 
     <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pb-4 mx-auto">
-        <form [formGroup]="enterpriseForm" (ngSubmit)="onSubmit()" class="">
+        <form [formGroup]="enterpriseForm" class="">
           <div class="row">
             <div
               class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
@@ -232,21 +247,16 @@
             </div>
     
             <div class="col-12 col-md-12  text-center pt-3">
-              <input
-                type="submit"
-                value="Registrar"
-                class="submit"
+              <button mat-raised-button
+              color="primary"
+              class="mb-5 mt-3"
+                id="btnReturn"
+                data-toggle="modal"
                 [disabled] = "enterpriseForm.invalid"
-              />
-            </div>
-          </div>
-          <div class="col-12 pt-3 text-center">
-            <div *ngIf="submitted && isRegisterFail && enterpriseForm.valid" class="">
-              <h5 class="h5-submit">{{ Message }}</h5>
-            </div>
-    
-            <div *ngIf="submitted && !isRegisterFail" class="">
-              <h5 class="h5-submit">{{ Message }}</h5>
+                (click)="onSubmit()"
+              >
+              Registrar
+            </button>
             </div>
           </div>
         </form>

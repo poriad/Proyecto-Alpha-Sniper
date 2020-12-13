@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Station } from '../models/station';
+import { GetResponseStations } from '../interfaces/station-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,21 @@ export class StationService {
   
   //baseUrl = "http://localhost:8082/api/stations";
   //stationURL = "http://localhost:8082/station/";
+
   stationURL = "http://192.168.1.134:8082/station/";
   baseUrl = "http://192.168.1.134:8082/api/stations";
 
+  //stationURL = "http://localhost:8082/snowyduneservice/station/";
+  //baseUrl = "http://localhost:8082/snowyduneservice/api/stations";
+
+  //stationURL = "http://iesalixar.ddns.net:9095/snowyduneservice/station/";
+  //baseUrl = "http://iesalixar.ddns.net:9095/snowyduneservice/api/stations";
+
   constructor(private httpClient: HttpClient) { }
+
+  public getStationById(stationId: number){
+    return this.httpClient.get<Station>(this.stationURL + 'stationId/' + stationId)
+  }
 
   public stationList(): Observable<Station[]> {
     return this.httpClient.get<Station[]>(this.stationURL + 'list');
@@ -58,15 +70,3 @@ export class StationService {
 
 }
 
-interface GetResponseStations {
-  _embedded: {
-    station: Station[];
-  },
-  page: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number
-  }
-
-}

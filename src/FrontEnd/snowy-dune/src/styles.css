@@ -1,3 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~ngx-toastr/toastr.css';
+
+* {
+    font-family: Avenir  /* Replace with your custom font */, sans-serif !important; 
+    /* Add !important to overwrite all elements */
+  }

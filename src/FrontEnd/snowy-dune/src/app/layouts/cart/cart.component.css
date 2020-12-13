@@ -9,6 +9,11 @@
 
 .fondo-blanco {
     background-color: white;
+    box-shadow: 1px 1px 5px #888888a2;
+}
+
+.fondo-blanco-suave {
+    background-color: rgba(255, 255, 255, 0.623);
 }
 
 .h1{
@@ -17,23 +22,96 @@
     color: rgba(27, 77, 176, 1);
 }
 
-h4 {
+.h3 {
     font-size: 1.8rem;
     letter-spacing: 0.3rem;
     color: rgba(27, 77, 176, 1)
 }
 
-h5 {
+.p {
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    color: rgba(27, 77, 176, 1);
+    font-weight: 500;
+}
+
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab{
+    font-size: 1rem;
+    letter-spacing: 0.20rem;
+    font-weight: 600;
+}
+
+.mat-raised-button-wrapper {
+    color:white;
+    
+}
+
+.mat-raised-button:hover {
+    opacity: 0.70;
+    transition: 0.2s;
+
+  
+}
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background-color:  rgba(27, 77, 176, 1);
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color:  rgba(27, 77, 176, 1);
+}
+.mat-raised-button.mat-primary .mat-button-focus-overlay {
+    background-color: transparent;
+}
+
+
+.h4 {
+    font-size: 1.8rem;
+    letter-spacing: 0.3rem;
+    color: #3C7DEC
+}
+
+.h5 {
     font-size: 1.8rem;
     letter-spacing: 0.3rem;
     color: white;
     background-color: rgba(27, 77, 176, 1);
 }
 
+.estacion {
+    background-color:  rgba(27, 77, 176, 1);
+    color: white;
+    font-size: 0.95rem;
+    letter-spacing: 0.17rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* Styles for tab labels */
+.mat-tab-label {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: rgba(27, 77, 176, 1);
+    font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color:rgba(27, 77, 176, 1);
+    font-weight: 700;
+}
+
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: rgba(27, 77, 176, 1);
+  } 
+
 p{
     font-size: 1.1rem;
-    letter-spacing: 0.2rem;
-    font-weight: 500;
+    letter-spacing: 0.25rem;
+    font-weight: 600;
 }
 
 .p-dos{
@@ -50,6 +128,15 @@ p{
 .hr {
     border-top: 1px solid rgba(27, 77, 176, 1);
     width:40%;
+}
+
+::ng-deep .mat-dialog-container {
+    overflow: hidden !important;
+    }
+
+::ng-deep .mat-dialog-container {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
 }
 
 .hr2 {
@@ -136,3 +223,108 @@ p{
     color: white;
     background-color: rgba(27, 77, 176, 1);
 }
+
+@media screen and (min-width: 1501px) {
+    .h4 {
+        font-size: 1.3rem;
+        letter-spacing: 0.20rem;
+    }
+}
+
+@media screen and (min-width: 1367px) and (max-width: 1500px) {
+    .h5 {
+        font-size: 1.1rem;
+        letter-spacing: 0.2rem;
+    }
+   
+    .p-dos{
+        font-size: 0.9rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .h4 {
+        font-size: 1.1rem;
+        letter-spacing: 0.20rem;
+    }
+    
+    .h3 {
+        font-size: 1.2rem;
+        letter-spacing: 0.20rem;
+    }
+
+    p{
+        font-size: 0.9rem;
+        letter-spacing: 0.2rem;
+    }
+
+}
+
+
+@media screen and (min-width: 991px) and (max-width: 1366px) {
+    
+    .h4 {
+        font-size: 1.3rem;
+        letter-spacing: 0.20rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+   
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+   
+
+    .h2 {
+        font-size: 1.1rem;
+        letter-spacing: 0.20rem;
+    }
+
+
+}
+
+@media screen and (max-width: 575px) {
+   
+    .h1{
+        font-size: 1.6rem;
+        letter-spacing: 0.25rem;
+    }
+
+    .h3 {
+        font-size: 1.1rem;
+        letter-spacing: 0.20rem;
+    }
+
+    p{
+        font-size: 0.8rem;
+    }
+
+    .h4 {
+        font-size: 0.8rem;
+        letter-spacing: 0.20rem;
+    }
+ 
+    .h5 {
+        font-size: 1.1rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .p-dos{
+        font-size: 0.6rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab{
+        font-size: 0.7rem;
+        letter-spacing: 0.20rem;
+        font-weight: 600;
+    }
+
+    .viaje {
+        font-size: 1.1rem;
+        letter-spacing: 0.2rem;
+    }
+    
+ }

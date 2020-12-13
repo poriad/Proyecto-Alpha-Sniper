@@ -32,7 +32,7 @@
   position: absolute;
   top: 0;
   font-weight: 600;
-  height: 30%;
+  height: 10px;
   margin-left: 15px !important;
 }
 
@@ -46,7 +46,7 @@
   position: absolute;
   bottom: 0;
   font-weight: 600;
-  height: 30%;
+  height: 10px;
   margin-left: 15px !important;
 }
 
@@ -55,23 +55,23 @@
     width:85%;
 }
 
-button {
-  border: 1px solid  rgba(27, 77, 176, 1);
-  border-radius: 0;
-  color:  rgba(27, 77, 176, 1);
-  font-size: 1.3rem;
-  letter-spacing: 0.2rem;
-  font-weight: 600;
-  padding-left: 55px;
-  padding-right: 55px;
-  color:  white;
+#btnReturn {
   background-color: rgba(27, 77, 176, 1);
+  color:white;
+  font-size: 1rem;
+  letter-spacing: 0.20rem;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
-button:hover {
-  color:  rgba(27, 77, 176, 1);
-  background-color: white;
+#btnReturn:hover {
+  opacity: 0.8;
 }
+
+#btnReturn:disabled {
+  opacity: 0.7;
+}
+
 
 /* Formulario */ 
 
@@ -109,7 +109,7 @@ input:focus,input:active {
 
 input #file-upload-button {
   background: #3C7DEC !important;
-  
+
 }
 
 input[type="file"] {
@@ -244,6 +244,12 @@ input[disabled]:hover {
         letter-spacing: 0.27rem;
         color: #3C7DEC
     }
+
+    .h4-b {
+      font-size: 1rem;
+      color: #3C7DEC;
+      font-weight: 550;
+     }
 
     .submit{
 
