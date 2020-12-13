@@ -154,7 +154,7 @@ public class UserController {
 
 		userService.save(userSnowy);
 
-		logger.info("El usuario se ha modificado: " + userSnowy);
+		logger.info("El usuario se ha modificado: " + userSnowy.getUsername());
 
 		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
 

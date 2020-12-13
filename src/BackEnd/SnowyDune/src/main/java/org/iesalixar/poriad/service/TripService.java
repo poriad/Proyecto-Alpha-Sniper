@@ -1,6 +1,7 @@
 package org.iesalixar.poriad.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.iesalixar.poriad.entity.Cart;
 import org.iesalixar.poriad.entity.Trip;
@@ -49,9 +50,15 @@ public class TripService {
 		return tripRepository.existsById(id);
 		
 	}
+	
 	public Trip findById(Long id) {
 		return tripRepository.getOne(id);
 	}
+	
+	public Optional<Trip> getById(Long id) {
+		return tripRepository.findById(id);
+	}
+	
 	
 	public void updateTrip(Long id, Long userId, Long stationId, Long hotelId, Long classesId, Long skiMaterialId, Long carRentalId, Long cartId) {
 		tripRepository.updateTrip(id, userId, stationId, hotelId, classesId, skiMaterialId, carRentalId, cartId);

@@ -46,6 +46,25 @@ public class TripController {
 		return new ResponseEntity(listTrips,HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/detail/{id}")
+	public ResponseEntity<Trip> TripDetail(@PathVariable("id") Long id) {
+		
+			if(!tripService.existById(id)) {
+			
+			logger.info("Error en servicio /trip/detail/" + id);
+			
+			return new ResponseEntity(new Mensaje("El viaje no existe"), HttpStatus.NOT_FOUND);
+		}
+		
+		Trip trip = tripService.getById(id).get();	
+		
+			
+		logger.info("Servicio consumido /trip/detail/" + id);
+		
+		return new ResponseEntity(trip,HttpStatus.OK);
+	}
+	
 	// Servicio que devuelve el listado de viajes que un usuario tiene en el carrito
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/listCart")
