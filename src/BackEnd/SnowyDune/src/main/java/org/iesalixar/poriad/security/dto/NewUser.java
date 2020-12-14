@@ -20,28 +20,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NewUser {
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	@NotBlank
 	private String username;
-	
+
 	@Email
 	private String email;
-	
+
 	@NotBlank
 	private String password;
-	
+
 	private String address;
-	
+
 	private String phone;
-	
+
 	private boolean newsletter;
-	
+
 	private Set<String> roles = new HashSet<>();
-	
-	
-	
+
 }

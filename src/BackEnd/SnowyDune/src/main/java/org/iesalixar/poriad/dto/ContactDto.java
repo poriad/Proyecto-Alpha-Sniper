@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContactDto {
-	
+
 	private String name;
 	private String email;
 	private String comment;
-	
+
 }

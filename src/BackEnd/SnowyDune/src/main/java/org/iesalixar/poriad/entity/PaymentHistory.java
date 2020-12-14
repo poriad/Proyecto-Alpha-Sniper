@@ -18,19 +18,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class PaymentHistory {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Double paymentAmount;
-	
+
 	private Date paymentDate;
-	
+
 	private String otherDetails;
-	
+
 	private String paymentType;
-	
+
 	@OneToMany(mappedBy = "paymentHistory")
 	private Set<Payment> payments;
 }

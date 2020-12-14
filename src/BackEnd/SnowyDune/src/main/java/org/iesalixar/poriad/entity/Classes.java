@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.iesalixar.poriad.security.entity.UserSnowy;
 
@@ -20,50 +19,49 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data 
-@NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Classes {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Double priceHour;
-	
+
 	private String description;
-	
-	@Column(unique=true)
+
+	@Column(unique = true)
 	private String name;
-	
+
 	private String phone;
-	
+
 	private String email;
-	
+
 	private String location;
-	
+
 	private String country;
-	
+
 	private String urlImages;
-	
+
 	private Integer activated;
-	
+
 	// quitar el ignore
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="user_id", nullable=true)
-	private UserSnowy user; 
-	
+	@JoinColumn(name = "user_id", nullable = true)
+	private UserSnowy user;
+
 	// quitar el ignore
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = true)
 	private Station station;
-	
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "classes")
 	private Set<Comment> comments;
-	
 
 }

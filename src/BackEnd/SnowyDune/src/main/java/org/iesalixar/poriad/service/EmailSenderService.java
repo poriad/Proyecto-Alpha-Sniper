@@ -13,24 +13,23 @@ import lombok.Data;
 @Service("emailSenderService")
 @Data
 public class EmailSenderService {
-	
+
 	private JavaMailSender javaMailSender;
 
-    @Autowired
-    public EmailSenderService(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
+	@Autowired
+	public EmailSenderService(JavaMailSender javaMailSender) {
+		this.javaMailSender = javaMailSender;
+	}
 
-    @Async
-    public void sendEmail(SimpleMailMessage email) {
-        javaMailSender.send(email);
-    }
+	@Async
+	public void sendEmail(SimpleMailMessage email) {
+		javaMailSender.send(email);
+	}
 
 	public void send(MimeMessage email) {
-		
+
 		javaMailSender.send(email);
-		
+
 	}
-   
 
 }

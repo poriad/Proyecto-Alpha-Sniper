@@ -8,8 +8,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserMain implements UserDetails{
-	
+public class UserMain implements UserDetails {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String firstName;
 
 	private String lastName;
@@ -29,7 +34,7 @@ public class UserMain implements UserDetails{
 	private String phone;
 
 	private String urlImages;
-	
+
 	private Collection<? extends GrantedAuthority> authorities;
 
 	@Override
@@ -131,8 +136,7 @@ public class UserMain implements UserDetails{
 	}
 
 	public UserMain(String firstName, String lastName, String username, String password, String email, String address,
-			boolean newsletter, String phone, String urlImages,
-			Collection<? extends GrantedAuthority> authorities) {
+			boolean newsletter, String phone, String urlImages, Collection<? extends GrantedAuthority> authorities) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -144,14 +148,13 @@ public class UserMain implements UserDetails{
 		this.urlImages = urlImages;
 		this.authorities = authorities;
 	}
-	
+
 	public static UserMain build(UserSnowy user) {
-		List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role
-				.getRoleName().name())).collect(Collectors.toList());
-		
-		return new UserMain(user.getFirstName(), user.getLastName(),
-				user.getUsername(), user.getPassword(), user.getEmail(),
-				user.getAddress(), user.isNewsletter(), user.getPhone(),
-				user.getUrlImages(), authorities);
+		List<GrantedAuthority> authorities = user.getRoles().stream()
+				.map(role -> new SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
+
+		return new UserMain(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),
+				user.getEmail(), user.getAddress(), user.isNewsletter(), user.getPhone(), user.getUrlImages(),
+				authorities);
 	}
 }

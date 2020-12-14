@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CurriculumContact {
-	
+
 	private String name;
 	private String email;
 	private String filename;

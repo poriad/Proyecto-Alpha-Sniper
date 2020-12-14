@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StationDto {
-	
+
 	private String name;
 
 	private String location;
@@ -33,9 +33,9 @@ public class StationDto {
 	private String description;
 
 	private String urlImages;
-	
+
 	private Integer activated;
-	
+
 	@JsonProperty("forfait")
 	private Forfait forfait;
 

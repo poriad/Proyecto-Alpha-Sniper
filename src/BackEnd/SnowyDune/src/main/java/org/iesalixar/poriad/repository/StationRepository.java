@@ -1,8 +1,6 @@
 package org.iesalixar.poriad.repository;
 
 import java.util.List;
-
-import org.iesalixar.poriad.entity.SkiMaterial;
 import org.iesalixar.poriad.entity.Station;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,22 +14,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RepositoryRestResource(collectionResourceRel = "station", path = "stations")
 @CrossOrigin
-public interface StationRepository extends JpaRepository<Station, Long>{
-	
+public interface StationRepository extends JpaRepository<Station, Long> {
+
 	boolean existsByName(String name);
-	
+
 	Page<Station> findByCountry(@RequestParam("country") String country, Pageable pageable);
-	
+
 	Page<Station> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
-	
+
 	@Query("SELECT s FROM Station s WHERE s.activated = :status")
-	Page<Station> listStationStatusPageable(Pageable pageable,@Param("status") Integer status);
-	
+	Page<Station> listStationStatusPageable(Pageable pageable, @Param("status") Integer status);
+
 	@Query("SELECT s FROM Station s WHERE s.activated = :status")
 	List<Station> listStationStatus(@Param("status") Integer status);
-	
+
 	@Modifying
-	@Query(value="UPDATE Station h SET h.activated= :status WHERE h.id = :id")
-	void updateStationStatus(@Param("id") Long id , @Param("status") Integer status);
+	@Query(value = "UPDATE Station h SET h.activated= :status WHERE h.id = :id")
+	void updateStationStatus(@Param("id") Long id, @Param("status") Integer status);
 
 }

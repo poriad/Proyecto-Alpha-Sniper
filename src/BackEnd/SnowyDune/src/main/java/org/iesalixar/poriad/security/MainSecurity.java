@@ -25,15 +25,15 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
-	
+
 	@Autowired
 	JwtEntryPoint jwtEntryPoint;
-	
+
 	@Bean
 	public JwtTokenFilter jwtTokenFilter() {
 		return new JwtTokenFilter();
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -41,44 +41,36 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
+
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		
-		
+
 	}
 
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
-		
+
 		return super.authenticationManagerBean();
 	}
 
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
-		
+
 		return super.authenticationManager();
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		http.cors().and().csrf().disable()
-		.authorizeRequests()
-		.antMatchers("/auth/**","/emailService/**","/files/**","/Contact","/user/getByUsername","/user/updatePassword/{id}").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-		.and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		
+
+		http.cors().and().csrf().disable().authorizeRequests()
+				.antMatchers("/auth/**", "/emailService/**", "/files/**", "/Contact", "/user/getByUsername",
+						"/user/updatePassword/{id}")
+				.permitAll().anyRequest().authenticated().and().exceptionHandling()
+				.authenticationEntryPoint(jwtEntryPoint).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
 		http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-		
-		
-		
-		
+
 	}
-	
-	
-	
+
 }

@@ -8,7 +8,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class PoriadApplication extends SpringBootServletInitializer {
 
-	
 	public static void main(String[] args) {
 		SpringApplication.run(PoriadApplication.class, args);
 	}
@@ -18,7 +17,5 @@ public class PoriadApplication extends SpringBootServletInitializer {
 		// TODO Auto-generated method stub
 		return builder.sources(PoriadApplication.class);
 	}
-	
-	
 
 }

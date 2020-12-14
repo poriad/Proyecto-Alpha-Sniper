@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RepositoryRestResource(collectionResourceRel = "paymentHistory", path = "payment-history")
 @CrossOrigin("http:/localhost:8081")
-public interface PaymentHistoryRepository extends JpaRepository<PaymentHistory, Long>{
+public interface PaymentHistoryRepository extends JpaRepository<PaymentHistory, Long> {
 
 }

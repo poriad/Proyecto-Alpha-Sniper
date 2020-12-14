@@ -63,32 +63,32 @@ public class UserController {
 
 		return new ResponseEntity(userSnowy, HttpStatus.OK);
 	}
-	
+
 	// Servicio que actualiza la contraseña del usuario.
-		@PutMapping("/updatePassword/{id}")
-		public ResponseEntity<?> updateUserPassword(@PathVariable Long id, @RequestParam String password) {
+	@PutMapping("/updatePassword/{id}")
+	public ResponseEntity<?> updateUserPassword(@PathVariable Long id, @RequestParam String password) {
 
-			if (!userService.existById(id)) {
+		if (!userService.existById(id)) {
 
-				logger.error("El usuario no existe, con id: " + id);
+			logger.error("El usuario no existe, con id: " + id);
 
-				return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
-
-			}
-
-			logger.info("Se ha consumido el servicio /update/" + id + " con el password: " + password);
-
-			UserSnowy userSnowy = userService.findById(id);
-
-			userSnowy.setPassword(passwordEncoder.encode(password));
-
-			userService.save(userSnowy);
-
-			logger.info("El usuario se ha modificado: " + userSnowy.getUsername());
-
-			return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
+			return new ResponseEntity(new Mensaje("El usuario no existe"), HttpStatus.NOT_FOUND);
 
 		}
+
+		logger.info("Se ha consumido el servicio /update/" + id + " con el password: " + password);
+
+		UserSnowy userSnowy = userService.findById(id);
+
+		userSnowy.setPassword(passwordEncoder.encode(password));
+
+		userService.save(userSnowy);
+
+		logger.info("El usuario se ha modificado: " + userSnowy.getUsername());
+
+		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
+
+	}
 
 	// Servicio que actualiza los datos del usuario.
 	@PreAuthorize("hasRole('ADMIN')")
@@ -187,7 +187,8 @@ public class UserController {
 
 		userService.save(userSnowy);
 
-		logger.info("Se ha consumido el servicio /updateToEnterprise/" + id + ", el usuario guardado es: " + userSnowy.getUsername());
+		logger.info("Se ha consumido el servicio /updateToEnterprise/" + id + ", el usuario guardado es: "
+				+ userSnowy.getUsername());
 
 		return new ResponseEntity(new Mensaje("Usuario actualizado correctamente"), HttpStatus.OK);
 

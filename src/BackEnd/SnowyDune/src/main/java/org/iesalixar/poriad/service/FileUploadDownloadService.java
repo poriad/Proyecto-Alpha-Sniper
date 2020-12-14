@@ -20,39 +20,35 @@ import java.util.stream.Collectors;
 @Service
 public class FileUploadDownloadService {
 
-	 @Autowired
-	    private Environment env;
+	@Autowired
+	private Environment env;
 
-	    public String uploadFile(MultipartFile file) {
-	        // Normalize file name
-	        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-	        try {
-	            Path fileStorageLocation = Paths.get(env.getProperty("file.upload-dir"))
-	                    .toAbsolutePath().normalize();
-	            Path targetLocation = fileStorageLocation.resolve(fileName);
-	            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-	        } catch (Exception ex) {
-	            System.out.println("Exception:" + ex);
-	        }
-	        return fileName;
-	    }
+	public String uploadFile(MultipartFile file) {
 
-	    public List<String> getFiles() throws IOException {
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		try {
+			Path fileStorageLocation = Paths.get(env.getProperty("file.upload-dir")).toAbsolutePath().normalize();
+			Path targetLocation = fileStorageLocation.resolve(fileName);
+			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+		} catch (Exception ex) {
+			System.out.println("Exception:" + ex);
+		}
+		return fileName;
+	}
 
-	        return Files.walk(Paths.get(env.getProperty("file.upload-dir")))
-	                .filter(Files::isRegularFile)
-	                .map(file -> file.getFileName().toString())
-	                .collect(Collectors.toList());
-	    }
+	public List<String> getFiles() throws IOException {
 
-	    public Resource loadFileAsResource(String fileName) throws MalformedURLException {
-	        Path fileStorageLocation = Paths.get(env.getProperty("file.upload-dir"))
-	                .toAbsolutePath().normalize();
-	        Path filePath = fileStorageLocation.resolve(fileName).normalize();
-	        Resource resource = new UrlResource(filePath.toUri());
-	        if (resource.exists()) {
-	            return resource;
-	        }
-	        return null;
-	    }
+		return Files.walk(Paths.get(env.getProperty("file.upload-dir"))).filter(Files::isRegularFile)
+				.map(file -> file.getFileName().toString()).collect(Collectors.toList());
+	}
+
+	public Resource loadFileAsResource(String fileName) throws MalformedURLException {
+		Path fileStorageLocation = Paths.get(env.getProperty("file.upload-dir")).toAbsolutePath().normalize();
+		Path filePath = fileStorageLocation.resolve(fileName).normalize();
+		Resource resource = new UrlResource(filePath.toUri());
+		if (resource.exists()) {
+			return resource;
+		}
+		return null;
+	}
 }

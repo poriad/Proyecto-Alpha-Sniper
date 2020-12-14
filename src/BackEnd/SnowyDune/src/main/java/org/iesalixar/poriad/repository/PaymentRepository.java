@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RepositoryRestResource(collectionResourceRel = "payment", path = "payment")
 @CrossOrigin
-public interface PaymentRepository extends JpaRepository<Payment, Long>{
-	
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
+
 	@Modifying
-	@Query(value="UPDATE Payment p SET p.user.id = :userId where p.id = :paymentId")
-	void updatePayment(@Param("userId") Long userId,@Param("paymentId") Long paymentId);
-	
+	@Query(value = "UPDATE Payment p SET p.user.id = :userId where p.id = :paymentId")
+	void updatePayment(@Param("userId") Long userId, @Param("paymentId") Long paymentId);
+
 }

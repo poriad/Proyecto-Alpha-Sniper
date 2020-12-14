@@ -15,10 +15,11 @@ import org.springframework.stereotype.Component;
 public class ExposeEntityIdRestMvcConfiguration extends RepositoryRestConfigurerAdapter {
 
 	@Autowired
-    private EntityManager entityManager;
-	
-  @Override
-  public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-	  config.exposeIdsFor(entityManager.getMetamodel().getEntities().stream().map(e -> e.getJavaType()).collect(Collectors.toList()).toArray(new Class[0]));
-  }
-  }
+	private EntityManager entityManager;
+
+	@Override
+	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+		config.exposeIdsFor(entityManager.getMetamodel().getEntities().stream().map(e -> e.getJavaType())
+				.collect(Collectors.toList()).toArray(new Class[0]));
+	}
+}

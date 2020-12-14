@@ -1,5 +1,5 @@
 package org.iesalixar.poriad.utils;
-
+/*
 import java.util.HashSet;
 import java.util.Set;
 
@@ -91,5 +91,5 @@ public class CreateRoles implements CommandLineRunner{
 		}
 	
 }
-
+*/
 

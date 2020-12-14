@@ -53,93 +53,88 @@ public class AuthController {
 
 	@Autowired
 	JwtProvider jwtProvider;
-	
+
 	final static Logger logger = LoggerFactory.getLogger(AuthController.class);
-	
+
 	// Servicio para crear un nuevo usuario en el sistema
 	@PostMapping("/nuevo")
 	public ResponseEntity<?> nuevo(@Valid @RequestBody NewUser newUser, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			
+
 			logger.error("Fallo en la creación, servicio auth/nuevo");
-			
+
 			return new ResponseEntity(new Mensaje("Campos mal puestos o Email invalido"), HttpStatus.BAD_REQUEST);
 
 		}
 
 		if (userService.existsByUsername(newUser.getUsername())) {
-			
+
 			logger.error("Fallo en la creación, servicio auth/nuevo");
-			
+
 			return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
 		}
 
 		if (userService.existsByEmail(newUser.getEmail())) {
-			
+
 			logger.error("Fallo en la creación, servicio auth/nuevo");
-			
+
 			return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
 		}
 
-		UserSnowy userSnowy = new UserSnowy(
-				newUser.getFirstName(),
-				newUser.getLastName(),
-				newUser.getUsername(),
-				passwordEncoder.encode(newUser.getPassword()),
-				newUser.getEmail(),
-				newUser.getAddress(),
-				newUser.isNewsletter(),
-				newUser.getPhone());
-		
+		UserSnowy userSnowy = new UserSnowy(newUser.getFirstName(), newUser.getLastName(), newUser.getUsername(),
+				passwordEncoder.encode(newUser.getPassword()), newUser.getEmail(), newUser.getAddress(),
+				newUser.isNewsletter(), newUser.getPhone());
+
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleService.getByRoleName(RoleName.ROLE_USER).get());
-		
+
 		Cart cart = new Cart();
-		
+
 		userSnowy.setCart(cart);
-		
+
 		if (newUser.getRoles().contains("admin")) {
 			roles.add(roleService.getByRoleName(RoleName.ROLE_ADMIN).get());
 			roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 			userSnowy.setRoles(roles);
 
 		}
-		
+
 		if (newUser.getRoles().contains("enterprise")) {
 			roles.add(roleService.getByRoleName(RoleName.ROLE_ENTERPRISE).get());
 			userSnowy.setRoles(roles);
 
 		}
-		
+
 		userSnowy.setRoles(roles);
 		userService.save(userSnowy);
-		
+
 		logger.info("Consumido el servicio auth/nuevo, usuario creado: " + userSnowy);
-		
+
 		return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
 	}
-	
+
 	// Servicio que genera y provee el Json Web Token
 	@PostMapping("/login")
-	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUser loginUser, BindingResult bindingResult){
+	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUser loginUser, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			
+
 			logger.error("Error en los datos, servicio auth/login");
-			
+
 			return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
 
 		}
-		
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));
+
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
+
 		String jwt = jwtProvider.generateToken(authentication);
-		
+
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		
+
 		JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
-		
+
 		logger.info("Servicio consumido con éxito. auth/login");
 		return new ResponseEntity(jwtDto, HttpStatus.OK);
 	}

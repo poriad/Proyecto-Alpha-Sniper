@@ -26,8 +26,8 @@ public class Station {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="NAME")
+
+	@Column(name = "NAME")
 	private String name;
 
 	private String location;
@@ -41,36 +41,36 @@ public class Station {
 	private String description;
 
 	private String urlImages;
-	
+
 	private Integer activated;
-	
+
 	private Integer forfaitPrice;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<SkiMaterial> skiMaterial;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<Hotel> hotels;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<CarRental> carRental;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<Classes> classes;
-	
+
 	@OneToOne(mappedBy = "station")
 	private Forfait forfait;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "station")
 	private Set<Comment> comments;
 
-	public Station(String name, String location, String country, Date openingDate, Date closingDate,
-			String description, String urlImages, Integer activated) {
+	public Station(String name, String location, String country, Date openingDate, Date closingDate, String description,
+			String urlImages, Integer activated) {
 		this.name = name;
 		this.location = location;
 		this.country = country;
@@ -80,7 +80,5 @@ public class Station {
 		this.urlImages = urlImages;
 		this.activated = activated;
 	}
-	
-	
-	
+
 }

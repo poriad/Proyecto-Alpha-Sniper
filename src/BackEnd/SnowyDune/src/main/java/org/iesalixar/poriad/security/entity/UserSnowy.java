@@ -60,52 +60,51 @@ public class UserSnowy {
 	private String email;
 
 	private String address;
-	
+
 	private boolean newsletter;
-	
+
 	@Value("${model.isEnterprise}")
 	private int isEnterprise;
-	
+
 	@Value("${model.isActive}")
 	private int isActive;
-	
+
 	private String phone;
 
 	private String urlImages;
-	
+
 	private String nomComercial;
-	
+
 	private String NIF;
-	
+
 	private String CNAE;
-	
+
 	private String activity;
-	
+
 	private String location;
 
 	private String enterprisePhone;
-	
+
 	private String enterpriseEmail;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<CarRental> carRental;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Classes> classes;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Hotel> hotel;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<SkiMaterial> skiMaterial;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns =  @JoinColumn(name = "role_id"))
+	@JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
 	@JsonIgnore
@@ -113,7 +112,7 @@ public class UserSnowy {
 	private Set<Payment> payment;
 
 	@JsonIgnore
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 
@@ -125,8 +124,8 @@ public class UserSnowy {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Comment> comments;
 
-	public UserSnowy(String firstName, String lastName, String username, String password, String email,
-			String address, boolean newsletter, String phone, String urlImages) {
+	public UserSnowy(String firstName, String lastName, String username, String password, String email, String address,
+			boolean newsletter, String phone, String urlImages) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -137,16 +136,16 @@ public class UserSnowy {
 		this.phone = phone;
 		this.urlImages = urlImages;
 	}
-	
+
 	public UserSnowy(String username, String password, String email) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
 
 	}
-	
-	public UserSnowy(String firstName, String lastName, String username, String password, String email,
-			String address, boolean newsletter, String phone) {
+
+	public UserSnowy(String firstName, String lastName, String username, String password, String email, String address,
+			boolean newsletter, String phone) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -158,5 +157,4 @@ public class UserSnowy {
 		this.phone = phone;
 	}
 
-	
 }

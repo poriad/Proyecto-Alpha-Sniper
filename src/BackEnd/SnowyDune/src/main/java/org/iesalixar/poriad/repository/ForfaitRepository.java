@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RepositoryRestResource(collectionResourceRel = "forfait", path = "forfait")
 @CrossOrigin
-public interface ForfaitRepository extends JpaRepository<Forfait, Long>{
+public interface ForfaitRepository extends JpaRepository<Forfait, Long> {
 
 }
