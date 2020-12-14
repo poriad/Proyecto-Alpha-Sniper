@@ -27,7 +27,7 @@ public class Station {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "NAME")
+	@Column(unique = true)
 	private String name;
 
 	private String location;
@@ -38,6 +38,7 @@ public class Station {
 
 	private Date closingDate;
 
+	@Column(columnDefinition = "varchar(1400)")
 	private String description;
 
 	private String urlImages;

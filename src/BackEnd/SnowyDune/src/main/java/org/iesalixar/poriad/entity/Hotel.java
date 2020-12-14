@@ -3,6 +3,7 @@ package org.iesalixar.poriad.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +32,10 @@ public class Hotel {
 
 	private Double priceDay;
 
+	@Column(columnDefinition = "varchar(1400)")
 	private String description;
 
+	@Column(unique = true)
 	private String name;
 
 	private String phone;

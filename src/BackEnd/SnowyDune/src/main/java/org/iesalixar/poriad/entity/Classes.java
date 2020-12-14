@@ -31,6 +31,7 @@ public class Classes {
 
 	private Double priceHour;
 
+	@Column(columnDefinition = "varchar(1400)")
 	private String description;
 
 	@Column(unique = true)
