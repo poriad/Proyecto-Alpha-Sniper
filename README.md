@@ -54,5 +54,5 @@ El repositorio se compone de:
   - Archivos Finales/ : Recoge los archivos empleados en el despliegue de la aplicación.
   - BackEnd/ : Archivos de desarrollo de la parte Back-End de la aplicación.
   - FrontEnd/ : Archivos de desarrollo de la parte Front-end.
-  - FrontEndiOS : Destinado al desarrollo de pequeña aplicación para iOS.
+  - FrontEndiOS/ : Destinado al desarrollo de pequeña aplicación para iOS.
   
