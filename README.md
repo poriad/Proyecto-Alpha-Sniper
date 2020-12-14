@@ -50,7 +50,7 @@ El repositorio se compone de:
   - Arquitectura/ : Recoge la información destinada a la arquitectura de la aplicación.
   - Diseño/: Documentos de diseño referentes al desarrollo de la aplicación.
   - Documentación: Documentos finales de entrega de la aplicación.
- - **src/ :** Directorio destinado al desarrollo del proyecto.
+- **src/ :** Directorio destinado al desarrollo del proyecto.
   - Archivos Finales/ : Recoge los archivos empleados en el despliegue de la aplicación.
   - BackEnd/ : Archivos de desarrollo de la parte Back-End de la aplicación.
   - FrontEnd/ : Archivos de desarrollo de la parte Front-end.
