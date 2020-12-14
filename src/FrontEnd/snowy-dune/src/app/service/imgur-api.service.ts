@@ -8,11 +8,11 @@ export class ImgurApiService {
 
   private readonly IMGUR_UPLOAD_URL = 'https://api.imgur.com/3/image';
   private readonly clientId = 'ef5cea457482285';
-  private accessToken:string = "f501d6869ff17485255a869c3406d8d6f4d647d5";
+  private accessToken: string = "f501d6869ff17485255a869c3406d8d6f4d647d5";
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) { }
 
   upload(b64Image: any) {
     const httpOptions = {
@@ -24,5 +24,5 @@ export class ImgurApiService {
     formData.append('image', b64Image);
     return this.http.post(`${this.IMGUR_UPLOAD_URL}`, formData, httpOptions);
   }
-  
+
 }

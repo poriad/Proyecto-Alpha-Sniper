@@ -6,26 +6,26 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProdInterceptorService implements HttpInterceptor{
+export class ProdInterceptorService implements HttpInterceptor {
 
   constructor(private tokenService: TokenService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let intReq = req;
 
-    if(intReq.url.includes('imgur')){
+    if (intReq.url.includes('imgur')) {
       return next.handle(intReq);
     }
 
     const token = this.tokenService.getToken();
 
-    if(token != null) {
+    if (token != null) {
       intReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) })
     }
-    
+
     return next.handle(intReq);
 
   }
 }
 
-export const interceptorProvider = [{provide: HTTP_INTERCEPTORS, useClass: ProdInterceptorService, multi: true}];
+export const interceptorProvider = [{ provide: HTTP_INTERCEPTORS, useClass: ProdInterceptorService, multi: true }];

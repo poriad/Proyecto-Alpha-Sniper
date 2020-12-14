@@ -24,14 +24,14 @@ export class ModalUserCommentsComponent implements OnInit {
 
   tripsDone: Trip[] = [];
   stations: Station[] = [];
-  hotel: Hotel[]  = [];
+  hotel: Hotel[] = [];
   skiMaterial: SkiMaterial[] = [];
   carRental: CarRental[] = [];
   classes: Classes[] = [];
   userId: number;
   commentId: number;
   comment;
-  submitted : boolean = false;
+  submitted: boolean = false;
 
   stationForm: FormGroup;
   hotelForm: FormGroup;
@@ -48,30 +48,30 @@ export class ModalUserCommentsComponent implements OnInit {
     public dialogo: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public mensaje: string) { }
 
-    cerrarDialogo(): void {
-      this.dialogo.close(false);
-    }
+  cerrarDialogo(): void {
+    this.dialogo.close(false);
+  }
 
   ngOnInit() {
-    
+
     this.stationForm = this.formBuilder.group({
       comment: ['', Validators.required]
-  });
+    });
 
-      this.hotelForm = this.formBuilder.group({
-        comment: ['', Validators.required]
+    this.hotelForm = this.formBuilder.group({
+      commentHotel: ['', Validators.required]
     });
 
     this.classesForm = this.formBuilder.group({
-      comment: ['', Validators.required]
+      commentClasses: ['', Validators.required]
     });
 
     this.carRentalForm = this.formBuilder.group({
-      comment: ['', Validators.required]
+      commentCarRental: ['', Validators.required]
     });
 
     this.skiMaterialForm = this.formBuilder.group({
-      comment: ['', Validators.required]
+      commentSki: ['', Validators.required]
     });
 
     this.getCommentsForServices();
@@ -89,7 +89,7 @@ export class ModalUserCommentsComponent implements OnInit {
     switch (+type) {
       case 1:
         if (this.stationForm.invalid) {
-          console.log("invalido")
+
           return;
         }
 
@@ -139,12 +139,12 @@ export class ModalUserCommentsComponent implements OnInit {
       data => {
         this.commentId = data.id;
 
-      }, err => {}, 
+      }, err => { },
       () => {
 
         switch (+type) {
           case 1:
-            this.commentService.putCommentByStationUserId(id, this.userId,this.commentId).subscribe(
+            this.commentService.putCommentByStationUserId(id, this.userId, this.commentId).subscribe(
               data => {
                 this.toastr.success('Comentario Realizado. ¡Muchas Gracias!', 'Comentario', {
                   timeOut: 3000,
@@ -157,7 +157,7 @@ export class ModalUserCommentsComponent implements OnInit {
             )
             break;
           case 2:
-            this.commentService.putCommentByHotelUserId(id, this.userId,this.commentId).subscribe(
+            this.commentService.putCommentByHotelUserId(id, this.userId, this.commentId).subscribe(
               data => {
                 this.toastr.success('Comentario Realizado. ¡Muchas Gracias!', 'Comentario', {
                   timeOut: 3000,
@@ -170,7 +170,7 @@ export class ModalUserCommentsComponent implements OnInit {
             )
             break;
           case 3:
-            this.commentService.putCommentByCarRentalUserId(id, this.userId,this.commentId).subscribe(
+            this.commentService.putCommentByCarRentalUserId(id, this.userId, this.commentId).subscribe(
               data => {
                 this.toastr.success('Comentario Realizado. ¡Muchas Gracias!', 'Comentario', {
                   timeOut: 3000,
@@ -184,7 +184,7 @@ export class ModalUserCommentsComponent implements OnInit {
             break;
 
           case 4:
-            this.commentService.putCommentByClassesUserId(id, this.userId,this.commentId).subscribe(
+            this.commentService.putCommentByClassesUserId(id, this.userId, this.commentId).subscribe(
               data => {
                 this.toastr.success('Comentario Realizado. ¡Muchas Gracias!', 'Comentario', {
                   timeOut: 3000,
@@ -197,7 +197,7 @@ export class ModalUserCommentsComponent implements OnInit {
             )
             break;
           case 5:
-            this.commentService.putCommentBySkiMaterialUserId(id, this.userId,this.commentId).subscribe(
+            this.commentService.putCommentBySkiMaterialUserId(id, this.userId, this.commentId).subscribe(
               data => {
                 this.toastr.success('Comentario Realizado. ¡Muchas Gracias!', 'Comentario', {
                   timeOut: 3000,
@@ -216,7 +216,7 @@ export class ModalUserCommentsComponent implements OnInit {
 
   }
 
-  getCommentsForServices(){
+  getCommentsForServices() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
@@ -227,7 +227,7 @@ export class ModalUserCommentsComponent implements OnInit {
           data => {
             this.tripsDone = data._embedded.trip;
             console.log(this.tripsDone);
-          },err=> {
+          }, err => {
 
           }, () => {
 
@@ -235,56 +235,56 @@ export class ModalUserCommentsComponent implements OnInit {
 
               this.tripService.getStationTrip(element.id).subscribe(
                 data => {
-                  if (data != undefined){
+                  if (data != undefined) {
                     this.stations.push(data);
                   }
-                  
+
                 }
               )
 
               this.tripService.getHotelTrip(element.id).subscribe(
                 data => {
-                  if (data != undefined){
-                  this.hotel.push(data);
+                  if (data != undefined) {
+                    this.hotel.push(data);
                   }
                 }
               )
 
               this.tripService.getSkiMaterialTrip(element.id).subscribe(
                 data => {
-                  if (data != undefined){
-                  this.skiMaterial.push(data);
+                  if (data != undefined) {
+                    this.skiMaterial.push(data);
                   }
                 }
               )
 
               this.tripService.getClassesTrip(element.id).subscribe(
                 data => {
-                  if (data != undefined){
-                  this.classes.push(data);
+                  if (data != undefined) {
+                    this.classes.push(data);
                   }
                 }
               )
 
               this.tripService.getCarRentalTrip(element.id).subscribe(
                 data => {
-                  if (data != undefined){
-                  this.carRental.push(data);
+                  if (data != undefined) {
+                    this.carRental.push(data);
                   }
                 }
               )
-              
+
 
             });
           }
 
-          
-          
+
+
         )
       }
     )
 
-    
+
   }
 
 

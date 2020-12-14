@@ -18,16 +18,16 @@ import { MustMatch } from 'src/app/utils/validador';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class RegisterComponent implements OnInit {
 
@@ -39,11 +39,11 @@ export class RegisterComponent implements OnInit {
 
   constructor(private tokenService: TokenService,
     private formBuilder: FormBuilder,
-    private authService: AuthService,private toastr: ToastrService,public dialogo: MatDialog) { }
+    private authService: AuthService, private toastr: ToastrService, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
 
-    if(this.tokenService.getToken()){
+    if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
 
@@ -53,21 +53,21 @@ export class RegisterComponent implements OnInit {
       userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['',Validators.required],
+      confirmPassword: ['', Validators.required],
       acceptTerms: [false, Validators.requiredTrue],
-      address:[''],
+      address: [''],
       phone: ['', [Validators.minLength(9), Validators.maxLength(9)]],
-      newsletter:[false],
-  }, {
+      newsletter: [false],
+    }, {
       validator: MustMatch('password', 'confirmPassword')
-  });
+    });
 
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
-  
-  public onLogOut(){
+
+  public onLogOut() {
     this.tokenService.logOut();
     window.location.reload();
   }
@@ -77,48 +77,48 @@ export class RegisterComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
-        return;
+      return;
     }
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de realizar el registro?`
+      data: `¿Estás seguro de realizar el registro?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
-    let firstName = this.registerForm.get('firstName').value;
-    let lastName = this.registerForm.get('lastName').value;
-    let email = this.registerForm.get('email').value;
-    let userName = this.registerForm.get('userName').value;
-    let password = this.registerForm.get('password').value;
-    let address = this.registerForm.get('address').value;
-    let newsletter = this.registerForm.get('newsletter').value;
-    let phone = this.registerForm.get('phone').value;
-    
-    this.newUser = new NewUser(firstName,lastName,userName,email,password,address,newsletter,0,phone);
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          let firstName = this.registerForm.get('firstName').value;
+          let lastName = this.registerForm.get('lastName').value;
+          let email = this.registerForm.get('email').value;
+          let userName = this.registerForm.get('userName').value;
+          let password = this.registerForm.get('password').value;
+          let address = this.registerForm.get('address').value;
+          let newsletter = this.registerForm.get('newsletter').value;
+          let phone = this.registerForm.get('phone').value;
 
-    console.log(this.newUser);
-    // display form values on success
+          this.newUser = new NewUser(firstName, lastName, userName, email, password, address, newsletter, 0, phone);
 
-    this.authService.new(this.newUser).subscribe(
-      data => {
-        this.isRegisterFail = true;
-        this.newUser = data;
-        this.onReset();
-        this.toastr.success('Registro realizado con éxito', 'Registro', {
-          timeOut: 3000,
-        });
-      }, err => {
-        this.isRegisterFail = false;
-        this.toastr.error('El nombre de usuario o el email ya se encuentra en uso', 'Registro', {
-          timeOut: 3000,
-        });
-      }
-    );
-      }
-    })
+          console.log(this.newUser);
+          // display form values on success
 
-      this.submitted = false;
+          this.authService.new(this.newUser).subscribe(
+            data => {
+              this.isRegisterFail = true;
+              this.newUser = data;
+              this.onReset();
+              this.toastr.success('Registro realizado con éxito', 'Registro', {
+                timeOut: 3000,
+              });
+            }, err => {
+              this.isRegisterFail = false;
+              this.toastr.error('El nombre de usuario o el email ya se encuentra en uso', 'Registro', {
+                timeOut: 3000,
+              });
+            }
+          );
+        }
+      })
+
+    this.submitted = false;
 
   }
 

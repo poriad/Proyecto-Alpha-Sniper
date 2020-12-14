@@ -5,119 +5,134 @@
     <div class="col-12 col-xl-8 offset-xl-2 pt-5 text-center">
       <h1 class="h1 pb-4 pb-sm-4">ADMINISTRACIÓN DE COMENTARIOS Y SERVICIOS</h1>
       <hr class="hr" />
-      
     </div>
     <div class="col-12 col-xl-2 text-center my-auto pt-4 pt-xl-0">
-      <button mat-raised-button
-                    color="primary"
-                    id="btnCommentService"
-
-                    routerLink="/HomeAdmin">
-                    VOLVER
-                  </button>
+      <button
+        mat-raised-button
+        color="primary"
+        id="btnCommentService"
+        routerLink="/HomeAdmin"
+      >
+        VOLVER
+      </button>
     </div>
-
   </div>
-    <div class="row pb-5 mt-5">
-      <div class="col-12 col-md-10 col-xl-5 offset-md-1 offset-xl-1 fondo-blanco text-center">
-        <div class="row">
-          <p class="marca-uno w-100 text-center pb-1"></p>
-          <div class="col-12">
-            <h3 class="h3 pb-3 pt-4">ADMINISTRACIÓN DE COMENTARIOS</h3>
-            <hr class="hr2" />
-          </div>
-          <div class="col-12">
-            <input class="form-control search  mx-auto" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Busca por coincidencias en el campo...">
-          </div>
-          
-
-          <div class="col-10 pt-4 pb-4 table-responsive mx-auto">
-            <table class="table table-striped ">
-              <thead>
-                <tr>
-   
-                  <th scope="col" *ngFor="let header of header;" (click)= updateOrderList(header.id) >{{ header.title }}</th>
-                  <th scope="col" >Ver Detalle</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let comment of comments | filter:searchText">
-                  
-                  <td>{{ comment.id }}</td>
-                  <td>{{ comment.comment }}</td>
-                  <td>
-                    <button
-                      class="btn btn-station"
-                      data-toggle="modal"
-                      [attr.data-target]="'#'+ comment.id"
-                    >
-                      Información
-                    </button>
-                  </td>
-                </tr>
-                
-              </tbody>
-            </table>
-          </div>
+  <div class="row pb-5 mt-5">
+    <div
+      class="col-12 col-md-10 col-xl-5 offset-md-1 offset-xl-1 fondo-blanco text-center"
+    >
+      <div class="row">
+        <p class="marca-uno w-100 text-center pb-1"></p>
+        <div class="col-12">
+          <h3 class="h3 pb-3 pt-4">ADMINISTRACIÓN DE COMENTARIOS</h3>
+          <hr class="hr2" />
         </div>
-        <div class="col-12 d-flex justify-content-center">
-          <ngb-pagination [(page)]="thePageNumber"
-              [pageSize] ="thePageSize"
-              [collectionSize]= "theTotalElements"
-              [maxSize] = 5
-              [boundaryLinks]="true"
-              (pageChange) = orderCommentList()>
-
-      </ngb-pagination>
+        <div class="col-12">
+          <input
+            class="form-control search mx-auto"
+            type="text"
+            name="search"
+            [(ngModel)]="searchText"
+            autocomplete="off"
+            placeholder="Busca por coincidencias en el campo..."
+          />
         </div>
 
+        <div class="col-10 pt-4 pb-4 table-responsive mx-auto">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  *ngFor="let header of header"
+                  (click)="updateOrderList(header.id)"
+                >
+                  {{ header.title }}
+                </th>
+                <th scope="col">Ver Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let comment of comments | filter: searchText">
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.comment }}</td>
+                <td>
+                  <button
+                    class="btn btn-station"
+                    data-toggle="modal"
+                    [attr.data-target]="'#' + comment.id"
+                  >
+                    Información
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <!-- 
+      <div class="col-12 d-flex justify-content-center">
+        <ngb-pagination
+          [(page)]="thePageNumber"
+          [pageSize]="thePageSize"
+          [collectionSize]="theTotalElements"
+          [maxSize]="5"
+          [boundaryLinks]="true"
+          (pageChange)="orderCommentList()"
+        >
+        </ngb-pagination>
+      </div>
+    </div>
+    <!-- 
       
 
     -->
-  <div class="col-12 col-md-10 col-xl-5 offset-md-1 fondo-blanco ml-xl-5 mt-5 mt-xl-0">
+    <div
+      class="col-12 col-md-10 col-xl-5 offset-md-1 fondo-blanco ml-xl-5 mt-5 mt-xl-0"
+    >
       <app-admin-classes></app-admin-classes>
+    </div>
   </div>
+
+  <div class="row">
+    <div
+      class="col-12 col-md-10 col-xl-5 fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda"
+    >
+      <app-admin-car-rental></app-admin-car-rental>
     </div>
 
-    <div class="row">
+    <div
+      class="col-12 col-md-10 col-xl-5 fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda-dos"
+    >
+      <app-admin-ski-material></app-admin-ski-material>
+    </div>
+  </div>
 
-      <div class="col-12 col-md-10 col-xl-5 fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda">
-        <app-admin-car-rental></app-admin-car-rental>
-      </div>
-    
-      <div class="col-12 col-md-10 col-xl-5  fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda-dos">
-        <app-admin-ski-material></app-admin-ski-material>
-      </div>
+  <div class="row pt-5 pb-5">
+    <div
+      class="col-12 col-md-10 col-xl-5 fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda"
+    >
+      <app-admin-hotel></app-admin-hotel>
     </div>
 
-    <div class="row pt-5 pb-5">
-
-      <div class="col-12 col-md-10 col-xl-5 fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda">
-        <app-admin-hotel></app-admin-hotel>
-      </div>
-    
-      <div class="col-12 col-md-10 col-xl-5  fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda-dos">
-        <app-admin-station></app-admin-station>
-      </div>
+    <div
+      class="col-12 col-md-10 col-xl-5 fondo-blanco ml-xl-5 mt-5 mt-xl-0 margen-izquierda-dos"
+    >
+      <app-admin-station></app-admin-station>
     </div>
-
-      
-  
+  </div>
 </div>
 
 <div
-*ngFor="let comment of comments" 
-class="modal fade"
-  id="{{comment.id}}"
+  *ngFor="let comment of comments"
+  class="modal fade"
+  id="{{ comment.id }}"
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true"
   #closebutton
 >
-  <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-11">
@@ -127,66 +142,68 @@ class="modal fade"
             Modificación y Borrado de Comentario
           </h4>
         </div>
-        
+
         <button
-        type="button"
-        class="close"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form  >
-        <div class="row">
-          
-          <div class="col-12 text-center pt-3 pb-4 ">
-            <label for="lastName" class="d-block">Comentario</label>
-            <textarea #comentario
-              
-              placeholder="Comentario..."
-              name="lastName"
-              value="{{ comment.comment }}"
-              class="textarea pt-2"
-            ></textarea>
-            <input #id
-              type="hidden"
-              placeholder="Apellidos..."
-              name="lastName"
-              value="{{ comment.id }}"
-              class="input pt-2"
-              visibility="hidden" style="width: 0"
-            />
-          </div>
+        <form>
+          <div class="row">
+            <div class="col-12 text-center pt-3 pb-4">
+              <label for="lastName" class="d-block">Comentario</label>
+              <textarea
+                #comentario
+                placeholder="Comentario..."
+                name="lastName"
+                value="{{ comment.comment }}"
+                class="textarea pt-2"
+              ></textarea>
+              <input
+                #id
+                type="hidden"
+                placeholder="Apellidos..."
+                name="lastName"
+                value="{{ comment.id }}"
+                class="input pt-2"
+                visibility="hidden"
+                style="width: 0"
+              />
+            </div>
 
-          <div class="col-12">
-            <hr class="hr3" />
+            <div class="col-12">
+              <hr class="hr3" />
+            </div>
+
+            <div class="col-12 col-sm-6 text-center pt-3 pb-3">
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="onSubmit(comentario.value, id.value, comment.date)"
+              >
+                Modificar
+              </button>
+            </div>
+            <div class="col-12 col-sm-6 text-center pt-3 pb-3">
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="deleteComment(id.value)"
+              >
+                Borrar
+              </button>
+            </div>
           </div>
-          
-          <div class="col-12 col-sm-6 text-center pt-3 pb-3">
-            <button mat-raised-button
-            color="primary"
-              class="btnReturn"
-              data-toggle="modal"
-              (click)="onSubmit(comentario.value, id.value, comment.date)"
-            >
-             Modificar
-            </button>
-          </div>
-          <div class="col-12 col-sm-6 text-center pt-3 pb-3">
-            <button mat-raised-button
-            color="primary"
-              class="btnReturn"
-              data-toggle="modal"
-              (click)="deleteComment(id.value)"
-            >
-            Borrar
-            </button>
-          
-          </div>
-        </div>
-      </form>
+        </form>
       </div>
     </div>
   </div>

@@ -17,16 +17,16 @@ import { requiredDate } from 'src/app/utils/validador';
   templateUrl: './station-card.component.html',
   styleUrls: ['./station-card.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class StationCardComponent implements OnInit {
   itemsLength: number;
@@ -36,7 +36,7 @@ export class StationCardComponent implements OnInit {
   user: string[] = [];
   searchText;
   stations: Station[] = [];
-  countries: string[] = ["Andorra","Austria","Alemania","España","Francia","Italia","Suiza"];
+  countries: string[] = ["Andorra", "Austria", "Alemania", "España", "Francia", "Italia", "Suiza"];
   currentCountry: string = 'Andorra';
   previouStationCountry: string = 'Andorra';
   searchMode: boolean = false;
@@ -47,20 +47,20 @@ export class StationCardComponent implements OnInit {
 
   //Pagination
   thePageNumber: number = 1;
-  thePageSize:number = 8;
+  thePageSize: number = 8;
   theTotalElements: number = 0;
-  
+
 
   constructor(
-    private stationService: StationService, private commentService: CommentService,private formBuilder: FormBuilder,public dialogo: MatDialog, private router: Router
+    private stationService: StationService, private commentService: CommentService, private formBuilder: FormBuilder, public dialogo: MatDialog, private router: Router
   ) { }
 
   ngOnInit(): void {
     this.loadStation();
 
     this.tripForm = this.formBuilder.group({
-      personNumber: ['', [Validators.required,Validators.pattern("[0-9]{1}")]],
-      numberDays: ['', [Validators.required,Validators.pattern("[1-9]{1}[0-9]{0,1}")]],
+      personNumber: ['', [Validators.required, Validators.pattern("[0-9]{1}")]],
+      numberDays: ['', [Validators.required, Validators.pattern("[1-9]{1}[0-9]{0,1}")]],
       entryDate: ['', [Validators.required]]
     }, {
       validator: requiredDate()
@@ -71,8 +71,8 @@ export class StationCardComponent implements OnInit {
   get f() { return this.tripForm.controls; }
 
   loadStation(): void {
-    
-    if(this.previouStationCountry != this.currentCountry){
+
+    if (this.previouStationCountry != this.currentCountry) {
       this.thePageNumber = 1;
     }
 
@@ -83,23 +83,23 @@ export class StationCardComponent implements OnInit {
     this.stationService.getStationListPaginate(this.thePageNumber - 1,
       this.thePageSize,
       this.currentCountry).subscribe(this.processResult());
-    
+
   }
 
   // Añadir validacion fecha posterior a hoy
-  validateInfo(location: string, stationId){
+  validateInfo(location: string, stationId) {
 
     this.submitted = true;
 
     if (this.tripForm.invalid) {
 
       this.dialogo.open(ConfirmDialogStationComponent, {
-        data:`Antes de seguir, debes rellenar el Nº de personas, la fecha de entrada y el Nº de días.
+        data: `Antes de seguir, debes rellenar el Nº de personas, la fecha de entrada y el Nº de días.
         
         Recuerda que las fechas solo se pueden poner a futuro.
         `
       })
-      
+
     } else {
       let personNumber = this.tripForm.get('personNumber').value;
       window.sessionStorage.setItem('PersonNumber', personNumber)
@@ -109,32 +109,32 @@ export class StationCardComponent implements OnInit {
 
       let entryDate = this.tripForm.get('entryDate').value;
       window.sessionStorage.setItem('EntryDate', entryDate)
-    
+
       window.sessionStorage.setItem('StationId', stationId)
 
       window.sessionStorage.setItem('Station', location)
 
       this.dialogo.open(ConfirmDialogComponent, {
-        data:`¿Estás seguro de elegir la estación ${location}?`
+        data: `¿Estás seguro de elegir la estación ${location}?`
       })
-      .afterClosed()
-      .subscribe((confirmado:Boolean) => {
-        if (confirmado){
-          this.router.navigate(['/Hotel'])
-        }
-      })
-      
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
+          if (confirmado) {
+            this.router.navigate(['/Hotel'])
+          }
+        })
+
     }
 
   }
 
-  loadComments(id){
-    
+  loadComments(id) {
 
-    this.commentService.getCommentByStationIdPaginated(0,id).subscribe(
+
+    this.commentService.getCommentByStationIdPaginated(0, id).subscribe(
       data => {
         this.comments = data._embedded.comment;
-        
+
         this.comments.forEach(element => {
 
           this.commentService.getCommentByUserId(element.id).subscribe(
@@ -142,31 +142,31 @@ export class StationCardComponent implements OnInit {
               this.user.push(data.username);
             }
           )
-          
+
         });
       })
-  } 
-  
+  }
 
 
-  processResult(){
+
+  processResult() {
     return data => {
       this.stations = data._embedded.station;
-      this.thePageNumber = data.page.number +1;
+      this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
     };
   }
 
-  updatePageSize(pageSize: number){
+  updatePageSize(pageSize: number) {
     this.thePageSize = pageSize;
     this.thePageNumber = 1;
     this.updateStationSelect(this.currentCountry);
   }
 
-  updateStationSelect(country: string){
+  updateStationSelect(country: string) {
 
-    if(this.previouStationCountry != country){
+    if (this.previouStationCountry != country) {
       this.thePageNumber = 1;
       this.currentCountry = country;
     }

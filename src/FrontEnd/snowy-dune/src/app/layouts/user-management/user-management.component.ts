@@ -14,7 +14,7 @@ import { Station } from 'src/app/models/station';
 import { ModalUserCommentsComponent } from 'src/app/components/modal-user-comments/modal-user-comments.component';
 import * as html2pdf from 'html2pdf.js';
 import html2canvas from 'html2canvas';
-import {jsPDF} from 'jspdf';
+import { jsPDF } from 'jspdf';
 
 
 @Component({
@@ -22,16 +22,16 @@ import {jsPDF} from 'jspdf';
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class UserManagementComponent implements OnInit {
 
@@ -49,14 +49,14 @@ export class UserManagementComponent implements OnInit {
   stationsTrip: Station[] = [];
   submitted = false;
   isModifyFail: boolean = false;
-  modifyEnabled= false;
-  
-  
+  modifyEnabled = false;
+
+
   constructor(private formBuilder: FormBuilder,
-     private enterpriseService: EnterpriseService, public dialogo: MatDialog,
-      private adminService: AdminService,
-      private toastr: ToastrService,
-      private tripService: TripService) { }
+    private enterpriseService: EnterpriseService, public dialogo: MatDialog,
+    private adminService: AdminService,
+    private toastr: ToastrService,
+    private tripService: TripService) { }
 
   ngOnInit(): void {
     this.getUserDetails();
@@ -69,36 +69,36 @@ export class UserManagementComponent implements OnInit {
 
   get f() { return this.userForm.controls; }
 
-  getUserDetails(){
+  getUserDetails() {
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
         this.user = data;
-        
+
         this.userForm = this.formBuilder.group({
-      
+
           firstName: [this.user.firstName, Validators.required],
           lastName: [this.user.lastName, Validators.required],
-          address:[this.user.address, Validators.required],
+          address: [this.user.address, Validators.required],
           phone: [this.user.phone, [Validators.minLength(9), Validators.maxLength(9)]],
           email: [this.user.email, [Validators.required, Validators.email]],
           userName: [this.user.username, Validators.required],
           password: ['', [Validators.required, Validators.minLength(6)]],
-      })
+        })
 
-      this.userForm.get('firstName').disable();
-      this.userForm.get('lastName').disable();
-      this.userForm.get('userName').disable();
-      this.userForm.get('email').disable();
-      this.userForm.get('password').disable();
-      this.userForm.get('address').disable();
-      this.userForm.get('phone').disable();
+        this.userForm.get('firstName').disable();
+        this.userForm.get('lastName').disable();
+        this.userForm.get('userName').disable();
+        this.userForm.get('email').disable();
+        this.userForm.get('password').disable();
+        this.userForm.get('address').disable();
+        this.userForm.get('phone').disable();
 
 
       }
     );
   }
 
-  getFutureTrips(){
+  getFutureTrips() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
@@ -107,22 +107,22 @@ export class UserManagementComponent implements OnInit {
         this.tripService.getFutureTrips(this.userId).subscribe(
           data => {
             this.trips = data._embedded.trip;
-            
+
             this.trips.forEach(element => {
-    
+
               this.tripService.getStationTrip(element.id).subscribe(
                 data => {
                   this.stationsTrip.push(data);
                 }
               )
-            }); 
+            });
           }
         )
       }
     );
   }
 
-  getPastTripsThisYear(){
+  getPastTripsThisYear() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
@@ -131,24 +131,24 @@ export class UserManagementComponent implements OnInit {
         this.tripService.getPastTrips(this.userId).subscribe(
           data => {
             this.pastTrips = data._embedded.trip;
-            
+
             this.pastTrips.forEach(element => {
-    
+
               this.tripService.getStationTrip(element.id).subscribe(
                 data => {
                   this.pastStationTrips.push(data);
                 }
               )
-            }); 
+            });
           }
-    
+
         )
 
       }
     );
   }
 
-  getPastTripsBeforeThisYear(){
+  getPastTripsBeforeThisYear() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
@@ -157,15 +157,15 @@ export class UserManagementComponent implements OnInit {
         this.tripService.getTripsDoneLastYear(this.userId).subscribe(
           data => {
             this.beforeThisYearTrips = data._embedded.trip;
-            
+
             this.beforeThisYearTrips.forEach(element => {
-    
+
               this.tripService.getStationTrip(element.id).subscribe(
                 data => {
                   this.beforeThisYearStatioTrips.push(data);
                 }
               )
-            }); 
+            });
           }
         )
       }
@@ -173,7 +173,7 @@ export class UserManagementComponent implements OnInit {
 
   }
 
-  enableModify(){
+  enableModify() {
     this.toastr.info('Ya puedes modificar la información', 'Modificación', {
       timeOut: 3000,
     });
@@ -189,7 +189,7 @@ export class UserManagementComponent implements OnInit {
 
   }
 
-  disableModify(){
+  disableModify() {
 
     this.userForm.get('firstName').disable();
     this.userForm.get('lastName').disable();
@@ -201,70 +201,70 @@ export class UserManagementComponent implements OnInit {
 
   }
 
-  onSubmit(){
+  onSubmit() {
 
     this.submitted = true;
 
     if (this.userForm.invalid) {
       return;
-  }
+    }
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de realizar la modificación?`
+      data: `¿Estás seguro de realizar la modificación?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
 
-        this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
-          data => {
-            
-            this.userModify = {
-              firstName: this.userForm.get('firstName').value,
-              lastName: this.userForm.get('lastName').value,
-              username:this.userForm.get('userName').value,
-              email: this.userForm.get('email').value,
-              password: this.userForm.get('password').value,
-              address: this.userForm.get('address').value,
-              phone: this.userForm.get('phone').value
-            };
+          this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
+            data => {
 
-            this.adminService.putUserManagement(this.userModify, data.id).subscribe(
-              data => {
-                this.modifyEnabled = false;
-                data = this.userModify;
-                this.isModifyFail = true;
-                this.disableModify();
-                this.toastr.success('Información modificada', 'Modificación', {
-                  timeOut: 3000,
-                });
-              }, error => {
-                this.isModifyFail = false;
-                this.toastr.error('Error en la modificación', 'Modificación', {
-                  timeOut: 3000,
-                });
-              }
-            );
+              this.userModify = {
+                firstName: this.userForm.get('firstName').value,
+                lastName: this.userForm.get('lastName').value,
+                username: this.userForm.get('userName').value,
+                email: this.userForm.get('email').value,
+                password: this.userForm.get('password').value,
+                address: this.userForm.get('address').value,
+                phone: this.userForm.get('phone').value
+              };
 
-          })
+              this.adminService.putUserManagement(this.userModify, data.id).subscribe(
+                data => {
+                  this.modifyEnabled = false;
+                  data = this.userModify;
+                  this.isModifyFail = true;
+                  this.disableModify();
+                  this.toastr.success('Información modificada', 'Modificación', {
+                    timeOut: 3000,
+                  });
+                }, error => {
+                  this.isModifyFail = false;
+                  this.toastr.error('Error en la modificación', 'Modificación', {
+                    timeOut: 3000,
+                  });
+                }
+              );
+
+            })
 
           this.submitted = false;
 
-      }
-    })
+        }
+      })
   }
 
-  getComments(){
+  getComments() {
     this.dialogo.open(ModalUserCommentsComponent, {
       width: '70vw',
       maxWidth: '100vw',
     })
-    .afterOpened().subscribe()
+      .afterOpened().subscribe()
   }
 
 
 
-  getPastTripsComplete(){
+  getPastTripsComplete() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
@@ -274,16 +274,16 @@ export class UserManagementComponent implements OnInit {
           data => {
             this.pastTripsComplete = data;
             console.log(this.pastTripsComplete)
-            
+
           }
-    
+
         )
 
       }
     );
   }
 
-  getTripsThisYearComplete(){
+  getTripsThisYearComplete() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
@@ -293,27 +293,27 @@ export class UserManagementComponent implements OnInit {
           data => {
             this.thisYearTripsComplete = data;
             console.log(this.thisYearTripsComplete)
-            
+
           }
-    
+
         )
 
       }
     );
   }
 
-  downloadPDF(){
-    
+  downloadPDF() {
+
     var data = document.getElementById('contentTres');
 
     var opt = {
-      margin:       1,
-      filename:     'Informacion_viajes.pdf',
-      image:        { type: 'jpg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      margin: 1,
+      filename: 'Informacion_viajes.pdf',
+      image: { type: 'jpg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
-    
+
     // New Promise-based usage:
     html2pdf(data, opt);
 
@@ -322,7 +322,7 @@ export class UserManagementComponent implements OnInit {
 }
 
 export interface UserSnowy {
-  
+
   firstName: string;
   lastName: string;
   username: string;

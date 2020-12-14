@@ -9,7 +9,7 @@ export class Classes {
     urlImages: string;
     activated: number;
 
-    constructor(id: number, priceHour: number, name: string, phone: string,email: string, location: string, urlImages: string, activated: number){
+    constructor(id: number, priceHour: number, name: string, phone: string, email: string, location: string, urlImages: string, activated: number) {
         this.id = id;
         this.priceHour = priceHour;
         this.name = name;

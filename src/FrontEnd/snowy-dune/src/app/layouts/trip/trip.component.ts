@@ -22,16 +22,16 @@ import { TripService } from 'src/app/service/trip.service';
   templateUrl: './trip.component.html',
   styleUrls: ['./trip.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class TripComponent implements OnInit {
 
@@ -55,10 +55,10 @@ export class TripComponent implements OnInit {
   hotelId: number;
   skiMaterialId: number;
   carRentalId: number;
-  
+
 
   constructor(private stationService: StationService, private hotelService: HotelService, private classesService: ClassesService, private skiMaterialService: SkiMaterialService, private carRentalService: CarRentalService
-    ,public dialogo: MatDialog,private router: Router,
+    , public dialogo: MatDialog, private router: Router,
     private enterpriseService: EnterpriseService, private tripService: TripService, private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -67,8 +67,8 @@ export class TripComponent implements OnInit {
 
   }
 
-  getTripDetails(){
-    
+  getTripDetails() {
+
     this.entryDate = window.sessionStorage.getItem('EntryDate');
     this.numDays = +window.sessionStorage.getItem('NumberDays');
     this.numPerson = +window.sessionStorage.getItem('PersonNumber');
@@ -97,8 +97,8 @@ export class TripComponent implements OnInit {
         this.station = data;
       }
     );
-    
-    if (this.hotelId != 0){
+
+    if (this.hotelId != 0) {
 
       this.hotelService.getHotelById(this.hotelId).subscribe(
         data => {
@@ -109,8 +109,8 @@ export class TripComponent implements OnInit {
       );
     }
 
-    if (this.classesId != 0){
-      
+    if (this.classesId != 0) {
+
       this.classesService.getClassesById(this.classesId).subscribe(
         data => {
           this.classes = data;
@@ -120,30 +120,30 @@ export class TripComponent implements OnInit {
       );
     }
 
-    if (this.skiMaterialId != 0){
-    this.skiMaterialService.getSkiMaterialById(this.skiMaterialId).subscribe(
-      data => {
-        this.skiMaterial = data;
-        this.skiMaterialPrice = data.priceDay * this.numDays * this.numPerson;
-        this.totalPrice = this.totalPrice + this.skiMaterialPrice;
+    if (this.skiMaterialId != 0) {
+      this.skiMaterialService.getSkiMaterialById(this.skiMaterialId).subscribe(
+        data => {
+          this.skiMaterial = data;
+          this.skiMaterialPrice = data.priceDay * this.numDays * this.numPerson;
+          this.totalPrice = this.totalPrice + this.skiMaterialPrice;
 
-      }
-    );
+        }
+      );
     }
 
-    if (this.carRentalId != 0){
-    this.carRentalService.getCarRentalById(this.carRentalId).subscribe(
-      data => {
-        this.carRental = data;
-        this.carRentalPrice = data.price * this.numDays * this.numPerson;
-        this.totalPrice = this.totalPrice + this.carRentalPrice;
+    if (this.carRentalId != 0) {
+      this.carRentalService.getCarRentalById(this.carRentalId).subscribe(
+        data => {
+          this.carRental = data;
+          this.carRentalPrice = data.price * this.numDays * this.numPerson;
+          this.totalPrice = this.totalPrice + this.carRentalPrice;
 
-      }
-    );
+        }
+      );
     }
   }
 
-  createTrip(){
+  createTrip() {
 
     this.dialogo
       .open(ConfirmDialogComponent, {
@@ -166,39 +166,39 @@ export class TripComponent implements OnInit {
               let classesId;
               let skiMaterialId;
               let carRentalId;
-              
 
-              if(this.hotel == undefined){
+
+              if (this.hotel == undefined) {
                 this.hotel = null;
                 hotelId = "";
               } else {
                 hotelId = this.hotel.id
               }
 
-              if(this.classes == undefined){
+              if (this.classes == undefined) {
                 this.classes = null;
                 classesId = "";
               } else {
                 classesId = this.classes.id
               }
 
-              if(this.skiMaterial == undefined){
+              if (this.skiMaterial == undefined) {
                 this.skiMaterial = null;
-                skiMaterialId="";
+                skiMaterialId = "";
               } else {
                 skiMaterialId = this.skiMaterial.id
               }
 
-              if(this.carRental == undefined){
+              if (this.carRental == undefined) {
                 this.carRental = null;
-                carRentalId="";
+                carRentalId = "";
               } else {
                 carRentalId = this.carRental.id
               }
-              
-              this.tripService.putTrip(data.id,this.userId,this.station.id, hotelId, classesId, skiMaterialId, carRentalId,this.cartId).subscribe(
+
+              this.tripService.putTrip(data.id, this.userId, this.station.id, hotelId, classesId, skiMaterialId, carRentalId, this.cartId).subscribe(
                 data => {
-                  
+
 
                   this.router.navigate(['/Cart']);
                 }, err => {
@@ -209,7 +209,7 @@ export class TripComponent implements OnInit {
             }, err => {
               console.log(err);
             }, () => {
-              
+
             }
           )
 

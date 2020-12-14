@@ -1,34 +1,70 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-white border-bottom"
+  appStickyHeader
+>
+  <img
+    src="./assets/Navbar/snowyDune2.png"
+    alt=""
+    class="img-snowy d-none d-sm-block"
+    id="id"
+  />
+  <div class="col-12 col-sm-3 col-md text-center text-sm-left">
+    <img
+      src="./assets/Navbar/snowyDune2.png"
+      alt=""
+      class="img-snowy d-sm-none"
+      id="id"
+    />
+    <a class="navbar-brand title" routerLink="/HomeUser">SnowyDune</a>
+  </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom" appStickyHeader>
-        <img src="./assets/Navbar/snowyDune2.png" alt="" class="img-snowy d-none d-sm-block" id="id">
-        <div class="col-12 col-sm-3 col-md text-center text-sm-left">
-            <img src="./assets/Navbar/snowyDune2.png" alt="" class="img-snowy d-sm-none" id="id">
-            <a class="navbar-brand title" routerLink="/HomeUser" >SnowyDune</a>
-        </div>
-       
-        <div class="col-12 col-sm-9 col-md text-center text-sm-right my-auto">
-            <div class="d-inline mr-sm-5">
-                <h3 class="snowydunetrip d-none d-xl-inline">#SnowyDuneTrip</h3>
-            </div>
-            <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged && isAdmin">
-                <a class="" routerLink="/HomeAdmin"><img class="img-fluid img-cart" src="./assets/Navbar/admin-with-cogwheels.png" alt=""></a>
-            </div>
-            <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged && isEnterprise">
-                <a class="" routerLink="/HomeEnterprise"><img class="img-fluid img-cart" src="./assets/Navbar/enterprise.png" alt=""></a>
-            </div>
-            <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">
-                <a class="" routerLink="/HomeUser"><img class="img-fluid img-cart" src="./assets/Navbar/home.png" alt=""></a>
-            </div>
-            <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">
-                <!--<div class="circulo"><span>0</span></div>-->
-            <a class="" routerLink="/ManagementUser"><img class="img-fluid img-user" src="./assets/Navbar/user.png" alt=""></a>
-            </div>
-            <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged && trips">
-                <mat-icon matBadge="{{trips.length}}" matBadgeColor="primary"><a class=""  routerLink="/Cart"><img class="img-fluid img-user" src="./assets/Navbar/shopping-cart-black-shape.png" alt=""></a></mat-icon>
-                </div>
-            <div class="d-inline " *ngIf="isLogged" (click)="onLogOut()">
-                <a class="cursor" ><img class="img-fluid img-cart" src="./assets/Navbar/logout.png" alt=""></a>
-            </div>
-             
-        </div>
-    </nav>
+  <div class="col-12 col-sm-9 col-md text-center text-sm-right my-auto">
+    <div class="d-inline mr-sm-5">
+      <h3 class="snowydunetrip d-none d-xl-inline">#SnowyDuneTrip</h3>
+    </div>
+    <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged && isAdmin">
+      <a class="" routerLink="/HomeAdmin"
+        ><img
+          class="img-fluid img-cart"
+          src="./assets/Navbar/admin-with-cogwheels.png"
+          alt=""
+      /></a>
+    </div>
+    <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged && isEnterprise">
+      <a class="" routerLink="/HomeEnterprise"
+        ><img
+          class="img-fluid img-cart"
+          src="./assets/Navbar/enterprise.png"
+          alt=""
+      /></a>
+    </div>
+    <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">
+      <a class="" routerLink="/HomeUser"
+        ><img class="img-fluid img-cart" src="./assets/Navbar/home.png" alt=""
+      /></a>
+    </div>
+    <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged">
+      <!--<div class="circulo"><span>0</span></div>-->
+      <a class="" routerLink="/ManagementUser"
+        ><img class="img-fluid img-user" src="./assets/Navbar/user.png" alt=""
+      /></a>
+    </div>
+    <div class="d-inline mr-2 mr-sm-3" *ngIf="isLogged && trips">
+      <mat-icon matBadge="{{ trips.length }}" matBadgeColor="primary"
+        ><a class="" routerLink="/Cart"
+          ><img
+            class="img-fluid img-user"
+            src="./assets/Navbar/shopping-cart-black-shape.png"
+            alt="" /></a
+      ></mat-icon>
+    </div>
+    <div class="d-inline" *ngIf="isLogged" (click)="onLogOut()">
+      <a class="cursor"
+        ><img
+          class="img-fluid img-cart"
+          src="./assets/Navbar/logout.png"
+          alt=""
+      /></a>
+    </div>
+  </div>
+</nav>

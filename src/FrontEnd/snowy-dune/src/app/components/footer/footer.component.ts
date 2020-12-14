@@ -22,12 +22,12 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
 
-  changeLang(){
-    if(this.isChecked) {
+  changeLang() {
+    if (this.isChecked) {
       this.translate.use('en');
     } else {
       this.translate.use('es');
@@ -35,5 +35,5 @@ export class FooterComponent implements OnInit {
 
   }
 
-  
+
 }

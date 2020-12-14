@@ -10,15 +10,18 @@ import { SkiMaterial } from '../models/ski-material';
 import { Station } from '../models/station';
 import { Trip } from '../models/trip';
 
-const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json'})}
+const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
 
 @Injectable({
   providedIn: 'root'
 })
 export class TripService {
 
-  baseUrl = "http://192.168.1.134:8082/api/trip/";
-  baseUrlTwo = "http://192.168.1.134:8082/trip/";
+  baseUrl = "http://localhost:8082/api/trip/";
+  baseUrlTwo = "http://localhost:8082/trip/";
+
+  //baseUrl = "http://192.168.1.134:8082/api/trip/";
+  //baseUrlTwo = "http://192.168.1.134:8082/trip/";
 
   //baseUrl = "http://localhost:8082/snowyduneservice/api/trip/";
   //baseUrlTwo = "http://localhost:8082/snowyduneservice/trip/";
@@ -59,7 +62,7 @@ export class TripService {
   public getTripsInCartController(userId: number): Observable<Trip[]> {
     return this.httpClient.get<Trip[]>(this.baseUrlTwo + 'listCart?id=' + userId);
   }
-  
+
 
   public getTripsInCartControllerCheckout(userId: number): Observable<Trip[]> {
     return this.httpClient.get<Trip[]>(this.baseUrlTwo + 'listCheckout?id=' + userId);
@@ -73,45 +76,45 @@ export class TripService {
     return this.httpClient.get<GetResponseTrip>(this.baseUrl + 'search/getTripsDoneLastMonth?userId=' + userId);
   }
 
-  public getStationTrip(id:number): Observable<Station> {
-    return this.httpClient.get<Station>(this.baseUrl + id +'/station');
+  public getStationTrip(id: number): Observable<Station> {
+    return this.httpClient.get<Station>(this.baseUrl + id + '/station');
   }
 
-  public getClassesTrip(id:number): Observable<Classes> {
-    return this.httpClient.get<Classes>(this.baseUrl + id +'/classes');
+  public getClassesTrip(id: number): Observable<Classes> {
+    return this.httpClient.get<Classes>(this.baseUrl + id + '/classes');
   }
 
-  public getHotelTrip(id:number): Observable<Hotel> {
-    return this.httpClient.get<Hotel>(this.baseUrl + id +'/hotel');
+  public getHotelTrip(id: number): Observable<Hotel> {
+    return this.httpClient.get<Hotel>(this.baseUrl + id + '/hotel');
   }
 
-  public getSkiMaterialTrip(id:number): Observable<SkiMaterial> {
-    return this.httpClient.get<SkiMaterial>(this.baseUrl + id +'/skiMaterial');
+  public getSkiMaterialTrip(id: number): Observable<SkiMaterial> {
+    return this.httpClient.get<SkiMaterial>(this.baseUrl + id + '/skiMaterial');
   }
 
-  public getCarRentalTrip(id:number): Observable<CarRental> {
-    return this.httpClient.get<CarRental>(this.baseUrl + id +'/carRental');
+  public getCarRentalTrip(id: number): Observable<CarRental> {
+    return this.httpClient.get<CarRental>(this.baseUrl + id + '/carRental');
   }
 
-  public putTrip(id:number, userId: number, stationId: number, hotelId: number, classesId: number, skiMaterialId: number, carRentalId: number, cartId: number): Observable<any>{
+  public putTrip(id: number, userId: number, stationId: number, hotelId: number, classesId: number, skiMaterialId: number, carRentalId: number, cartId: number): Observable<any> {
     return this.httpClient.put<any>(this.baseUrlTwo + 'updateTrip?id=' + id + '&userId=' + userId + '&stationId=' + stationId + '&hotelId=' + hotelId + '&classesId=' + classesId + '&skiMaterialId=' + skiMaterialId + '&carRentalId=' + carRentalId + '&cartId=' + cartId, null);
   }
 
-  public putTripToCheckout(idTrip:number): Observable<any> {
+  public putTripToCheckout(idTrip: number): Observable<any> {
     return this.httpClient.put<any>(this.baseUrlTwo + 'updateTripToCheckout/' + idTrip, null);
 
   }
 
-  public putTripWithPayment(paymentId:number, idTrip:number): Observable<any> {
+  public putTripWithPayment(paymentId: number, idTrip: number): Observable<any> {
     return this.httpClient.put<any>(this.baseUrlTwo + 'updateTripPaymentDone?paymentId=' + paymentId + '&tripId=' + idTrip, null);
 
   }
 
-  public newTrip(tripDto: TripDto): Observable<any>{
+  public newTrip(tripDto: TripDto): Observable<any> {
     return this.httpClient.post<any>(this.baseUrlTwo + 'create', tripDto);
   }
 
-  public deleteTrip(idTrip: number) : Observable<any>{
+  public deleteTrip(idTrip: number): Observable<any> {
     return this.httpClient.delete<any>(this.baseUrlTwo + 'delete/' + idTrip);
   }
 }

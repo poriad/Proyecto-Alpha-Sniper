@@ -13,16 +13,16 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class ContactComponent implements OnInit {
   faDownload = faDownload;
@@ -31,33 +31,38 @@ export class ContactComponent implements OnInit {
   submitted = false;
   submittedJob = false;
 
-  SERVER_URL = "http://192.168.1.134:8082/files/uploadFile";
-  //SERVER_URL = "http://localhost:8082/snowyduneservice/files/uploadFile";
-  
+  SERVER_URL = "http://localhost:8082/files/uploadFile";
 
-  constructor(private formBuilder: FormBuilder,private toastr: ToastrService, private emailService: EmailService, private httpClient: HttpClient) { }
+  //SERVER_URL = "http://192.168.1.134:8082/files/uploadFile";
+
+  //SERVER_URL = "http://localhost:8082/snowyduneservice/files/uploadFile";
+
+  //SERVER_URL = "http://iesalixar.ddns.net:9095/snowyduneservice/files/uploadFile";
+
+
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private emailService: EmailService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
 
     this.jobForm = this.formBuilder.group({
       name: ['', Validators.required],
-      surName:['',[Validators.required]],
-      email: ['', Validators.required],
+      surName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       cv: ['', [Validators.required, requiredFileType('pdf')]]
     });
 
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
-      description:['',[Validators.required,Validators.minLength(30)]]
+      email: ['', [Validators.required, Validators.email]],
+      description: ['', [Validators.required, Validators.minLength(30)]]
     });
-    
+
   }
 
   get f() { return this.contactForm.controls; }
   get fj() { return this.jobForm.controls; }
 
-  onSubmit(){
+  onSubmit() {
 
     this.submitted = true;
 
@@ -68,10 +73,10 @@ export class ContactComponent implements OnInit {
     let emailForm = this.contactForm.get('email').value;
     let commentForm = this.contactForm.get('description').value;
 
-    let contact = <ContactForm>  {
+    let contact = <ContactForm>{
       "name": nameForm,
-      "email" : emailForm,
-      "comment": commentForm 
+      "email": emailForm,
+      "comment": commentForm
     }
 
     this.emailService.postEmailContact(contact).subscribe(
@@ -87,8 +92,8 @@ export class ContactComponent implements OnInit {
     this.submitted = false;
   }
 
-  onSubmitCV(){
-    
+  onSubmitCV() {
+
     this.submittedJob = true;
 
     if (this.jobForm.invalid) {
@@ -99,24 +104,24 @@ export class ContactComponent implements OnInit {
     let email = this.jobForm.get('email').value;
     let filename = this.jobForm.get('cv').value;
 
-    
+
 
     const formData = new FormData();
     formData.append('file', this.jobForm.get('cv').value);
-    formData.append('name',this.jobForm.get('name').value);
-    formData.append('email',this.jobForm.get('email').value);
+    formData.append('name', this.jobForm.get('name').value);
+    formData.append('email', this.jobForm.get('email').value);
 
     this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
       (res) => {
         console.log(filename);
         this.jobForm.reset();
-      this.toastr.success('Su curriculum se ha enviado correctamente', 'Curriculum', {
-        timeOut: 3000,
-      });
-          
+        this.toastr.success('Su curriculum se ha enviado correctamente', 'Curriculum', {
+          timeOut: 3000,
+        });
+
       },
       (err) => console.log(err),
- 
+
     );
 
     this.submittedJob = false;

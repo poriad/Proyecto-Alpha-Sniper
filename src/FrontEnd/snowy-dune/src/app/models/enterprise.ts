@@ -5,7 +5,7 @@ export class Enterprise {
     activity: string;
     location: string;
     enterprisePhone: string;
-    enterpriseEmail:string;
+    enterpriseEmail: string;
 
     constructor(nomComercial: string,
         nif: string,
@@ -13,13 +13,13 @@ export class Enterprise {
         activity: string,
         location: string,
         enterprisePhone: string,
-        enterpriseEmail:string){
-            this.nomComercial = nomComercial;
-            this.nif = nif;
-            this.cnae = cnae;
-            this.activity = activity;
-            this.location = location;
-            this.enterprisePhone = enterprisePhone;
-            this.enterpriseEmail = enterpriseEmail;
+        enterpriseEmail: string) {
+        this.nomComercial = nomComercial;
+        this.nif = nif;
+        this.cnae = cnae;
+        this.activity = activity;
+        this.location = location;
+        this.enterprisePhone = enterprisePhone;
+        this.enterpriseEmail = enterpriseEmail;
     }
 }

@@ -1,199 +1,221 @@
 <app-navigation></app-navigation>
 
-<div  @fade class="container-fluid fondo">
-    <div class="row">
-        <div class="col-12 mt-4 mt-sm-5 ">
-            <div class="row">
-  
-                <div class="col-12 pt-3 pb-4 text-center ">
-            
-                  <h1 class="h1 pb-4 pb-sm-4">MATERIAL DE SKI</h1>
-                  <hr class="hr" />
-                </div>
-                
-              </div>
-
-              <div class="row pb-4">
-                <div class="col-12">
-                  <div class="row">
-                    <div class="col-12 col-md-6 col-xl-2 my-auto">
-                      <h3 class="h4 text-center">Filtros</h3>
-                      
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-2 pt-3">
-                      <h3 class="h4 text-center">Búsqueda</h3>
-                  <input
-                      class="form-control search mx-auto"
-                      type="text"
-                      name="search"
-                      [(ngModel)]="searchText"
-                      autocomplete="off"
-                      placeholder="Busca un servicio de alquiler..."
-                    />
-                  </div>
-                  <div class="col-12 col-md-6 offset-xl-1 col-xl-2">
-                    <div class="form-group">
-                      <h3 class="h4 text-center pt-3">Precio</h3>
-                      <select (change)="updateSkiMaterialPriceSelect($event.target.value)" class="form-control mx-auto">
-                      <option selected="true" value="0">Rango de precios...</option>
-                        <option value="1">Menos de 30 €</option>
-                        <option value="2">31 - 60 €</option>
-                        <option value="3">61 - 100 €</option>
-                        <option value="4">101 - 200 €</option>
-                        <option value="5">+ 201 €</option>
-                      </select>
-                    </div>
-                    </div>
-                </div>
-              </div>
-              </div>
-              
-              <div class="row pb-5 pt-4 align-content-center">
-                <div  *ngFor="let skiMaterial of skiMaterials | filter: searchText" class="col-12 col-sm-6 col-md col-lg-3 mb-5">
-                  <div class="card mx-auto">
-                    <div class="img-color purple-gradient">
-                      <img
-                        class="card-img-top"
-                        src="{{ skiMaterial.urlImages }}"
-                        alt="Card image cap"
-                      />
-                    </div>
-                    <div class="card-body mx-auto">
-                      <h5 class="card-title text-center">{{ skiMaterial.name }}</h5>
-                      <p class="card-text text-center">
-                        {{ skiMaterial.location }}, {{ skiMaterial.country }}
-                      </p>
-                      <p class="card-text text-center">
-                        <strong>Precio</strong> - {{ skiMaterial.priceDay }} €/hora
-                      </p>
-                      <div class="row">
-                        <div class="col-12 col-xl-6 text-center">
-                          <button mat-raised-button
-                            color="primary"
-                              id="btnReturn"
-                              data-toggle="modal"
-                              [attr.data-target]="'#'+ skiMaterial.id"
-                              (click) = "loadComments(skiMaterial.id)"
-                            >
-                            DETALLES
-                            </button>
-                        </div>
-                          <div class="col-12 col-xl-6 mt-3 mt-xl-0 text-center">
-                            <button mat-raised-button
-                            color="primary"
-                              id="btnReturn"
-                              class="ml-xl-3"
-                              data-toggle="modal"
-                              (click) = "validateInfo(skiMaterial.name,skiMaterial.id)"
-                            >
-                            ELEGIR
-                            </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              
-              <div class="row pt-3">
-                 
-                  <div class="d-none d-sm-block col-sm  text-center">
-                    <button mat-raised-button
-                    color="primary"
-                      id="btnReturn"
-                      data-toggle="modal"
-                      (click) = "backToClasses()"
-                    >
-                      VOLVER
-                    </button>
-                  </div>
-              
-                  <div class="col mb-3 mb-sm-0 d-flex justify-content-center">
-                    <ngb-pagination [(page)]="thePageNumber"
-                    [pageSize] ="thePageSize"
-                    [collectionSize]= "theTotalElements"
-                    [maxSize] = 5
-                    [boundaryLinks]="true"
-                    (pageChange) = loadSkiMaterial()>
-              
-                    </ngb-pagination>
-                  </div>
-
-                  <div class="d-sm-none col-12 mb-4 text-center">
-                    <button mat-raised-button
-                    color="primary"
-                      id="btnReturn"
-                      data-toggle="modal"
-                      (click) = "backToClasses()"
-                    >
-                      VOLVER
-                    </button>
-                  </div>
-
-                  <div class="col-12 col-sm mb-4 mb-sm-0 text-center">
-                    <button mat-raised-button
-                    color="primary"
-                      id="btnReturn"
-                      data-toggle="modal"
-                      (click) = "continueToCarRental()"
-                    >
-                      CONTINUAR
-                    </button>
-                  </div>
-              </div>
-
-
-
+<div @fade class="container-fluid fondo">
+  <div class="row">
+    <div class="col-12 mt-4 mt-sm-5">
+      <div class="row">
+        <div class="col-12 pt-3 pb-4 text-center">
+          <h1 class="h1 pb-4 pb-sm-4">MATERIAL DE SKI</h1>
+          <hr class="hr" />
         </div>
-    </div>
-</div>
+      </div>
 
-<div *ngFor="let skiMaterial of skiMaterials" class="modal fade" id="{{skiMaterial.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <img src="{{skiMaterial.urlImages}}" alt="" class="img-fluid imagen-modal">
-          <h5 class="modal-title" id="exampleModalLongTitle">{{skiMaterial.name}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+      <div class="row pb-4">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-md-6 col-xl-2 my-auto">
+              <h3 class="h4 text-center">Filtros</h3>
+            </div>
+            <div class="col-12 col-md-6 col-xl-2 pt-3">
+              <h3 class="h4 text-center">Búsqueda</h3>
+              <input
+                class="form-control search mx-auto"
+                type="text"
+                name="search"
+                [(ngModel)]="searchText"
+                autocomplete="off"
+                placeholder="Busca un servicio de alquiler..."
+              />
+            </div>
+            <div class="col-12 col-md-6 offset-xl-1 col-xl-2">
+              <div class="form-group">
+                <h3 class="h4 text-center pt-3">Precio</h3>
+                <select
+                  (change)="updateSkiMaterialPriceSelect($event.target.value)"
+                  class="form-control mx-auto"
+                >
+                  <option selected="true" value="0">Rango de precios...</option>
+                  <option value="1">Menos de 30 €</option>
+                  <option value="2">31 - 60 €</option>
+                  <option value="3">61 - 100 €</option>
+                  <option value="4">101 - 200 €</option>
+                  <option value="5">+ 201 €</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pb-5 pt-4 align-content-center">
+        <div
+          *ngFor="let skiMaterial of skiMaterials | filter: searchText"
+          class="col-12 col-sm-6 col-md col-lg-3 mb-5"
+        >
+          <div class="card mx-auto">
+            <div class="img-color purple-gradient">
+              <img
+                class="card-img-top"
+                src="{{ skiMaterial.urlImages }}"
+                alt="Card image cap"
+              />
+            </div>
+            <div class="card-body mx-auto">
+              <h5 class="card-title text-center">{{ skiMaterial.name }}</h5>
+              <p class="card-text text-center">
+                {{ skiMaterial.location }}, {{ skiMaterial.country }}
+              </p>
+              <p class="card-text text-center">
+                <strong>Precio</strong> - {{ skiMaterial.priceDay }} €/hora
+              </p>
+              <div class="row">
+                <div class="col-12 col-xl-6 text-center">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    id="btnReturn"
+                    data-toggle="modal"
+                    [attr.data-target]="'#' + skiMaterial.id"
+                    (click)="loadComments(skiMaterial.id)"
+                  >
+                    DETALLES
+                  </button>
+                </div>
+                <div class="col-12 col-xl-6 mt-3 mt-xl-0 text-center">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    id="btnReturn"
+                    class="ml-xl-3"
+                    data-toggle="modal"
+                    (click)="validateInfo(skiMaterial.name, skiMaterial.id)"
+                  >
+                    ELEGIR
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+        <div class="d-none d-sm-block col-sm text-center">
+          <button
+            mat-raised-button
+            color="primary"
+            id="btnReturn"
+            data-toggle="modal"
+            (click)="backToClasses()"
+          >
+            VOLVER
           </button>
         </div>
-        <div class="modal-body">
-          <div class="row h-auto">
-          <div class="col-12 col-md-7 pt-2 text-justify">
-            <div class="col d-md-none">
-              
-              <h2 class="h2 text-center pt-3">DESCRIPCIÓN</h2>
-              <hr class="hr2">
-            </div>
-            <p class="pt-3">{{skiMaterial.description}}</p>
-             <br>
-             <p><strong>- Precio por día/persona:</strong>  {{skiMaterial.priceDay}} €</p> 
-             <p><strong>- Contacto:</strong> {{skiMaterial.email}} | {{ skiMaterial.phone }}</p> 
-          </div>
-          <div class="col-12 col-md-5 comentarios my-auto text-center ">
-            
-            <h2 class="h2 pt-3">Últimos Comentarios</h2>
-            <hr class="hr2">
-            <div *ngFor="let comment of comments; let i = index">
-              <span class="persona">{{ user[i] }} - {{ comment.date }}</span>
-              <p class="text-center mx-auto py-2">{{comment.comment}}</p>
-            </div>
-            
-          </div>
+
+        <div class="col mb-3 mb-sm-0 d-flex justify-content-center">
+          <ngb-pagination
+            [(page)]="thePageNumber"
+            [pageSize]="thePageSize"
+            [collectionSize]="theTotalElements"
+            [maxSize]="5"
+            [boundaryLinks]="true"
+            (pageChange)="loadSkiMaterial()"
+          >
+          </ngb-pagination>
         </div>
+
+        <div class="d-sm-none col-12 mb-4 text-center">
+          <button
+            mat-raised-button
+            color="primary"
+            id="btnReturn"
+            data-toggle="modal"
+            (click)="backToClasses()"
+          >
+            VOLVER
+          </button>
         </div>
-        <div class="modal-footer  d-none d-md-block">
-          <div class="col ">
-            <hr class="hr2">
-            <h2 class="h2">DESCRIPCIÓN</h2>
-          </div>
-          <div class="col text-center ">
-            
-          </div>
+
+        <div class="col-12 col-sm mb-4 mb-sm-0 text-center">
+          <button
+            mat-raised-button
+            color="primary"
+            id="btnReturn"
+            data-toggle="modal"
+            (click)="continueToCarRental()"
+          >
+            CONTINUAR
+          </button>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
+
+<div
+  *ngFor="let skiMaterial of skiMaterials"
+  class="modal fade"
+  id="{{ skiMaterial.id }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img
+          src="{{ skiMaterial.urlImages }}"
+          alt=""
+          class="img-fluid imagen-modal"
+        />
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          {{ skiMaterial.name }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row h-auto">
+          <div class="col-12 col-md-7 pt-2 text-justify">
+            <div class="col d-md-none">
+              <h2 class="h2 text-center pt-3">DESCRIPCIÓN</h2>
+              <hr class="hr2" />
+            </div>
+            <p class="pt-3">{{ skiMaterial.description }}</p>
+            <br />
+            <p>
+              <strong>- Precio por día/persona:</strong>
+              {{ skiMaterial.priceDay }} €
+            </p>
+            <p>
+              <strong>- Contacto:</strong> {{ skiMaterial.email }} |
+              {{ skiMaterial.phone }}
+            </p>
+          </div>
+          <div class="col-12 col-md-5 comentarios my-auto text-center">
+            <h2 class="h2 pt-3">Últimos Comentarios</h2>
+            <hr class="hr2" />
+            <div *ngFor="let comment of comments; let i = index">
+              <span class="persona">{{ user[i] }} - {{ comment.date }}</span>
+              <p class="text-center mx-auto py-2">{{ comment.comment }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer d-none d-md-block">
+        <div class="col">
+          <hr class="hr2" />
+          <h2 class="h2">DESCRIPCIÓN</h2>
+        </div>
+        <div class="col text-center"></div>
+      </div>
+    </div>
+  </div>
+</div>

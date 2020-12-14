@@ -1,111 +1,110 @@
 <div class="row">
-    <p class="marca-uno w-100 text-center pb-1"></p>
-    <div class="col-12">
-      <h3 class="h3 pb-3 pt-4 text-center">ACTIVACIÓN DE SERVICIOS. Estaciones</h3>
-      <hr class="hr2" />
-    </div>
-    <div class="col-12">
-      <input
-        class="form-control search mx-auto"
-        type="text"
-        name="search"
-        [(ngModel)]="searchText"
-        autocomplete="off"
-        placeholder="Busca por coincidencias en el campo..."
-      />
-    </div>
-    <div
-      class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto"
-    >
-      <table class="table table-striped text-center">
-        <thead>
-          <tr>
-            <th
-              scope="col"
-              *ngFor="let header of header"
-              (click)="updateOrderListStation(header.id)"
-            >
-              {{ header.title }}
-            </th>
-            
-            <th scope="col">Ver Detalle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="
-              let resort of resorts | filter: searchText"
-          >
-            <td>{{ resort.name }}</td>
-            <td>{{ resort.location }}</td>
-            <td>{{ resort.country }}</td>
-            <td>
-              <button
-                class="btn btn-station"
-                data-toggle="modal"
-                [attr.data-target]="'#resort' + resort.id"
-              >
-                Información
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-12 d-flex justify-content-center">
-      <ngb-pagination
-        [(page)]="thePageNumber"
-        [pageSize]="thePageSize"
-        [collectionSize]="theTotalElements"
-        [maxSize]="5"
-        [boundaryLinks]="true"
-        (pageChange)="orderStationList()"
-      >
-      </ngb-pagination>
-    </div>
-   
+  <p class="marca-uno w-100 text-center pb-1"></p>
+  <div class="col-12">
+    <h3 class="h3 pb-3 pt-4 text-center">
+      ACTIVACIÓN DE SERVICIOS. Estaciones
+    </h3>
+    <hr class="hr2" />
   </div>
-  
+  <div class="col-12">
+    <input
+      class="form-control search mx-auto"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+      autocomplete="off"
+      placeholder="Busca por coincidencias en el campo..."
+    />
+  </div>
   <div
-  *ngFor="let resort of resorts" 
-  class="modal fade"
-    id="resort{{resort.id}}"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-    #closebutton
+    class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pt-4 pb-4 table-responsive mx-auto"
   >
-    <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="col-11">
-            <h3 class="h3 pb-1 pt-4 text-center">Solicitud de Servicio -  {{ resort.name }}</h3>
-            <hr class="hr3" />
-            <h4 class="h4 pb-1 pt-4 text-center">
-              Activación y borrado de Servicio
-            </h4>
-          </div>
-        
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            #closebutton
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th
+            scope="col"
+            *ngFor="let header of header"
+            (click)="updateOrderListStation(header.id)"
           >
-            <span aria-hidden="true">&times;</span>
-          </button>
+            {{ header.title }}
+          </th>
+
+          <th scope="col">Ver Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resort of resorts | filter: searchText">
+          <td>{{ resort.name }}</td>
+          <td>{{ resort.location }}</td>
+          <td>{{ resort.country }}</td>
+          <td>
+            <button
+              class="btn btn-station"
+              data-toggle="modal"
+              [attr.data-target]="'#resort' + resort.id"
+            >
+              Información
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-12 d-flex justify-content-center">
+    <ngb-pagination
+      [(page)]="thePageNumber"
+      [pageSize]="thePageSize"
+      [collectionSize]="theTotalElements"
+      [maxSize]="5"
+      [boundaryLinks]="true"
+      (pageChange)="orderStationList()"
+    >
+    </ngb-pagination>
+  </div>
+</div>
+
+<div
+  *ngFor="let resort of resorts"
+  class="modal fade"
+  id="resort{{ resort.id }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  #closebutton
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-11">
+          <h3 class="h3 pb-1 pt-4 text-center">
+            Solicitud de Servicio - {{ resort.name }}
+          </h3>
+          <hr class="hr3" />
+          <h4 class="h4 pb-1 pt-4 text-center">
+            Activación y borrado de Servicio
+          </h4>
         </div>
-        <div class="modal-body">
-          <form >
+
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          #closebutton
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
           <div class="row">
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-              
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="firstName" class="d-block">Nombre</label>
-              
-              <input #name
+
+              <input
+                #name
                 type="text"
                 value="{{ resort.name }}"
                 placeholder="Nombre..."
@@ -114,10 +113,11 @@
                 readonly
               />
             </div>
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Localización</label>
-              <input #location
+              <input
+                #location
                 type="text"
                 placeholder="Email..."
                 name="email"
@@ -126,10 +126,11 @@
                 readonly
               />
             </div>
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Pais</label>
-              <input #country
+              <input
+                #country
                 type="text"
                 placeholder="Dirección..."
                 name="direccion"
@@ -140,7 +141,8 @@
             </div>
             <div class="col-12 col-sm-6 text-center pt-3 pb-4">
               <label for="username" class="d-block">Fecha Apertura</label>
-              <input #openingDate
+              <input
+                #openingDate
                 type="date"
                 placeholder="Nombre de usuario..."
                 name="email"
@@ -149,9 +151,10 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
               <label for="date" class="d-block">Fecha Cierre</label>
-              <input #closingDate
+              <input
+                #closingDate
                 type="text"
                 placeholder="Email..."
                 name="password"
@@ -162,21 +165,24 @@
             </div>
             <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
               <label for="email" class="d-block">Imagen</label>
-              <img src="{{ resort.urlImages }}" alt="" class="img-fluid">
-  
-              <input #id
-              type="hidden"
-              placeholder="Teléfono..."
-              class="input pt-2"
-              value="{{ resort.id }}" visibility="hidden" style="width: 0;"
+              <img src="{{ resort.urlImages }}" alt="" class="img-fluid" />
+
+              <input
+                #id
+                type="hidden"
+                placeholder="Teléfono..."
+                class="input pt-2"
+                value="{{ resort.id }}"
+                visibility="hidden"
+                style="width: 0"
               />
             </div>
 
- 
             <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4">
               <label for="lastName" class="d-block">Descripción</label>
-              <textarea #description
-                rows="5" 
+              <textarea
+                #description
+                rows="5"
                 type="text"
                 name="lastName"
                 value="{{ resort.description }}"
@@ -185,36 +191,35 @@
               ></textarea>
             </div>
 
-  
             <div class="col-12">
               <hr class="hr3" />
             </div>
-            
+
             <div class="col-12 col-sm-6 text-center pt-3 pb-3">
-              <button mat-raised-button
-            color="primary"
-              class="btnReturn"
-              data-toggle="modal"
-              (click)="updateStatusStation(resort.id)"
-            >
-            Activar
-            </button>
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="updateStatusStation(resort.id)"
+              >
+                Activar
+              </button>
             </div>
             <div class="col-12 col-sm-6 text-center pt-3 pb-3">
-              <button mat-raised-button
-            color="primary"
-              class="btnReturn"
-              data-toggle="modal"
-              (click)="deleteStation(resort.id)"
-            >
-            Borrar
-            </button>
-  
-            
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="deleteStation(resort.id)"
+              >
+                Borrar
+              </button>
             </div>
           </div>
         </form>
-        </div>
       </div>
     </div>
   </div>
+</div>

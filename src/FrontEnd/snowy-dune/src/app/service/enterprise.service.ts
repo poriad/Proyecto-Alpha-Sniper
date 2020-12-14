@@ -9,11 +9,11 @@ import { NewUser } from '../models/new-user';
 })
 export class EnterpriseService {
 
-  //baseUrl = "http://localhost:8082/api/user/";
-  //baseUrlUser = "http://localhost:8082/user/";
-  
-  baseUrl = "http://192.168.1.134:8082/api/user/";
-  baseUrlUser = "http://192.168.1.134:8082/user/";
+  baseUrl = "http://localhost:8082/api/user/";
+  baseUrlUser = "http://localhost:8082/user/";
+
+  //baseUrl = "http://192.168.1.134:8082/api/user/";
+  //baseUrlUser = "http://192.168.1.134:8082/user/";
 
   //baseUrl = "http://localhost:8082/snowyduneservice/api/user/";
   //baseUrlUser = "http://localhost:8082/snowyduneservice/user/";
@@ -23,11 +23,11 @@ export class EnterpriseService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public putUserDetailsToEnterprise(enterprise: Enterprise, id:number): Observable<any>{
+  public putUserDetailsToEnterprise(enterprise: Enterprise, id: number): Observable<any> {
     return this.httpClient.put<any>(this.baseUrlUser + 'updateToEnterprise/' + id, enterprise);
   }
 
-  public putUserToEnterprise(userId:number): Observable<any>{
+  public putUserToEnterprise(userId: number): Observable<any> {
     return this.httpClient.put<any>(this.baseUrlUser + 'updateStatusEnterprise/' + userId, null);
   }
 

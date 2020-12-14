@@ -1,329 +1,320 @@
 <app-navigation></app-navigation>
 
 <div @fade class="container-fluid fondo">
-    
-    <div class="row">
-        <div class="d-none d-md-block col"></div>
-        <div class="col pt-5 text-center">
-            <h1 class="h1 pb-4 pb-sm-4 pt-3" >FINALIZAR COMPRA</h1>
-            <hr class="hr">
-            
-        </div>
+  <div class="row">
+    <div class="d-none d-md-block col"></div>
+    <div class="col pt-5 text-center">
+      <h1 class="h1 pb-4 pb-sm-4 pt-3">FINALIZAR COMPRA</h1>
+      <hr class="hr" />
+    </div>
 
-        <div class="col-12 col-md pt-5 text-center my-auto">
-            <button mat-raised-button
-                        color="primary"
-                        class="example-delete-tab-button"
-                        [disabled]="trips.length === 0 || detailsForm.invalid || (stripeFrom.invalid && checkboxInfo == 'creditCard') || checkboxInfo == ''"
-                        routerLink="/Checkout"
-                        (click) = "onSubmit()">
-                        REALIZAR PAGO
-            </button>
-        </div>    </div>
-    <div class="row pt-5">
-        <div class="col-md-1 d-none d-md-block"></div>
-        <div class="col-11 ml-3 ml-md-0 col-md-10 col-xl-4 text-center formulario-detalles mb-5 mb-md-4 pl-0 pr-0">
-        <p class="marca-uno w-100 text-center pb-1 pr-0"></p>
-            <div class="col-12">
-            <h3 class="h3 pt-5 pb-2">DETALLES DE FACTURACIÓN</h3>
-            <hr class="hr2 mt-4">
-            <h3 class="h4 pt-2 pb-2">Rellena los datos para poder finalizar la compra.</h3>
-        </div>
-        <form class="example-form" [formGroup]="detailsForm" id="search-form">
+    <div class="col-12 col-md pt-5 text-center my-auto">
+      <button
+        mat-raised-button
+        color="primary"
+        class="example-delete-tab-button"
+        [disabled]="
+          trips.length === 0 ||
+          detailsForm.invalid ||
+          (stripeFrom.invalid && checkboxInfo == 'creditCard') ||
+          checkboxInfo == ''
+        "
+        routerLink="/Checkout"
+        (click)="onSubmit()"
+      >
+        REALIZAR PAGO
+      </button>
+    </div>
+  </div>
+  <div class="row pt-5">
+    <div class="col-md-1 d-none d-md-block"></div>
+    <div
+      class="col-11 ml-3 ml-md-0 col-md-10 col-xl-4 text-center formulario-detalles mb-5 mb-md-4 pl-0 pr-0"
+    >
+      <p class="marca-uno w-100 text-center pb-1 pr-0"></p>
+      <div class="col-12">
+        <h3 class="h3 pt-5 pb-2">DETALLES DE FACTURACIÓN</h3>
+        <hr class="hr2 mt-4" />
+        <h3 class="h4 pt-2 pb-2">
+          Rellena los datos para poder finalizar la compra.
+        </h3>
+      </div>
+      <form class="example-form" [formGroup]="detailsForm" id="search-form">
         <div class="row pt-2">
-            
-            <div class="col-12 col-sm">
-                <mat-form-field class="">
-                    <mat-label class="input-headline">Nombre</mat-label>
-                    <input type="text" matInput formControlName="name"
-                           >
-                    <mat-hint>Introduce un nombre</mat-hint>
+          <div class="col-12 col-sm">
+            <mat-form-field class="">
+              <mat-label class="input-headline">Nombre</mat-label>
+              <input type="text" matInput formControlName="name" />
+              <mat-hint>Introduce un nombre</mat-hint>
+              <mat-error *ngIf="errorHandling('name', 'required')">
+                El nombre es <strong>Obligatorio</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field>
+              <mat-label class="input-headline">Apellidos</mat-label>
+              <input type="text" matInput formControlName="lastName" />
+              <mat-hint>Introduce los apellidos</mat-hint>
+              <mat-error *ngIf="errorHandling('lastName', 'required')">
+                Los apellidos son <strong>Obligatorios</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row pt-md-4">
+          <div class="col-12 col-sm">
+            <mat-form-field>
+              <mat-label class="input-headline"
+                >Nombre Empresa (Opcional)</mat-label
+              >
+              <input type="text" matInput formControlName="enterprise" />
+              <mat-hint>Introduce el nombre de la empresa</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field class="input-headline">
+              <mat-label>NIF/CIF</mat-label>
+              <input type="text" matInput formControlName="nif" />
+              <mat-hint>Introduce los apellidos</mat-hint>
+              <mat-error *ngIf="errorHandling('nif', 'required')">
+                El NIF/CIF es <strong>Obligatorio</strong>
+              </mat-error>
+              <mat-error *ngIf="errorHandling('nif', 'pattern')">
+                El NIF/CIF debe tener una longitud de 8 dígitos y 1 letra
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row pt-md-4">
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field class="input-headline">
+              <mat-label>Dirección</mat-label>
+              <input type="text" matInput formControlName="address" />
+              <mat-hint>Introduce una dirección</mat-hint>
+              <mat-error *ngIf="errorHandling('address', 'required')">
+                La dirección es <strong>Obligatoria</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row pt-md-4">
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field class="input-headline">
+              <mat-label>Dirección Adicional</mat-label>
+              <input type="text" matInput formControlName="addressAditional" />
+              <mat-hint>Introduce datos adicionales</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field class="input-headline">
+              <mat-label>País</mat-label>
+              <mat-select formControlName="country">
+                <mat-option
+                  [value]="countries"
+                  *ngFor="let countries of countries"
+                  >{{ countries }}
+                </mat-option>
+              </mat-select>
+              <mat-hint>Introduce un país</mat-hint>
+              <mat-error *ngIf="errorHandling('country', 'required')">
+                El país es <strong>Obligatorio</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row pt-md-4">
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field class="input-headline">
+              <mat-label>Código Postal</mat-label>
+              <input type="text" matInput formControlName="zipCode" />
+              <mat-hint>Introduce un código postal</mat-hint>
+              <mat-error *ngIf="errorHandling('zipCode', 'required')">
+                El código postal es <strong>Obligatorio</strong>
+              </mat-error>
+              <mat-error *ngIf="errorHandling('zipCode', 'pattern')">
+                El código postal son 5 <strong>Dígitos</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field class="input-headline">
+              <mat-label>Provincia</mat-label>
+              <input type="text" matInput formControlName="province" />
+              <mat-hint>Introduce la provincia</mat-hint>
+              <mat-error *ngIf="errorHandling('province', 'required')">
+                La provincia es <strong>Obligatoria</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row pt-md-4 pb-5">
+          <div class="col-12 col-sm pl-0 pr-0">
+            <mat-form-field>
+              <mat-label class="input-headline">Teléfono (Opcional)</mat-label>
+              <input type="text" matInput formControlName="phone" />
+              <mat-hint>Introduce una provincia</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm pl-0 pr-0 pt-2">
+            <mat-form-field class="input-headline">
+              <mat-label>Email</mat-label>
+              <input type="text" matInput formControlName="email" />
+              <mat-hint>Introduce un email</mat-hint>
+              <mat-error *ngIf="errorHandling('email', 'required')">
+                El email es <strong>Obligatorio</strong>
+              </mat-error>
+              <mat-error *ngIf="errorHandling('email', 'email')">
+                El email no es <strong>Válido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-12 col-lg-10 offset-lg-1 col-xl-6 ml-xl-5">
+      <div class="row prueba">
+        <div class="col-12 text-center" *ngIf="trips.length === 0">
+          <h2 class="h4 text-center pt-5 pb-3">No existe ningun viaje.</h2>
+          <p class="p text-center pt-3 pb-2">
+            Si quieres realizar el pago de un viaje, primero añade el viaje y
+            posteriormente realiza el checkout aquí.
+          </p>
+          <img
+            src="./assets/Navbar/snowyDune2.png"
+            class="img-fluid img-snowy-dos pb-4 mx-auto"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="row prueba pt-3" *ngIf="trips.length > 0">
+        <div class="col-6">
+          <h3 class="h6 pl-5">VIAJE</h3>
+          <hr class="hr2 pb-2" />
+        </div>
+        <div class="col-6 text-right">
+          <h3 class="h6 pr-5">PRECIO VIAJE</h3>
+          <hr class="hr2" />
+        </div>
+        <div class="col-12">
+          <div class="row" *ngFor="let trip of trips">
+            <div class="col-6">
+              <p class="pl-5">{{ trip.station.name }}</p>
+            </div>
+
+            <div class="col-6 text-right">
+              <p class="mr-5">{{ trip.totalPrice }} €</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <hr class="hr2" />
+          <h3 class="h6 pl-5">TOTAL</h3>
+        </div>
+        <div class="col-6 pb-3">
+          <hr class="hr2" />
+          <h3 class="h6 text-right pr-5">{{ totalPrice }} €</h3>
+        </div>
+        <div class="col-12 tbancaria text-center">
+          <h3 class="h5-white pt-2 pb-2">LISTADO VIAJE/S</h3>
+        </div>
+      </div>
+
+      <div class="row prueba mt-4 text-center mb-4 mb-xl-0">
+        <div class="col">
+          <div class="row pl-0 pr-0 mr-0 ml-0">
+            <div class="col-12">
+              <input
+                #creditCard
+                type="radio"
+                name="tb"
+                value="creditCard"
+                (click)="checkbox(creditCard.value)"
+                style="position: absolute; top: 27.5%; left: 1%"
+              />
+              <label class="h4 pt-4 pb-2">TARJETA DE CRÉDITO</label>
+              <hr class="hr2 mt-4" />
+            </div>
+            <div class="col-12">
+              <p class="pt-4 pb-2">Paga con tu tarjeta de crédito o débito</p>
+            </div>
+            <div class="col-12">
+              <form
+                class="example-form"
+                [formGroup]="stripeFrom"
+                id="search-form"
+              >
+                <div class="col-12 pl-0 pr-0">
+                  <mat-form-field class="input-headline mb-4">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" matInput formControlName="name" />
+                    <mat-hint>Introduce el nombre del titular</mat-hint>
                     <mat-error *ngIf="errorHandling('name', 'required')">
-                        El nombre es <strong>Obligatorio</strong>
-                     </mat-error>
-                  </mat-form-field>
-            </div>
-            <div class="col-12 col-sm pl-0 pr-0">
-                <mat-form-field>
-                    <mat-label class="input-headline">Apellidos</mat-label>
-                    <input type="text" matInput formControlName="lastName"
-                           >
-                    <mat-hint>Introduce los apellidos</mat-hint>
-                    <mat-error *ngIf="errorHandling('lastName', 'required')">
-                        Los apellidos son <strong>Obligatorios</strong>
-                     </mat-error>
-                  </mat-form-field>
-            </div>
-        </div>
-    <div class="row pt-md-4 ">
-        <div class="col-12 col-sm">
-            <mat-form-field>
-                <mat-label class="input-headline">Nombre Empresa (Opcional)</mat-label>
-                <input type="text" matInput formControlName="enterprise"
-                       >
-                <mat-hint>Introduce el nombre de la empresa</mat-hint>
-            </mat-form-field>
-            </div>
-            <div class="col-12 col-sm pl-0 pr-0">
-                <mat-form-field class="input-headline">
-                    <mat-label>NIF/CIF</mat-label>
-                    <input type="text" matInput formControlName="nif"
-                           >
-                    <mat-hint>Introduce los apellidos</mat-hint>
-                    <mat-error *ngIf="errorHandling('nif', 'required')">
-                        El NIF/CIF es <strong>Obligatorio</strong>
-                     </mat-error>
-                  </mat-form-field>
-        </div>
-    </div>
-
-    <div class="row pt-md-4">
-        <div class="col-12 col-sm pl-0 pr-0">
-            <mat-form-field class="input-headline">
-                <mat-label>Dirección</mat-label>
-                <input type="text" matInput formControlName="address"
-                       >
-                <mat-hint>Introduce una dirección</mat-hint>
-                <mat-error *ngIf="errorHandling('address', 'required')">
-                    La dirección es <strong>Obligatoria</strong>
-                </mat-error>
-            </mat-form-field>
-            </div>
-    </div>
-    
-
-    <div class="row pt-md-4">
-        <div class="col-12 col-sm pl-0 pr-0">
-            <mat-form-field class="input-headline">
-                <mat-label>Dirección Adicional</mat-label>
-                <input type="text" matInput formControlName="addressAditional"
-                       >
-                <mat-hint>Introduce datos adicionales</mat-hint>
-            </mat-form-field>
-            </div>
-            <div class="col-12 col-sm pl-0 pr-0">
-                <mat-form-field class="input-headline">
-                    <mat-label>País</mat-label>
-                    <mat-select formControlName="country">
-                        <mat-option [value]="countries" *ngFor="let countries of countries">{{countries}}
-                        </mat-option>
-                     </mat-select>
-                    <mat-hint>Introduce un país</mat-hint>
-                    <mat-error *ngIf="errorHandling('country', 'required')">
-                        El país es <strong>Obligatorio</strong>
+                      El nombre es <strong>Obligatorio</strong>
                     </mat-error>
-                </mat-form-field>
+                  </mat-form-field>
+                  <div id="card-element" class="field pb-4"></div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <div class="row pt-md-4">
-        <div class="col-12 col-sm pl-0 pr-0">
-            <mat-form-field class="input-headline">
-                <mat-label>Código Postal</mat-label>
-                <input type="text" matInput formControlName="zipCode"
-                       >
-                <mat-hint>Introduce un código postal</mat-hint>
-                <mat-error *ngIf="errorHandling('zipCode', 'required')">
-                    El código postal es <strong>Obligatorio</strong>
-                </mat-error>
-            </mat-form-field>
-            </div>
-            <div class="col-12 col-sm pl-0 pr-0">
-                <mat-form-field class="input-headline">
-                    <mat-label>Provincia</mat-label>
-                    <input type="text" matInput formControlName="province"
-                           >
-                    <mat-hint>Introduce la provincia</mat-hint>
-                    <mat-error *ngIf="errorHandling('province', 'required')">
-                        La provincia es <strong>Obligatoria</strong>
-                    </mat-error>
-                </mat-form-field>
-            
+        <div class="col tbancaria">
+          <div class="col-12">
+            <input
+              #transfer
+              value="transfer"
+              type="radio"
+              name="tb"
+              (click)="checkbox(transfer.value)"
+              style="position: absolute; top: 27.5%"
+            />
+            <label for="tb" class="h5-white pt-4 pb-2"
+              >TRANSFERENCIA BANCARIA</label
+            >
+            <hr class="hr2-white mt-4" />
+          </div>
+          <div class="col-12">
+            <p class="p-white">Paga realizando una transferencia bancaria</p>
+          </div>
+          <div class="col-12">
+            <h4 class="p-white pt-4">SnowyDune SL</h4>
+          </div>
+          <div class="col-12 pt-4 pb-4">
+            <h4 class="p-white">IBAN ES6621000418401234567891</h4>
+          </div>
         </div>
-    </div>
 
-    <div class="row pt-md-4 pb-5">
-        <div class="col-12 col-sm pl-0 pr-0">
-            <mat-form-field>
-                <mat-label class="input-headline">Teléfono (Opcional)</mat-label>
-                <input type="text" matInput formControlName="phone"
-                       >
-                <mat-hint>Introduce una provincia</mat-hint>
-            </mat-form-field>
+        <div class="col">
+          <div class="row">
+            <div class="col-12">
+              <input
+                #paypal
+                value="paypal"
+                type="radio"
+                name="tb"
+                class="paypal-checkbox"
+                disabled
+                (click)="checkbox(paypal.value)"
+              />
+              <label class="h4 pt-4 pb-2">PAYPAL</label>
+              <hr class="hr2 mt-4" />
             </div>
-            <div class="col-12 col-sm pl-0 pr-0 pt-2">
-                <mat-form-field class="input-headline">
-                    <mat-label>Email</mat-label>
-                    <input type="text" matInput formControlName="email"
-                           >
-                    <mat-hint>Introduce un email</mat-hint>
-                    <mat-error *ngIf="errorHandling('email', 'required')">
-                        El email es <strong>Obligatorio</strong>
-                    </mat-error>
-                </mat-form-field>
+            <div class="col-12 pb-2">
+              <p class="pt-4 pb-2">Paga mediante PayPal</p>
+            </div>
+            <div class="col pb-4">
+              <img src="./assets/Checkout/paypal.JPG" alt="" class="paypal" />
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</form>
+  </div>
 </div>
-
-        <div class="col-12 col-lg-10 offset-lg-1 col-xl-6 ml-xl-5">
-            <div class="row prueba">
-                <div class="col-12 text-center" *ngIf="trips.length === 0">
-                    <h2 class="h4 text-center pt-5 pb-3">No existe ningun viaje. </h2>
-                    <p class="p text-center pt-3 pb-2">Si quieres realizar el pago de un viaje, primero añade el viaje y posteriormente realiza el checkout aquí. </p>
-                    <img src="./assets/Navbar/snowyDune2.png" class="img-fluid img-snowy-dos pb-4 mx-auto" alt="">
-                </div>
-            </div>
-            <div class="row prueba pt-3" *ngIf="trips.length > 0">
-                <div class="col-6">
-                    <h3 class="h6 pl-5"> VIAJE</h3>
-                    <hr class="hr2 pb-2">
-                </div>
-                <div class="col-6 text-right">
-                    <h3 class="h6 pr-5"> PRECIO VIAJE</h3>
-                    <hr class="hr2">
-                </div>
-                <div class="col-12">
-                    <div class="row" *ngFor="let trip of trips">
-                        <div class="col-6">
-                            <p class="pl-5">{{ trip.station.name }}</p>
-                        </div>
-
-                        <div class="col-6 text-right">
-                            <p class="mr-5">{{ trip.totalPrice }} €</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-6">
-                    <hr class="hr2">
-                    <h3 class="h6 pl-5"> TOTAL</h3>
-                </div>
-                <div class="col-6 pb-3">
-                    <hr class="hr2">
-                    <h3 class="h6 text-right pr-5">{{totalPrice}} €</h3>
-                </div>
-                <div class="col-12 tbancaria text-center">
-                    <h3 class="h5-white pt-2 pb-2">LISTADO VIAJE/S</h3>
-                </div>
-            </div>
-
-            <div class="row prueba mt-4 text-center mb-4 mb-xl-0 ">
-                <div class="col">
-                    <div class="row pl-0 pr-0 mr-0 ml-0">
-                        <div class="col-12">
-                            <input #creditCard type="radio" name="tb" value="creditCard" (click)="checkbox(creditCard.value)" style="position: absolute; top:27.5%; left:1%">
-                            <label class="h4 pt-4 pb-2">TARJETA DE CRÉDITO</label>
-                            <hr class="hr2 mt-4">
-                        </div>
-                        <div class="col-12">
-                            <p class=" pt-4 pb-2">Paga con tu tarjeta de crédito o débito</p>
-                        </div>
-                        <div class="col-12">
-                        <form class="example-form" [formGroup]="stripeFrom" id="search-form">
-                            <div class="col-12 pl-0 pr-0">
-                                <mat-form-field class="input-headline mb-4">
-                                    <mat-label>Nombre</mat-label>
-                                    <input type="text" matInput formControlName="name"
-                                           >
-                                    <mat-hint>Introduce el nombre del titular</mat-hint>
-                                    <mat-error *ngIf="errorHandling('name', 'required')">
-                                        El nombre es <strong>Obligatorio</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                                <div id="card-element" class="field pb-4"></div>
-
-                               
-                                       
-                            </div>
-                        
-                    
-                    </form>
-                </div>
-
-                    </div>
-                </div>
-                <div class="col tbancaria">
-                    <div class="col-12">
-                        <input #transfer value="transfer" type="radio" name="tb" (click)="checkbox(transfer.value)" style="position: absolute; top:27.5%">
-                        <label for="tb" class="h5-white pt-4 pb-2">TRANSFERENCIA BANCARIA</label>
-                        <hr class="hr2-white mt-4">
-                    </div>
-                    <div class="col-12">
-                        <p class="p-white">
-                            Paga realizando una transferencia bancaria
-                        </p>
-                    </div>
-                    <div class="col-12">
-                        <h4 class="p-white pt-4">
-                            SnowyDune SL
-                        </h4>
-                    </div>
-                    <div class="col-12 pt-4 pb-4">
-                        <h4 class="p-white">
-                            IBAN ES6621000418401234567891
-                        </h4>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="row">
-                        <div class="col-12">
-                            <input #paypal value="paypal" type="radio" name="tb" class="paypal-checkbox" (click)="checkbox(paypal.value)">
-                            <label class="h4 pt-4 pb-2">PAYPAL</label>
-                            <hr class="hr2 mt-4">
-                        </div>
-                        <div class="col-12 pb-2">
-                            <p class=" pt-4 pb-2">Paga mediante PayPal</p>
-                        </div>
-                        <div class="col pb-4">
-                            <img src="./assets/Checkout/paypal.JPG" alt="" class="paypal">
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            
-        </div>
-    </div>
-</div>
-
-
-<!--
-<form novalidate [formGroup] = "stripeFrom">
-
-
-    <input type="text" formControlName="name">
-    <div id="card-element" class="field"></div>
-    <button (click) = "buy()">
-
-        BUY
-    </button>
-
-
-</form>
-
-<div class="col-12 col-sm pl-0 pr-0">
-    <mat-form-field>
-        <mat-label>Caducidad</mat-label>
-        <input type="text" matInput formControlName="expiration"
-               >
-        
-        <mat-error *ngIf="errorHandlingCard('expiration', 'required')">
-            La caducidad es <strong>Obligatoria</strong>
-        </mat-error>
-    </mat-form-field>
-</div>
-<div class="col-12 col-sm pl-0 pr-0">
-    <mat-form-field>
-        <mat-label>CVV</mat-label>
-        <input type="text" matInput formControlName="cvv"
-               >
-        
-        <mat-error *ngIf="errorHandlingCard('cvv', 'required')">
-            El CVV es <strong>Obligatorio</strong>
-        </mat-error>
-    </mat-form-field>
-</div>
--->

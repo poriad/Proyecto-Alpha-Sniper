@@ -25,16 +25,16 @@ import { TripService } from 'src/app/service/trip.service';
   styleUrls: ['./cart.component.css'],
   encapsulation: ViewEncapsulation.None,
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class CartComponent implements OnInit {
   color = "accent";
@@ -51,71 +51,71 @@ export class CartComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  constructor(private toastr: ToastrService,private router: Router,
-    private enterpriseService: EnterpriseService,  private tripService: TripService,public dialogo: MatDialog,private formBuilder: FormBuilder) { }
+  constructor(private toastr: ToastrService, private router: Router,
+    private enterpriseService: EnterpriseService, private tripService: TripService, public dialogo: MatDialog, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getAllTrips();
   }
 
-  removeTab(index: number,idTrip: number) {
+  removeTab(index: number, idTrip: number) {
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de borrar el viaje?`
+      data: `¿Estás seguro de borrar el viaje?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
-        
-        this.tripService.deleteTrip(idTrip).subscribe(
-          data => {
-            this.trips.splice(index, 1);
-            this.toastr.success('Viaje Borrado Correctamente', 'Borrado', {
-              timeOut: 3000,
-            });
-          }
-        )
-      }
-    })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+
+          this.tripService.deleteTrip(idTrip).subscribe(
+            data => {
+              this.trips.splice(index, 1);
+              this.toastr.success('Viaje Borrado Correctamente', 'Borrado', {
+                timeOut: 3000,
+              });
+            }
+          )
+        }
+      })
   }
 
-  addTrip(id: number){
-    var element = <HTMLInputElement> document.getElementById("btnTrip");
-    
+  addTrip(id: number) {
+    var element = <HTMLInputElement>document.getElementById("btnTrip");
+
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de añadir el viaje al proceso de checkout?`
+      data: `¿Estás seguro de añadir el viaje al proceso de checkout?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
 
-        this.tripService.putTripToCheckout(id).subscribe(
-          data => {
-            this.toastr.success('Viaje añadido al heckout', 'Viaje', {
-              timeOut: 3000,
-            });
-            this.getAllTrips();
-          }
-        
-        );
-      }
-    })
+          this.tripService.putTripToCheckout(id).subscribe(
+            data => {
+              this.toastr.success('Viaje añadido al heckout', 'Viaje', {
+                timeOut: 3000,
+              });
+              this.getAllTrips();
+            }
+
+          );
+        }
+      })
 
   }
 
-  goToCheckout(){
-    
-        this.router.navigate(['/Checkout']);
-      
-  
+  goToCheckout() {
+
+    this.router.navigate(['/Checkout']);
+
+
   }
 
-  getAllTrips(){
+  getAllTrips() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
         this.userId = data.id;
-        
+
         this.tripService.getTripsInCartController(this.userId).subscribe(
           data => {
             this.trips = data;
@@ -125,7 +125,7 @@ export class CartComponent implements OnInit {
               this.totalPrice = this.totalPrice + element.totalPrice;
 
             });
-            
+
           }
         )
 

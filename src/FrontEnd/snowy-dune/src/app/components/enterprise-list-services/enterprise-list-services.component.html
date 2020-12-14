@@ -1,168 +1,172 @@
-<div class="row" *ngIf="(!hasServiceSkiMaterial && !hasServiceHotel && !hasServiceCarRental && !hasServiceClasses)">
+<div
+  class="row"
+  *ngIf="
+    !hasServiceSkiMaterial &&
+    !hasServiceHotel &&
+    !hasServiceCarRental &&
+    !hasServiceClasses
+  "
+>
   <p class="marca-uno w-100 text-center pb-1"></p>
   <div class="col-12">
-    
     <h3 class="h3 pb-3 pt-4 text-center">LISTADO DE SERVICIOS ACTIVOS</h3>
     <hr class="hr2" />
   </div>
   <div class="col-12">
-    <h1 class="h4 pb-4 pb-sm-4 pt-3 pt-3 pl-3 pr-3">No existen servicios activos, procede a registrar la empresa y posteriormente el servicio.</h1>
-</div>
-</div>
-
-
-<div class="row" *ngIf="(hasServiceSkiMaterial || hasServiceHotel || hasServiceCarRental || hasServiceClasses)">
-    <p class="marca-uno w-100 text-center pb-1"></p>
-    <div class="col-12">
-      <h3 class="h3 pb-3 pt-4 text-center">LISTADO DE SERVICIOS ACTIVOS</h3>
-      <hr class="hr2" />
-    </div>
-    <div class="col-12">
-      <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-3 pr-3">En la siguiente lista puedes ver el listado de servicios activos de tu empresa.</h1>
+    <h1 class="h4 pb-4 pb-sm-4 pt-3 pt-3 pl-3 pr-3">
+      No existen servicios activos, procede a registrar la empresa y
+      posteriormente el servicio.
+    </h1>
   </div>
-    <div class="col-12">
-      <input
-        class="form-control search mx-auto"
-        type="text"
-        name="search"
-        [(ngModel)]="searchText"
-        autocomplete="off"
-        placeholder="Busca por coincidencias en el campo..."
-      />
-    </div>
-    <div
-      class="col-10 pt-4 pb-4 table-responsive mx-auto"
-    >
-      <table class="table table-striped text-center">
-        <thead>
-          <tr>
-            <th
-              scope="col"
-              *ngFor="let header of header"
-            >
-              {{ header.title }}
-            </th>
-            
-            <th scope="col">Ver Detalle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="
-              let skiMaterial of skiMaterial | filter: searchText"
-          >
-            <td>{{ skiMaterial.name }}</td>
-            <td>{{ skiMaterial.location }}</td>
-            <td>{{ skiMaterial.phone }}</td>
-            <td>
-              <button
-                class="btn btn-station"
-                data-toggle="modal"
-                [attr.data-target]="'#skiMaterial' + skiMaterial.id"
-              >
-                Información
-              </button>
-            </td>
-          </tr>
-
-          <tr
-            *ngFor="
-              let hotel of hotel | filter: searchText"
-          >
-            <td>{{ hotel.name }}</td>
-            <td>{{ hotel.location }}</td>
-            <td>{{ hotel.phone }}</td>
-            <td>
-              <button
-                class="btn btn-station"
-                data-toggle="modal"
-                [attr.data-target]="'#hotel' + hotel.id"
-              >
-                Información
-              </button>
-            </td>
-          </tr>
-
-          <tr
-            *ngFor="
-              let carRental of carRental | filter: searchText"
-          >
-            <td>{{ carRental.name }}</td>
-            <td>{{ carRental.location }}</td>
-            <td>{{ carRental.phone }}</td>
-            <td>
-              <button
-                class="btn btn-station"
-                data-toggle="modal"
-                [attr.data-target]="'#carRental' + carRental.id"
-              >
-                Información
-              </button>
-            </td>
-          </tr>
-
-          <tr
-            *ngFor="
-              let classes of classes | filter: searchText"
-          >
-            <td>{{ classes.name }}</td>
-            <td>{{ classes.location }}</td>
-            <td>{{ classes.phone }}</td>
-            <td>
-              <button
-                class="btn btn-station"
-                data-toggle="modal"
-                [attr.data-target]="'#classes' + classes.id"
-              >
-                Información
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 </div>
-  
-  <div
-  *ngFor="let skiMaterial of skiMaterial" 
+
+<div
+  class="row"
+  *ngIf="
+    hasServiceSkiMaterial ||
+    hasServiceHotel ||
+    hasServiceCarRental ||
+    hasServiceClasses
+  "
+>
+  <p class="marca-uno w-100 text-center pb-1"></p>
+  <div class="col-12">
+    <h3 class="h3 pb-3 pt-4 text-center">LISTADO DE SERVICIOS ACTIVOS</h3>
+    <hr class="hr2" />
+  </div>
+  <div class="col-12">
+    <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-3 pr-3">
+      En la siguiente lista puedes ver el listado de servicios activos de tu
+      empresa.
+    </h1>
+  </div>
+  <div class="col-12">
+    <input
+      class="form-control search mx-auto"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+      autocomplete="off"
+      placeholder="Busca por coincidencias en el campo..."
+    />
+  </div>
+  <div class="col-10 pt-4 pb-4 table-responsive mx-auto">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col" *ngFor="let header of header">
+            {{ header.title }}
+          </th>
+
+          <th scope="col">Ver Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let skiMaterial of skiMaterial | filter: searchText">
+          <td>{{ skiMaterial.name }}</td>
+          <td>{{ skiMaterial.location }}</td>
+          <td>{{ skiMaterial.phone }}</td>
+          <td>
+            <button
+              class="btn btn-station"
+              data-toggle="modal"
+              [attr.data-target]="'#skiMaterial' + skiMaterial.id"
+            >
+              Información
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngFor="let hotel of hotel | filter: searchText">
+          <td>{{ hotel.name }}</td>
+          <td>{{ hotel.location }}</td>
+          <td>{{ hotel.phone }}</td>
+          <td>
+            <button
+              class="btn btn-station"
+              data-toggle="modal"
+              [attr.data-target]="'#hotel' + hotel.id"
+            >
+              Información
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngFor="let carRental of carRental | filter: searchText">
+          <td>{{ carRental.name }}</td>
+          <td>{{ carRental.location }}</td>
+          <td>{{ carRental.phone }}</td>
+          <td>
+            <button
+              class="btn btn-station"
+              data-toggle="modal"
+              [attr.data-target]="'#carRental' + carRental.id"
+            >
+              Información
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngFor="let classes of classes | filter: searchText">
+          <td>{{ classes.name }}</td>
+          <td>{{ classes.location }}</td>
+          <td>{{ classes.phone }}</td>
+          <td>
+            <button
+              class="btn btn-station"
+              data-toggle="modal"
+              [attr.data-target]="'#classes' + classes.id"
+            >
+              Información
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div
+  *ngFor="let skiMaterial of skiMaterial"
   class="modal fade"
-    id="skiMaterial{{skiMaterial.id}}"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-    #closebutton
-  >
-    <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="col-11">
-            <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Servicio de Material -  {{ skiMaterial.name }}</h3>
-            <hr class="hr3" />
-            <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
-              Activación y borrado de Servicio
-            </h4>
-          </div>
-        
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            #closebutton
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+  id="skiMaterial{{ skiMaterial.id }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  #closebutton
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-11">
+          <h3 class="h3 pl-4 pb-1 pt-4 pl-5">
+            Servicio de Material - {{ skiMaterial.name }}
+          </h3>
+          <hr class="hr3" />
+          <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
+            Activación y borrado de Servicio
+          </h4>
         </div>
-        <div class="modal-body">
-          <form >
+
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          #closebutton
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
           <div class="row">
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-              
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="firstName" class="d-block">Nombre</label>
-              
-              <input #name
+
+              <input
+                #name
                 type="text"
                 value="{{ skiMaterial.name }}"
                 placeholder="Nombre..."
@@ -171,10 +175,11 @@
                 readonly
               />
             </div>
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Localización</label>
-              <input #location
+              <input
+                #location
                 type="text"
                 placeholder="Email..."
                 name="email"
@@ -183,10 +188,11 @@
                 readonly
               />
             </div>
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Precio</label>
-              <input #address
+              <input
+                #address
                 type="text"
                 placeholder="Dirección..."
                 name="direccion"
@@ -195,9 +201,10 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6  text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
               <label for="username" class="d-block">Teléfono</label>
-              <input #username
+              <input
+                #username
                 type="text"
                 placeholder="Nombre de usuario..."
                 name="email"
@@ -206,9 +213,10 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6  text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
               <label for="email" class="d-block">Email</label>
-              <input #password
+              <input
+                #password
                 type="text"
                 placeholder="Email..."
                 name="password"
@@ -219,20 +227,24 @@
             </div>
             <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
               <label for="email" class="d-block">Imagen</label>
-              <img src="{{ skiMaterial.urlImages }}" alt="" class="img-fluid">
-  
-              <input #id
-              type="hidden"
-              placeholder="Teléfono..."
-              name="phone"
-              class="input pt-2"
-              value="{{ skiMaterial.id }}" visibility="hidden" style="width: 0;"
+              <img src="{{ skiMaterial.urlImages }}" alt="" class="img-fluid" />
+
+              <input
+                #id
+                type="hidden"
+                placeholder="Teléfono..."
+                name="phone"
+                class="input pt-2"
+                value="{{ skiMaterial.id }}"
+                visibility="hidden"
+                style="width: 0"
               />
             </div>
 
-            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4">
               <label for="lastName" class="d-block">Descripción</label>
-              <textarea #description
+              <textarea
+                #description
                 type="text"
                 rows="5"
                 placeholder="Apellidos..."
@@ -242,72 +254,72 @@
                 readonly
               ></textarea>
             </div>
-  
+
             <div class="col-12">
               <hr class="hr3" />
             </div>
-            
+
             <div class="col-12 text-center pt-3 pb-3">
-              <button mat-raised-button
-                    color="primary"
-                      class="btnReturn"
-                      data-toggle="modal"
-                      (click)="deleteSkiMaterial(skiMaterial.id)"
-                    >
-                    Solicitar Borrado
-                </button>
-            
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="deleteSkiMaterial(skiMaterial.id)"
+              >
+                Solicitar Borrado
+              </button>
             </div>
           </div>
         </form>
-        </div>
       </div>
     </div>
   </div>
+</div>
 
+<!-- HOTEL MODAL -->
 
-  <!-- HOTEL MODAL -->
-
-  <div
-  *ngFor="let hotel of hotel" 
+<div
+  *ngFor="let hotel of hotel"
   class="modal fade"
-    id="hotel{{hotel.id}}"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-    #closebutton
-  >
-    <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="col-11">
-            <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Servicio de Hotel -  {{ hotel.name }}</h3>
-            <hr class="hr3" />
-            <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
-              Activación y borrado de Servicio
-            </h4>
-          </div>
-        
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            #closebutton
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+  id="hotel{{ hotel.id }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  #closebutton
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-11">
+          <h3 class="h3 pl-4 pb-1 pt-4 pl-5">
+            Servicio de Hotel - {{ hotel.name }}
+          </h3>
+          <hr class="hr3" />
+          <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
+            Activación y borrado de Servicio
+          </h4>
         </div>
-        <div class="modal-body">
-          <form >
+
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          #closebutton
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
           <div class="row">
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-              
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="firstName" class="d-block">Nombre</label>
-              
-              <input #name
+
+              <input
+                #name
                 type="text"
                 value="{{ hotel.name }}"
                 placeholder="Nombre..."
@@ -317,9 +329,10 @@
               />
             </div>
 
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Localización</label>
-              <input #location
+              <input
+                #location
                 type="text"
                 placeholder="Email..."
                 name="email"
@@ -328,10 +341,11 @@
                 readonly
               />
             </div>
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Precio</label>
-              <input #address
+              <input
+                #address
                 type="text"
                 placeholder="Dirección..."
                 name="direccion"
@@ -340,9 +354,10 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6   text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
               <label for="username" class="d-block">Teléfono</label>
-              <input #username
+              <input
+                #username
                 type="text"
                 placeholder="Nombre de usuario..."
                 name="email"
@@ -351,9 +366,10 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6   text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
               <label for="email" class="d-block">Email</label>
-              <input #password
+              <input
+                #password
                 type="text"
                 placeholder="Email..."
                 name="password"
@@ -364,18 +380,22 @@
             </div>
             <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
               <label for="email" class="d-block">Imagen</label>
-              <img src="{{ hotel.urlImages }}" alt="" class="img-fluid">
-  
-              <input #id
-              type="hidden"
-              name="phone"
-              class="input pt-2"
-              value="{{ hotel.id }}" visibility="hidden" style="width: 0;"
+              <img src="{{ hotel.urlImages }}" alt="" class="img-fluid" />
+
+              <input
+                #id
+                type="hidden"
+                name="phone"
+                class="input pt-2"
+                value="{{ hotel.id }}"
+                visibility="hidden"
+                style="width: 0"
               />
             </div>
-            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4">
               <label for="lastName" class="d-block">Descripción</label>
-              <textarea #description
+              <textarea
+                #description
                 type="text"
                 rows="5"
                 placeholder="Apellidos..."
@@ -385,142 +405,149 @@
                 readonly
               ></textarea>
             </div>
-  
+
             <div class="col-12">
               <hr class="hr3" />
             </div>
-            
+
             <div class="col-12 text-center pt-3 pb-3">
-              <button mat-raised-button
-              color="primary"
+              <button
+                mat-raised-button
+                color="primary"
                 class="btnReturn"
                 data-toggle="modal"
                 (click)="deleteHotel(hotel.id)"
               >
-              Solicitar Borrado
-          </button>
-  
-            
+                Solicitar Borrado
+              </button>
             </div>
           </div>
         </form>
-        </div>
       </div>
     </div>
   </div>
+</div>
 
+<!-- Classes MODAL -->
 
-   <!-- Classes MODAL -->
+<div
+  *ngFor="let class of classes"
+  class="modal fade"
+  id="classes{{ class.id }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  #closebutton
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-11">
+          <h3 class="h3 pl-4 pb-1 pt-4 text-center">
+            Servicio de Clases - {{ class.name }}
+          </h3>
+          <hr class="hr3" />
+          <h4 class="h4 pl-4 pb-1 pt-4 text-center">
+            Activación y borrado de Servicio
+          </h4>
+        </div>
 
-   <div
-   *ngFor="let class of classes" 
-   class="modal fade"
-     id="classes{{class.id}}"
-     tabindex="-1"
-     role="dialog"
-     aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true"
-     #closebutton
-   >
-     <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-           <div class="col-11">
-             <h3 class="h3 pl-4 pb-1 pt-4 text-center">Servicio de Clases -  {{ class.name }}</h3>
-             <hr class="hr3" />
-             <h4 class="h4 pl-4 pb-1 pt-4 text-center">
-               Activación y borrado de Servicio
-             </h4>
-           </div>
-         
-           <button
-             type="button"
-             class="close"
-             data-dismiss="modal"
-             aria-label="Close"
-             #closebutton
-           >
-             <span aria-hidden="true">&times;</span>
-           </button>
-         </div>
-         <div class="modal-body">
-           <form >
-           <div class="row">
-             
-             <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
-               
-               <label for="firstName" class="d-block">Nombre</label>
-               
-               <input #name
-                 type="text"
-                 value="{{ class.name }}"
-                 placeholder="Nombre..."
-                 name="firstName"
-                 class="input pt-2"
-                 readonly
-               />
-             </div>
-             <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
-               <label for="email" class="d-block">Localización</label>
-               <input #location
-                 type="text"
-                 placeholder="Email..."
-                 name="email"
-                 class="input pt-2"
-                 value="{{ class.location }}"
-                 readonly
-               />
-             </div>
-             
-             <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
-               <label for="email" class="d-block">Precio</label>
-               <input #address
-                 type="text"
-                 placeholder="Dirección..."
-                 name="direccion"
-                 class="input pt-2"
-                 value="{{ class.priceHour }}"
-                 readonly
-               />
-             </div>
-             <div class="col-12 col-sm-6  text-center pt-3 pb-4">
-               <label for="username" class="d-block">Teléfono</label>
-               <input #username
-                 type="text"
-                 placeholder="Nombre de usuario..."
-                 name="email"
-                 class="input pt-2"
-                 value="{{ class.phone }}"
-                 readonly
-               />
-             </div>
-             <div class="col-12 col-sm-6 text-center pt-3 pb-4 ">
-               <label for="email" class="d-block">Email</label>
-               <input #password
-                 type="text"
-                 placeholder="Email..."
-                 name="password"
-                 class="input pt-2"
-                 value="{{ class.email }}"
-                 readonly
-               />
-             </div>
-             <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
-               <label for="email" class="d-block">Imagen</label>
-               <img src="{{ class.urlImages }}" alt="" class="img-fluid">
-   
-               <input #id
-               type="hidden"
-               placeholder="Teléfono..."
-               name="phone"
-               class="input pt-2"
-               value="{{ class.id }}" visibility="hidden" style="width: 0;"
-               />
-             </div>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          #closebutton
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
+              <label for="firstName" class="d-block">Nombre</label>
 
-             <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+              <input
+                #name
+                type="text"
+                value="{{ class.name }}"
+                placeholder="Nombre..."
+                name="firstName"
+                class="input pt-2"
+                readonly
+              />
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Localización</label>
+              <input
+                #location
+                type="text"
+                placeholder="Email..."
+                name="email"
+                class="input pt-2"
+                value="{{ class.location }}"
+                readonly
+              />
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Precio</label>
+              <input
+                #address
+                type="text"
+                placeholder="Dirección..."
+                name="direccion"
+                class="input pt-2"
+                value="{{ class.priceHour }}"
+                readonly
+              />
+            </div>
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
+              <label for="username" class="d-block">Teléfono</label>
+              <input
+                #username
+                type="text"
+                placeholder="Nombre de usuario..."
+                name="email"
+                class="input pt-2"
+                value="{{ class.phone }}"
+                readonly
+              />
+            </div>
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Email</label>
+              <input
+                #password
+                type="text"
+                placeholder="Email..."
+                name="password"
+                class="input pt-2"
+                value="{{ class.email }}"
+                readonly
+              />
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Imagen</label>
+              <img src="{{ class.urlImages }}" alt="" class="img-fluid" />
+
+              <input
+                #id
+                type="hidden"
+                placeholder="Teléfono..."
+                name="phone"
+                class="input pt-2"
+                value="{{ class.id }}"
+                visibility="hidden"
+                style="width: 0"
+              />
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4">
               <label for="lastName" class="d-block">Descripción</label>
-              <textarea #description
+              <textarea
+                #description
                 type="text"
                 rows="5"
                 placeholder="Apellidos..."
@@ -530,172 +557,178 @@
                 readonly
               ></textarea>
             </div>
-   
-             <div class="col-12">
-               <hr class="hr3" />
-             </div>
-             
-             <div class="col-12 text-center pt-3 pb-3">
-              <button mat-raised-button
-              color="primary"
+
+            <div class="col-12">
+              <hr class="hr3" />
+            </div>
+
+            <div class="col-12 text-center pt-3 pb-3">
+              <button
+                mat-raised-button
+                color="primary"
                 class="btnReturn"
                 data-toggle="modal"
                 (click)="deleteClass(class.id)"
               >
-              Solicitar Borrado
-          </button>
-   
-             
-             </div>
-           </div>
-         </form>
-         </div>
-       </div>
-     </div>
-   </div>
-
- <!-- CarRental MODAL -->
-
- <div
- *ngFor="let carRental of carRental" 
- class="modal fade"
-   id="carRental{{carRental.id}}"
-   tabindex="-1"
-   role="dialog"
-   aria-labelledby="exampleModalCenterTitle"
-   aria-hidden="true"
-   #closebutton
- >
-   <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <div class="col-11">
-           <h3 class="h3 pl-4 pb-1 pt-4 pl-5">Servicio de Vehículos -  {{ carRental.name }}</h3>
-           <hr class="hr3" />
-           <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
-             Activación y borrado de Servicio
-           </h4>
-         </div>
-       
-         <button
-           type="button"
-           class="close"
-           data-dismiss="modal"
-           aria-label="Close"
-           #closebutton
-         >
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         <form >
-         <div class="row">
-           
-           <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-             
-             <label for="firstName" class="d-block">Nombre</label>
-             
-             <input #name
-               type="text"
-               value="{{ carRental.name }}"
-               placeholder="Nombre..."
-               name="firstName"
-               class="input pt-2"
-               readonly
-             />
-           </div>
-
-           <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-             <label for="email" class="d-block">Localización</label>
-             <input #location
-               type="text"
-               placeholder="Email..."
-               name="email"
-               class="input pt-2"
-               value="{{ carRental.location }}"
-               readonly
-             />
-           </div>
-           
-           <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-             <label for="email" class="d-block">Precio</label>
-             <input #address
-               type="text"
-               placeholder="Dirección..."
-               name="direccion"
-               class="input pt-2"
-               value="{{ carRental.price }}"
-               readonly
-             />
-           </div>
-           <div class="col-12 col-sm-6   text-center pt-3 pb-4">
-             <label for="username" class="d-block">Teléfono</label>
-             <input #username
-               type="text"
-               placeholder="Nombre de usuario..."
-               name="email"
-               class="input pt-2"
-               value="{{ carRental.phone }}"
-               readonly
-             />
-           </div>
-           <div class="col-12 col-sm-6  text-center pt-3 pb-4 ">
-             <label for="email" class="d-block">Email</label>
-             <input #password
-               type="text"
-               placeholder="Email..."
-               name="password"
-               class="input pt-2"
-               value="{{ carRental.email }}"
-               readonly
-             />
-           </div>
-           <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
-             <label for="email" class="d-block">Url Imagen</label>
-             <img src="{{ carRental.urlImages }}" alt="" class="img-fluid">
- 
-             <input #id
-             type="hidden"
-             placeholder="Teléfono..."
-             name="phone"
-             class="input pt-2"
-             value="{{ carRental.id }}" visibility="hidden" style="width: 0;"
-             />
-           </div>
-
-           <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
-            <label for="lastName" class="d-block">Descripción</label>
-            <textarea #description
-              type="text"
-              rows="5"
-              placeholder="Apellidos..."
-              name="lastName"
-              value="{{ carRental.description }}"
-              class="textarea pt-2"
-              readonly
-            ></textarea>
+                Solicitar Borrado
+              </button>
+            </div>
           </div>
- 
-           <div class="col-12">
-             <hr class="hr3" />
-           </div>
-           
-           <div class="col-12 text-center pt-3 pb-3">
-            <button mat-raised-button
-            color="primary"
-              class="btnReturn"
-              data-toggle="modal"
-              (click)="deleteCarRental(carRental.id)" 
-            >
-            Solicitar Borrado
-        </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
- 
-           
-           </div>
-         </div>
-       </form>
-       </div>
-     </div>
-   </div>
- </div>
+<!-- CarRental MODAL -->
+
+<div
+  *ngFor="let carRental of carRental"
+  class="modal fade"
+  id="carRental{{ carRental.id }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  #closebutton
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-11">
+          <h3 class="h3 pl-4 pb-1 pt-4 pl-5">
+            Servicio de Vehículos - {{ carRental.name }}
+          </h3>
+          <hr class="hr3" />
+          <h4 class="h4 pl-4 pb-1 pt-4 pl-5">
+            Activación y borrado de Servicio
+          </h4>
+        </div>
+
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          #closebutton
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
+              <label for="firstName" class="d-block">Nombre</label>
+
+              <input
+                #name
+                type="text"
+                value="{{ carRental.name }}"
+                placeholder="Nombre..."
+                name="firstName"
+                class="input pt-2"
+                readonly
+              />
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Localización</label>
+              <input
+                #location
+                type="text"
+                placeholder="Email..."
+                name="email"
+                class="input pt-2"
+                value="{{ carRental.location }}"
+                readonly
+              />
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Precio</label>
+              <input
+                #address
+                type="text"
+                placeholder="Dirección..."
+                name="direccion"
+                class="input pt-2"
+                value="{{ carRental.price }}"
+                readonly
+              />
+            </div>
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
+              <label for="username" class="d-block">Teléfono</label>
+              <input
+                #username
+                type="text"
+                placeholder="Nombre de usuario..."
+                name="email"
+                class="input pt-2"
+                value="{{ carRental.phone }}"
+                readonly
+              />
+            </div>
+            <div class="col-12 col-sm-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Email</label>
+              <input
+                #password
+                type="text"
+                placeholder="Email..."
+                name="password"
+                class="input pt-2"
+                value="{{ carRental.email }}"
+                readonly
+              />
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Url Imagen</label>
+              <img src="{{ carRental.urlImages }}" alt="" class="img-fluid" />
+
+              <input
+                #id
+                type="hidden"
+                placeholder="Teléfono..."
+                name="phone"
+                class="input pt-2"
+                value="{{ carRental.id }}"
+                visibility="hidden"
+                style="width: 0"
+              />
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4">
+              <label for="lastName" class="d-block">Descripción</label>
+              <textarea
+                #description
+                type="text"
+                rows="5"
+                placeholder="Apellidos..."
+                name="lastName"
+                value="{{ carRental.description }}"
+                class="textarea pt-2"
+                readonly
+              ></textarea>
+            </div>
+
+            <div class="col-12">
+              <hr class="hr3" />
+            </div>
+
+            <div class="col-12 text-center pt-3 pb-3">
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="deleteCarRental(carRental.id)"
+              >
+                Solicitar Borrado
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

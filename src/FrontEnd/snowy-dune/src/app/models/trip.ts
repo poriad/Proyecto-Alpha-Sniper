@@ -16,6 +16,6 @@ export class Trip {
     carRental: CarRental;
     skiMaterial: SkiMaterial;
 
-   
+
 
 }

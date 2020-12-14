@@ -1,266 +1,373 @@
 <ng-template #isEnterprise>
-
   <div class="row align-items-center h-100 pt-5">
     <!--<p class="marca-uno w-100 text-center pb-1"></p>-->
-  <div class="col-12 pr-0 text-center">
-    <h3 class="h3 pb-4 text-center">EMPRESA REGISTRADA</h3>
-    <hr class="hr2" />
-    <h1 class="h4-b pl-3 pr-3 pb-4 pt-4 pb-sm-4 text-center">Tu empresa se encuentra registrada en nuestro sistema de forma correcta, si quieres dar de baja la empresa debes solicitad la inactividad de los servicios y una vez inactivos, puedes solicitad la inactividad pulsando aqui:</h1>
-    <button mat-raised-button
-                    color="primary"
-                    class="mb-5 mt-3"
-                      id="btnReturn"
-                      data-toggle="modal"
-                      [disabled]="hasServiceSkiMaterial == true || hasServiceHotel == true || hasServiceClasses == true || hasServiceCarRental == true"
-                      (click)="deleteEnterprise()"
-                    >
-                    Pasar a inactiva
-              </button>
-  
-  </div>
-  <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
-</div>
-
-</ng-template>
-
-<ng-template #isEnterpriseInactive >
-
-  <div class="row align-items-center h-100 pt-5" *ngIf="inactiveEnterprise; else isEnterprise">
-    <!--<p class="marca-uno w-100 text-center pb-1"></p>-->
-  <div class="col-12 pr-0 text-center">
-    <h3 class="h3 pb-4 text-center">EMPRESA INACTIVA O PENDIENTE</h3>
-    <hr class="hr2" />
-    <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">Tu empresa se encuentra en estado inactivo o se encuentra pendiente de aceptación por parte de nuestro equipo, si quieres darla de alta pulsa aquí:</h1>
-    <button mat-raised-button
-                    color="primary"
-                    class="mb-5 mt-3"
-                      id="btnReturn"
-                      data-toggle="modal"
-                      (click)="deleteEnterpriseFromSystem()"
-                    >
-                    Dar de Baja
-              </button>
-  </div>
-  <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
-</div>
-
-</ng-template>
-
-
-<div class="row" *ngIf="!isEnterpriseChk && !inactiveEnterprise; else isEnterpriseInactive">
-    <div class="col-12 text-center pr-0">
-      <h3 class="h3 pb-4 pt-4">REGISTRA TU EMPRESA</h3>
-    </div>
-
-
-    <div class="col-12">
+    <div class="col-12 pr-0 text-center">
+      <h3 class="h3 pb-4 text-center">EMPRESA REGISTRADA</h3>
       <hr class="hr2" />
+      <h1 class="h4-b pl-3 pr-3 pb-4 pt-4 pb-sm-4 text-center">
+        Tu empresa se encuentra registrada en nuestro sistema de forma correcta,
+        si quieres dar de baja la empresa debes solicitad la inactividad de los
+        servicios y una vez inactivos, puedes solicitad la inactividad pulsando
+        aqui:
+      </h1>
+      <button
+        mat-raised-button
+        color="primary"
+        class="mb-5 mt-3"
+        id="btnReturn"
+        data-toggle="modal"
+        [disabled]="
+          hasServiceSkiMaterial == true ||
+          hasServiceHotel == true ||
+          hasServiceClasses == true ||
+          hasServiceCarRental == true
+        "
+        (click)="deleteEnterprise()"
+      >
+        Pasar a inactiva
+      </button>
     </div>
-
-    <div class="col-12">
-        <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-5">¿No has registro aún tu empresa?¿Tienes algún servicio adicional? Registralo aquí</h1>
-    </div>
-
-    <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pb-4 mx-auto">
-        <form [formGroup]="enterpriseForm" class="">
-          <div class="row">
-            <div
-              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-            >
-              <label class="">Nombre Comercial</label>
-              <input
-                class="form-control mx-auto"
-                placeholder="Ej. Snowy SA"
-                formControlName="nomComercial"
-                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['nomComercial'].valid && enterpriseForm.controls['nomComercial'].touched }"
-              />
-    
-              <div *ngIf="f.nomComercial.errors && enterpriseForm.controls['nomComercial'].touched " class="invalid-feedback">
-                <div *ngIf="f.nomComercial.errors.required">
-                  El nombre comercial es Obligatorio
-                </div>
-              </div>
-              <div *ngIf="f.nomComercial.errors && enterpriseForm.controls['nomComercial'].touched " class="invalid-feedback">
-                <div *ngIf="f.nomComercial.errors.minlength">
-                  El nombre comercial debe tener más de 4 caracteres
-                </div>
-              </div>
-              <div *ngIf="f.nomComercial.errors && enterpriseForm.controls['nomComercial'].touched " class="invalid-feedback">
-                <div *ngIf="f.nomComercial.errors.maxlength">
-                  El nombre comercial debe tener menos de 50 caracteres
-                </div>
-              </div>
-            </div>
-    
-            <div
-              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-            >
-              <label class="">NIF</label>
-              <input
-                class="form-control mx-auto"
-                placeholder="Ej. A08001851"
-                formControlName="nif"
-                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['nif'].valid && enterpriseForm.controls['nif'].touched }"
-              />
-    
-              <div *ngIf="f.nif.errors && enterpriseForm.controls['nif'].touched" class="invalid-feedback">
-                <div *ngIf="f.nif.errors.required">
-                  El NIF es Obligatorio
-                </div>
-              </div>
-
-              <div *ngIf="f.nif.errors && enterpriseForm.controls['nif'].touched" class="invalid-feedback">
-                <div *ngIf="f.nif.errors.pattern">
-                  El NIF no es válido
-                </div>
-              </div>
-            </div>
-    
-            <div
-              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-            >
-              <label class="">CNAE</label>
-              <input
-              type="text"
-                class="form-control mx-auto"
-                placeholder="Ej. C101011011"
-                formControlName="cnae"
-                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['cnae'].valid && enterpriseForm.controls['cnae'].touched }"
-              />
-    
-              <div *ngIf="f.cnae.errors && enterpriseForm.controls['cnae'].touched" class="invalid-feedback">
-                <div *ngIf="f.cnae.errors.required">El CNAE es Obligatorio</div>
-              </div>
-
-              <div *ngIf="f.cnae.errors && enterpriseForm.controls['cnae'].touched" class="invalid-feedback">
-                <div *ngIf="f.cnae.errors.pattern">El CNAE no es válido</div>
-              </div>
-            </div>
-    
-            <div
-              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-            >
-              <label class="">Actividad</label>
-              <input
-              type="text"
-                class="form-control mx-auto"
-                placeholder="Ej. Cadena de hoteles"
-                formControlName="activity"
-                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['activity'].valid && enterpriseForm.controls['activity'].touched }"
-              />
-    
-              <div *ngIf="f.activity.errors && enterpriseForm.controls['activity'].touched" class="invalid-feedback">
-                <div *ngIf="f.activity.errors.required">
-                  La actividad es Obligatoria
-                </div>
-              </div>
-              <div *ngIf="f.activity.errors && enterpriseForm.controls['activity'].touched" class="invalid-feedback">
-                <div *ngIf="f.activity.errors.minlength">
-                  La actividad debe tener más de 4 caracteres
-                </div>
-              </div>
-              <div *ngIf="f.activity.errors && enterpriseForm.controls['activity'].touched" class="invalid-feedback">
-                <div *ngIf="f.activity.errors.maxlength">
-                  La actividad debe tener menos de 50 caracteres
-                </div>
-              </div>
-            </div>
-
-            <div
-            class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-          >
-            <label class="">Localización</label>
-
-                <select formControlName="location" id="location" class="form-control mx-auto"
-                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['location'].valid && enterpriseForm.controls['location'].touched }">
-                  <option *ngFor="let country of countries" [value]="country">
-                    {{country}}
-                  </option>
-                </select>
-  
-            <div *ngIf="f.location.errors && enterpriseForm.controls['location'].touched" class="invalid-feedback">
-              <div *ngIf="f.location.errors.required">
-                La localización es Obligatoria
-              </div>
-            </div>
-          </div>
-
-            <div
-              class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
-            >
-              <label class="">Teléfono</label>
-              <input
-                type="text"
-                class="form-control mx-auto"
-                placeholder="Ej. 659009071"
-                formControlName="enterprisePhone"
-                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['enterprisePhone'].valid && enterpriseForm.controls['enterprisePhone'].touched}"
-              />
-    
-              <div
-                *ngIf="f.enterprisePhone.errors && enterpriseForm.controls['enterprisePhone'].touched"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.enterprisePhone.errors.required">
-                  El teléfono es Obligatorio
-                </div>
-              </div>
-
-              <div
-                *ngIf="f.enterprisePhone.errors && enterpriseForm.controls['enterprisePhone'].touched "
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.enterprisePhone.errors.pattern">
-                  El teléfono no es válido
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="col-12 col-lg-12 col-xl-6 pt-3 mx-xl-auto text-center form-group"
-            >
-              <label class="">Email</label>
-              <input
-                type="text"
-                class="form-control mx-auto"
-                placeholder="Ej. hotel@gmail.com"
-                formControlName="enterpriseEmail"
-                [ngClass]="{ 'is-invalid': !enterpriseForm.controls['enterpriseEmail'].valid && enterpriseForm.controls['enterpriseEmail'].touched }"
-              />
-    
-              <div
-                *ngIf="f.enterpriseEmail.errors && enterpriseForm.controls['enterpriseEmail'].touched"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.enterpriseEmail.errors.required">
-                  El email es Obligatorio
-                </div>
-              </div>
-              <div
-                *ngIf="f.enterpriseEmail.errors && enterpriseForm.controls['enterpriseEmail'].touched"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.enterpriseEmail.errors.email">
-                  El email no es válido
-                </div>
-              </div>
-            </div>
-    
-            <div class="col-12 col-md-12  text-center pt-3">
-              <button mat-raised-button
-              color="primary"
-              class="mb-5 mt-3"
-                id="btnReturn"
-                data-toggle="modal"
-                [disabled] = "enterpriseForm.invalid"
-                (click)="onSubmit()"
-              >
-              Registrar
-            </button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-    
+    <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
   </div>
+</ng-template>
+
+<ng-template #isEnterpriseInactive>
+  <div
+    class="row align-items-center h-100 pt-5"
+    *ngIf="inactiveEnterprise; else isEnterprise"
+  >
+    <!--<p class="marca-uno w-100 text-center pb-1"></p>-->
+    <div class="col-12 pr-0 text-center">
+      <h3 class="h3 pb-4 text-center">EMPRESA INACTIVA O PENDIENTE</h3>
+      <hr class="hr2" />
+      <h1 class="h4-b pb-4 pb-sm-4 pl-5 text-center">
+        Tu empresa se encuentra en estado inactivo o se encuentra pendiente de
+        aceptación por parte de nuestro equipo, si quieres darla de alta pulsa
+        aquí:
+      </h1>
+      <button
+        mat-raised-button
+        color="primary"
+        class="mb-5 mt-3"
+        id="btnReturn"
+        data-toggle="modal"
+        (click)="deleteEnterpriseFromSystem()"
+      >
+        Dar de Baja
+      </button>
+    </div>
+    <!--<p class="marca-dos w-100 text-center pb-1"></p>-->
+  </div>
+</ng-template>
+
+<div
+  class="row"
+  *ngIf="!isEnterpriseChk && !inactiveEnterprise; else isEnterpriseInactive"
+>
+  <div class="col-12 text-center pr-0">
+    <h3 class="h3 pb-4 pt-4">REGISTRA TU EMPRESA</h3>
+  </div>
+
+  <div class="col-12">
+    <hr class="hr2" />
+  </div>
+
+  <div class="col-12">
+    <h1 class="h4 pb-4 pb-sm-4 pt-3 pl-5">
+      ¿No has registro aún tu empresa?¿Tienes algún servicio adicional?
+      Registralo aquí
+    </h1>
+  </div>
+
+  <div class="col-10 col-sm-12 pl-sm-5 pr-sm-5 pb-4 mx-auto">
+    <form [formGroup]="enterpriseForm" class="">
+      <div class="row">
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Nombre Comercial</label>
+          <input
+            class="form-control mx-auto"
+            placeholder="Ej. Snowy SA"
+            formControlName="nomComercial"
+            [ngClass]="{
+              'is-invalid':
+                !enterpriseForm.controls['nomComercial'].valid &&
+                enterpriseForm.controls['nomComercial'].touched
+            }"
+          />
+
+          <div
+            *ngIf="
+              f.nomComercial.errors &&
+              enterpriseForm.controls['nomComercial'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.nomComercial.errors.required">
+              El nombre comercial es Obligatorio
+            </div>
+          </div>
+          <div
+            *ngIf="
+              f.nomComercial.errors &&
+              enterpriseForm.controls['nomComercial'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.nomComercial.errors.minlength">
+              El nombre comercial debe tener más de 4 caracteres
+            </div>
+          </div>
+          <div
+            *ngIf="
+              f.nomComercial.errors &&
+              enterpriseForm.controls['nomComercial'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.nomComercial.errors.maxlength">
+              El nombre comercial debe tener menos de 50 caracteres
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">NIF</label>
+          <input
+            class="form-control mx-auto"
+            placeholder="Ej. A08001851"
+            formControlName="nif"
+            [ngClass]="{
+              'is-invalid':
+                !enterpriseForm.controls['nif'].valid &&
+                enterpriseForm.controls['nif'].touched
+            }"
+          />
+
+          <div
+            *ngIf="f.nif.errors && enterpriseForm.controls['nif'].touched"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.nif.errors.required">El NIF es Obligatorio</div>
+          </div>
+
+          <div
+            *ngIf="f.nif.errors && enterpriseForm.controls['nif'].touched"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.nif.errors.pattern">El NIF no es válido</div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">CNAE</label>
+          <input
+            type="text"
+            class="form-control mx-auto"
+            placeholder="Ej. B403"
+            formControlName="cnae"
+            [ngClass]="{
+              'is-invalid':
+                !enterpriseForm.controls['cnae'].valid &&
+                enterpriseForm.controls['cnae'].touched
+            }"
+          />
+
+          <div
+            *ngIf="f.cnae.errors && enterpriseForm.controls['cnae'].touched"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.cnae.errors.required">El CNAE es Obligatorio</div>
+          </div>
+
+          <div
+            *ngIf="f.cnae.errors && enterpriseForm.controls['cnae'].touched"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.cnae.errors.pattern">El CNAE no es válido</div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Actividad</label>
+          <input
+            type="text"
+            class="form-control mx-auto"
+            placeholder="Ej. Cadena de hoteles"
+            formControlName="activity"
+            [ngClass]="{
+              'is-invalid':
+                !enterpriseForm.controls['activity'].valid &&
+                enterpriseForm.controls['activity'].touched
+            }"
+          />
+
+          <div
+            *ngIf="
+              f.activity.errors && enterpriseForm.controls['activity'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.activity.errors.required">
+              La actividad es Obligatoria
+            </div>
+          </div>
+          <div
+            *ngIf="
+              f.activity.errors && enterpriseForm.controls['activity'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.activity.errors.minlength">
+              La actividad debe tener más de 4 caracteres
+            </div>
+          </div>
+          <div
+            *ngIf="
+              f.activity.errors && enterpriseForm.controls['activity'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.activity.errors.maxlength">
+              La actividad debe tener menos de 50 caracteres
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Localización</label>
+
+          <select
+            formControlName="location"
+            id="location"
+            class="form-control mx-auto"
+            [ngClass]="{
+              'is-invalid':
+                !enterpriseForm.controls['location'].valid &&
+                enterpriseForm.controls['location'].touched
+            }"
+          >
+            <option *ngFor="let country of countries" [value]="country">
+              {{ country }}
+            </option>
+          </select>
+
+          <div
+            *ngIf="
+              f.location.errors && enterpriseForm.controls['location'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.location.errors.required">
+              La localización es Obligatoria
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+        >
+          <label class="">Teléfono</label>
+          <input
+            type="text"
+            class="form-control mx-auto"
+            placeholder="Ej. 659009071"
+            formControlName="enterprisePhone"
+            [ngClass]="{
+              'is-invalid':
+                !enterpriseForm.controls['enterprisePhone'].valid &&
+                enterpriseForm.controls['enterprisePhone'].touched
+            }"
+          />
+
+          <div
+            *ngIf="
+              f.enterprisePhone.errors &&
+              enterpriseForm.controls['enterprisePhone'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.enterprisePhone.errors.required">
+              El teléfono es Obligatorio
+            </div>
+          </div>
+
+          <div
+            *ngIf="
+              f.enterprisePhone.errors &&
+              enterpriseForm.controls['enterprisePhone'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.enterprisePhone.errors.pattern">
+              El teléfono no es válido
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-lg-12 col-xl-6 pt-3 mx-xl-auto text-center form-group"
+        >
+          <label class="">Email</label>
+          <input
+            type="text"
+            class="form-control mx-auto"
+            placeholder="Ej. hotel@gmail.com"
+            formControlName="enterpriseEmail"
+            [ngClass]="{
+              'is-invalid':
+                !enterpriseForm.controls['enterpriseEmail'].valid &&
+                enterpriseForm.controls['enterpriseEmail'].touched
+            }"
+          />
+
+          <div
+            *ngIf="
+              f.enterpriseEmail.errors &&
+              enterpriseForm.controls['enterpriseEmail'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.enterpriseEmail.errors.required">
+              El email es Obligatorio
+            </div>
+          </div>
+          <div
+            *ngIf="
+              f.enterpriseEmail.errors &&
+              enterpriseForm.controls['enterpriseEmail'].touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.enterpriseEmail.errors.email">
+              El email no es válido
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-12 text-center pt-3">
+          <button
+            mat-raised-button
+            color="primary"
+            class="mb-5 mt-3"
+            id="btnReturn"
+            data-toggle="modal"
+            [disabled]="enterpriseForm.invalid"
+            (click)="onSubmit()"
+          >
+            Registrar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

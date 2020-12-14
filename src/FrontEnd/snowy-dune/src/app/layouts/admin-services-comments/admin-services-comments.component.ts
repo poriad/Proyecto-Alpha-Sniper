@@ -13,21 +13,21 @@ import { Header } from 'src/app/utils/header';
   templateUrl: './admin-services-comments.component.html',
   styleUrls: ['./admin-services-comments.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class AdminServicesCommentsComponent implements OnInit {
   @ViewChildren('closebutton') closebutton;
 
-  header: Header[] = [{title:"Id",id:"id"},{title:"Comentario",id:"comment"}];
+  header: Header[] = [{ title: "Id", id: "id" }, { title: "Comentario", id: "comment" }];
 
   comments: Comentario[] = [];
   comment: Comentario;
@@ -37,15 +37,15 @@ export class AdminServicesCommentsComponent implements OnInit {
   isDeleteFail: boolean;
   submitted: boolean = false;
   submittedDelete: boolean = false;
-  
+
   //Pagination
   thePageNumber: number = 1;
-  thePageSize:number = 8;
+  thePageSize: number = 8;
   theTotalElements: number = 0;
-  columnName:string = "";
-  order:string = "asc";
-  
-  constructor(private commentService: CommentService,public dialogo: MatDialog,private toastr: ToastrService) { }
+  columnName: string = "";
+  order: string = "asc";
+
+  constructor(private commentService: CommentService, public dialogo: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -54,7 +54,7 @@ export class AdminServicesCommentsComponent implements OnInit {
   }
 
   // REVISAR EL DATE
-  onSubmit(comment,id,date): void{
+  onSubmit(comment, id, date): void {
 
     this.submitted = true;
     this.iterateChildrenButton();
@@ -62,110 +62,110 @@ export class AdminServicesCommentsComponent implements OnInit {
 
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de esta acción?`
+      data: `¿Estás seguro de esta acción?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
-        this.comment = new Comentario(id,date,comment);
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.comment = new Comentario(id, date, comment);
 
-        this.commentService.putComment(this.comment, id).subscribe(
-          data => {
-            this.isUpdateFail = true;
-            this.comment = data;
-            this.toastr.success('Comentario actualizado', 'Actualización', {
-              timeOut: 3000,
+          this.commentService.putComment(this.comment, id).subscribe(
+            data => {
+              this.isUpdateFail = true;
+              this.comment = data;
+              this.toastr.success('Comentario actualizado', 'Actualización', {
+                timeOut: 3000,
+              });
+              this.orderCommentList();
+            }, err => {
+              this.isUpdateFail = false;
+              this.toastr.error('El comentario no se ha podido actualizar', 'Actualización', {
+                timeOut: 3000,
+              });
             });
-            this.orderCommentList();
-          }, err => {
-            this.isUpdateFail = false;
-            this.toastr.error('El comentario no se ha podido actualizar', 'Actualización', {
-              timeOut: 3000,
-            });
-          });
-    
-            this.submitted = false;
 
-      }
-    })
-    
+          this.submitted = false;
+
+        }
+      })
+
   }
 
-  deleteComment(id):void{
-    
+  deleteComment(id): void {
+
     this.submittedDelete = true;
     this.iterateChildrenButton();
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de esta acción?`
+      data: `¿Estás seguro de esta acción?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
 
-        this.commentService.deleteComment(id).subscribe(
-          data => {
-            this.isDeleteFail = true;
-            this.toastr.success('Comentario borrado', 'Actualización', {
-              timeOut: 3000,
+          this.commentService.deleteComment(id).subscribe(
+            data => {
+              this.isDeleteFail = true;
+              this.toastr.success('Comentario borrado', 'Actualización', {
+                timeOut: 3000,
+              });
+              this.orderCommentList();
+            }, err => {
+              this.isDeleteFail = false;
+              this.toastr.error('El comentario no se ha podido borrado', 'Actualización', {
+                timeOut: 3000,
+              });
             });
-            this.orderCommentList();
-          }, err => {
-            this.isDeleteFail = false;
-            this.toastr.error('El comentario no se ha podido borrado', 'Actualización', {
-              timeOut: 3000,
-            });
-          });
-    
-            this.submittedDelete = false;
 
-      }
-    })
-    
+          this.submittedDelete = false;
+
+        }
+      })
+
   }
 
-  updatePageSize(pageSize: number){
+  updatePageSize(pageSize: number) {
     this.thePageSize = pageSize;
     this.thePageNumber = 1;
     this.orderCommentList();
   }
 
-  orderCommentList():void{
+  orderCommentList(): void {
     this.commentService.getCommentListPaginatedSorted(this.thePageNumber - 1,
-      this.thePageSize,this.columnName,this.order).subscribe(this.processResult());
+      this.thePageSize, this.columnName, this.order).subscribe(this.processResult());
   }
 
-  updateOrderList(columnName:string){
+  updateOrderList(columnName: string) {
 
-    if (this.columnName == columnName){
+    if (this.columnName == columnName) {
       this.toggleOrder();
-    } 
-   
+    }
+
     this.columnName = columnName;
-    
+
     console.log(this.columnName);
     //this.thePageNumber = 1;
     this.orderCommentList();
   }
 
-  toggleOrder(){
-    if (this.order == "desc"){
+  toggleOrder() {
+    if (this.order == "desc") {
       this.order = "asc";
     } else {
       this.order = "desc";
     }
   }
 
-  processResult(){
+  processResult() {
     return data => {
       this.comments = data._embedded.comment;
-      this.thePageNumber = data.page.number +1;
+      this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements
     };
   }
 
-  iterateChildrenButton(){
+  iterateChildrenButton() {
     this.closebutton.forEach(element => {
       element.nativeElement.click();
     });

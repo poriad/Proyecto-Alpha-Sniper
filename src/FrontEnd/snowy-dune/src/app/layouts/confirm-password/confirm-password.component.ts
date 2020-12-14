@@ -12,17 +12,17 @@ import { MustMatch } from 'src/app/utils/validador';
   templateUrl: './confirm-password.component.html',
   styleUrls: ['./confirm-password.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
 
-]
+  ]
 })
 export class ConfirmPasswordComponent implements OnInit {
 
@@ -35,8 +35,8 @@ export class ConfirmPasswordComponent implements OnInit {
   userForm: FormGroup;
   passwordForm: FormGroup;
   userId: number;
-  
-  constructor(private tokenService: TokenService,private formBuilder: FormBuilder, private enterpriseService: EnterpriseService, private adminService: AdminService,private toastr: ToastrService) { }
+
+  constructor(private tokenService: TokenService, private formBuilder: FormBuilder, private enterpriseService: EnterpriseService, private adminService: AdminService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     //this.isUserValid = false;
@@ -44,18 +44,18 @@ export class ConfirmPasswordComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
-      
-  });
 
-  this.passwordForm = this.formBuilder.group({
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-    
-}, {
-  validator: MustMatch('password', 'confirmPassword')
-});
+    });
 
-    if (this.tokenService.getToken()){
+    this.passwordForm = this.formBuilder.group({
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    });
+
+    if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();
@@ -65,7 +65,7 @@ export class ConfirmPasswordComponent implements OnInit {
   get f() { return this.userForm.controls; }
   get fu() { return this.passwordForm.controls; }
 
-  public onLogOut(){
+  public onLogOut() {
     this.tokenService.logOut();
     window.location.reload();
   }
@@ -80,29 +80,29 @@ export class ConfirmPasswordComponent implements OnInit {
         timeOut: 3000,
       });
       return;
-  }
-
-  let username = this.userForm.get('username').value;
-  let email = this.userForm.get('email').value;
-
-  this.enterpriseService.getIdUsername(username).subscribe(
-    data => {
-      if (data != null){
-        this.userId= data.id;
-        if (email == data.email){
-          this.isUserValid = true;
-          this.submitted = false;
-          this.userForm.reset();
-        }
-      } else {
-        this.toastr.error('Los datos no se corresponden o no son válidos', 'Cambio Contraseña', {
-          timeOut: 3000,
-        });
-        this.submitted = false;
-      }
-      
     }
-  )
+
+    let username = this.userForm.get('username').value;
+    let email = this.userForm.get('email').value;
+
+    this.enterpriseService.getIdUsername(username).subscribe(
+      data => {
+        if (data != null) {
+          this.userId = data.id;
+          if (email == data.email) {
+            this.isUserValid = true;
+            this.submitted = false;
+            this.userForm.reset();
+          }
+        } else {
+          this.toastr.error('Los datos no se corresponden o no son válidos', 'Cambio Contraseña', {
+            timeOut: 3000,
+          });
+          this.submitted = false;
+        }
+
+      }
+    )
   }
 
   updateUserPassword() {
@@ -111,9 +111,9 @@ export class ConfirmPasswordComponent implements OnInit {
 
     if (this.passwordForm.invalid) {
       return;
-  }
+    }
 
-  let password = this.passwordForm.get('password').value;
+    let password = this.passwordForm.get('password').value;
 
     this.adminService.putUserPassword(this.userId, password).subscribe(
       (res) => {
@@ -122,14 +122,14 @@ export class ConfirmPasswordComponent implements OnInit {
         });
         this.isUserValid = false;
         this.passwordForm.reset();
-      }, 
+      },
       (err) => {
         this.toastr.error('Error en la modificación', 'Cambio Contraseña', {
           timeOut: 3000,
         });
       }
     )
-  
+
   }
 
 }

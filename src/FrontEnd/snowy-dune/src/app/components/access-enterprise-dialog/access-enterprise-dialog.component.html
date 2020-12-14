@@ -1,16 +1,18 @@
 <h1 mat-dialog-title class="text-center h3">Confirmación</h1>
 <div mat-dialog-content>
-    <div class="col-12">
-        <p class="p text-center">Una vez tengas acceso a la zona para empresas, deberás registrar una empresa válida que será verificado por nuestros administradores.</p>
-        <p class="p text-center">¿Quieres continuar?</p>
-    </div>
+  <div class="col-12">
+    <p class="p text-center">
+      Una vez tengas acceso a la zona para empresas, deberás registrar una
+      empresa válida que será verificado por nuestros administradores.
+    </p>
+    <p class="p text-center">¿Quieres continuar?</p>
+  </div>
 </div>
 <div mat-dialog-actions>
-    <div class="col-6 text-center">
-        <button mat-button (click)="cerrarDialogo()" class="cancel">No</button>
-    </div>
-    <div class="col-6 text-center">
-        <button mat-button (click)="confirmado()"  cdkFocusInitial>Sí</button>
-    </div>
-    
+  <div class="col-6 text-center">
+    <button mat-button (click)="cerrarDialogo()" class="cancel">No</button>
+  </div>
+  <div class="col-6 text-center">
+    <button mat-button (click)="confirmado()" cdkFocusInitial>Sí</button>
+  </div>
 </div>

@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Valida
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StripeCardElement, StripeCardElementOptions, StripeElement, StripeElements, StripeElementsOptions } from '@stripe/stripe-js';
-import { StripeCardComponent, StripeService} from 'ngx-stripe';
+import { StripeCardComponent, StripeService } from 'ngx-stripe';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { StripePaymentModalComponent } from 'src/app/components/stripe-payment-modal/stripe-payment-modal.component';
@@ -22,21 +22,22 @@ import { TripService } from 'src/app/service/trip.service';
   styleUrls: ['./checkout.component.css'],
   encapsulation: ViewEncapsulation.None,
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]})
+  ]
+})
 export class CheckoutComponent implements OnInit {
 
-  countries: string[] = ["Andorra","Austria","Alemania","España","Francia","Italia","Suiza"]
+  countries: string[] = ["Andorra", "Austria", "Alemania", "España", "Francia", "Italia", "Suiza"]
   detailsForm: FormGroup;
-  price:number;
+  price: number;
   name: string = 'SnowyDune';
   description: string = 'Viaje SnowyDune';
   userId: number;
@@ -67,34 +68,34 @@ export class CheckoutComponent implements OnInit {
   };
 
 
-  constructor(private stripeService: StripeService, private paymentService: PaymentService,private enterpriseService: EnterpriseService,private toastr: ToastrService,private formBuilder: FormBuilder,public dialogo: MatDialog, private tripService: TripService) { }
+  constructor(private stripeService: StripeService, private paymentService: PaymentService, private enterpriseService: EnterpriseService, private toastr: ToastrService, private formBuilder: FormBuilder, public dialogo: MatDialog, private tripService: TripService) { }
 
   creditCardForm: FormGroup;
 
   stripeFrom: FormGroup;
-  
+
 
   ngOnInit(): void {
     this.getAllTrips();
 
     this.detailsForm = this.formBuilder.group({
-      name: ['',Validators.required],
-      lastName: ['',Validators.required],
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
       enterprise: [''],
-      nif: ['',Validators.required],
-      address: ['',Validators.required],
+      nif: ['', [Validators.required, Validators.pattern("[0-9]{8}[A-Za-z]{1}")]],
+      address: ['', Validators.required],
       addressAditional: [''],
-      country: ['',Validators.required],
-      zipCode: ['',Validators.required],
-      province: ['',Validators.required],
+      country: ['', Validators.required],
+      zipCode: ['', [Validators.required, Validators.pattern("[0-9]{5}")]],
+      province: ['', Validators.required],
       phone: [''],
-      email: ['',Validators.required],
+      email: ['', [Validators.required, Validators.email]],
     })
 
     this.creditCardForm = this.formBuilder.group({
-      cardNumber: ['',Validators.required],
-      expiration: ['',Validators.required],
-      cvv: ['',Validators.required],
+      cardNumber: ['', Validators.required],
+      expiration: ['', Validators.required],
+      cvv: ['', Validators.required],
 
     })
 
@@ -113,7 +114,7 @@ export class CheckoutComponent implements OnInit {
         }
       });
 
-    
+
   }
 
   public errorHandling = (control: string, error: string) => {
@@ -124,85 +125,85 @@ export class CheckoutComponent implements OnInit {
     return this.creditCardForm.controls[control].hasError(error);
   }
 
-  onSubmit(){
-    
+  onSubmit() {
 
-    this.dialogo.open(ConfirmDialogComponent, {
-      data:`Se va a proceder a realizar el pago. ¿Desea confirmarlo?`
-    })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
+    if (this.checkboxInfo == 'creditCard') {
+      this.buy();
+
+    } else {
+
+      this.dialogo.open(ConfirmDialogComponent, {
+        data: `Se va a proceder a realizar el pago.`
+      })
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
 
 
-      if (confirmado){
+          if (confirmado) {
 
-        let payment = <PaymentDto> {
-          paymentAmount: this.totalPrice,
-          paymentType: this.checkboxInfo,
-          name: this.detailsForm.controls['name'].value,
-          lastName: this.detailsForm.controls['lastName'].value,
-          enterpriseName: this.detailsForm.controls['enterprise'].value,
-          nif: this.detailsForm.controls['nif'].value,
-          address: this.detailsForm.controls['address'].value,
-          addressAditional: this.detailsForm.controls['addressAditional'].value,
-          country: this.detailsForm.controls['country'].value,
-          zipCode: this.detailsForm.controls['zipCode'].value,
-          province: this.detailsForm.controls['province'].value,
-          phone: this.detailsForm.controls['phone'].value,
-          email: this.detailsForm.controls['email'].value,
-          trips: this.trips
-        }
-        if (this.checkboxInfo = 'creditCard') {
-          this.buy();
-          
-        } else {
-          
-        
-        this.trips.forEach(element => {
+            let payment = <PaymentDto>{
+              paymentAmount: this.totalPrice,
+              paymentType: this.checkboxInfo,
+              name: this.detailsForm.controls['name'].value,
+              lastName: this.detailsForm.controls['lastName'].value,
+              enterpriseName: this.detailsForm.controls['enterprise'].value,
+              nif: this.detailsForm.controls['nif'].value,
+              address: this.detailsForm.controls['address'].value,
+              addressAditional: this.detailsForm.controls['addressAditional'].value,
+              country: this.detailsForm.controls['country'].value,
+              zipCode: this.detailsForm.controls['zipCode'].value,
+              province: this.detailsForm.controls['province'].value,
+              phone: this.detailsForm.controls['phone'].value,
+              email: this.detailsForm.controls['email'].value,
+              trips: this.trips
+            }
 
-          this.paymentService.newPayment(payment).subscribe(
-            data => {
-              let paymenId: number = data.id
-              console.log(data)
-              this.paymentService.putPaymentUserId(this.userId, data.id).subscribe(
+            this.trips.forEach(element => {
+
+              this.paymentService.newPayment(payment).subscribe(
                 data => {
-                  this.tripService.putTripWithPayment(paymenId, element.id).subscribe(
+                  let paymenId: number = data.id
+                  console.log(data)
+                  this.paymentService.putPaymentUserId(this.userId, data.id).subscribe(
                     data => {
-                      this.getAllTrips();
-                      this.detailsForm.reset();
-                      this.stripeFrom.reset();
-                      this.toastr.success('Pago realizado Correctamente', 'Pago', {
-                        timeOut: 3000,
-                      });
-                    }, err => {
-                      this.toastr.error('Error en el pago', 'Pago', {
-                        timeOut: 3000,
-                      });
+                      this.tripService.putTripWithPayment(paymenId, element.id).subscribe(
+                        data => {
+                          this.getAllTrips();
+                          this.detailsForm.reset();
+                          this.stripeFrom.reset();
+                          this.toastr.success('Pago realizado Correctamente', 'Pago', {
+                            timeOut: 3000,
+                          });
+                        }, err => {
+                          this.toastr.error('Error en el pago', 'Pago', {
+                            timeOut: 3000,
+                          });
+                        }
+                      )
+
+
                     }
                   )
 
-
                 }
               )
+            });
+          }
 
-            }
-          )
-        });
-      }
-      }
-    })
+        })
+    }
   }
 
-  checkbox(value){
+  checkbox(value) {
     this.checkboxInfo = value;
   }
 
-  getAllTrips(){
+  getAllTrips() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
         this.userId = data.id;
-        
+
         this.tripService.getTripsInCartControllerCheckout(this.userId).subscribe(
           data => {
             this.trips = data;
@@ -212,7 +213,7 @@ export class CheckoutComponent implements OnInit {
               this.totalPrice = this.totalPrice + element.totalPrice;
 
             });
-            
+
           }
         )
       }
@@ -221,7 +222,7 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-  confirmPayment(id: string){
+  confirmPayment(id: string) {
     this.paymentService.confirm(id).subscribe(
       data => {
         this.toastr.success('Pago realizado Correctamente', 'Pago', {
@@ -235,7 +236,7 @@ export class CheckoutComponent implements OnInit {
     )
   }
 
-  cancelPayment(id: string){
+  cancelPayment(id: string) {
     this.paymentService.delete(id).subscribe(
       data => {
         this.toastr.success('Pago cancelado Correctamente', 'Pago', {
@@ -249,7 +250,7 @@ export class CheckoutComponent implements OnInit {
     )
   }
 
-  openModal(id: string,name: string, description: string, price: number){
+  openModal(id: string, name: string, description: string, price: number) {
     const modalRef = this.dialogo.open(StripePaymentModalComponent);
     modalRef.componentInstance.id = id;
     modalRef.componentInstance.name = name;
@@ -259,39 +260,39 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  buy(){
-    
-      const name = this.stripeFrom.get('name').value;
-      this.stripeService
-        .createToken(this.card, { name })
-        .subscribe((result) => {
-          if (result.token) {
-            
-            const paymentIntentDto: PaymentIntentDto = {
-              token: result.token.id,
-              amount: this.totalPrice * 100,
-              currency: 'EUR',
-              description: this.description
+  buy() {
 
-            };
+    const name = this.stripeFrom.get('name').value;
+    this.stripeService
+      .createToken(this.card, { name })
+      .subscribe((result) => {
+        if (result.token) {
 
-            console.log(this.totalPrice)
+          const paymentIntentDto: PaymentIntentDto = {
+            token: result.token.id,
+            amount: this.totalPrice * 100,
+            currency: 'EUR',
+            description: this.description
 
-            this.paymentService.pay(paymentIntentDto).subscribe(
-              data => {
-                this.openModal(data[`id`], this.name, data[`description`], data[`amount`]);
-                this.toastr.info('El pago se encuentra pendiente de confirmación', 'Pago', {
-                  timeOut: 3000,
-                });
-              }
-            );
-          } else if (result.error) {
-            this.toastr.error(result.error.message, 'Pago', {
-              timeOut: 3000,
-            });
-          }
-        });
-    
+          };
+
+          console.log(this.totalPrice)
+
+          this.paymentService.pay(paymentIntentDto).subscribe(
+            data => {
+              this.openModal(data[`id`], this.name, data[`description`], data[`amount`]);
+              this.toastr.info('El pago se encuentra pendiente de confirmación', 'Pago', {
+                timeOut: 3000,
+              });
+            }
+          );
+        } else if (result.error) {
+          this.toastr.error(result.error.message, 'Pago', {
+            timeOut: 3000,
+          });
+        }
+      });
+
   }
 }
 

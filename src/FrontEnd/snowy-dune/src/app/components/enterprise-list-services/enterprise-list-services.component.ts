@@ -18,18 +18,18 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   templateUrl: './enterprise-list-services.component.html',
   styleUrls: ['./enterprise-list-services.component.css']
 })
-export class EnterpriseListServicesComponent implements OnInit{
+export class EnterpriseListServicesComponent implements OnInit {
   @ViewChildren('closebutton') closebutton;
   userId: number;
 
-  header: Header[] = [{title:"Nombre",id:"name"},{title:"Localizacion",id:"location"},{title:"Email",id:"email"}];
+  header: Header[] = [{ title: "Nombre", id: "name" }, { title: "Localizacion", id: "location" }, { title: "Email", id: "email" }];
   hasServiceSkiMaterial = false;
   hasServiceHotel = false;
   hasServiceClasses = false;
   hasServiceCarRental = false;
 
   searchText;
-  contador:number;
+  contador: number;
   username: string;
   classes: Classes[];
   skiMaterial: SkiMaterial[];
@@ -38,46 +38,46 @@ export class EnterpriseListServicesComponent implements OnInit{
   isEnterprise = false;
 
   constructor(private enterpriseService: EnterpriseService, private classesService: ClassesService,
-     private hotelService: HotelService, private skiMaterialService: SkiMaterialService,private toastr: ToastrService,
-      private carRentalService: CarRentalService,public dialogo: MatDialog) { }
+    private hotelService: HotelService, private skiMaterialService: SkiMaterialService, private toastr: ToastrService,
+    private carRentalService: CarRentalService, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
-    
+
     this.isEnterpriseCheck();
     this.listAllServices();
   }
 
-  listClassesUser(userId: number){
+  listClassesUser(userId: number) {
     this.classesService.getClassesListByUser(userId).subscribe(
       data => {
         this.classes = data._embedded.classes;
 
-        if (this.classes.length != 0){
+        if (this.classes.length != 0) {
           this.hasServiceClasses = true;
         }
-        
+
       }
     );
 
   }
 
-  listHotelUser(userId: number){
+  listHotelUser(userId: number) {
     this.hotelService.getHotelListByUser(userId).subscribe(
       data => {
         this.hotel = data._embedded.hotel;
-        if (this.hotel.length != 0 ){
+        if (this.hotel.length != 0) {
           this.hasServiceHotel = true;
-        } 
+        }
       }
     );
   }
 
-  listSkiMaterialUser(userId: number){
+  listSkiMaterialUser(userId: number) {
     this.skiMaterialService.getSkiMaterialListByUser(userId).subscribe(
       data => {
         this.skiMaterial = data._embedded.skiMaterial;
 
-        if (this.skiMaterial.length != 0){
+        if (this.skiMaterial.length != 0) {
           this.hasServiceSkiMaterial = true;
         }
       }
@@ -85,19 +85,19 @@ export class EnterpriseListServicesComponent implements OnInit{
 
   }
 
-  listCarRentalUser(userId: number){
+  listCarRentalUser(userId: number) {
     this.carRentalService.getCarRentalListByUser(userId).subscribe(
       data => {
         this.carRental = data._embedded.carRental;
 
-        if (this.carRental.length != 0){
+        if (this.carRental.length != 0) {
           this.hasServiceCarRental = true;
         }
       }
     );
   }
 
-  listAllServices(){
+  listAllServices() {
     this.username = sessionStorage.getItem('AuthUsername');
 
     this.enterpriseService.getIdUsername(this.username).subscribe(
@@ -117,7 +117,7 @@ export class EnterpriseListServicesComponent implements OnInit{
   submittedDeleteHotel: boolean = false;
 
   deleteHotel(id): void {
-    
+
     this.submittedDeleteHotel = true;
     this.iterateChildrenButton();
 
@@ -127,7 +127,7 @@ export class EnterpriseListServicesComponent implements OnInit{
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
-        if(confirmado){
+        if (confirmado) {
           this.hotelService.desactiveHotel(id).subscribe(
             data => {
               this.isDeleteHotelFail = true;
@@ -141,14 +141,14 @@ export class EnterpriseListServicesComponent implements OnInit{
                 timeOut: 3000,
               });
             });
-      
 
-            this.submittedDeleteHotel = false;
-            
+
+          this.submittedDeleteHotel = false;
+
         }
 
       })
-    
+
   }
 
   isDeleteClassesFail: boolean;
@@ -165,7 +165,7 @@ export class EnterpriseListServicesComponent implements OnInit{
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
-        if(confirmado) {
+        if (confirmado) {
           this.classesService.desactiveClass(id).subscribe(
             data => {
               this.isDeleteClassesFail = true;
@@ -179,12 +179,12 @@ export class EnterpriseListServicesComponent implements OnInit{
                 timeOut: 3000,
               });
             });
-      
-            this.submittedDeleteClasses = false;
-             
+
+          this.submittedDeleteClasses = false;
+
         }
       })
-    
+
   }
 
   isDeleteCarRentalFail: boolean;
@@ -201,7 +201,7 @@ export class EnterpriseListServicesComponent implements OnInit{
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
-        if(confirmado) {
+        if (confirmado) {
 
           this.carRentalService.desactiveCarRental(id).subscribe(
             data => {
@@ -216,14 +216,14 @@ export class EnterpriseListServicesComponent implements OnInit{
                 timeOut: 3000,
               });
             });
-      
-           
-            this.submittedDeleteCarRental = false;
-         
+
+
+          this.submittedDeleteCarRental = false;
+
 
         }
       })
-    
+
   }
 
   isDeleteSkiMaterialFail: boolean;
@@ -239,7 +239,7 @@ export class EnterpriseListServicesComponent implements OnInit{
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
-        if(confirmado) {
+        if (confirmado) {
 
           this.skiMaterialService.desactiveSkiMaterial(id).subscribe(
             data => {
@@ -247,7 +247,7 @@ export class EnterpriseListServicesComponent implements OnInit{
               this.toastr.success('Servicio pasado a Inactivo', 'Petición', {
                 timeOut: 3000,
               });
-              
+
               this.listAllServices();
             }, err => {
               this.isDeleteSkiMaterialFail = false;
@@ -255,22 +255,22 @@ export class EnterpriseListServicesComponent implements OnInit{
                 timeOut: 3000,
               });
             });
-      
-            this.submittedDeleteSkiMaterial = false;
+
+          this.submittedDeleteSkiMaterial = false;
 
         }
       })
-    
+
   }
 
-  isEnterpriseCheck(){
+  isEnterpriseCheck() {
     this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
 
-        if (data.isEnterprise == 1){
+        if (data.isEnterprise == 1) {
           this.isEnterprise = true;
-         
-        } 
+
+        }
 
       }
     );
@@ -278,7 +278,7 @@ export class EnterpriseListServicesComponent implements OnInit{
   }
 
 
-  iterateChildrenButton(){
+  iterateChildrenButton() {
     this.closebutton.forEach(element => {
       element.nativeElement.click();
     });

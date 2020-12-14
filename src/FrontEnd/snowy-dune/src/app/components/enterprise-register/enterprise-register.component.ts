@@ -37,7 +37,7 @@ export class EnterpriseRegisterComponent implements OnInit {
   isEnterprise: boolean;
   userId: number;
 
-  countries: string[] = ["Andorra","Austria","Alemania","España","Francia","Italia","Suiza"]
+  countries: string[] = ["Andorra", "Austria", "Alemania", "España", "Francia", "Italia", "Suiza"]
   stations: Station[];
   classes: Classes[];
   skiMaterial: SkiMaterial[];
@@ -51,11 +51,11 @@ export class EnterpriseRegisterComponent implements OnInit {
   username: string;
 
   constructor(private formBuilder: FormBuilder, private enterpriseService: EnterpriseService, private adminService: AdminService
-    ,private classesService: ClassesService, private hotelService: HotelService, private skiMaterialService: SkiMaterialService, private carRentalService: CarRentalService,
+    , private classesService: ClassesService, private hotelService: HotelService, private skiMaterialService: SkiMaterialService, private carRentalService: CarRentalService,
     private toastr: ToastrService, private stationService: StationService
-    ,public dialogo: MatDialog) { }
-  
-  
+    , public dialogo: MatDialog) { }
+
+
 
   ngOnInit(): void {
 
@@ -70,14 +70,14 @@ export class EnterpriseRegisterComponent implements OnInit {
       activity: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       location: ['', [Validators.required]],
       enterprisePhone: ['', [Validators.required, Validators.pattern('[0-9]{9}')]],
-      enterpriseEmail:['',[Validators.required, Validators.email]]
+      enterpriseEmail: ['', [Validators.required, Validators.email]]
     });
   }
 
-  
+
   get f() { return this.enterpriseForm.controls; }
 
-  
+
 
   onSubmit() {
     this.submitted = true;
@@ -87,72 +87,72 @@ export class EnterpriseRegisterComponent implements OnInit {
     }
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de esta acción?`
+      data: `¿Estás seguro de esta acción?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
-    let nomComercial = this.enterpriseForm.get('nomComercial').value;
-    let nif = this.enterpriseForm.get('nif').value;
-    let cnae = this.enterpriseForm.get('cnae').value;
-    let activity = this.enterpriseForm.get('activity').value;
-    let location = this.enterpriseForm.get('location').value;
-    let enterprisePhone = this.enterpriseForm.get('enterprisePhone').value;
-    let enterpriseEmail = this.enterpriseForm.get('enterpriseEmail').value;
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          let nomComercial = this.enterpriseForm.get('nomComercial').value;
+          let nif = this.enterpriseForm.get('nif').value;
+          let cnae = this.enterpriseForm.get('cnae').value;
+          let activity = this.enterpriseForm.get('activity').value;
+          let location = this.enterpriseForm.get('location').value;
+          let enterprisePhone = this.enterpriseForm.get('enterprisePhone').value;
+          let enterpriseEmail = this.enterpriseForm.get('enterpriseEmail').value;
 
 
-    this.enterprise = new Enterprise(nomComercial,nif,cnae,activity,location,enterprisePhone,enterpriseEmail);
+          this.enterprise = new Enterprise(nomComercial, nif, cnae, activity, location, enterprisePhone, enterpriseEmail);
 
-    this.username = sessionStorage.getItem('AuthUsername');
+          this.username = sessionStorage.getItem('AuthUsername');
 
-    this.enterpriseService.getIdUsername(this.username).subscribe(
-      data => {
-        this.userId = data.id
+          this.enterpriseService.getIdUsername(this.username).subscribe(
+            data => {
+              this.userId = data.id
 
-        if (data.isEnterprise == 2 || data.isEnterprise == 1){
-          
-          this.toastr.warning('Ya has registrado una empresa o está en proceso de admisión', 'Registro', {
-            timeOut: 3000,
-          });
-          return
+              if (data.isEnterprise == 2 || data.isEnterprise == 1) {
+
+                this.toastr.warning('Ya has registrado una empresa o está en proceso de admisión', 'Registro', {
+                  timeOut: 3000,
+                });
+                return
+              }
+
+              this.enterpriseService.putUserDetailsToEnterprise(this.enterprise, this.userId).subscribe(
+                data => {
+                  this.enterprise = data;
+                  this.isRegisterFail = true;
+                  this.toastr.success('Solicitud de registro realizada', 'Registro', {
+                    timeOut: 3000,
+                  });
+                  window.location.reload();
+                }, err => {
+                  this.isRegisterFail = false;
+                  this.toastr.error('Ha habido algún fallo', 'Registro', {
+                    timeOut: 3000,
+                  });
+                }
+              );
+            }
+          );
+
+          setTimeout(() => {
+            this.submitted = false;
+          }, 3500);
         }
-        
-        this.enterpriseService.putUserDetailsToEnterprise(this.enterprise,this.userId).subscribe(
-          data => {
-            this.enterprise = data;
-            this.isRegisterFail = true;
-            this.toastr.success('Solicitud de registro realizada', 'Registro', {
-              timeOut: 3000,
-            });
-            window.location.reload();
-          }, err => {
-            this.isRegisterFail = false;
-            this.toastr.error('Ha habido algún fallo', 'Registro', {
-              timeOut: 3000,
-            });
-          }
-        );
-      }
-    );
+      })
 
-    setTimeout( () => { 
-      this.submitted = false;
-     },3500);
-      }
-    })
 
-    
   }
 
-  isEnterpriseCheck(){
+  isEnterpriseCheck() {
     this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
 
-        if (data.isEnterprise == 2){
+        if (data.isEnterprise == 2) {
           this.enterpriseStatus = "Pendiente";
           this.inactiveEnterprise = true;
-         
-        } else if(data.isEnterprise == 1) {
+
+        } else if (data.isEnterprise == 1) {
           this.enterpriseStatus = "Registrado";
           this.isEnterpriseChk = true;
         } else {
@@ -164,79 +164,79 @@ export class EnterpriseRegisterComponent implements OnInit {
 
   }
 
-  deleteEnterprise(){
+  deleteEnterprise() {
 
-      this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
-        data => {
-          this.adminService.putEnterpriseStatus(data.id,2).subscribe();
-          window.location.reload();
-        }
-      );
-    
+    this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
+      data => {
+        this.adminService.putEnterpriseStatus(data.id, 2).subscribe();
+        window.location.reload();
+      }
+    );
+
   }
 
 
   deleteEnterpriseFromSystem() {
     this.enterpriseService.getIdUsername(sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
-        this.adminService.putEnterpriseStatus(data.id,0).subscribe();
+        this.adminService.putEnterpriseStatus(data.id, 0).subscribe();
         window.location.reload();
       }
     );
   }
 
-  listClassesUser(userId: number){
+  listClassesUser(userId: number) {
     this.classesService.getClassesListByUser(userId).subscribe(
       data => {
         this.classes = data._embedded.classes;
 
-        if (this.classes.length != 0){
+        if (this.classes.length != 0) {
           this.hasServiceClasses = true;
         }
-        
+
       }
     );
 
   }
 
-  listHotelUser(userId: number){
+  listHotelUser(userId: number) {
     this.hotelService.getHotelListByUser(userId).subscribe(
       data => {
         this.hotel = data._embedded.hotel;
-        if (this.hotel.length != 0 ){
+        if (this.hotel.length != 0) {
           this.hasServiceHotel = true;
         }
       }
     );
   }
 
-  listSkiMaterialUser(userId: number){
+  listSkiMaterialUser(userId: number) {
     this.skiMaterialService.getSkiMaterialListByUser(userId).subscribe(
       data => {
         this.skiMaterial = data._embedded.skiMaterial;
 
-        if (this.skiMaterial.length != 0){
+        if (this.skiMaterial.length != 0) {
           this.hasServiceSkiMaterial = true;
         }
-        
+
       }
     );
 
   }
 
-  listCarRentalUser(userId: number){
+  listCarRentalUser(userId: number) {
     this.carRentalService.getCarRentalListByUser(userId).subscribe(
       data => {
         this.carRental = data._embedded.carRental;
 
-        if (this.carRental.length != 0){
+        if (this.carRental.length != 0) {
           this.hasServiceCarRental = true;
         }
       }
     );
   }
 
-  listAllServices(){
+  listAllServices() {
     this.username = sessionStorage.getItem('AuthUsername');
 
     this.enterpriseService.getIdUsername(this.username).subscribe(
@@ -252,7 +252,7 @@ export class EnterpriseRegisterComponent implements OnInit {
     );
   }
 
-  getStations(){
+  getStations() {
     this.stationService.stationList().subscribe(data => {
       this.stations = data;
     })

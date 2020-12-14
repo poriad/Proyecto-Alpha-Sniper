@@ -3,212 +3,314 @@
 <div @fade class="text-center" *ngIf="isLogged; else loggedOut">
   <div class="container-fluid fondo">
     <div class="row pb-5">
-        <div class="col-12 pt-5 text-center mt-4 ">
-            <h3 class="h3-blue pb-2">YA TE ENCUENTRAS LOGUEADO</h3>
-            <hr class="hr">
-        </div>
-
-        <div class="col-12 col-md-10 col-xl-4 offset-md-1 offset-xl-3 fondo-blanco mt-5 mb-5">
-            <p class="marca-uno w-100 text-center pb-1"></p>
-            <div class="row w-100">
-                <div class="col-12 text-center">
-                    
-                    <h5 class="h5 pt-4 pb-4">¿Quieres acceder al Login o al registro?</h5>
-
-                    <p class="p pb-2">Si quieres acceder al menú de Login primero prueba a cerrar la sesión que mantienes abierta</p>
-                    <p class="p pb-2">Puedes hacerlo en el icono para ello situado en la parte superior derecha</p>
-                    <p class="p pb-3">O puedes salir pulsando este botón</p>
-
-                    <div class="col-12 text-center pb-3">
-                        <button mat-raised-button
-                        (click)="onLogOut()">
-                        Cerrar Sesión
-                      </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="d-none d-xl-block  col-xl-2 fondo-azul mt-5 mb-5 align-items-center">
-
-                <div class="row h-100">
-                  <div class="col my-auto">
-                    <img src="./assets/Navbar/snowyDune2.png" alt="Snow" class="img-fluid" id="snowydunelogo">
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</div>
-</div>
-
-<ng-template #loggedOut>
-
-<div @fade class="container-fluid fondo">
-  <div class="row">
-    <div class="col-12 col-md-6"></div>
-
-    <div class="col-12 col-md-6 h  mt-5 mt-md-0 mb-5 mb-md-0">
-      <div class="col-12 pt-5 pb-2 text-center">
-        <h1 class="h1 text-center pb-3">Formulario de Registro</h1>
+      <div class="col-12 pt-5 text-center mt-4">
+        <h3 class="h3-blue pb-2">YA TE ENCUENTRAS LOGUEADO</h3>
         <hr class="hr" />
       </div>
 
-      <div class="col-12">
-        <div class="col-12 pb-4 text-center">
-          <h5 class="h5 text-center pb-3">¿Quieres unirte a SnowyDune? ¡Registrate!</h5>
-        </div>
-      </div>
+      <div
+        class="col-12 col-md-10 col-xl-4 offset-md-1 offset-xl-3 fondo-blanco mt-5 mb-5"
+      >
+        <p class="marca-uno w-100 text-center pb-1"></p>
+        <div class="row w-100">
+          <div class="col-12 text-center">
+            <h5 class="h5 pt-4 pb-4">
+              ¿Quieres acceder al Login o al registro?
+            </h5>
 
-      <div class="row">
-        <div class="col-12 ">
-          <form [formGroup]="registerForm" class="">
-          <div class="row">
-         
-          <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-            <label class="">Nombre</label>
-              <input
-                class="form-control mx-auto"
-                placeholder="Ej. Juan Carlos"
-                formControlName="firstName"
-                [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <p class="p pb-2">
+              Si quieres acceder al menú de Login primero prueba a cerrar la
+              sesión que mantienes abierta
+            </p>
+            <p class="p pb-2">
+              Puedes hacerlo en el icono para ello situado en la parte superior
+              derecha
+            </p>
+            <p class="p pb-3">O puedes salir pulsando este botón</p>
 
-                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                  <div *ngIf="f.firstName.errors.required">El nombre es Obligatorio</div>
-              </div>
-        </div>
-        
-        <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-            <label class="">Apellidos</label>
-              <input
-                class="form-control mx-auto"
-                placeholder="Ej. Sánchez Mártinez"
-                formControlName="lastName"
-                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-
-                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                  <div *ngIf="f.lastName.errors.required">Los apellidos son Obligatorios</div>
-              </div>
-        </div>
-        
-        <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-          <label class="">Email</label>
-            <input
-              class="form-control mx-auto"
-              placeholder="Ej. pinchoair@gmail.com"
-              formControlName="email"
-              [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">El Email es Obligatorio</div>
-                  <div *ngIf="f.email.errors.email">El Email debe ser válido</div>
+            <div class="col-12 text-center pb-3">
+              <button mat-raised-button (click)="onLogOut()">
+                Cerrar Sesión
+              </button>
             </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-        <label class="">Nombre de Usuario</label>
-          <input
-            class="form-control mx-auto"
-            placeholder="Ej. pincho"
-            formControlName="userName"
-            [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
 
-            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
-              <div *ngIf="f.userName.errors.required">Los apellidos son Obligatorios</div>
-          </div>
-    </div>
-
-    <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-      <label class="">Contraseña</label>
-        <input
-          type="password"
-          class="form-control mx-auto"
-          placeholder="Ej. peterpinforever"
-          formControlName="password"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">La Contraseña es Obligatoria</div>
-            <div *ngIf="f.password.errors.minlength">La Contraseña debe contener al menos 6 caracteres</div>
-        </div>
-  </div>
-
-  <div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-    <label class="">Confirmación Contraseña</label>
-      <input
-      type="password"
-        class="form-control mx-auto"
-        placeholder="Ej. peterpinforever"
-        formControlName="confirmPassword"
-        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-
-        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-          <div *ngIf="f.confirmPassword.errors.required">La Confirmación es Obligatoria</div>
-          <div *ngIf="f.confirmPassword.errors.mustMatch">Las Contraseñas deben coincidir</div>
-      </div>
-</div>
-
-<div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-  <label class="">Dirección</label>
-    <input
-      class="form-control mx-auto"
-      placeholder="Ej. peterpinforever"
-      formControlName="address" />
-
-</div>
-
-<div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group">
-  <label class="">Teléfono</label>
-    <input
-      class="form-control mx-auto"
-      placeholder="Ej. peterpinforever"
-      formControlName="phone"
-      [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
-
-      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-        <div *ngIf="f.phone.errors.minLength">El teléfono no es válido, se permite vacío</div>
-    </div>
-</div>
-
-<div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center  form-group form-check">
-  <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input checkbox" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
-  <label for="acceptTerms" class="form-check-label">Aceptar Términos y Condiciones</label>
-  <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Los términos y condiciones son Obligatorios</div>
-</div>
-
-<div class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center  form-group form-check">
-  <input type="checkbox" formControlName="newsletter" id="newsletter" class="form-check-input checkbox" />
-  <label for="newsletter" class="form-check-label">Recibir Noticias de SnowyDune</label>
-</div>
-          
-         
-          <div class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-3 pb-lg-5">
-            <button mat-raised-button
-                    (click) = "onSubmit()"
-                    >
-                    Enviar
-            </button>
-          </div>
-
-          
-
-          <div class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-5">
-            <button mat-raised-button
-                    (click) = "onReset()"
-                    >
-                    Limpiar
-            </button>
+      <div
+        class="d-none d-xl-block col-xl-2 fondo-azul mt-5 mb-5 align-items-center"
+      >
+        <div class="row h-100">
+          <div class="col my-auto">
+            <img
+              src="./assets/Navbar/snowyDune2.png"
+              alt="Snow"
+              class="img-fluid"
+              id="snowydunelogo"
+            />
           </div>
         </div>
-        </form>
-        </div>
-        <div class="col-12 text-center pt-3 pb-5">
-          <p class="p-two" ><a routerLink="/Login">¿Ya estás registrado? ¡Vuelve a Login y entra!</a></p>
-        </div>
-        
-      
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #loggedOut>
+  <div @fade class="container-fluid fondo">
+    <div class="row">
+      <div class="col-12 col-md-6"></div>
+
+      <div class="col-12 col-md-6 h mt-5 mt-md-0 mb-5 mb-md-0">
+        <div class="col-12 pt-5 pb-2 text-center">
+          <h1 class="h1 text-center pb-3">Formulario de Registro</h1>
+          <hr class="hr" />
+        </div>
+
+        <div class="col-12">
+          <div class="col-12 pb-4 text-center">
+            <h5 class="h5 text-center pb-3">
+              ¿Quieres unirte a SnowyDune? ¡Registrate!
+            </h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <form [formGroup]="registerForm" class="">
+              <div class="row">
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Nombre</label>
+                  <input
+                    class="form-control mx-auto"
+                    placeholder="Ej. Juan Carlos"
+                    formControlName="firstName"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.firstName.errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="submitted && f.firstName.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.firstName.errors.required">
+                      El nombre es Obligatorio
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Apellidos</label>
+                  <input
+                    class="form-control mx-auto"
+                    placeholder="Ej. Sánchez Mártinez"
+                    formControlName="lastName"
+                    [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+                  />
+
+                  <div
+                    *ngIf="submitted && f.lastName.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.lastName.errors.required">
+                      Los apellidos son Obligatorios
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Email</label>
+                  <input
+                    class="form-control mx-auto"
+                    placeholder="Ej. pinchoair@gmail.com"
+                    formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                  />
+
+                  <div
+                    *ngIf="submitted && f.email.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.email.errors.required">
+                      El Email es Obligatorio
+                    </div>
+                    <div *ngIf="f.email.errors.email">
+                      El Email debe ser válido
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Nombre de Usuario</label>
+                  <input
+                    class="form-control mx-auto"
+                    placeholder="Ej. pincho"
+                    formControlName="userName"
+                    [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+                  />
+
+                  <div
+                    *ngIf="submitted && f.userName.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.userName.errors.required">
+                      Los apellidos son Obligatorios
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Contraseña</label>
+                  <input
+                    type="password"
+                    class="form-control mx-auto"
+                    placeholder="Ej. peterpinforever"
+                    formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                  />
+
+                  <div
+                    *ngIf="submitted && f.password.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.password.errors.required">
+                      La Contraseña es Obligatoria
+                    </div>
+                    <div *ngIf="f.password.errors.minlength">
+                      La Contraseña debe contener al menos 6 caracteres
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Confirmación Contraseña</label>
+                  <input
+                    type="password"
+                    class="form-control mx-auto"
+                    placeholder="Ej. peterpinforever"
+                    formControlName="confirmPassword"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.confirmPassword.errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="submitted && f.confirmPassword.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.confirmPassword.errors.required">
+                      La Confirmación es Obligatoria
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors.mustMatch">
+                      Las Contraseñas deben coincidir
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Dirección</label>
+                  <input
+                    class="form-control mx-auto"
+                    placeholder="Ej. peterpinforever"
+                    formControlName="address"
+                  />
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group"
+                >
+                  <label class="">Teléfono</label>
+                  <input
+                    class="form-control mx-auto"
+                    placeholder="Ej. peterpinforever"
+                    formControlName="phone"
+                    [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+                  />
+
+                  <div
+                    *ngIf="submitted && f.phone.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.phone.errors.minLength">
+                      El teléfono no es válido, se permite vacío
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group form-check"
+                >
+                  <input
+                    type="checkbox"
+                    formControlName="acceptTerms"
+                    id="acceptTerms"
+                    class="form-check-input checkbox"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.acceptTerms.errors
+                    }"
+                  />
+                  <label for="acceptTerms" class="form-check-label"
+                    >Aceptar Términos y Condiciones</label
+                  >
+                  <div
+                    *ngIf="submitted && f.acceptTerms.errors"
+                    class="invalid-feedback"
+                  >
+                    Los términos y condiciones son Obligatorios
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 pt-3 text-center form-group form-check"
+                >
+                  <input
+                    type="checkbox"
+                    formControlName="newsletter"
+                    id="newsletter"
+                    class="form-check-input checkbox"
+                  />
+                  <label for="newsletter" class="form-check-label"
+                    >Recibir Noticias de SnowyDune</label
+                  >
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-3 pb-lg-5"
+                >
+                  <button mat-raised-button (click)="onSubmit()">Enviar</button>
+                </div>
+
+                <div
+                  class="col-12 col-sm-6 col-md-12 col-lg-6 text-center pt-3 pb-5"
+                >
+                  <button mat-raised-button (click)="onReset()">Limpiar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-12 text-center pt-3 pb-5">
+            <p class="p-two">
+              <a routerLink="/Login"
+                >¿Ya estás registrado? ¡Vuelve a Login y entra!</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-template>

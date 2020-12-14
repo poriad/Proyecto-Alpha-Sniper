@@ -1,7 +1,7 @@
 export class Hotel {
     id?: number;
     priceDay: number;
-    description:string;
+    description: string;
     name: string;
     phone: string;
     email: string;
@@ -11,7 +11,7 @@ export class Hotel {
     activated: number;
     stars: number;
 
-    constructor(id: number, priceDay: number, name: string, phone: string,email: string, location: string, country: string, urlImages: string, activated: number,stars: number){
+    constructor(id: number, priceDay: number, name: string, phone: string, email: string, location: string, country: string, urlImages: string, activated: number, stars: number) {
         this.id = id;
         this.priceDay = priceDay;
         this.name = name;

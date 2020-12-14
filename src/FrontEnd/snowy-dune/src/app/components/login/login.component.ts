@@ -11,17 +11,17 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
 
-]
+  ]
 })
 export class LoginComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
   roles: string[] = [];
-  
+
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
@@ -41,14 +41,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.tokenService.getToken()){
+    if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();
     }
   }
 
-  public onLogOut(){
+  public onLogOut() {
     this.tokenService.logOut();
     window.location.reload();
   }

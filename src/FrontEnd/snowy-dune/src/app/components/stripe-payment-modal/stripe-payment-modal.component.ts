@@ -19,76 +19,76 @@ export class StripePaymentModalComponent implements OnInit {
   description: string;
   price: number;
 
-  trips : Trip[] = [];
-  userId:number;
+  trips: Trip[] = [];
+  userId: number;
 
-  constructor(private paymentService: PaymentService,private tripService: TripService,private enterpriseService : EnterpriseService,private toastr: ToastrService,
+  constructor(private paymentService: PaymentService, private tripService: TripService, private enterpriseService: EnterpriseService, private toastr: ToastrService,
     public dialogo: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public mensaje: string) { }
- 
 
-    cerrarDialogo(): void {
-      this.paymentService.delete(this.id).subscribe();
-      this.dialogo.close(false);
-    }
-    confirmado(): void {
-      this.paymentService.confirm(this.id).subscribe(
+
+  cerrarDialogo(): void {
+    this.paymentService.delete(this.id).subscribe();
+    this.dialogo.close(false);
+  }
+  confirmado(): void {
+    this.paymentService.confirm(this.id).subscribe(
+      data => {
+        this.toastr.success('Pago realizado Correctamente', 'Pago', {
+          timeOut: 3000,
+        });
+      }, err => {
+        this.toastr.error('Error en el pago', 'Pago', {
+          timeOut: 3000,
+        });
+      }
+    );
+
+
+    this.trips.forEach(element => {
+
+      this.paymentService.newPaymentStripe().subscribe(
         data => {
-          this.toastr.success('Pago realizado Correctamente', 'Pago', {
-            timeOut: 3000,
-          });
-        }, err => {
-          this.toastr.error('Error en el pago', 'Pago', {
-            timeOut: 3000,
-          });
+          let paymenId: number = data.id
+          console.log(data)
+          this.paymentService.putPaymentUserId(this.userId, data.id).subscribe(
+            data => {
+              this.tripService.putTripWithPayment(paymenId, element.id).subscribe(
+                data => {
+                  window.location.reload()
+
+
+                }
+
+              )
+
+
+            }
+          )
+
         }
-      );
-    
+      )
+    });
 
-      this.trips.forEach(element => {
+    this.dialogo.close(true);
+  }
 
-        this.paymentService.newPaymentStripe().subscribe(
+  ngOnInit(): void {
+    this.getAllTrips()
+  }
+
+  getAllTrips() {
+    this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
+      data => {
+        this.userId = data.id;
+
+        this.tripService.getTripsInCartControllerCheckout(this.userId).subscribe(
           data => {
-            let paymenId: number = data.id
-            console.log(data)
-            this.paymentService.putPaymentUserId(this.userId, data.id).subscribe(
-              data => {
-                this.tripService.putTripWithPayment(paymenId, element.id).subscribe(
-                  data => {
-                    window.location.reload()
-
-                    
-                  }
-                  
-                )
-
-
-              }
-            )
+            this.trips = data;
 
           }
         )
-      });
-
-      this.dialogo.close(true);
-    }
-
-    ngOnInit(): void {
-      this.getAllTrips() 
-    }
-
-    getAllTrips() {
-      this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
-        data => {
-          this.userId = data.id;
-          
-          this.tripService.getTripsInCartControllerCheckout(this.userId).subscribe(
-            data => {
-              this.trips = data;
-              
-            }
-          )
-        }
-      )
-    }
+      }
+    )
+  }
 }

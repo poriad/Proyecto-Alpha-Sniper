@@ -25,16 +25,16 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './enterprise-services.component.html',
   styleUrls: ['./enterprise-services.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class EnterpriseServicesComponent implements OnInit {
   faDownload = faDownload;
@@ -73,7 +73,7 @@ export class EnterpriseServicesComponent implements OnInit {
     public dialogo: MatDialog,
     private imgurService: ImgurApiService,
     private toastr: ToastrService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getStations();
@@ -87,7 +87,7 @@ export class EnterpriseServicesComponent implements OnInit {
       });
 
     this.serviceForm = this.formBuilder.group({
-      price: [null, {validators: [Validators.required], updateOn: 'blur'}],
+      price: [null, { validators: [Validators.required], updateOn: 'blur' }],
       name: [
         '',
         [
@@ -110,7 +110,7 @@ export class EnterpriseServicesComponent implements OnInit {
         ],
       ],
       typeService: ['', Validators.required]
-      
+
     });
   }
 
@@ -142,7 +142,7 @@ export class EnterpriseServicesComponent implements OnInit {
           let email = this.serviceForm.get('email').value;
           let urlImages = this.urlImages;
           let typeService = this.serviceForm.get('typeService').value;
-          
+
 
           let location: string;
 
@@ -184,11 +184,11 @@ export class EnterpriseServicesComponent implements OnInit {
                       this.hotelService
                         .putHotelStationId(hotelId, stationId)
                         .subscribe();
-                        this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
-                          timeOut: 3000,
-                        });
+                      this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                        timeOut: 3000,
+                      });
 
-                        this.serviceForm.reset();
+                      this.serviceForm.reset();
                     });
                 },
                 (err) => {
@@ -234,7 +234,7 @@ export class EnterpriseServicesComponent implements OnInit {
                         .putSkiMaterialStationId(skiMaterialId, stationId)
                         .subscribe();
 
-                    this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                      this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
                         timeOut: 3000,
                       });
                       this.serviceForm.reset();
@@ -247,8 +247,8 @@ export class EnterpriseServicesComponent implements OnInit {
                 }
               );
 
-                this.submitted = false;
- 
+              this.submitted = false;
+
               break;
             }
             case 'Alquiler de vehículos': {
@@ -281,10 +281,10 @@ export class EnterpriseServicesComponent implements OnInit {
                       this.carRentalService
                         .putCarRentalStationId(carRentalId, stationId)
                         .subscribe();
-                        this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
-                          timeOut: 3000,
-                        });
-                        this.serviceForm.reset();
+                      this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                        timeOut: 3000,
+                      });
+                      this.serviceForm.reset();
                     });
                 },
                 (err) => {
@@ -294,7 +294,7 @@ export class EnterpriseServicesComponent implements OnInit {
                 }
               );
 
-                this.submitted = false;
+              this.submitted = false;
 
               break;
             }
@@ -329,10 +329,10 @@ export class EnterpriseServicesComponent implements OnInit {
                         .putClassesStationId(classesId, stationId)
                         .subscribe();
 
-                        this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
-                          timeOut: 3000,
-                        });
-                        this.serviceForm.reset();
+                      this.toastr.success('Solicitud de registro realizada, en cuanto un usuario administrador lo valide, será visible.', 'Servicio', {
+                        timeOut: 3000,
+                      });
+                      this.serviceForm.reset();
 
                     });
                 },
@@ -363,25 +363,26 @@ export class EnterpriseServicesComponent implements OnInit {
     this.imgurService.upload(file)
       .subscribe(data =>
         Object.values(data).map(value => {
-          
-          if(typeof value === 'object'){
-            
-            Object.values(value).map(valueObject => {
-              if(typeof valueObject === 'string'){
 
-                if (valueObject.includes('imgur')){
+          if (typeof value === 'object') {
+
+            Object.values(value).map(valueObject => {
+              if (typeof valueObject === 'string') {
+
+                if (valueObject.includes('imgur')) {
                   this.urlImages = valueObject;
                 }
-                
+
               }
-              
+
             });
 
           }
-          
+
         }
+        )
       )
-    )}
+  }
 }
 
 

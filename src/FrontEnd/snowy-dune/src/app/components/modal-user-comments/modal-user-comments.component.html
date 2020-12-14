@@ -1,22 +1,35 @@
-
-
 <h1 mat-dialog-title class="text-center h3">Comentarios Activos</h1>
 <div
   mat-dialog-content
-  *ngIf="stations.length == 0 && hotel.length == 0 && carRental.length == 0 && classes.length == 0 && skiMaterial.length == 0"
+  *ngIf="
+    stations.length == 0 &&
+    hotel.length == 0 &&
+    carRental.length == 0 &&
+    classes.length == 0 &&
+    skiMaterial.length == 0
+  "
 >
   <div class="col-12 text-center">
+    <p class="parrafo">
+      No existe comentarios que puedas realizar, para poder hacerlos, tienes que
+      realizar un viaje.
+    </p>
 
-    <p class="parrafo"> No existe comentarios que puedas realizar, para poder hacerlos, tienes que realizar un viaje.</p>
-
-    <p class="parrafo"> Una vez realizado el viaje podrás realizar comentarios a partir de un mes desde su inicio.</p>
-
+    <p class="parrafo">
+      Una vez realizado el viaje podrás realizar comentarios a partir de un mes
+      desde su inicio.
+    </p>
   </div>
-
 </div>
 <div
   mat-dialog-content
-  *ngIf="stations.length > 0 && (hotel.length > 0 || carRental.length > 0 || classes.length > 0 || skiMaterial.length > 0)"
+  *ngIf="
+    stations.length > 0 &&
+    (hotel.length > 0 ||
+      carRental.length > 0 ||
+      classes.length > 0 ||
+      skiMaterial.length > 0)
+  "
 >
   <div class="col-12">
     <p class="text-center mensaje">{{ mensaje }}</p>
@@ -29,27 +42,48 @@
     <div class="col-9">
       <div class="row" *ngFor="let station of stations">
         <div class="col-4 my-auto">
-          <p class="text-center h4  ">{{ station.name }}</p>
+          <p class="text-center h4">{{ station.name }}</p>
         </div>
         <form [formGroup]="stationForm" class="col-8">
           <div class="row">
             <div class="col-6 pb-2 my-auto">
-              <input type="text" 
-              formControlName="comment"
-              class="form-control input"
-              [ngClass]="{ 'is-invalid': !stationForm.controls['comment'].valid && stationForm.controls['comment'].touched}" />
+              <input
+                type="text"
+                formControlName="comment"
+                class="form-control input"
+                [ngClass]="{
+                  'is-invalid':
+                    !stationForm.controls['comment'].valid &&
+                    stationForm.controls['comment'].touched
+                }"
+              />
+              <div
+                *ngIf="
+                  fStation.comment.errors &&
+                  stationForm.controls['comment'].touched
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="fStation.comment.errors.required">
+                  El comentario no puede hacer vacío
+                </div>
+              </div>
             </div>
-            <div class="col-6 text-center my-auto">
-              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(station.id, 1)"/>
 
-              
+            <div class="col-6 text-center my-auto">
+              <input
+                type="submit"
+                value="Mandar Comentario"
+                class="submit"
+                (click)="createComment(station.id, 1)"
+              />
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <hr class="hr">
+  <hr class="hr" />
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Hoteles</p>
@@ -57,25 +91,47 @@
     <div class="col-9">
       <div class="row" *ngFor="let hotel of hotel">
         <div class="col-4 my-auto my-auto">
-          <p class="text-center h4  ">{{ hotel.name }}</p>
+          <p class="text-center h4">{{ hotel.name }}</p>
         </div>
         <form [formGroup]="hotelForm" class="col-8">
           <div class="row">
             <div class="col-6 pb-2">
-              <input type="text"
-              class="form-control input"
-              formControlName="comment"
-               />
+              <input
+                type="text"
+                class="form-control input"
+                formControlName="commentHotel"
+                [ngClass]="{
+                  'is-invalid':
+                    !hotelForm.controls['commentHotel'].valid &&
+                    hotelForm.controls['commentHotel'].touched
+                }"
+              />
+              <div
+                *ngIf="
+                  fHotel.commentHotel.errors &&
+                  hotelForm.controls['commentHotel'].touched
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="fHotel.commentHotel.errors.required">
+                  El comentario no puede hacer vacío
+                </div>
+              </div>
             </div>
             <div class="col-6 text-center my-auto">
-              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(hotel.id, 2)"/>
+              <input
+                type="submit"
+                value="Mandar Comentario"
+                class="submit"
+                (click)="createComment(hotel.id, 2)"
+              />
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <hr class="hr">
+  <hr class="hr" />
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Alquiler de Vehículos</p>
@@ -83,25 +139,47 @@
     <div class="col-9">
       <div class="row" *ngFor="let carRental of carRental">
         <div class="col-4 my-auto">
-          <p class="text-center h4 ">{{ carRental.name }}</p>
+          <p class="text-center h4">{{ carRental.name }}</p>
         </div>
         <form class="col-8" [formGroup]="carRentalForm">
           <div class="row">
             <div class="col-6 pb-2 my-auto">
-              <input type="text"
-              class="form-control input"
-              formControlName="comment"
-               />
+              <input
+                type="text"
+                class="form-control input"
+                formControlName="commentCarRental"
+                [ngClass]="{
+                  'is-invalid':
+                    !carRentalForm.controls['commentCarRental'].valid &&
+                    carRentalForm.controls['commentCarRental'].touched
+                }"
+              />
+              <div
+                *ngIf="
+                  fCarRental.commentCarRental.errors &&
+                  carRentalForm.controls['commentCarRental'].touched
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="fCarRental.commentCarRental.errors.required">
+                  El comentario no puede hacer vacío
+                </div>
+              </div>
             </div>
             <div class="col-6 text-center my-auto">
-              <input type="submit" value="Mandar Comentario"  class = "submit" (click) = "createComment(carRental.id, 3)"/>
+              <input
+                type="submit"
+                value="Mandar Comentario"
+                class="submit"
+                (click)="createComment(carRental.id, 3)"
+              />
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <hr class="hr">
+  <hr class="hr" />
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Clases</p>
@@ -114,20 +192,42 @@
         <form class="col-8" [formGroup]="classesForm">
           <div class="row">
             <div class="col-6 pb-2 my-auto">
-              <input type="text"
-              class="form-control input"
-              formControlName="comment"
-                />
+              <input
+                type="text"
+                class="form-control input"
+                formControlName="commentClasses"
+                [ngClass]="{
+                  'is-invalid':
+                    !classesForm.controls['commentClasses'].valid &&
+                    classesForm.controls['commentClasses'].touched
+                }"
+              />
+              <div
+                *ngIf="
+                  fClasses.commentClasses.errors &&
+                  classesForm.controls['commentClasses'].touched
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="fClasses.commentClasses.errors.required">
+                  El comentario no puede hacer vacío
+                </div>
+              </div>
             </div>
-            <div class="col-6 text-center  my-auto">
-              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(class.id, 4)"/>
+            <div class="col-6 text-center my-auto">
+              <input
+                type="submit"
+                value="Mandar Comentario"
+                class="submit"
+                (click)="createComment(class.id, 4)"
+              />
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <hr class="hr">
+  <hr class="hr" />
   <div class="row">
     <div class="col-3 text-center align-items-center my-auto">
       <p class="h3">Alquiler de Material</p>
@@ -135,25 +235,47 @@
     <div class="col-9">
       <div class="row" *ngFor="let skiMaterial of skiMaterial">
         <div class="col-4 my-auto">
-          <p class="text-center h4 ">{{ skiMaterial.name }}</p>
+          <p class="text-center h4">{{ skiMaterial.name }}</p>
         </div>
         <form class="col-8" [formGroup]="skiMaterialForm">
           <div class="row">
-            <div class="col-6 pb-2 ">
-              <input type="text"
-              class="form-control input "
-              formControlName="comment" />
-            </div>
-            <div class="col-6  text-center my-auto">
+            <div class="col-6 pb-2">
+              <input
+                type="text"
+                class="form-control input"
+                formControlName="commentSki"
+                [ngClass]="{
+                  'is-invalid':
+                    !skiMaterialForm.controls['commentSki'].valid &&
+                    skiMaterialForm.controls['commentSki'].touched
+                }"
+              />
 
-              <input type="submit" value="Mandar Comentario" class = "submit" (click) = "createComment(skiMaterial.id, 5)" />
+              <div
+                *ngIf="
+                  fSkiMaterial.commentSki.errors &&
+                  skiMaterialForm.controls['commentSki'].touched
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="fSkiMaterial.commentSki.errors.required">
+                  El comentario no puede hacer vacío
+                </div>
+              </div>
+            </div>
+            <div class="col-6 text-center my-auto">
+              <input
+                type="submit"
+                value="Mandar Comentario"
+                class="submit"
+                (click)="createComment(skiMaterial.id, 5)"
+              />
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-
 </div>
 <div mat-dialog-actions>
   <div class="col-12 text-center">

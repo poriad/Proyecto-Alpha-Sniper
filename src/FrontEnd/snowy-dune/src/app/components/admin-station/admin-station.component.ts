@@ -12,14 +12,14 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   styleUrls: ['./admin-station.component.css']
 })
 export class AdminStationComponent implements OnInit {
-  
+
   @ViewChildren('closebutton') closebutton;
 
-  header: Header[] = [{title:"Nombre",id:"name"},{title:"Localizacion",id:"location"},{title:"País",id:"country"}];
+  header: Header[] = [{ title: "Nombre", id: "name" }, { title: "Localizacion", id: "location" }, { title: "País", id: "country" }];
 
   resorts: Station[] = [];
   resort: Station;
-  
+
   searchText;
   isUpdateFail: boolean;
   isDeleteFail: boolean;
@@ -27,11 +27,11 @@ export class AdminStationComponent implements OnInit {
   submittedDelete: boolean = false;
 
   thePageNumber: number = 1;
-  thePageSize:number = 8;
+  thePageSize: number = 8;
   theTotalElements: number = 0;
-  columnName:string = "";
-  order:string = "asc";
-  
+  columnName: string = "";
+  order: string = "asc";
+
   constructor(private stationService: StationService, private toastr: ToastrService, public dialogo: MatDialog) { }
 
   ngOnInit(): void {
@@ -40,39 +40,39 @@ export class AdminStationComponent implements OnInit {
 
   }
 
-  updateStatusStation(id): void{
+  updateStatusStation(id): void {
 
     this.submitted = true;
     this.iterateChildrenButton();
-    
+
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de esta acción?`
+      data: `¿Estás seguro de esta acción?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
 
-        this.stationService.putStationToActive(id).subscribe(
-          data => {
-            this.isUpdateFail = true;
-            this.toastr.success('Estación activada', 'Actualización', {
-              timeOut: 3000,
+          this.stationService.putStationToActive(id).subscribe(
+            data => {
+              this.isUpdateFail = true;
+              this.toastr.success('Estación activada', 'Actualización', {
+                timeOut: 3000,
+              });
+
+              this.orderStationList();
+            }, err => {
+              this.isUpdateFail = false;
+              this.toastr.error('La estación no se ha podido actualizar', 'Actualización', {
+                timeOut: 3000,
+              });
             });
 
-            this.orderStationList();
-          }, err => {
-            this.isUpdateFail = false;
-            this.toastr.error('La estación no se ha podido actualizar', 'Actualización', {
-              timeOut: 3000,
-            });
-          });
-    
           this.submitted = false;
 
-      }
-    })
+        }
+      })
 
-    
+
   }
 
   deleteStation(id): void {
@@ -81,68 +81,68 @@ export class AdminStationComponent implements OnInit {
     this.iterateChildrenButton();
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de esta acción?`
+      data: `¿Estás seguro de esta acción?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
-        this.stationService.deleteStation(id).subscribe(
-          data => {
-            this.isDeleteFail = true;
-            this.toastr.success('Estación Inactiva', 'Actualización', {
-              timeOut: 3000,
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.stationService.deleteStation(id).subscribe(
+            data => {
+              this.isDeleteFail = true;
+              this.toastr.success('Estación Inactiva', 'Actualización', {
+                timeOut: 3000,
+              });
+              this.orderStationList();
+            }, err => {
+              this.isDeleteFail = false;
+              this.toastr.error('La estación no se ha podido actualizar', 'Actualización', {
+                timeOut: 3000,
+              });
             });
-            this.orderStationList();
-          }, err => {
-            this.isDeleteFail = false;
-            this.toastr.error('La estación no se ha podido actualizar', 'Actualización', {
-              timeOut: 3000,
-            });
-          });
-    
-          this.submittedDelete = false;
-          
-      }
-    })
 
-    
+          this.submittedDelete = false;
+
+        }
+      })
+
+
   }
 
-  updateOrderListStation(columnName:string){
+  updateOrderListStation(columnName: string) {
 
-    if (this.columnName == columnName){
+    if (this.columnName == columnName) {
       this.toggleOrder();
-    } 
-   
+    }
+
     this.columnName = columnName;
-    
+
     console.log(this.columnName);
     //this.thePageNumber = 1;
     this.orderStationList();
   }
-  orderStationList(){
+  orderStationList() {
     this.stationService.getStationListPaginatedSorted(this.thePageNumber - 1,
-      this.thePageSize,this.columnName,this.order).subscribe(this.processResult());
+      this.thePageSize, this.columnName, this.order).subscribe(this.processResult());
   }
 
-  toggleOrder(){
-    if (this.order == "desc"){
+  toggleOrder() {
+    if (this.order == "desc") {
       this.order = "asc";
     } else {
       this.order = "desc";
     }
   }
 
-  processResult(){
+  processResult() {
     return data => {
       this.resorts = data._embedded.station;
-      this.thePageNumber = data.page.number +1;
+      this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements
     };
   }
 
-  iterateChildrenButton(){
+  iterateChildrenButton() {
     this.closebutton.forEach(element => {
       element.nativeElement.click();
     });

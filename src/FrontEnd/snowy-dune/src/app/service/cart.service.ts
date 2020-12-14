@@ -6,9 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class CartService {
 
-  baseUrl = "http://192.168.1.134:8082/api/cart/";
-  baseUrlTwo = "http://192.168.1.134:8082/cart/";
-  
+
+  baseUrl = "http://localhost:8082/api/cart/";
+  baseUrlTwo = "http://localhost:8082/cart/";
+
+  //baseUrl = "http://192.168.1.134:8082/api/cart/";
+  //baseUrlTwo = "http://192.168.1.134:8082/cart/";
+
   //baseUrl = "http://localhost:8082/snowyduneservice/api/cart/";
   //baseUrlTwo = "http://localhost:8082/snowyduneservice/cart/";
 
@@ -17,7 +21,7 @@ export class CartService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCartByUserId(id: number){
+  getCartByUserId(id: number) {
     return this.httpClient.get<any>(this.baseUrl + 'search/getCartByUserId?id=' + id)
   }
 }

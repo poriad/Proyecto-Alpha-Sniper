@@ -3,33 +3,30 @@
 <div @fade class="container-fluid fondo">
   <div class="row">
     <div class="col-12 pt-5 text-center">
-      <h1 class="h1 pb-4 pb-sm-4">BIENVENIDO, {{username}}</h1>
+      <h1 class="h1 pb-4 pb-sm-4">BIENVENIDO, {{ username }}</h1>
       <hr class="hr" />
     </div>
   </div>
 
-  <div class="row pt-5 pb-4 ">
+  <div class="row pt-5 pb-4">
     <div class="col-12 col-lg-5 offset-lg-1 fondo-blanco mb-4 mb-lg-0">
       <app-enterprise-register></app-enterprise-register>
     </div>
 
     <div class="col-12 col-lg-5 fondo-blanco ml-lg-4">
-        <app-enterprise-services></app-enterprise-services>
-
+      <app-enterprise-services></app-enterprise-services>
     </div>
   </div>
-  
+
   <div class="row pb-5">
-    
     <div class="col-12 col-lg-5 offset-lg-1 fondo-blanco mb-4 mb-lg-0">
       <p class="marca-uno w-100 text-center pb-1"></p>
       <app-enterprise-list-services></app-enterprise-list-services>
     </div>
-    
+
     <div class="col-12 col-lg-5 fondo-blanco ml-lg-4">
       <p class="marca-uno w-100 text-center pb-1"></p>
-        <app-enterprise-comments></app-enterprise-comments>
+      <app-enterprise-comments></app-enterprise-comments>
     </div>
-
   </div>
 </div>

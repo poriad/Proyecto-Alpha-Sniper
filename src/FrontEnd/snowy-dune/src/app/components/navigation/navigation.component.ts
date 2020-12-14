@@ -18,22 +18,22 @@ export class NavigationComponent implements OnInit {
   isAdmin = false;
   isEnterprise = false;
   roles: String[];
-  trips: Trip[] =[];
+  trips: Trip[] = [];
   tripsAux: Trip[] = [];
 
 
-  constructor(private tokenService: TokenService, private tripService: TripService, private enterpriseService: EnterpriseService,private router: Router) { }
+  constructor(private tokenService: TokenService, private tripService: TripService, private enterpriseService: EnterpriseService, private router: Router) { }
 
   ngOnInit(): void {
 
-    if (window.sessionStorage.getItem('AuthUsername') != null){
-      
-        this.getAllTripsInCart();
-      
+    if (window.sessionStorage.getItem('AuthUsername') != null) {
+
+      this.getAllTripsInCart();
+
     }
-    
-    if(this.tokenService.getToken()){
-      this.isLogged=true;
+
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
     } else {
       this.isLogged = false;
     }
@@ -41,7 +41,7 @@ export class NavigationComponent implements OnInit {
     this.roles = this.tokenService.getAuthorities();
 
     this.roles.forEach(rol => {
-      if (rol === 'ROLE_ADMIN'){
+      if (rol === 'ROLE_ADMIN') {
         this.isAdmin = true;
       } else if (rol === 'ROLE_ENTERPRISE') {
         this.isEnterprise = true;
@@ -50,12 +50,12 @@ export class NavigationComponent implements OnInit {
 
   }
 
-  onLogOut(): void{
+  onLogOut(): void {
     this.tokenService.logOut();
     this.router.navigate(['login'])
   }
 
-  getAllTripsInCart(){
+  getAllTripsInCart() {
 
     this.enterpriseService.getIdUsername(window.sessionStorage.getItem('AuthUsername')).subscribe(
       data => {
@@ -63,15 +63,15 @@ export class NavigationComponent implements OnInit {
         this.tripService.getTripsInCartController(data.id).subscribe(
           data => {
             this.trips = data;
-            
-           
+
+
           }
         )
 
       }
     )
 
-    
+
 
   }
 

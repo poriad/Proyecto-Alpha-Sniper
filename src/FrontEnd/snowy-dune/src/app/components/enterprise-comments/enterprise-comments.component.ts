@@ -23,13 +23,13 @@ export class EnterpriseCommentsComponent implements OnInit {
   hotel: Hotel[];
   carRental: CarRental[];
   skiMaterial: SkiMaterial[];
-  comments: Comentario[]=[];
+  comments: Comentario[] = [];
   commentsAux: Comentario[];
-  userId:number;
+  userId: number;
   searchText;
-  
+
   constructor(private classesService: ClassesService, private commentService: CommentService,
-     private enterpriseService: EnterpriseService, private hotelService: HotelService, private skiMaterialService: SkiMaterialService, private carRentalService: CarRentalService) { }
+    private enterpriseService: EnterpriseService, private hotelService: HotelService, private skiMaterialService: SkiMaterialService, private carRentalService: CarRentalService) { }
 
   ngOnInit(): void {
 
@@ -42,7 +42,7 @@ export class EnterpriseCommentsComponent implements OnInit {
         this.listSkiMaterialWithComments(this.userId);
         this.listCarRentalWithComments(this.userId);
 
-        if (this.comments.length == 0){
+        if (this.comments.length == 0) {
           this.commentsChk = true;
         }
 
@@ -50,14 +50,14 @@ export class EnterpriseCommentsComponent implements OnInit {
     );
   }
 
-  listClassesWithComments(userId: number){
+  listClassesWithComments(userId: number) {
 
     this.classesService.getClassesListByUser(userId).subscribe(
       data => {
         this.classes = data._embedded.classes;
 
         this.classes.forEach(element => {
-          
+
           this.commentService.getCommentByClassId(element.id).subscribe(
             dataDos => {
               this.commentsAux = dataDos._embedded.comment;
@@ -65,26 +65,26 @@ export class EnterpriseCommentsComponent implements OnInit {
 
                 this.comments.push(element);
               });
-              
+
             }
           )
-          
-          
+
+
         });
 
       });
 
-      
+
   }
 
-  listHotelWithComments(userId: number){
+  listHotelWithComments(userId: number) {
 
     this.hotelService.getHotelListByUser(userId).subscribe(
       data => {
         this.hotel = data._embedded.hotel;
 
         this.hotel.forEach(element => {
-          
+
           this.commentService.getCommentByHotelId(element.id).subscribe(
             dataDos => {
               this.commentsAux = dataDos._embedded.comment;
@@ -92,24 +92,24 @@ export class EnterpriseCommentsComponent implements OnInit {
 
                 this.comments.push(element);
               });
-              
+
             }
           )
-          
-          
+
+
         });
 
       });
   }
 
-  listSkiMaterialWithComments(userId: number){
+  listSkiMaterialWithComments(userId: number) {
 
     this.skiMaterialService.getSkiMaterialListByUser(userId).subscribe(
       data => {
         this.skiMaterial = data._embedded.skiMaterial;
 
         this.skiMaterial.forEach(element => {
-          
+
           this.commentService.getCommentBySkiMaterialId(element.id).subscribe(
             dataDos => {
               this.commentsAux = dataDos._embedded.comment;
@@ -117,24 +117,24 @@ export class EnterpriseCommentsComponent implements OnInit {
 
                 this.comments.push(element);
               });
-              
+
             }
           )
-          
-          
+
+
         });
 
       });
   }
 
-  listCarRentalWithComments(userId: number){
+  listCarRentalWithComments(userId: number) {
 
     this.carRentalService.getCarRentalListByUser(userId).subscribe(
       data => {
         this.carRental = data._embedded.carRental;
 
         this.carRental.forEach(element => {
-          
+
           this.commentService.getCommentByCarRentalId(element.id).subscribe(
             dataDos => {
               this.commentsAux = dataDos._embedded.comment;
@@ -143,11 +143,11 @@ export class EnterpriseCommentsComponent implements OnInit {
                 this.comments.push(element);
 
               });
-              
+
             }
           )
-          
-          
+
+
         });
 
       });

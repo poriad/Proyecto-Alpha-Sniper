@@ -16,10 +16,10 @@ export class EnterpriseUser {
     enterprisePhone: string;
     nif: string;
     cnae: string;
-    
-   
 
-    constructor(id: number,firstName: string,
+
+
+    constructor(id: number, firstName: string,
         lastName: string,
         username: string,
         email: string,
@@ -27,7 +27,7 @@ export class EnterpriseUser {
         address: string,
         newsletter: number,
         isEnterprise: number,
-        phone: string,comercialName: string,nif: string,cnae: string,activity: string,location: string,enterpriseEmail: string,enterprisePhone: string){
+        phone: string, comercialName: string, nif: string, cnae: string, activity: string, location: string, enterpriseEmail: string, enterprisePhone: string) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,7 +45,7 @@ export class EnterpriseUser {
         this.enterprisePhone = enterprisePhone;
         this.nif = nif;
         this.cnae = cnae;
-        
-        
+
+
     }
 }

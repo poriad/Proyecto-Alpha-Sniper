@@ -10,13 +10,13 @@ export class Station {
     closingDate: Date;
     description: String;
     urlImages: string;
-    activated:number;
+    activated: number;
     forfaitPrice: Forfait;
     //priceForfait: number;
 
     constructor(name: string, location: string, country: string,
         openingDate: Date, closingDate: Date, description: string,
-        urlImages: string,activated:number, forfaitPrice: Forfait){
+        urlImages: string, activated: number, forfaitPrice: Forfait) {
         this.name = name;
         this.location = location;
         this.country = country;

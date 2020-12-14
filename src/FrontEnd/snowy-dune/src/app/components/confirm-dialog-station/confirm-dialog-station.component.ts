@@ -13,9 +13,9 @@ export class ConfirmDialogStationComponent implements OnInit {
     public dialogo: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public mensaje: string) { }
 
-    cerrarDialogo(): void {
-      this.dialogo.close(false);
-    }
+  cerrarDialogo(): void {
+    this.dialogo.close(false);
+  }
 
   ngOnInit() {
   }

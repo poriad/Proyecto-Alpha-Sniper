@@ -15,19 +15,19 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './hotel.component.html',
   styleUrls: ['./hotel.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
-]
+  ]
 })
 export class HotelComponent implements OnInit {
-  faStar= faStar;
+  faStar = faStar;
   hotels: Hotel[];
   comments: Comentario[];
 
@@ -41,7 +41,7 @@ export class HotelComponent implements OnInit {
 
   //Pagination
   thePageNumber: number = 1;
-  thePageSize:number = 8;
+  thePageSize: number = 8;
   theTotalElements: number = 0;
 
   constructor(private hotelService: HotelService, private router: Router, public dialogo: MatDialog, private commentService: CommentService) { }
@@ -54,33 +54,33 @@ export class HotelComponent implements OnInit {
 
 
   loadHotel(): void {
-    
-    let country: string =  sessionStorage.getItem('Station');
+
+    let country: string = sessionStorage.getItem('Station');
 
     this.hotelService.getHotelByCountryListPaginate(this.thePageNumber - 1,
       this.thePageSize,
       country).subscribe(this.processResult());
-    
+
   }
 
-  validateInfo(nombre,hotelId){
+  validateInfo(nombre, hotelId) {
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de elegir el hotel ${nombre}?`
+      data: `¿Estás seguro de elegir el hotel ${nombre}?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
-        window.sessionStorage.setItem('HotelId', hotelId)
-        this.router.navigate(['/Classes']);
-      }
-    })
-    
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          window.sessionStorage.setItem('HotelId', hotelId)
+          this.router.navigate(['/Classes']);
+        }
+      })
+
   }
 
-  loadComments(id){
-    
-    this.commentService.getCommentByHotelIdPaginated(0,id).subscribe(
+  loadComments(id) {
+
+    this.commentService.getCommentByHotelIdPaginated(0, id).subscribe(
       data => {
         this.comments = data._embedded.comment;
 
@@ -89,90 +89,90 @@ export class HotelComponent implements OnInit {
           this.commentService.getCommentByUserId(element.id).subscribe(
             data => {
               this.user.push(data.username);
-              
+
             }
           )
-          
+
         });
       }
     )
   }
 
-  updateHotelPriceSelect(price: number){
+  updateHotelPriceSelect(price: number) {
 
-    var country: string =  sessionStorage.getItem('Station');
-    
+    var country: string = sessionStorage.getItem('Station');
+
 
     switch (+price) {
-      case 1: 
+      case 1:
         this.minPrice = 0;
         this.maxPrice = 30;
         break;
-      
-      case 2: 
-      this.minPrice  = 31;
-      this.maxPrice = 60;
+
+      case 2:
+        this.minPrice = 31;
+        this.maxPrice = 60;
         break;
-      
-      case 3: 
-      this.minPrice  = 61;
-      this.maxPrice = 100;
+
+      case 3:
+        this.minPrice = 61;
+        this.maxPrice = 100;
         break;
-      
-      case 4: 
-      this.minPrice  = 101;
-      this.maxPrice = 200;
+
+      case 4:
+        this.minPrice = 101;
+        this.maxPrice = 200;
         break;
-      
-      case 5: 
-      this.minPrice  = 201;
-      this.maxPrice = 9999;
+
+      case 5:
+        this.minPrice = 201;
+        this.maxPrice = 9999;
         break;
-      default:{
-          this.minPrice  = 0;
-          this.maxPrice = 9999;
-        }
+      default: {
+        this.minPrice = 0;
+        this.maxPrice = 9999;
+      }
     }
 
     this.hotelService.getHotelByStarsPriceListPaginate(this.thePageNumber - 1,
       this.thePageSize,
-      country,this.minPrice,this.maxPrice,this.currentStars).subscribe(this.processResult());
-   
+      country, this.minPrice, this.maxPrice, this.currentStars).subscribe(this.processResult());
+
 
   }
 
 
-  updateHotelStarsSelect(stars: number){
+  updateHotelStarsSelect(stars: number) {
     console.log(stars)
 
 
-    if(this.previouStationStars != stars){
+    if (this.previouStationStars != stars) {
       this.thePageNumber = 1;
       this.currentStars = stars;
     }
 
     this.previouStationStars = stars;
 
-    let country: string =  sessionStorage.getItem('Station');
+    let country: string = sessionStorage.getItem('Station');
 
     this.hotelService.getHotelByStarsPriceListPaginate(this.thePageNumber - 1,
       this.thePageSize,
-      country,this.minPrice,this.maxPrice,this.currentStars).subscribe(this.processResult());
+      country, this.minPrice, this.maxPrice, this.currentStars).subscribe(this.processResult());
   }
 
   backToStation() {
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro que quieres volver?`
+      data: `¿Estás seguro que quieres volver?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
 
-        window.sessionStorage.removeItem('HotelId');
-        this.router.navigate(['/Station']);
+          window.sessionStorage.removeItem('HotelId');
+          this.router.navigate(['/Station']);
 
-      }
-    })
+        }
+      })
   }
 
   array(n: number): any[] {
@@ -181,38 +181,38 @@ export class HotelComponent implements OnInit {
 
   continueToClasses() {
 
-    if (window.sessionStorage.getItem('HotelId') == undefined){
+    if (window.sessionStorage.getItem('HotelId') == undefined) {
       this.dialogo.open(ConfirmDialogComponent, {
-        data:`¿Estás seguro que quieres continuar? No has seleccionado ningun hotel`
+        data: `¿Estás seguro que quieres continuar? No has seleccionado ningun hotel`
       })
-      .afterClosed()
-      .subscribe((confirmado:Boolean) => {
-        if (confirmado){
-  
-          window.sessionStorage.removeItem('HotelId');
-          this.router.navigate(['/Classes']);
-  
-        }
-      })
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
+          if (confirmado) {
+
+            window.sessionStorage.removeItem('HotelId');
+            this.router.navigate(['/Classes']);
+
+          }
+        })
     } else {
       this.dialogo.open(ConfirmDialogComponent, {
-        data:`¿Estás seguro que quieres continuar?`
+        data: `¿Estás seguro que quieres continuar?`
       })
-      .afterClosed()
-      .subscribe((confirmado:Boolean) => {
-        if (confirmado){
-          this.router.navigate(['/Classes']);
-  
-        }
-      })
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
+          if (confirmado) {
+            this.router.navigate(['/Classes']);
+
+          }
+        })
     }
   }
 
-  processResult(){
+  processResult() {
     return data => {
       this.hotels = data._embedded.hotel;
       console.log(this.hotels);
-      this.thePageNumber = data.page.number +1;
+      this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
     };

@@ -11,17 +11,17 @@ import { EnterpriseService } from 'src/app/service/enterprise.service';
   templateUrl: './home-user.component.html',
   styleUrls: ['./home-user.component.css'],
   animations: [
-    trigger('fade', [      
+    trigger('fade', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate(1000, style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
       ]),
       transition('* => void', [
-        animate(1000, style({opacity: 0}))
+        animate(1000, style({ opacity: 0 }))
       ])
     ])
 
-]
+  ]
 })
 export class HomeUserComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class HomeUserComponent implements OnInit {
   username = '';
   userId: number;
 
-  constructor(private tokenService: TokenService,public dialogo: MatDialog, private enterpriseService: EnterpriseService) { }
+  constructor(private tokenService: TokenService, public dialogo: MatDialog, private enterpriseService: EnterpriseService) { }
 
   ngOnInit(): void {
 
@@ -39,7 +39,7 @@ export class HomeUserComponent implements OnInit {
       }
     )
 
-    if(this.tokenService.getToken()) {
+    if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.username = this.tokenService.getUsername();
     } else {
@@ -48,7 +48,7 @@ export class HomeUserComponent implements OnInit {
     }
   }
 
-  tutorial(){
+  tutorial() {
 
     this.dialogo.open(TutorialDialogComponent)
 
@@ -56,19 +56,19 @@ export class HomeUserComponent implements OnInit {
 
 
 
-accessEnterprise(){
+  accessEnterprise() {
 
-  this.dialogo.open(AccessEnterpriseDialogComponent)
-  .afterClosed()
-  .subscribe((confirmado:Boolean) => {
-    if(confirmado){
-      this.enterpriseService.putUserToEnterprise(this.userId).subscribe(
-        data => {
+    this.dialogo.open(AccessEnterpriseDialogComponent)
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.enterpriseService.putUserToEnterprise(this.userId).subscribe(
+            data => {
 
+            }
+          )
         }
-      )
-    }
-  })
+      })
 
-}
+  }
 }

@@ -1,111 +1,106 @@
 <div class="row">
-    <p class="marca-uno w-100 text-center pb-1"></p>
-    <div class="col-12">
-      <h3 class="h3 pb-3 pt-4 text-center">ACTIVACIÓN DE SERVICIOS. Hoteles</h3>
-      <hr class="hr2" />
-    </div>
-    <div class="col-12">
-      <input
-        class="form-control search mx-auto"
-        type="text"
-        name="search"
-        [(ngModel)]="searchText"
-        autocomplete="off"
-        placeholder="Busca por coincidencias en el campo..."
-      />
-    </div>
-    <div
-      class="col-10 pt-4 pb-4 table-responsive mx-auto"
-    >
-      <table class="table table-striped text-center">
-        <thead>
-          <tr>
-            <th
-              scope="col"
-              *ngFor="let header of header"
-              (click)="updateOrderListHotel(header.id)"
-            >
-              {{ header.title }}
-            </th>
-  
-            <th scope="col">Ver Detalle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="
-              let hotel of hotels | filter: searchText"
-          >
-            <td>{{ hotel.name }}</td>
-            <td>{{ hotel.location }}</td>
-            <td>{{ hotel.phone }}</td>
-            <td>
-              <button
-                class="btn btn-station"
-                data-toggle="modal"
-                [attr.data-target]="'#hotel' + hotel.id"
-              >
-                Información
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-12 d-flex justify-content-center">
-      <ngb-pagination
-        [(page)]="thePageNumber"
-        [pageSize]="thePageSize"
-        [collectionSize]="theTotalElements"
-        [maxSize]="5"
-        [boundaryLinks]="true"
-        (pageChange)="orderHotelList()"
-      >
-      </ngb-pagination>
-    </div>
-    
+  <p class="marca-uno w-100 text-center pb-1"></p>
+  <div class="col-12">
+    <h3 class="h3 pb-3 pt-4 text-center">ACTIVACIÓN DE SERVICIOS. Hoteles</h3>
+    <hr class="hr2" />
   </div>
-  
-  <div
-  *ngFor="let hotel of hotels" 
-  class="modal fade"
-    id="hotel{{hotel.id}}"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-    #closebuttonhotel
-  >
-    <div  class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="col-11">
-            <h3 class="h3 pb-1 pt-4 text-center">Solicitud de Servicio -  {{ hotel.name }}</h3>
-            <hr class="hr3" />
-            <h4 class="h4 pb-1 pt-4 text-center">
-              Activación y borrado de Servicio
-            </h4>
-          </div>
-        
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            #closebutton
+  <div class="col-12">
+    <input
+      class="form-control search mx-auto"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+      autocomplete="off"
+      placeholder="Busca por coincidencias en el campo..."
+    />
+  </div>
+  <div class="col-10 pt-4 pb-4 table-responsive mx-auto">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th
+            scope="col"
+            *ngFor="let header of header"
+            (click)="updateOrderListHotel(header.id)"
           >
-            <span aria-hidden="true">&times;</span>
-          </button>
+            {{ header.title }}
+          </th>
+
+          <th scope="col">Ver Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hotel of hotels | filter: searchText">
+          <td>{{ hotel.name }}</td>
+          <td>{{ hotel.location }}</td>
+          <td>{{ hotel.phone }}</td>
+          <td>
+            <button
+              class="btn btn-station"
+              data-toggle="modal"
+              [attr.data-target]="'#hotel' + hotel.id"
+            >
+              Información
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-12 d-flex justify-content-center">
+    <ngb-pagination
+      [(page)]="thePageNumber"
+      [pageSize]="thePageSize"
+      [collectionSize]="theTotalElements"
+      [maxSize]="5"
+      [boundaryLinks]="true"
+      (pageChange)="orderHotelList()"
+    >
+    </ngb-pagination>
+  </div>
+</div>
+
+<div
+  *ngFor="let hotel of hotels"
+  class="modal fade"
+  id="hotel{{ hotel.id }}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  #closebuttonhotel
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-11">
+          <h3 class="h3 pb-1 pt-4 text-center">
+            Solicitud de Servicio - {{ hotel.name }}
+          </h3>
+          <hr class="hr3" />
+          <h4 class="h4 pb-1 pt-4 text-center">
+            Activación y borrado de Servicio
+          </h4>
         </div>
-        <div class="modal-body">
-          <form >
+
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          #closebutton
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
           <div class="row">
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
-              
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="firstName" class="d-block">Nombre</label>
-              
-              <input #name
+
+              <input
+                #name
                 type="text"
                 value="{{ hotel.name }}"
                 placeholder="Nombre..."
@@ -114,10 +109,11 @@
                 readonly
               />
             </div>
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Localización</label>
-              <input #location
+              <input
+                #location
                 type="text"
                 placeholder="Email..."
                 name="email"
@@ -126,21 +122,23 @@
                 readonly
               />
             </div>
-            
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Precio</label>
-              <input #address
+              <input
+                #address
                 type="text"
                 placeholder="Dirección..."
                 name="direccion"
                 class="input pt-2"
-                value="{{ hotel.price}}"
+                value="{{ hotel.price }}"
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4">
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="username" class="d-block">Teléfono</label>
-              <input #username
+              <input
+                #username
                 type="text"
                 placeholder="Nombre de usuario..."
                 name="email"
@@ -149,9 +147,10 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6  col-md-4 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
               <label for="email" class="d-block">Email</label>
-              <input #password
+              <input
+                #password
                 type="text"
                 placeholder="Email..."
                 name="password"
@@ -160,32 +159,37 @@
                 readonly
               />
             </div>
-            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4 ">
-                <label for="email" class="d-block">Estrellas</label>
-                <input #password
-                  type="text"
-                  placeholder="Email..."
-                  name="password"
-                  class="input pt-2"
-                  value="{{ hotel.stars }}"
-                  readonly
-                />
-              </div>
-            <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
-              <label for="email" class="d-block">Imagen</label>
-              <img src="{{ hotel.urlImages }}" alt="" class="img-fluid">
-  
-              <input #id
-              type="hidden"
-              placeholder="Teléfono..."
-              name="phone"
-              class="input pt-2"
-              value="{{ hotel.id }}" visibility="hidden" style="width: 0;"
+            <div class="col-12 col-sm-6 col-md-4 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Estrellas</label>
+              <input
+                #password
+                type="text"
+                placeholder="Email..."
+                name="password"
+                class="input pt-2"
+                value="{{ hotel.stars }}"
+                readonly
               />
             </div>
-            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4 ">
+            <div class="col-12 col-sm-6 col-md-6 text-center pt-3 pb-4">
+              <label for="email" class="d-block">Imagen</label>
+              <img src="{{ hotel.urlImages }}" alt="" class="img-fluid" />
+
+              <input
+                #id
+                type="hidden"
+                placeholder="Teléfono..."
+                name="phone"
+                class="input pt-2"
+                value="{{ hotel.id }}"
+                visibility="hidden"
+                style="width: 0"
+              />
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 text-center pt-3 pb-4">
               <label for="lastName" class="d-block">Descripción</label>
-              <textarea #description
+              <textarea
+                #description
                 type="text"
                 rows="5"
                 name="lastName"
@@ -194,36 +198,36 @@
                 readonly
               ></textarea>
             </div>
-  
+
             <div class="col-12">
               <hr class="hr3" />
             </div>
-            
+
             <div class="col-12 col-sm-6 text-center pt-3 pb-3">
-              <button mat-raised-button
-            color="primary"
-              class="btnReturn"
-              data-toggle="modal"
-              (click)="updateStatusHotel(hotel.id)"
-            >
-            Activar
-            </button>
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="updateStatusHotel(hotel.id)"
+              >
+                Activar
+              </button>
             </div>
             <div class="col-12 col-sm-6 text-center pt-3 pb-3">
-              <button mat-raised-button
-            color="primary"
-              class="btnReturn"
-              data-toggle="modal"
-              (click)="deleteHotel(hotel.id)"
-            >
-            Borrar
-            </button>
-  
-            
+              <button
+                mat-raised-button
+                color="primary"
+                class="btnReturn"
+                data-toggle="modal"
+                (click)="deleteHotel(hotel.id)"
+              >
+                Borrar
+              </button>
             </div>
           </div>
         </form>
-        </div>
       </div>
     </div>
   </div>
+</div>

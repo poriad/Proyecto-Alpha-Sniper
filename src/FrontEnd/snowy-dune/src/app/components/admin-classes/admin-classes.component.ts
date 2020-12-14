@@ -14,11 +14,11 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class AdminClassesComponent implements OnInit {
   @ViewChildren('closebutton') closebutton;
 
-  header: Header[] = [{title:"Nombre",id:"name"},{title:"Localizacion",id:"location"},{title:"Teléfono",id:"phone"}];
+  header: Header[] = [{ title: "Nombre", id: "name" }, { title: "Localizacion", id: "location" }, { title: "Teléfono", id: "phone" }];
 
   classes: Classes[] = [];
   class: Classes;
-  
+
   searchText;
   isUpdateFail: boolean;
   isDeleteFail: boolean;
@@ -26,12 +26,12 @@ export class AdminClassesComponent implements OnInit {
   submittedDelete: boolean = false;
 
   thePageNumber: number = 1;
-  thePageSize:number = 8;
+  thePageSize: number = 8;
   theTotalElements: number = 0;
-  columnName:string = "";
-  order:string = "asc";
+  columnName: string = "";
+  order: string = "asc";
 
-  constructor(private classesService:ClassesService, public dialogo: MatDialog, private toastr: ToastrService) { }
+  constructor(private classesService: ClassesService, public dialogo: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -39,42 +39,42 @@ export class AdminClassesComponent implements OnInit {
 
   }
 
-  updateStatusClasses(id): void{
+  updateStatusClasses(id): void {
 
     this.submitted = true;
     this.iterateChildrenButton();
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de esta acción?`
+      data: `¿Estás seguro de esta acción?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
 
-        this.classesService.putClassesToActive(id).subscribe(
-          data => {
-            this.isUpdateFail = true;
-            this.toastr.success('Clase activada', 'Actualización', {
-              timeOut: 3000,
+          this.classesService.putClassesToActive(id).subscribe(
+            data => {
+              this.isUpdateFail = true;
+              this.toastr.success('Clase activada', 'Actualización', {
+                timeOut: 3000,
+              });
+
+              this.orderClassesList();
+            }, err => {
+              this.isUpdateFail = false;
+              this.toastr.error('La clase no se ha podido actualizar', 'Actualización', {
+                timeOut: 3000,
+              });
+
             });
 
-            this.orderClassesList();
-          }, err => {
-            this.isUpdateFail = false;
-            this.toastr.error('La clase no se ha podido actualizar', 'Actualización', {
-              timeOut: 3000,
-            });
 
-          });
-    
-
-            this.submitted = false;
+          this.submitted = false;
 
 
 
-      }
-    })
-    
+        }
+      })
+
   }
 
   deleteClasses(id): void {
@@ -83,67 +83,67 @@ export class AdminClassesComponent implements OnInit {
     this.iterateChildrenButton();
 
     this.dialogo.open(ConfirmDialogComponent, {
-      data:`¿Estás seguro de esta acción?`
+      data: `¿Estás seguro de esta acción?`
     })
-    .afterClosed()
-    .subscribe((confirmado:Boolean) => {
-      if (confirmado){
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
 
-        this.classesService.deleteClass(id).subscribe(
-          data => {
-            this.isDeleteFail = true;
-            this.toastr.success('Clase pasada a Inactiva', 'Actualización', {
-              timeOut: 3000,
+          this.classesService.deleteClass(id).subscribe(
+            data => {
+              this.isDeleteFail = true;
+              this.toastr.success('Clase pasada a Inactiva', 'Actualización', {
+                timeOut: 3000,
+              });
+              this.orderClassesList();
+            }, err => {
+              this.isDeleteFail = false;
+              this.toastr.error('La clase no se ha podido borrar', 'Actualización', {
+                timeOut: 3000,
+              });
             });
-            this.orderClassesList();
-          }, err => {
-            this.isDeleteFail = false;
-            this.toastr.error('La clase no se ha podido borrar', 'Actualización', {
-              timeOut: 3000,
-            });
-          });
-    
-            this.submittedDelete = false;
-      }
-    })
-    
+
+          this.submittedDelete = false;
+        }
+      })
+
   }
 
-  updateOrderListClasses(columnName:string){
+  updateOrderListClasses(columnName: string) {
 
-    if (this.columnName == columnName){
+    if (this.columnName == columnName) {
       this.toggleOrder();
-    } 
-   
+    }
+
     this.columnName = columnName;
-    
+
     console.log(this.columnName);
     //this.thePageNumber = 1;
     this.orderClassesList();
   }
-  orderClassesList(){
+  orderClassesList() {
     this.classesService.getClassesListPaginatedSorted(this.thePageNumber - 1,
-      this.thePageSize,this.columnName,this.order).subscribe(this.processResult());
+      this.thePageSize, this.columnName, this.order).subscribe(this.processResult());
   }
 
-  toggleOrder(){
-    if (this.order == "desc"){
+  toggleOrder() {
+    if (this.order == "desc") {
       this.order = "asc";
     } else {
       this.order = "desc";
     }
   }
 
-  processResult(){
+  processResult() {
     return data => {
       this.classes = data._embedded.classes;
-      this.thePageNumber = data.page.number +1;
+      this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements
     };
   }
 
-  iterateChildrenButton(){
+  iterateChildrenButton() {
     this.closebutton.forEach(element => {
       element.nativeElement.click();
     });
