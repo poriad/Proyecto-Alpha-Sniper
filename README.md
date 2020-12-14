@@ -29,15 +29,15 @@ La unificación de servicios en una misma aplicación, ahorra tiempo a los usuar
 
 El proceso seguido en la creación del prototipo de la interfaz del proyecto ha sido la siguiente (Se pone ejemplo de una pantalla):
 
-- **Creación de WireFrame empleando AxureRP ([WireFrame](https://il6hok.axshare.com/#id=gl68c1&p=inicio))
+- **Creación de WireFrame empleando AxureRP ([WireFrame](https://il6hok.axshare.com/#id=gl68c1&p=inicio))**
 
 ![image](https://i.ibb.co/1qLGNk8/wireframe.jpg)
 
-- **Creación de MockUp ([MockUp](https://3cfdgt.axshare.com/#id=qaojgl&p=inicio&g=1))
+- **Creación de MockUp ([MockUp](https://3cfdgt.axshare.com/#id=qaojgl&p=inicio&g=1))**
 
 ![image](https://i.ibb.co/85Qsxnp/MockUp.jpg)
 
-- **Creación de Prototipo final.
+- **Creación de Prototipo final.**
 
 ![image](https://i.ibb.co/934Th8y/prototipo.jpg)
 ![image](https://i.ibb.co/XpJfsBW/prototipo1.jpg)
