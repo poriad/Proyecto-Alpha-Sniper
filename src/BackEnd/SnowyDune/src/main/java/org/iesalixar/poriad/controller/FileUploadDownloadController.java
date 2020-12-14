@@ -62,7 +62,7 @@ public class FileUploadDownloadController {
 				htmlMsg = htmlMsg.replace("|&email&|", email);
 				
 				helper.setText(htmlMsg, true);
-				helper.setTo("criscercu@gmail.com");
+				helper.setTo("pablo.oria1991@gmail.com");
 				helper.setSubject("Curriculum Vitae recibido");
 		    	helper.setFrom("alum.poriad@iesalixar.org");
 		        helper.addAttachment(file.getOriginalFilename(), file);
