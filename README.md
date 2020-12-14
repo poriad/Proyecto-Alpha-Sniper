@@ -29,23 +29,30 @@ La unificación de servicios en una misma aplicación, ahorra tiempo a los usuar
 
 El proceso seguido en la creación del prototipo de la interfaz del proyecto ha sido la siguiente (Se pone ejemplo de una pantalla):
 
--Creación de WireFrame empleando AxureRP ([WireFrame](https://il6hok.axshare.com/#id=gl68c1&p=inicio))
+- **Creación de WireFrame empleando AxureRP ([WireFrame](https://il6hok.axshare.com/#id=gl68c1&p=inicio))
 
 ![image](https://i.ibb.co/1qLGNk8/wireframe.jpg)
 
--Creación de MockUp ([MockUp](https://3cfdgt.axshare.com/#id=qaojgl&p=inicio&g=1))
+- **Creación de MockUp ([MockUp](https://3cfdgt.axshare.com/#id=qaojgl&p=inicio&g=1))
 
 ![image](https://i.ibb.co/85Qsxnp/MockUp.jpg)
 
--Creación de Prototipo final.
+- **Creación de Prototipo final.
 
 ![image](https://i.ibb.co/934Th8y/prototipo.jpg)
 ![image](https://i.ibb.co/XpJfsBW/prototipo1.jpg)
 
 ## Estructura del Proyecto
 
-En este apartado el alumno explicará el contenido del repositorio y de todas las carpetas relevantes del mismo.
+El repositorio se compone de:
 
-## Demostración del proyecto
-
-Vídeo demostrativo que contenga una pequeña demostración de la apariencia del proyecto y de aquello que el proyecto puede hacer. (No más de 2 minutos).
+- **docs/ :** Directorio destinado a la documentación del proyecto.
+  - Arquitectura/ : Recoge la información destinada a la arquitectura de la aplicación.
+  - Diseño/: Documentos de diseño referentes al desarrollo de la aplicación.
+  - Documentación: Documentos finales de entrega de la aplicación.
+ - **src/ :** Directorio destinado al desarrollo del proyecto.
+  - Archivos Finales/ : Recoge los archivos empleados en el despliegue de la aplicación.
+  - BackEnd/ : Archivos de desarrollo de la parte Back-End de la aplicación.
+  - FrontEnd/ : Archivos de desarrollo de la parte Front-end.
+  - FrontEndiOS : Destinado al desarrollo de pequeña aplicación para iOS.
+  
